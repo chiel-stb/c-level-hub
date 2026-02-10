@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop hengelen in dezelfde vijver | Studytube voor CEO's</title>
+    <meta name="description" content="66% van Nederlandse bedrijven kan geen personeel vinden. Ontdek hoe winnaars intern talent bouwen—in maanden, niet jaren.">
+
+    <!-- Fonts -->
+    <style>
+        @font-face {
+            font-family: 'Euclid Circular B';
+            src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Euclid Circular B';
+            src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Euclid Circular B';
+            src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-display: swap;
+        }
+    </style>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'st-blue': '#056DFF',
+                        'st-navy': '#11295A',
+                        'st-text': '#0B0B2B',
+                        'st-gray': {
+                            75: '#F9FAFB',
+                            100: '#F2F5F8',
+                            200: '#E9EDF1',
+                            600: '#545E69'
+                        },
+                        'st-cyan': '#05D5FF',
+                        'st-success': '#16A34A',
+                        'st-link': '#FF1B51',
+                        'st-danger': '#EF5350'
+                    },
+                    fontFamily: {
+                        'euclid': ['"Euclid Circular B"', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            font-family: 'Euclid Circular B', system-ui, -apple-system, sans-serif;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Pattern overlay for blue section */
+        .pattern-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L55 30L30 55L5 30L30 5z' fill='none' stroke='white' stroke-width='1' opacity='0.08'/%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
+
+        /* Quarter circle accent */
+        .quarter-circle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: #056DFF;
+            border-bottom-left-radius: 100%;
+            opacity: 0.1;
+        }
+
+        /* Accordion animation */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Button hover effects */
+        .btn-primary {
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(5, 109, 255, 0.4);
+        }
+
+        .btn-secondary {
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #E8F0FE;
+        }
+    </style>
+</head>
+<body class="bg-white text-st-text">
+
+    <!-- ============================================
+         SECTION 1: HERO
+         Job: Get email or get scroll
+    ============================================= -->
+    <section class="bg-white">
+        <div class="max-w-6xl mx-auto px-6 py-16 md:py-24">
+            <!-- Eyebrow -->
+            <div class="mb-6">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-st-blue/10 text-st-blue text-sm font-semibold">
+                    Voor CEO's & MT
+                </span>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <!-- Headline -->
+                    <h1 class="text-4xl md:text-5xl lg:text-[52px] font-extrabold text-st-navy leading-[1.1] mb-6">
+                        Stop hengelen in dezelfde vijver.<br>
+                        <span class="text-st-blue">Bouw je eigen senior talent.</span>
+                    </h1>
+
+                    <!-- Subheadline -->
+                    <p class="text-lg md:text-xl text-st-gray-600 leading-relaxed mb-8">
+                        66% van Nederlandse bedrijven kan geen personeel vinden. Dit is hoe winnaars intern bouwen—in maanden, niet jaren.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#scan" class="btn-primary inline-flex items-center justify-center px-8 py-4 bg-st-blue text-white font-semibold rounded-xl text-lg">
+                            Ontdek je skill gaps
+                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                        <a href="#calculator" class="btn-secondary inline-flex items-center justify-center px-8 py-4 bg-white border-2 border-st-gray-200 text-st-navy font-semibold rounded-xl text-lg">
+                            Bereken je kosten
+                        </a>
+                    </div>
+
+                    <!-- Trust indicator -->
+                    <div class="mt-8 flex items-center gap-3 text-st-gray-600">
+                        <svg class="w-5 h-5 text-st-success" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="text-sm">SLIM subsidie: tot 80% kosten gedekt</span>
+                    </div>
+                </div>
+
+                <!-- Hero Visual -->
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-st-blue to-st-cyan rounded-3xl p-8 shadow-2xl">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg">
+                            <!-- Mini dashboard mockup -->
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-st-blue/10 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-st-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-st-gray-600 uppercase tracking-wide">Talent Pipeline</p>
+                                    <p class="text-lg font-bold text-st-navy">+42% interne promoties</p>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-st-gray-600">Senior Developer</span>
+                                        <span class="font-semibold text-st-navy">3 kandidaten</span>
+                                    </div>
+                                    <div class="h-2 bg-st-gray-100 rounded-full overflow-hidden">
+                                        <div class="h-full bg-st-blue rounded-full" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-st-gray-600">Team Lead</span>
+                                        <span class="font-semibold text-st-navy">5 kandidaten</span>
+                                    </div>
+                                    <div class="h-2 bg-st-gray-100 rounded-full overflow-hidden">
+                                        <div class="h-full bg-st-cyan rounded-full" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-st-gray-600">Sales Manager</span>
+                                        <span class="font-semibold text-st-navy">2 kandidaten</span>
+                                    </div>
+                                    <div class="h-2 bg-st-gray-100 rounded-full overflow-hidden">
+                                        <div class="h-full bg-st-success rounded-full" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating stat cards -->
+                    <div class="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg p-4 border border-st-gray-100">
+                        <p class="text-2xl font-bold text-st-success">-30%</p>
+                        <p class="text-xs text-st-gray-600">wervingskosten</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 2: LOGO BAR
+         Job: Social proof at a glance
+    ============================================= -->
+    <section class="bg-white border-y border-st-gray-100">
+        <div class="max-w-6xl mx-auto px-6 py-10">
+            <p class="text-center text-sm text-st-gray-600 uppercase tracking-wider mb-8">
+                Vertrouwd door 400+ organisaties in Nederland
+            </p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60 grayscale">
+                <!-- Logo placeholders - replace with actual customer logos -->
+                <div class="flex items-center justify-center h-10 px-4">
+                    <span class="text-lg font-bold text-st-navy">Emil Frey</span>
+                </div>
+                <div class="flex items-center justify-center h-10 px-4">
+                    <span class="text-lg font-bold text-st-navy">Engie</span>
+                </div>
+                <div class="flex items-center justify-center h-10 px-4">
+                    <span class="text-lg font-bold text-st-navy">Hunkemoller</span>
+                </div>
+                <div class="flex items-center justify-center h-10 px-4">
+                    <span class="text-lg font-bold text-st-navy">Swapfiets</span>
+                </div>
+                <div class="flex items-center justify-center h-10 px-4">
+                    <span class="text-lg font-bold text-st-navy">Rituals</span>
+                </div>
+                <div class="flex items-center justify-center h-10 px-4">
+                    <span class="text-lg font-bold text-st-navy">Picnic</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3: PROBLEM-AGITATE
+         Job: Make status quo painful
+    ============================================= -->
+    <section class="bg-st-gray-75 py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-st-navy mb-4">
+                    De markt is leeg. En je weet het.
+                </h2>
+                <p class="text-lg text-st-gray-600 max-w-2xl mx-auto">
+                    Je probeert senior talent te vinden door extern te werven. Maar de cijfers liegen niet.
+                </p>
+            </div>
+
+            <!-- Pain Cards -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Pain 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-st-gray-100">
+                    <div class="w-14 h-14 bg-st-danger/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-st-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-st-navy mb-3">€15.000 per hire</h3>
+                    <p class="text-st-gray-600 leading-relaxed">
+                        "Ik ben het zat om recruiters €15K te betalen voor mensen die na een jaar weer vertrekken."
+                    </p>
+                    <p class="mt-4 text-sm text-st-gray-600 italic">— CEO, 450 FTE</p>
+                </div>
+
+                <!-- Pain 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-st-gray-100">
+                    <div class="w-14 h-14 bg-st-danger/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-st-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-st-navy mb-3">40% vertrekt binnen een jaar</h3>
+                    <p class="text-st-gray-600 leading-relaxed">
+                        "Ik moet kiezen: €20K uitgeven aan een senior werven, of vijf junioren trainen. Die eerste is na een jaar weg."
+                    </p>
+                    <p class="mt-4 text-sm text-st-gray-600 italic">— DGA, 320 FTE</p>
+                </div>
+
+                <!-- Pain 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-st-gray-100">
+                    <div class="w-14 h-14 bg-st-danger/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-st-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-st-navy mb-3">De vijver is leeg</h3>
+                    <p class="text-st-gray-600 leading-relaxed">
+                        "De markt is leeg. Iedereen vist in dezelfde vijver. En de vis raakt op."
+                    </p>
+                    <p class="mt-4 text-sm text-st-gray-600 italic">— CEO, 580 FTE</p>
+                </div>
+            </div>
+
+            <!-- Gut Punch -->
+            <div class="mt-12 text-center">
+                <div class="inline-block bg-st-navy/5 rounded-2xl px-8 py-6 max-w-3xl">
+                    <p class="text-xl md:text-2xl text-st-navy font-medium leading-relaxed">
+                        "Je bent al jaren bezig met het oplossen van het verkeerde probleem—en ergens weet je dat."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 4: FULL-WIDTH BLUE SECTION
+         Job: Key differentiator + proof
+    ============================================= -->
+    <section class="bg-st-blue pattern-overlay py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                        Bouw een junior-naar-senior pijplijn.<br>
+                        In 4 weken live.
+                    </h2>
+                    <p class="text-xl text-white/80 leading-relaxed mb-8">
+                        Met Skill Paths en Assessments groei je wat je niet kunt kopen. Geen 18 maanden implementatie. Geen consultants. Direct resultaat.
+                    </p>
+
+                    <!-- Stats row -->
+                    <div class="grid grid-cols-3 gap-6">
+                        <div>
+                            <p class="text-4xl md:text-5xl font-bold text-white">€4,70</p>
+                            <p class="text-white/70 text-sm mt-1">terug per €1 investering</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl md:text-5xl font-bold text-st-cyan">30%</p>
+                            <p class="text-white/70 text-sm mt-1">kostenreductie</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl md:text-5xl font-bold text-white">4</p>
+                            <p class="text-white/70 text-sm mt-1">weken live</p>
+                        </div>
+                    </div>
+
+                    <p class="mt-8 text-sm text-white/60">
+                        Bron: Deloitte Learning ROI Study, Emil Frey case study
+                    </p>
+                </div>
+
+                <!-- Platform preview placeholder -->
+                <div class="bg-white/10 backdrop-blur rounded-2xl p-6 border border-white/20">
+                    <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
+                        <!-- Mock platform UI -->
+                        <div class="bg-st-gray-75 px-4 py-3 border-b border-st-gray-100 flex items-center gap-2">
+                            <div class="w-3 h-3 bg-st-danger rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                            <div class="w-3 h-3 bg-st-success rounded-full"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 bg-gradient-to-br from-st-blue to-st-cyan rounded-xl"></div>
+                                <div>
+                                    <p class="font-semibold text-st-navy">Skill Path: Sales Manager</p>
+                                    <p class="text-sm text-st-gray-600">8 modules • 12 weken</p>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-st-success/20 rounded-lg flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-st-success" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-st-gray-600">Consultative Selling</span>
+                                    <span class="ml-auto text-st-success text-sm font-medium">Voltooid</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-st-blue/20 rounded-lg flex items-center justify-center">
+                                        <span class="text-st-blue text-sm font-semibold">2</span>
+                                    </div>
+                                    <span class="text-st-navy font-medium">Team Leadership</span>
+                                    <span class="ml-auto text-st-blue text-sm font-medium">Bezig</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-st-gray-100 rounded-lg flex items-center justify-center">
+                                        <span class="text-st-gray-600 text-sm">3</span>
+                                    </div>
+                                    <span class="text-st-gray-600">Strategic Account Management</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 5: FEATURE CARDS
+         Job: Make saying no feel stupid
+    ============================================= -->
+    <section class="bg-white py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-st-navy mb-4">
+                    Drie capabilities die recruitment overbodig maken
+                </h2>
+                <p class="text-lg text-st-gray-600 max-w-2xl mx-auto">
+                    Als CEO wil je geen trainingsplatform. Je wilt mensen die morgen beter presteren dan vandaag.
+                </p>
+            </div>
+
+            <!-- Feature Cards Grid -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Capability 1 -->
+                <div class="relative bg-white rounded-2xl p-8 shadow-sm border border-st-gray-100 quarter-circle overflow-hidden">
+                    <div class="w-14 h-14 bg-st-blue/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-st-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-st-navy mb-3">Skill Paths</h3>
+                    <p class="text-st-gray-600 leading-relaxed mb-4">
+                        Gepersonaliseerde leertrajecten die junioren in 3-6 maanden naar senior niveau brengen. Geen generieke trainingen, maar precies wat ze nodig hebben.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-2 text-sm text-st-gray-600">
+                            <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Role-based competentie frameworks
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-st-gray-600">
+                            <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Automatische voortgangstracking
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-st-gray-600">
+                            <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Interne certificering
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Capability 2 -->
+                <div class="relative bg-white rounded-2xl p-8 shadow-sm border border-st-gray-100 quarter-circle overflow-hidden">
+                    <div class="w-14 h-14 bg-st-blue/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-st-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-st-navy mb-3">Impact Dashboards</h3>
+                    <p class="text-st-gray-600 leading-relaxed mb-4">
+                        Eindelijk een antwoord als de board vraagt naar de talent pipeline. Real-time inzicht in wie klaar is voor de volgende stap.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-2 text-sm text-st-gray-600">
+                            <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Skill gap analyses per team
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-st-gray-600">
+                            <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Promotie-readiness scores
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-st-gray-600">
+                            <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Board-ready rapportages
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Capability 3 -->
+                <div class="relative bg-white rounded-2xl p-8 shadow-sm border border-st-gray-100 quarter-circle overflow-hidden">
+                    <div class="w-14 h-14 bg-st-blue/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7 text-st-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-st-navy mb-3">ROI Calculator</h3>
+                    <p class="text-st-gray-600 leading-relaxed mb-4">
+                        Vergelijk recruitment vs. development kosten. Zie precies hoeveel je bespaart door intern te bouwen in plaats van extern te werven.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-2 text-sm text-st-gray-600">
+                            <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Recruitment cost per hire
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-st-gray-600">
+                            <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Development cost per promotion
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-st-gray-600">
+                            <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            SLIM subsidie calculator
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 6: OBJECTION REFRAMES (Accordion)
+         Job: Address hidden concerns
+    ============================================= -->
+    <section class="bg-st-gray-75 py-16 md:py-24">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-st-navy mb-4">
+                    Wat je jezelf waarschijnlijk afvraagt
+                </h2>
+            </div>
+
+            <!-- Accordion -->
+            <div class="space-y-4" id="accordion">
+                <!-- Objection 1 -->
+                <div class="accordion-item bg-white rounded-2xl border border-st-gray-100 overflow-hidden">
+                    <button class="w-full px-8 py-6 flex items-center justify-between text-left" onclick="toggleAccordion(this)">
+                        <span class="text-lg font-semibold text-st-navy">"We hebben geen budget voor L&D"</span>
+                        <svg class="accordion-icon w-6 h-6 text-st-blue transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-8 pb-6">
+                            <div class="bg-st-gray-75 rounded-xl p-6">
+                                <p class="text-st-gray-600 leading-relaxed mb-4">
+                                    Je geeft nu €15K per hire uit aan mensen die vertrekken. De vraag is niet of je budget hebt—het is waar je het uitgeeft.
+                                </p>
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div class="bg-white rounded-lg p-4">
+                                        <p class="text-2xl font-bold text-st-danger">€15.000+</p>
+                                        <p class="text-sm text-st-gray-600">Externe werving per senior</p>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-4">
+                                        <p class="text-2xl font-bold text-st-success">€3.000</p>
+                                        <p class="text-sm text-st-gray-600">Interne ontwikkeling per promotie</p>
+                                    </div>
+                                </div>
+                                <p class="mt-4 text-sm text-st-gray-600">
+                                    Plus: SLIM subsidie dekt tot 80% van de kosten voor MKB.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Objection 2 -->
+                <div class="accordion-item bg-white rounded-2xl border border-st-gray-100 overflow-hidden">
+                    <button class="w-full px-8 py-6 flex items-center justify-between text-left" onclick="toggleAccordion(this)">
+                        <span class="text-lg font-semibold text-st-navy">"Als we ze trainen, vertrekken ze naar de concurrent"</span>
+                        <svg class="accordion-icon w-6 h-6 text-st-blue transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-8 pb-6">
+                            <div class="bg-st-gray-75 rounded-xl p-6">
+                                <p class="text-st-gray-600 leading-relaxed mb-4">
+                                    67% vertrekt omdat je ze NIET traint. Het risico is niet trainen—het risico is niets doen.
+                                </p>
+                                <div class="flex items-center gap-6 mb-4">
+                                    <div class="flex-1">
+                                        <div class="h-4 bg-st-danger/20 rounded-full overflow-hidden">
+                                            <div class="h-full bg-st-danger rounded-full" style="width: 67%"></div>
+                                        </div>
+                                        <p class="text-sm text-st-gray-600 mt-2">67% vertrekt door gebrek aan ontwikkeling</p>
+                                    </div>
+                                </div>
+                                <blockquote class="border-l-4 border-st-blue pl-4 italic text-st-gray-600">
+                                    "What if we train them and they leave? What if we don't and they stay?"
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Objection 3 -->
+                <div class="accordion-item bg-white rounded-2xl border border-st-gray-100 overflow-hidden">
+                    <button class="w-full px-8 py-6 flex items-center justify-between text-left" onclick="toggleAccordion(this)">
+                        <span class="text-lg font-semibold text-st-navy">"Dit kost te veel tijd om te implementeren"</span>
+                        <svg class="accordion-icon w-6 h-6 text-st-blue transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-8 pb-6">
+                            <div class="bg-st-gray-75 rounded-xl p-6">
+                                <p class="text-st-gray-600 leading-relaxed mb-4">
+                                    4 weken. Niet 18 maanden. Onze implementatie is ontworpen voor bedrijven die geen tijd te verliezen hebben.
+                                </p>
+                                <div class="grid sm:grid-cols-4 gap-4">
+                                    <div class="text-center p-4 bg-white rounded-lg">
+                                        <p class="text-2xl font-bold text-st-blue">Week 1</p>
+                                        <p class="text-xs text-st-gray-600 mt-1">Setup & configuratie</p>
+                                    </div>
+                                    <div class="text-center p-4 bg-white rounded-lg">
+                                        <p class="text-2xl font-bold text-st-blue">Week 2</p>
+                                        <p class="text-xs text-st-gray-600 mt-1">Content mapping</p>
+                                    </div>
+                                    <div class="text-center p-4 bg-white rounded-lg">
+                                        <p class="text-2xl font-bold text-st-blue">Week 3</p>
+                                        <p class="text-xs text-st-gray-600 mt-1">Pilot team</p>
+                                    </div>
+                                    <div class="text-center p-4 bg-white rounded-lg">
+                                        <p class="text-2xl font-bold text-st-success">Week 4</p>
+                                        <p class="text-xs text-st-gray-600 mt-1">Full rollout</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 7: SOCIAL PROOF + CASE TEASER
+         Job: Let others convince them
+    ============================================= -->
+    <section class="bg-white py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <!-- Case Study Highlight -->
+            <div class="bg-gradient-to-br from-st-gray-75 to-white rounded-3xl p-8 md:p-12 border border-st-gray-100">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full bg-st-success/10 text-st-success text-sm font-semibold mb-6">
+                            Case Study
+                        </span>
+                        <h3 class="text-2xl md:text-3xl font-bold text-st-navy mb-4">
+                            Emil Frey: 30% kostenreductie door intern talent development
+                        </h3>
+                        <p class="text-st-gray-600 leading-relaxed mb-6">
+                            "We zochten naar een manier om onze beste mensen te behouden en sneller te laten groeien. Met Studytube hebben we een talent pipeline gebouwd die ons minder afhankelijk maakt van externe werving."
+                        </p>
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="w-12 h-12 bg-st-blue/10 rounded-full flex items-center justify-center">
+                                <span class="text-st-blue font-bold">EF</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-st-navy">HR Director</p>
+                                <p class="text-sm text-st-gray-600">Emil Frey Nederland</p>
+                            </div>
+                        </div>
+                        <a href="#case-study" class="inline-flex items-center text-st-link font-semibold hover:underline">
+                            Lees de volledige case study
+                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-st-gray-100 text-center">
+                            <p class="text-4xl font-bold text-st-blue">30%</p>
+                            <p class="text-sm text-st-gray-600 mt-2">kostenreductie</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-st-gray-100 text-center">
+                            <p class="text-4xl font-bold text-st-success">42%</p>
+                            <p class="text-sm text-st-gray-600 mt-2">meer interne promoties</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-st-gray-100 text-center">
+                            <p class="text-4xl font-bold text-st-cyan">85%</p>
+                            <p class="text-sm text-st-gray-600 mt-2">training completion</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-st-gray-100 text-center">
+                            <p class="text-4xl font-bold text-st-navy">4 wkn</p>
+                            <p class="text-sm text-st-gray-600 mt-2">implementatie</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         L&D LEADERS HUB HIGHLIGHT
+         Job: Introduce exclusive community
+    ============================================= -->
+    <section class="bg-gradient-to-br from-st-blue via-st-blue to-st-navy py-16 md:py-24 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-st-cyan rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-white/20 text-white text-sm font-semibold mb-6">
+                        🚀 Exclusief voor L&D Leaders
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                        L&D Leaders Hub:<br>
+                        Jouw persoonlijke command center
+                    </h2>
+                    <p class="text-xl text-white/80 leading-relaxed mb-8">
+                        Krijg toegang tot benchmarks, sector-insights, en een gepersonaliseerd actieplan. Vergelijk je organisatie met 400+ andere bedrijven en ontdek waar je kansen liggen.
+                    </p>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-white/90">
+                            <svg class="w-6 h-6 text-st-cyan flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            L&D Impact Scan met sector benchmark
+                        </li>
+                        <li class="flex items-center gap-3 text-white/90">
+                            <svg class="w-6 h-6 text-st-cyan flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Gepersonaliseerd actieplan op basis van je resultaten
+                        </li>
+                        <li class="flex items-center gap-3 text-white/90">
+                            <svg class="w-6 h-6 text-st-cyan flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Exclusieve resources en playbooks
+                        </li>
+                        <li class="flex items-center gap-3 text-white/90">
+                            <svg class="w-6 h-6 text-st-cyan flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            L&D Monitor: real-time markt trends
+                        </li>
+                    </ul>
+
+                    <a href="../c-level-personal-environment-lofi/index.html" class="btn-primary inline-flex items-center justify-center px-8 py-4 bg-white text-st-blue font-semibold rounded-xl text-lg shadow-lg hover:shadow-xl">
+                        Bekijk de L&D Leaders Hub
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Hub Preview -->
+                <div class="relative">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20 shadow-2xl">
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+                            <!-- Mock dashboard header -->
+                            <div class="bg-st-gray-75 px-4 py-3 border-b border-st-gray-100 flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-8 h-8 bg-st-blue rounded-lg flex items-center justify-center">
+                                        <span class="text-white font-bold text-sm">S</span>
+                                    </div>
+                                    <span class="font-semibold text-st-navy text-sm">L&D Leaders Hub</span>
+                                </div>
+                                <span class="text-xs text-st-gray-600">Preview</span>
+                            </div>
+                            <div class="p-6">
+                                <!-- Score preview -->
+                                <div class="text-center mb-6">
+                                    <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-st-blue to-st-cyan mb-3">
+                                        <span class="text-3xl font-bold text-white">72</span>
+                                    </div>
+                                    <p class="text-sm text-st-gray-600">Jouw L&D Impact Score</p>
+                                    <p class="text-xs text-st-success font-medium">+8 vs. sector gemiddelde</p>
+                                </div>
+                                <!-- Mini metrics -->
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="text-center p-3 bg-st-gray-75 rounded-lg">
+                                        <p class="text-lg font-bold text-st-navy">68%</p>
+                                        <p class="text-xs text-st-gray-600">Engagement</p>
+                                    </div>
+                                    <div class="text-center p-3 bg-st-gray-75 rounded-lg">
+                                        <p class="text-lg font-bold text-st-navy">45%</p>
+                                        <p class="text-xs text-st-gray-600">Skills Coverage</p>
+                                    </div>
+                                    <div class="text-center p-3 bg-st-gray-75 rounded-lg">
+                                        <p class="text-lg font-bold text-st-navy">3.2x</p>
+                                        <p class="text-xs text-st-gray-600">ROI</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating badge -->
+                    <div class="absolute -top-4 -right-4 bg-st-cyan text-st-navy px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                        Gratis toegang
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         READ MORE / RESOURCES SECTION
+         Job: Provide depth for those who want it
+    ============================================= -->
+    <section class="bg-st-gray-75 py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-st-navy mb-4">
+                    Verder lezen
+                </h2>
+                <p class="text-lg text-st-gray-600">
+                    Verdiep je in talent development strategie met deze resources
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Resource 1: Playbook -->
+                <a href="../strategic-skill-management-playbook/playbook.html" class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-st-gray-100 hover:shadow-lg transition-shadow">
+                    <div class="h-48 bg-gradient-to-br from-st-blue to-st-navy flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="relative z-10 text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                            </div>
+                            <span class="text-white/80 text-sm font-medium">PLAYBOOK</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-st-navy mb-2 group-hover:text-st-blue transition-colors">
+                            Strategic Skill Management Playbook
+                        </h3>
+                        <p class="text-st-gray-600 text-sm leading-relaxed mb-4">
+                            Het complete framework voor skills-based organisaties. Van gap analyse tot implementatie roadmap.
+                        </p>
+                        <div class="flex items-center text-st-blue font-semibold text-sm">
+                            Bekijk playbook
+                            <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Resource 2: Learning Moat Article (EN) -->
+                <a href="../../../../03_assets/content-assets/drafts/learning-moat/learning-is-the-only-moat.html" class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-st-gray-100 hover:shadow-lg transition-shadow">
+                    <div class="h-48 bg-gradient-to-br from-st-success to-emerald-600 flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="relative z-10 text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </div>
+                            <span class="text-white/80 text-sm font-medium">THOUGHT LEADERSHIP</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-st-navy mb-2 group-hover:text-st-blue transition-colors">
+                            Learning is the Only Moat
+                        </h3>
+                        <p class="text-st-gray-600 text-sm leading-relaxed mb-4">
+                            Why continuous learning is the only sustainable competitive advantage in the age of AI disruption.
+                        </p>
+                        <div class="flex items-center text-st-blue font-semibold text-sm">
+                            Lees artikel
+                            <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Resource 3: Leersnelheid Paradox (NL) -->
+                <a href="../../../../03_assets/content-assets/drafts/learning-moat/de-leersnelheid-paradox.html" class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-st-gray-100 hover:shadow-lg transition-shadow">
+                    <div class="h-48 bg-gradient-to-br from-orange-500 to-st-danger flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="relative z-10 text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <span class="text-white/80 text-sm font-medium">ARTIKEL</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-st-navy mb-2 group-hover:text-st-blue transition-colors">
+                            De Leersnelheid Paradox
+                        </h3>
+                        <p class="text-st-gray-600 text-sm leading-relaxed mb-4">
+                            Waarom de organisaties die het snelst leren ook het langst overleven—en hoe je dat meet.
+                        </p>
+                        <div class="flex items-center text-st-blue font-semibold text-sm">
+                            Lees artikel
+                            <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FINAL CTA SECTION
+         Job: Catch the scrollers
+    ============================================= -->
+    <section class="bg-st-navy py-16 md:py-24" id="scan">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                Ontdek waar je talent gaps zitten
+            </h2>
+            <p class="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
+                Doe de L&D Impact Scan en krijg binnen 5 minuten inzicht in je skills gaps, benchmark tegen je sector, en een concreet actieplan.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <a href="https://studytube.nl/scan" class="btn-primary inline-flex items-center justify-center px-8 py-4 bg-white text-st-navy font-semibold rounded-xl text-lg">
+                    Start de gratis scan
+                    <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+                <a href="#demo" class="btn-secondary inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-xl text-lg hover:bg-white/10">
+                    Plan een demo
+                </a>
+            </div>
+
+            <p class="text-white/50 text-sm">
+                Geen creditcard nodig. Resultaat direct in je inbox.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         Job: Professional legitimacy
+    ============================================= -->
+    <footer class="bg-st-navy border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Logo & Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-st-blue font-bold text-lg">S</span>
+                        </div>
+                        <span class="text-white font-bold text-xl">Studytube</span>
+                    </div>
+                    <p class="text-white/60 leading-relaxed max-w-sm">
+                        Het leerplatform dat organisaties helpt om talent intern te ontwikkelen. Vertrouwd door 400+ bedrijven in Nederland en DACH.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Platform</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Skills Development</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Compliance Training</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Onboarding</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Analytics</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Demo aanvragen</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Klantenservice</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-sm">
+                    © 2026 Studytube. Alle rechten voorbehouden.
+                </p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-white/40 hover:text-white text-sm">Privacy</a>
+                    <a href="#" class="text-white/40 hover:text-white text-sm">Voorwaarden</a>
+                    <a href="#" class="text-white/40 hover:text-white text-sm">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Accordion Script -->
+    <script>
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            const isActive = item.classList.contains('active');
+
+            // Close all other items
+            document.querySelectorAll('.accordion-item').forEach(i => {
+                i.classList.remove('active');
+            });
+
+            // Toggle current item
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Open first accordion item by default
+        document.querySelector('.accordion-item').classList.add('active');
+    </script>
+
+</body>
+</html>

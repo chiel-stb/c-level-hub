@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta-Skills: The Currency That Doesn't Depreciate | Studytube</title>
+    <meta name="description" content="Why the category above skills is the only one worth compounding. Five meta-skills that transfer across every era, every platform shift, every disruption cycle.">
+
+    <!-- Fonts -->
+    <style>
+        @font-face {
+            font-family: 'Euclid Circular B';
+            src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Euclid Circular B';
+            src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Euclid Circular B';
+            src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-display: swap;
+        }
+    </style>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'st-blue': '#056DFF',
+                        'st-navy': '#11295A',
+                        'st-text': '#0B0B2B',
+                        'st-gray': {
+                            75: '#F9FAFB',
+                            100: '#F2F5F8',
+                            200: '#E9EDF1',
+                            600: '#545E69'
+                        },
+                        'st-cyan': '#05D5FF',
+                        'st-success': '#16A34A',
+                        'st-link': '#FF1B51',
+                        'st-danger': '#EF5350',
+                        'st-amber': '#F59E0B',
+                        'st-emerald': '#10B981',
+                        'st-purple': '#8B5CF6',
+                        'st-indigo': '#6366F1'
+                    },
+                    fontFamily: {
+                        'euclid': ['"Euclid Circular B"', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            font-family: 'Euclid Circular B', system-ui, -apple-system, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Article typography */
+        .article-body p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #545E69;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #11295A;
+            margin-top: 3rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.25;
+        }
+
+        .article-body strong {
+            color: #11295A;
+            font-weight: 600;
+        }
+
+        .article-body em {
+            font-style: italic;
+        }
+
+        /* Button hover effects */
+        .btn-primary {
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(5, 109, 255, 0.4);
+        }
+
+        /* Pattern overlay */
+        .pattern-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L55 30L30 55L5 30L30 5z' fill='none' stroke='white' stroke-width='1' opacity='0.08'/%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
+
+        /* Reading progress bar */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #056DFF;
+            z-index: 100;
+            transition: width 0.1s ease;
+        }
+
+        /* Footnote styling */
+        .footnote-ref {
+            color: #056DFF;
+            font-size: 0.75rem;
+            vertical-align: super;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footnote-ref:hover {
+            text-decoration: underline;
+        }
+
+        /* Quote block */
+        .pull-quote {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 4px solid #056DFF;
+        }
+
+        /* Sticky TOC highlight */
+        .toc-link {
+            transition: all 0.2s ease;
+        }
+
+        .toc-link.active {
+            color: #056DFF;
+            font-weight: 600;
+        }
+
+        /* Scroll-triggered fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Meta-skill card glow on hover */
+        .meta-skill-card {
+            transition: all 0.3s ease;
+        }
+
+        .meta-skill-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px -8px rgba(5, 109, 255, 0.15);
+        }
+
+        /* Compounding animation */
+        .compound-bar {
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+    </style>
+</head>
+<body class="bg-white text-st-text">
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="reading-progress" style="width: 0%"></div>
+
+    <!-- ============================================
+         SECTION 1: HERO
+         Job: Bridge from Skills Half-Life Crisis, set the thesis
+    ============================================= -->
+    <section class="bg-gradient-to-br from-st-gray-75 to-white">
+        <div class="max-w-4xl mx-auto px-6 py-16 md:py-24">
+            <!-- Category + Reading time -->
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-st-blue/10 text-st-blue text-sm font-semibold">
+                    Thought Leadership
+                </span>
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-st-gray-100 text-st-gray-600 text-sm font-medium">
+                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    10 min read
+                </span>
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-st-emerald/10 text-st-emerald text-sm font-medium">
+                    Part 2 of 3
+                </span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-4xl md:text-5xl lg:text-[56px] font-extrabold text-st-navy leading-[1.1] mb-6">
+                Meta-Skills: The Currency That<br class="hidden md:block"> Doesn't Depreciate
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-xl md:text-2xl text-st-gray-600 leading-relaxed mb-8 max-w-3xl">
+                Why the category above skills is the only one worth compounding &mdash; and the five meta-capabilities that outlast every platform.
+            </p>
+
+            <!-- Author + Date -->
+            <div class="flex items-center gap-4 pt-6 border-t border-st-gray-200">
+                <div class="w-12 h-12 bg-gradient-to-br from-st-blue to-st-cyan rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">ST</span>
+                </div>
+                <div>
+                    <p class="font-semibold text-st-navy">Studytube Research</p>
+                    <p class="text-sm text-st-gray-600">February 2026 &middot; Roemmele Narrative Harvest Series</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 2: KEY STAT STRIP
+         Job: Anchor the meta-skills argument with 3 verified data points
+    ============================================= -->
+    <section class="bg-st-navy py-8">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/20">
+                <div class="text-center px-6">
+                    <div class="text-3xl md:text-4xl font-bold text-white mb-1">39%</div>
+                    <p class="text-white/60 text-sm">of skillsets outdated within 5 years</p>
+                    <p class="text-white/30 text-xs mt-1">WEF Future of Jobs 2025</p>
+                </div>
+                <div class="text-center px-6">
+                    <div class="text-3xl md:text-4xl font-bold text-st-cyan mb-1">17h</div>
+                    <p class="text-white/60 text-sm">extra sustained performance with human direction</p>
+                    <p class="text-white/30 text-xs mt-1">Anthropic Economic Index, Jan 2026</p>
+                </div>
+                <div class="text-center px-6">
+                    <div class="text-3xl md:text-4xl font-bold text-st-danger mb-1">319</div>
+                    <p class="text-white/60 text-sm">knowledge workers showed critical thinking decline</p>
+                    <p class="text-white/30 text-xs mt-1">Microsoft &amp; Carnegie Mellon, 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3: ARTICLE BODY
+         Job: Deliver the meta-skills argument — structured, sourced, actionable
+    ============================================= -->
+    <section class="bg-white py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid lg:grid-cols-[1fr_280px] gap-12">
+
+                <!-- Main Article Column -->
+                <article class="article-body max-w-3xl">
+
+                    <!-- HOOK: Bridge from Skills Half-Life Crisis -->
+                    <p class="text-xl leading-relaxed text-st-text">
+                        Last week we mapped the depreciation curve. Execution skills lose half their value in six to eighteen months. Application skills hold for two to four years. Direction skills appreciate. The taxonomy is useful. But it's also incomplete.
+                    </p>
+
+                    <p>
+                        There's a category above all three. It doesn't sit on the depreciation curve at all, because it doesn't depend on any specific tool, domain, or technology. It compounds across every era, every platform shift, every disruption cycle. We call them meta-skills. They're the currency that doesn't depreciate. Ever.
+                    </p>
+
+                    <p>
+                        If the Skills Half-Life Crisis told you what's losing value, this piece tells you where to put your money instead.
+                    </p>
+
+                    <!-- THE LAYER YOUR TAXONOMY IS MISSING -->
+                    <h2 id="missing-layer">The layer your taxonomy is missing</h2>
+
+                    <p>
+                        Skills frameworks are good at cataloguing what people can do. They're bad at capturing <em>how</em> people learn, decide, and adapt.
+                    </p>
+
+                    <!-- Manager A vs B comparison -->
+                    <div class="grid md:grid-cols-2 gap-4 my-8">
+                        <div class="bg-st-gray-75 rounded-xl p-6 border-2 border-st-gray-200 fade-in">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-6 h-6 bg-st-gray-200 rounded-full flex items-center justify-center">
+                                    <span class="text-st-gray-600 font-bold text-xs">A</span>
+                                </div>
+                                <span class="text-sm font-semibold text-st-gray-600 uppercase tracking-wider">Same skill rating</span>
+                            </div>
+                            <p class="text-st-gray-600 text-sm leading-relaxed">
+                                Runs the same reports every month. Produces the same dashboards. Proficient in data analysis. Reliable. Static.
+                            </p>
+                        </div>
+
+                        <div class="bg-st-blue/5 rounded-xl p-6 border-2 border-st-blue/20 fade-in">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-6 h-6 bg-st-blue/20 rounded-full flex items-center justify-center">
+                                    <span class="text-st-blue font-bold text-xs">B</span>
+                                </div>
+                                <span class="text-sm font-semibold text-st-blue uppercase tracking-wider">Same skill rating</span>
+                            </div>
+                            <p class="text-st-navy text-sm leading-relaxed">
+                                Notices a pattern between learning completion data and team performance. Synthesises it into a board-ready narrative. Changes the CHRO's investment strategy.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p>
+                        Same skill rating. Completely different value. The difference isn't data analysis. It's what sits above data analysis: pattern recognition, synthesis, the judgment to know which signal matters and which is noise. These are meta-skills. They don't appear in any taxonomy because they're not tied to a task. They're tied to a <em>way of operating</em>.
+                    </p>
+
+                    <p>
+                        The World Economic Forum projects that 39% of skillsets will be outdated within five years.<a href="#fn1" class="footnote-ref">1</a> But they also identify the skills <em>least</em> likely to become obsolete: analytical thinking, creative thinking, resilience, curiosity, and lifelong learning. Notice what these have in common. None of them is a task. All of them are meta-capabilities &mdash; skills about skills.
+                    </p>
+
+                    <!-- WHAT META-SKILLS ACTUALLY ARE -->
+                    <h2 id="definition">What meta-skills actually are</h2>
+
+                    <p>
+                        A skill is the ability to do something specific. A meta-skill is the ability that makes every other skill more effective.
+                    </p>
+
+                    <p>The distinction matters because it changes what you invest in.</p>
+
+                    <!-- Tool-bound vs Tool-agnostic visual -->
+                    <div class="bg-st-gray-75 rounded-3xl p-8 my-10 fade-in">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white rounded-xl p-6 border border-st-gray-200">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <div class="w-8 h-8 bg-st-danger/10 rounded-lg flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-st-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                                        </svg>
+                                    </div>
+                                    <span class="font-semibold text-st-navy">Skills: Tool-Bound</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-2 text-sm text-st-gray-600">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-st-danger"></div>
+                                        <span>Learn Excel. Then Python. Then the next tool.</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-st-gray-600">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-st-danger"></div>
+                                        <span>Each new tool = new investment</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-st-gray-600">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-st-danger"></div>
+                                        <span>Each old tool depreciates</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-st-gray-600">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-st-danger"></div>
+                                        <span>Running to stay still</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-xl p-6 border border-st-blue/20">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <div class="w-8 h-8 bg-st-emerald/10 rounded-lg flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-st-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                                        </svg>
+                                    </div>
+                                    <span class="font-semibold text-st-navy">Meta-Skills: Tool-Agnostic</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-2 text-sm text-st-gray-600">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-st-emerald"></div>
+                                        <span>Judgment from spreadsheets transfers to AI</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-st-gray-600">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-st-emerald"></div>
+                                        <span>Synthesis works across every domain</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-st-gray-600">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-st-emerald"></div>
+                                        <span>Each application makes the next stronger</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-st-gray-600">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-st-emerald"></div>
+                                        <span>Never need replacing</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Roemmele Quote 1 -->
+                    <div class="pull-quote my-8 fade-in">
+                        <p class="text-xl md:text-2xl text-st-navy font-medium leading-relaxed mb-2">
+                            "The skill of the future is direction and synthesis: it is not execution, the machine executes, you direct."
+                        </p>
+                        <p class="text-sm text-st-gray-600">
+                            &mdash; Brian Roemmele, <em>You Have 5000 Days</em><a href="#fn2" class="footnote-ref">2</a>
+                        </p>
+                    </div>
+
+                    <p>
+                        But direction and synthesis aren't skills you check off a training module. They're meta-skills &mdash; built through practice, reflection, and progressively complex challenges.
+                    </p>
+
+                    <!-- FIVE META-SKILLS THAT COMPOUND -->
+                    <h2 id="five-meta-skills">Five meta-skills that compound</h2>
+
+                    <p>
+                        Not every meta-skill is equally relevant for the AI era. These five stand out because they directly determine how much value a person extracts from AI &mdash; and how much they contribute beyond what AI can do alone.
+                    </p>
+
+                    <!-- Meta-skill cards -->
+                    <div class="space-y-4 my-8">
+
+                        <!-- 1. Judgment -->
+                        <div class="meta-skill-card bg-white rounded-2xl p-6 border border-st-gray-200 fade-in">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-st-blue to-st-indigo rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-st-navy text-lg mb-2">Judgment</h3>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        The ability to assess quality, relevance, and risk when the data doesn't give you a clean answer. AI generates options. Judgment decides which one to pursue. It's the reason two people can use the same AI tool and produce wildly different outcomes &mdash; one produces a competent draft, the other produces a strategic insight. Judgment is built through exposure to consequences. You can't simulate it.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Synthesis -->
+                        <div class="meta-skill-card bg-white rounded-2xl p-6 border border-st-gray-200 fade-in">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-st-purple to-st-blue rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-st-navy text-lg mb-2">Synthesis</h3>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        Combining information from different domains, contexts, or time periods into new understanding. AI excels at retrieving and summarising. It's poor at genuine cross-domain synthesis &mdash; connecting a trend in labour economics with a pattern in team behaviour with a shift in regulatory policy. Synthesis is how humans add value that AI can't replicate.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 19h vs 2h stat inline -->
+                        <div class="bg-st-blue/5 border border-st-blue/10 rounded-2xl p-6 fade-in">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0">
+                                    <div class="flex gap-3">
+                                        <div class="text-center">
+                                            <div class="text-2xl font-bold text-st-blue">19h</div>
+                                            <div class="text-xs text-st-gray-600">with human</div>
+                                        </div>
+                                        <div class="text-center text-st-gray-600 self-center">vs</div>
+                                        <div class="text-center">
+                                            <div class="text-2xl font-bold text-st-gray-600">2h</div>
+                                            <div class="text-xs text-st-gray-600">autonomous</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-st-navy font-semibold mb-1">The synthesis gap</p>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        AI sustains complex tasks for 19 hours with human direction, compared to just 2 hours autonomously.<a href="#fn3" class="footnote-ref">3</a> What fills those 17 extra hours? Largely synthesis &mdash; the human connecting context that the AI can't see.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Direction -->
+                        <div class="meta-skill-card bg-white rounded-2xl p-6 border border-st-gray-200 fade-in">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-st-emerald to-st-cyan rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-st-navy text-lg mb-2">Direction</h3>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        Knowing what question to ask, what goal to set, what "done" looks like. AI is exceptionally good at answering questions. It's poor at knowing which question to ask in the first place. Direction is the most undervalued meta-skill in any L&D framework because it's invisible &mdash; the best directors make the right call before anyone realises there was a decision to make.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Roemmele Quote 2: Conductor -->
+                        <div class="pull-quote my-4 fade-in">
+                            <p class="text-lg text-st-navy leading-relaxed mb-2">
+                                "You're not the concert pianist anymore, practicing scales for eight hours a day. You are the conductor of a vast orchestra."
+                            </p>
+                            <p class="text-sm text-st-gray-600">
+                                &mdash; Brian Roemmele, <em>You Have 5000 Days: Consider Phlebas</em><a href="#fn4" class="footnote-ref">4</a>
+                            </p>
+                        </div>
+
+                        <!-- 4. Pattern Recognition -->
+                        <div class="meta-skill-card bg-white rounded-2xl p-6 border border-st-gray-200 fade-in">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-st-amber to-st-danger rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-st-navy text-lg mb-2">Pattern Recognition</h3>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        Seeing connections across domains, datasets, and time periods that aren't obvious from any single data source. AI finds patterns within the data you feed it. Humans find patterns <em>between</em> data sources, including sources nobody thought to connect. A CHRO who notices that attrition in one team correlates with a change in learning behaviour six months earlier is using pattern recognition that no algorithm would have surfaced, because no algorithm was trained on that specific combination.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. Curation -->
+                        <div class="meta-skill-card bg-white rounded-2xl p-6 border border-st-gray-200 fade-in">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-st-cyan to-st-blue rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-st-navy text-lg mb-2">Curation</h3>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        Knowing what to keep, what to discard, and what to prioritise when the volume of information exceeds any human's capacity to process it. AI produces abundance. Curation produces value from abundance. The person who can look at forty AI-generated learning paths and select the two that actually match the organisation's strategic priorities is worth more than the platform that generated the forty.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WHY META-SKILLS COMPOUND -->
+                    <h2 id="compounding">Why meta-skills compound</h2>
+
+                    <p>
+                        Regular skills depreciate because they're tied to specific tools and contexts. Meta-skills compound because each application makes the next one stronger.
+                    </p>
+
+                    <p>
+                        Consider judgment. Every time you make a decision under uncertainty and observe the outcome, your judgment calibrates. The L&D director who's been through four technology transitions &mdash; e-learning, mobile learning, social learning, AI &mdash; has better judgment about the fifth transition than someone encountering their first. Not because the specific knowledge transfers (it doesn't), but because the <em>judgment pattern</em> transfers. You've seen what hype looks like. You've seen what genuine signal looks like. You know the difference.
+                    </p>
+
+                    <!-- Compounding Visualization -->
+                    <div class="bg-st-gray-75 rounded-3xl p-8 my-10 fade-in">
+                        <h3 class="text-lg font-bold text-st-navy mb-2 text-center">The Compounding Effect</h3>
+                        <p class="text-sm text-st-gray-600 text-center mb-6">Skills depreciate over time. Meta-skills compound.</p>
+
+                        <div class="space-y-4">
+                            <!-- Execution skills bar (shrinking) -->
+                            <div>
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <span class="text-sm font-medium text-st-navy">Execution skills</span>
+                                    <span class="text-xs text-st-danger font-medium">Depreciating</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <div class="h-6 bg-st-danger/80 rounded-l" style="width: 40%"></div>
+                                    <div class="h-6 bg-st-danger/50" style="width: 20%"></div>
+                                    <div class="h-6 bg-st-danger/30" style="width: 15%"></div>
+                                    <div class="h-6 bg-st-danger/15 rounded-r" style="width: 10%"></div>
+                                </div>
+                                <div class="flex justify-between mt-1">
+                                    <span class="text-[10px] text-st-gray-600">Year 1</span>
+                                    <span class="text-[10px] text-st-gray-600">Year 5</span>
+                                </div>
+                            </div>
+
+                            <!-- Meta-skills bar (growing) -->
+                            <div>
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <span class="text-sm font-medium text-st-navy">Meta-skills</span>
+                                    <span class="text-xs text-st-emerald font-medium">Compounding</span>
+                                </div>
+                                <div class="flex gap-1">
+                                    <div class="h-6 bg-st-emerald/30 rounded-l" style="width: 10%"></div>
+                                    <div class="h-6 bg-st-emerald/50" style="width: 15%"></div>
+                                    <div class="h-6 bg-st-emerald/70" style="width: 25%"></div>
+                                    <div class="h-6 bg-st-emerald/90 rounded-r" style="width: 50%"></div>
+                                </div>
+                                <div class="flex justify-between mt-1">
+                                    <span class="text-[10px] text-st-gray-600">Year 1</span>
+                                    <span class="text-[10px] text-st-gray-600">Year 5</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-st-gray-200">
+                            <p class="text-xs text-st-gray-600 text-center">
+                                <span class="font-semibold text-st-navy">Width = value over time.</span> Meta-skills accelerate. Execution skills fade.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Roemmele Quote 3 -->
+                    <div class="pull-quote my-8 fade-in">
+                        <p class="text-xl md:text-2xl text-st-navy font-medium leading-relaxed mb-2">
+                            "Those who start marshaling AI now will be so far ahead in five years it won't even be funny. Their skills will compound."
+                        </p>
+                        <p class="text-sm text-st-gray-600">
+                            &mdash; Brian Roemmele, <em>You Have 5000 Days: Everyone Is Doing It</em><a href="#fn5" class="footnote-ref">5</a>
+                        </p>
+                    </div>
+
+                    <p>
+                        The compounding he describes isn't about accumulating tool proficiency. It's about building meta-skills through progressively richer experience with AI direction, synthesis, and judgment.
+                    </p>
+
+                    <!-- Microsoft/CMU stat callout -->
+                    <div class="bg-st-danger/5 border border-st-danger/10 rounded-2xl p-6 my-8 fade-in">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-14 h-14 bg-st-danger/10 rounded-xl flex items-center justify-center">
+                                <span class="text-st-danger text-2xl font-bold">319</span>
+                            </div>
+                            <div>
+                                <p class="text-st-navy font-semibold mb-1">Critical thinking decline</p>
+                                <p class="text-st-gray-600 text-sm leading-relaxed">
+                                    A Microsoft and Carnegie Mellon study found that 319 knowledge workers showed measurable critical thinking decline with increased AI reliance.<a href="#fn6" class="footnote-ref">6</a> That's what happens when you exercise execution skills without exercising meta-skills. The tool gets used. The operator gets weaker. Unless you deliberately train the layer above.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THE CURRICULUM TRAP -->
+                    <h2 id="curriculum-trap">The curriculum trap</h2>
+
+                    <p>
+                        This is where most L&D teams will stumble. You can't teach meta-skills the way you teach regular skills.
+                    </p>
+
+                    <p>
+                        Regular skills follow a clean path: define the competency, build a module, deliver the content, assess the outcome, check the box. Meta-skills don't work like that. You don't build judgment by watching a video about judgment. You don't develop synthesis by completing a module on synthesis. You build them by doing real work, in real contexts, with real consequences &mdash; and reflecting on what happened.
+                    </p>
+
+                    <p>Four design principles for developing meta-skills:</p>
+
+                    <!-- Four design principles -->
+                    <div class="bg-st-gray-75 rounded-3xl p-8 my-8 fade-in">
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-blue rounded-xl flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">01</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-st-navy mb-1">Exposure over instruction</h3>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        Put people in situations that require the meta-skill, don't lecture about it. A cross-functional project that forces an L&D specialist to synthesise marketing data, customer feedback, and financial constraints builds more synthesis capability than any course on "strategic thinking."
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-blue rounded-xl flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">02</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-st-navy mb-1">Reflection as infrastructure</h3>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        Build structured reflection into the workflow. After-action reviews. Peer debrief sessions. Coaching conversations that ask "what did you notice?" and "what would you change?" Meta-skills develop in the space between doing and thinking about doing.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-blue rounded-xl flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">03</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-st-navy mb-1">Progressive complexity</h3>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        Start with decisions that have low stakes and clear feedback. Increase the ambiguity, the stakes, and the time horizon over months and years. A junior L&D coordinator curating content for one team is building the same meta-skill as a CHRO curating a portfolio strategy &mdash; at different scales.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-blue rounded-xl flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">04</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-st-navy mb-1">AI as training partner</h3>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        The counterintuitive one. AI is both the force that makes meta-skills necessary <em>and</em> the best tool for developing them. Use AI to generate options, then practice judgment by selecting between them. Use AI to surface data, then practice synthesis by connecting it to context AI doesn't have. AI becomes a sparring partner for the very capabilities that differentiate you from it.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THE BOARD CONVERSATION — REVISED AGAIN -->
+                    <h2 id="board-conversation">The board conversation &mdash; revised again</h2>
+
+                    <p>
+                        In the Skills Half-Life Crisis, we showed the difference between a static skills report and a trajectory report. Meta-skills require a third update.
+                    </p>
+
+                    <!-- Three-stage board evolution -->
+                    <div class="space-y-4 my-8">
+                        <div class="bg-st-gray-75 rounded-xl p-5 border border-st-gray-200 fade-in">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-6 h-6 bg-st-gray-200 rounded-full flex items-center justify-center">
+                                    <span class="text-[10px] text-st-gray-600 font-bold">v1</span>
+                                </div>
+                                <span class="text-xs font-semibold text-st-gray-600 uppercase tracking-wider">Static view</span>
+                            </div>
+                            <p class="text-st-gray-600 text-sm leading-relaxed italic">
+                                "We've mapped 340 skills across 12 departments. 78% of our workforce is at or above proficiency level."
+                            </p>
+                        </div>
+
+                        <div class="bg-st-blue/5 rounded-xl p-5 border border-st-blue/10 fade-in">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-6 h-6 bg-st-blue/20 rounded-full flex items-center justify-center">
+                                    <span class="text-[10px] text-st-blue font-bold">v2</span>
+                                </div>
+                                <span class="text-xs font-semibold text-st-blue uppercase tracking-wider">Trajectory view</span>
+                            </div>
+                            <p class="text-st-navy text-sm leading-relaxed italic">
+                                "45% of our taxonomy falls in the rapid-depreciation zone. We've redirected 30% toward direction skills and learning velocity."
+                            </p>
+                        </div>
+
+                        <div class="bg-st-emerald/5 rounded-xl p-5 border-2 border-st-emerald/20 fade-in">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-6 h-6 bg-st-emerald/20 rounded-full flex items-center justify-center">
+                                    <span class="text-[10px] text-st-emerald font-bold">v3</span>
+                                </div>
+                                <span class="text-xs font-semibold text-st-emerald uppercase tracking-wider">Meta-skill view</span>
+                            </div>
+                            <p class="text-st-navy text-sm leading-relaxed italic">
+                                "We've also identified a layer above: five meta-capabilities that don't depreciate. We're redesigning 20% of our development programme around judgment, synthesis, direction, pattern recognition, and curation &mdash; using experience design, not modules."
+                            </p>
+                        </div>
+                    </div>
+
+                    <p>
+                        CFOs understand compound returns. When you frame meta-skills as the only asset class with unlimited compounding potential, the investment case writes itself.
+                    </p>
+
+                    <!-- THE ONLY INFLATION-PROOF INVESTMENT -->
+                    <h2 id="investment">The only inflation-proof investment</h2>
+
+                    <p>
+                        Skills are the currency of adaptation. Meta-skills are the currency that backs the currency.
+                    </p>
+
+                    <!-- Financial metaphor cards -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 my-8">
+                        <div class="bg-st-gray-75 rounded-xl p-4 text-center fade-in">
+                            <div class="w-10 h-10 bg-st-danger/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <span class="text-st-danger font-bold text-sm">$</span>
+                            </div>
+                            <p class="text-xs font-bold text-st-navy mb-0.5">Execution</p>
+                            <p class="text-[11px] text-st-gray-600 leading-tight">Cash &mdash; useful today, worth less tomorrow</p>
+                        </div>
+                        <div class="bg-st-gray-75 rounded-xl p-4 text-center fade-in">
+                            <div class="w-10 h-10 bg-st-amber/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <span class="text-st-amber font-bold text-sm">B</span>
+                            </div>
+                            <p class="text-xs font-bold text-st-navy mb-0.5">Application</p>
+                            <p class="text-[11px] text-st-gray-600 leading-tight">Bonds &mdash; steady, then they mature</p>
+                        </div>
+                        <div class="bg-st-gray-75 rounded-xl p-4 text-center fade-in">
+                            <div class="w-10 h-10 bg-st-blue/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <span class="text-st-blue font-bold text-sm">E</span>
+                            </div>
+                            <p class="text-xs font-bold text-st-navy mb-0.5">Direction</p>
+                            <p class="text-[11px] text-st-gray-600 leading-tight">Equity &mdash; grows over time</p>
+                        </div>
+                        <div class="bg-st-emerald/10 rounded-xl p-4 text-center border border-st-emerald/20 fade-in">
+                            <div class="w-10 h-10 bg-st-emerald/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                <span class="text-st-emerald font-bold text-sm">M</span>
+                            </div>
+                            <p class="text-xs font-bold text-st-navy mb-0.5">Meta-Skills</p>
+                            <p class="text-[11px] text-st-emerald leading-tight font-medium">The economy itself</p>
+                        </div>
+                    </div>
+
+                    <p>
+                        You can't build a workforce strategy on depreciating assets. You can't catch up by running faster on the same treadmill. The only investment that compounds without limit is the capability to learn, judge, synthesise, direct, and curate &mdash; regardless of what tools, technologies, or market conditions emerge next.
+                    </p>
+
+                    <p>
+                        Stop training for the current platform. Start developing the capabilities that outlast every platform.
+                    </p>
+
+                    <!-- Closing one-liner -->
+                    <div class="bg-st-navy rounded-2xl px-8 py-6 my-10 fade-in">
+                        <p class="text-xl md:text-2xl text-white font-medium leading-relaxed text-center">
+                            A skill teaches someone what to do. A meta-skill teaches someone how to decide what's worth doing.
+                        </p>
+                    </div>
+
+                    <!-- REFERENCES -->
+                    <div class="border-t border-st-gray-200 pt-8 mt-12">
+                        <h3 class="text-lg font-bold text-st-navy mb-4">References</h3>
+                        <ol class="space-y-3 text-sm text-st-gray-600 leading-relaxed">
+                            <li id="fn1">
+                                <span class="text-st-blue font-semibold">1.</span> World Economic Forum. <em>Future of Jobs Report 2025.</em> 39% of existing skillsets will be transformed or become outdated within 5 years. Via: <a href="https://techcommunity.microsoft.com/blog/microsoftvivablog/research-drop-investing-in-training-opportunities-to-close-the-ai-skills-gap/4389566" target="_blank" class="text-st-blue hover:underline">Microsoft Tech Community</a>
+                            </li>
+                            <li id="fn2">
+                                <span class="text-st-blue font-semibold">2.</span> Brian Roemmele. "You Have 5000 Days: Part 5 &mdash; Your Deskilling." <em>ReadMultiplex</em>, January 20, 2026. <a href="https://readmultiplex.com/2026/01/20/you-have-5000-days-navigating-the-end-of-work-as-we-know-it-part-5-your-deskilling/" target="_blank" class="text-st-blue hover:underline">readmultiplex.com</a>
+                            </li>
+                            <li id="fn3">
+                                <span class="text-st-blue font-semibold">3.</span> Anthropic. <em>The Anthropic Economic Index.</em> January 15, 2026. AI sustains complex tasks for ~19 hours with human direction vs ~2 hours autonomously. <a href="https://www-cdn.anthropic.com/096d94c1a91c6480806d8f24b2344c7e2a4bc666.pdf" target="_blank" class="text-st-blue hover:underline">Source (PDF)</a>
+                            </li>
+                            <li id="fn4">
+                                <span class="text-st-blue font-semibold">4.</span> Brian Roemmele. "You Have 5000 Days: Part 7 &mdash; Consider Phlebas." <em>ReadMultiplex</em>, January 2026. <a href="https://readmultiplex.com" target="_blank" class="text-st-blue hover:underline">readmultiplex.com</a>
+                            </li>
+                            <li id="fn5">
+                                <span class="text-st-blue font-semibold">5.</span> Brian Roemmele. "You Have 5000 Days: Part 10 &mdash; Everyone Is Doing It." <em>ReadMultiplex</em>, February 7, 2026. <a href="https://readmultiplex.com" target="_blank" class="text-st-blue hover:underline">readmultiplex.com</a>
+                            </li>
+                            <li id="fn6">
+                                <span class="text-st-blue font-semibold">6.</span> Microsoft Research &amp; Carnegie Mellon University. Study of 319 knowledge workers showing critical thinking decline with increased AI reliance. February 2025.
+                            </li>
+                        </ol>
+                    </div>
+
+                </article>
+
+                <!-- Sidebar: Table of Contents -->
+                <aside class="hidden lg:block">
+                    <div class="sticky top-8">
+                        <p class="text-xs text-st-gray-600 uppercase tracking-wider font-semibold mb-4">In this article</p>
+                        <nav class="space-y-2">
+                            <a href="#missing-layer" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">The missing layer</a>
+                            <a href="#definition" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">What meta-skills are</a>
+                            <a href="#five-meta-skills" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">Five that compound</a>
+                            <a href="#compounding" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">Why they compound</a>
+                            <a href="#curriculum-trap" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">The curriculum trap</a>
+                            <a href="#board-conversation" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">The board conversation</a>
+                            <a href="#investment" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">Inflation-proof investment</a>
+                        </nav>
+
+                        <!-- Mini CTA in sidebar -->
+                        <div class="mt-8 p-5 bg-st-blue/5 rounded-xl border border-st-blue/10">
+                            <p class="text-sm font-semibold text-st-navy mb-2">How developed are your meta-skills?</p>
+                            <p class="text-xs text-st-gray-600 mb-3">The L&D Impact Scan now includes a meta-capability dimension.</p>
+                            <a href="#cta" class="inline-flex items-center text-sm text-st-blue font-semibold hover:underline">
+                                Get your scan
+                                <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- Series indicator -->
+                        <div class="mt-6 p-5 bg-st-gray-75 rounded-xl">
+                            <p class="text-xs text-st-gray-600 uppercase tracking-wider font-semibold mb-3">Roemmele Harvest Series</p>
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 bg-st-blue rounded-full flex items-center justify-center">
+                                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-xs text-st-gray-600">Skills Half-Life Crisis</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 bg-st-blue rounded-full flex items-center justify-center">
+                                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-xs text-st-navy font-medium">Meta-Skills Currency</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 bg-st-gray-200 rounded-full flex items-center justify-center">
+                                        <span class="text-[10px] text-st-gray-600 font-bold">3</span>
+                                    </div>
+                                    <span class="text-xs text-st-gray-600">The Operator-to-Director Shift</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 4: NEXT IN SERIES
+         Job: Bridge to the next piece in the track
+    ============================================= -->
+    <section class="bg-st-gray-75 py-12">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-st-gray-100 flex flex-col md:flex-row items-center gap-6">
+                <div class="flex-shrink-0 w-16 h-16 bg-st-blue/10 rounded-2xl flex items-center justify-center">
+                    <svg class="w-8 h-8 text-st-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-sm text-st-gray-600 uppercase tracking-wider font-semibold mb-1">Next in the series</p>
+                    <p class="text-lg text-st-navy font-bold mb-1">Freedom Is Heavy</p>
+                    <p class="text-st-gray-600 text-sm">AI freed your L&D team 20 hours a week. Three months later, they're still checking email. Why freedom without structure is the hardest problem in modern L&D.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 5: CTA
+         Job: Convert awareness into scan request
+    ============================================= -->
+    <section class="bg-st-navy pattern-overlay py-16 md:py-24" id="cta">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                How developed are your<br>
+                organisation's meta-skills?
+            </h2>
+            <p class="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
+                The L&D Impact Scan now includes a meta-capability dimension: not just what your people can do, but how effectively they learn, judge, and adapt.
+            </p>
+
+            <a href="#" class="btn-primary inline-flex items-center justify-center px-8 py-4 bg-white text-st-navy font-semibold rounded-xl text-lg">
+                Request your free scan
+                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+
+            <div class="flex flex-wrap justify-center gap-6 mt-6">
+                <div class="flex items-center gap-2 text-white/60">
+                    <svg class="w-5 h-5 text-st-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm">15 minutes</span>
+                </div>
+                <div class="flex items-center gap-2 text-white/60">
+                    <svg class="w-5 h-5 text-st-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm">Free</span>
+                </div>
+                <div class="flex items-center gap-2 text-white/60">
+                    <svg class="w-5 h-5 text-st-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm">No commitment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 6: FOOTER
+         Job: Professional legitimacy
+    ============================================= -->
+    <footer class="bg-st-navy border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Logo & Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-st-blue font-bold text-lg">S</span>
+                        </div>
+                        <span class="text-white font-bold text-xl">Studytube</span>
+                    </div>
+                    <p class="text-white/60 leading-relaxed max-w-sm">
+                        The learning platform that helps organisations develop talent from within. Trusted by 400+ companies in the Netherlands and DACH region.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Platform</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Skills Development</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Compliance Training</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Onboarding</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Analytics</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">L&D Impact Scan</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Blog</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Webinars</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Request a Demo</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-sm">
+                    &copy; 2026 Studytube. All rights reserved.
+                </p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-white/40 hover:text-white text-sm">Privacy</a>
+                    <a href="#" class="text-white/40 hover:text-white text-sm">Terms</a>
+                    <a href="#" class="text-white/40 hover:text-white text-sm">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / docHeight) * 100;
+            document.getElementById('reading-progress').style.width = progress + '%';
+        });
+
+        // Scroll-triggered fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Active TOC highlighting
+        const sections = document.querySelectorAll('h2[id]');
+        const tocLinks = document.querySelectorAll('.toc-link');
+
+        const tocObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(link => link.classList.remove('active'));
+                    const activeLink = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+                    if (activeLink) activeLink.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0,
+            rootMargin: '-20% 0px -70% 0px'
+        });
+
+        sections.forEach(section => tocObserver.observe(section));
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C-Level Resources | Studytube</title>
+  <meta name="description" content="Strategische L&D voor directie en HR-directeuren. Complete resource hub.">
+
+  <style>
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-display: swap;
+    }
+  </style>
+
+  <style>
+    /* ========================================
+       DESIGN 3: FEATURE-RICH / COMPREHENSIVE
+       Multiple sections, testimonials, detailed
+       ======================================== */
+    :root {
+      --st-blue: #056DFF;
+      --st-navy: #0B0B2B;
+      --st-cyan: #05D5FF;
+      --st-gradient: linear-gradient(135deg, #056DFF 0%, #05D5FF 100%);
+      --st-gray-50: #F8F9FB;
+      --st-gray-100: #F2F4F7;
+      --st-gray-200: #E4E7EC;
+      --st-gray-400: #98A2B3;
+      --st-gray-600: #475467;
+      --st-gray-800: #1D2939;
+      --st-gray-900: #101828;
+      --st-success: #12B76A;
+      --st-warning: #F79009;
+      --st-error: #F04438;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Euclid Circular B', system-ui, sans-serif;
+      color: var(--st-gray-800);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background: white;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========================================
+       NAVIGATION - FULL FEATURED
+       ======================================== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: white;
+      border-bottom: 1px solid var(--st-gray-200);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--st-navy);
+      text-decoration: none;
+    }
+
+    .nav-logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-menu a {
+      color: var(--st-gray-600);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-menu a:hover {
+      color: var(--st-blue);
+    }
+
+    .nav-cta {
+      background: var(--st-blue);
+      color: white !important;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .nav-cta:hover {
+      background: var(--st-navy);
+    }
+
+    /* ========================================
+       HERO - SPLIT LAYOUT
+       ======================================== */
+    .hero {
+      padding: 140px 0 100px;
+      background: linear-gradient(180deg, var(--st-gray-50) 0%, white 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(5, 109, 255, 0.1);
+      color: var(--st-blue);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--st-navy);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.125rem;
+      color: var(--st-gray-600);
+      margin-bottom: 32px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--st-blue);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--st-navy);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--st-gray-800);
+      border: 1px solid var(--st-gray-200);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--st-blue);
+      color: var(--st-blue);
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--st-gray-600);
+    }
+
+    .hero-trust-logos {
+      display: flex;
+      gap: 8px;
+    }
+
+    .hero-trust-logo {
+      background: var(--st-gray-100);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      border: 1px solid var(--st-gray-200);
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .hero-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--st-gray-800);
+    }
+
+    .hero-card-badge {
+      background: rgba(18, 183, 106, 0.1);
+      color: var(--st-success);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .hero-stat {
+      padding: 16px;
+      background: var(--st-gray-50);
+      border-radius: 12px;
+    }
+
+    .hero-stat-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--st-navy);
+      margin-bottom: 4px;
+    }
+
+    .hero-stat-label {
+      font-size: 0.8rem;
+      color: var(--st-gray-600);
+    }
+
+    /* ========================================
+       PERSONAS - DETAILED CARDS
+       ======================================== */
+    .personas {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-badge {
+      display: inline-block;
+      background: var(--st-blue);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--st-navy);
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      font-size: 1.125rem;
+      color: var(--st-gray-600);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .persona-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .persona-card {
+      background: white;
+      border: 1px solid var(--st-gray-200);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .persona-card:hover {
+      border-color: var(--st-blue);
+      box-shadow: 0 16px 32px rgba(5, 109, 255, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .persona-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .persona-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--st-gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .persona-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: white;
+    }
+
+    .persona-meta h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--st-navy);
+      margin-bottom: 2px;
+    }
+
+    .persona-meta span {
+      font-size: 0.85rem;
+      color: var(--st-gray-600);
+    }
+
+    .persona-quote {
+      font-size: 1.125rem;
+      color: var(--st-gray-800);
+      font-style: italic;
+      margin-bottom: 20px;
+      padding: 16px;
+      background: var(--st-gray-50);
+      border-radius: 8px;
+      border-left: 3px solid var(--st-blue);
+    }
+
+    .persona-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .persona-detail {
+      padding: 12px;
+      background: var(--st-gray-50);
+      border-radius: 8px;
+    }
+
+    .persona-detail-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--st-gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .persona-detail-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--st-navy);
+    }
+
+    .persona-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--st-blue);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+
+    .persona-cta:hover {
+      gap: 12px;
+    }
+
+    /* ========================================
+       PROOF SECTION
+       ======================================== */
+    .proof {
+      padding: 80px 0;
+      background: var(--st-navy);
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .proof-item {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .proof-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: var(--st-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .proof-label {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 4px;
+    }
+
+    .proof-source {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ========================================
+       CONNECTION PROBLEM - VISUAL
+       ======================================== */
+    .connection {
+      padding: 100px 0;
+      background: var(--st-gray-50);
+    }
+
+    .connection-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .connection-node {
+      text-align: center;
+      width: 200px;
+    }
+
+    .connection-avatar {
+      width: 80px;
+      height: 80px;
+      background: white;
+      border: 2px solid var(--st-gray-200);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+    }
+
+    .connection-avatar svg {
+      width: 36px;
+      height: 36px;
+      stroke: var(--st-gray-600);
+    }
+
+    .connection-node h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--st-navy);
+      margin-bottom: 4px;
+    }
+
+    .connection-node p {
+      font-size: 0.85rem;
+      color: var(--st-gray-600);
+    }
+
+    .connection-arrow {
+      width: 60px;
+      height: 2px;
+      background: var(--st-gray-300);
+      position: relative;
+    }
+
+    .connection-arrow::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -4px;
+      border: 5px solid transparent;
+      border-left-color: var(--st-gray-300);
+    }
+
+    .connection-solution {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      border: 2px solid var(--st-blue);
+    }
+
+    .connection-solution h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--st-navy);
+      margin-bottom: 12px;
+    }
+
+    .connection-solution p {
+      font-size: 1rem;
+      color: var(--st-gray-600);
+    }
+
+    /* ========================================
+       RESOURCES - GRID
+       ======================================== */
+    .resources {
+      padding: 100px 0;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .resource-card {
+      background: white;
+      border: 1px solid var(--st-gray-200);
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.3s ease;
+    }
+
+    .resource-card:hover {
+      border-color: var(--st-blue);
+      box-shadow: 0 12px 24px rgba(5, 109, 255, 0.08);
+    }
+
+    .resource-type {
+      display: inline-block;
+      background: var(--st-gradient);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .resource-card h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--st-navy);
+      margin-bottom: 8px;
+    }
+
+    .resource-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: var(--st-gray-400);
+      margin-bottom: 12px;
+    }
+
+    .resource-desc {
+      font-size: 0.9rem;
+      color: var(--st-gray-600);
+      margin-bottom: 16px;
+    }
+
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--st-blue);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .resource-link:hover {
+      gap: 10px;
+    }
+
+    .resource-social {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--st-gray-200);
+      font-size: 0.8rem;
+      color: var(--st-gray-400);
+    }
+
+    /* ========================================
+       COMPARISON TABLE
+       ======================================== */
+    .comparison {
+      padding: 100px 0;
+      background: var(--st-gray-50);
+    }
+
+    .comparison-table {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+
+    .comparison-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 20px 24px;
+      text-align: left;
+      border-bottom: 1px solid var(--st-gray-200);
+    }
+
+    .comparison-table th {
+      background: var(--st-gray-50);
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--st-gray-600);
+    }
+
+    .comparison-table th:first-child {
+      width: 200px;
+    }
+
+    .comparison-table td {
+      font-size: 0.9rem;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-check {
+      color: var(--st-success);
+    }
+
+    .comparison-cross {
+      color: var(--st-error);
+    }
+
+    .comparison-partial {
+      color: var(--st-warning);
+    }
+
+    .comparison-highlight {
+      background: rgba(5, 109, 255, 0.05);
+    }
+
+    /* ========================================
+       CTA
+       ======================================== */
+    .cta {
+      padding: 100px 0;
+      background: var(--st-gradient);
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 32px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-features {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .cta-feature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      font-size: 0.95rem;
+    }
+
+    .cta-feature svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      color: var(--st-navy);
+      padding: 18px 40px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer {
+      padding: 48px 0;
+      background: var(--st-gray-900);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .footer-logo svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .footer-copy {
+      font-size: 0.85rem;
+      color: var(--st-gray-400);
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--st-cyan);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 8px 16px;
+      border: 1px solid var(--st-cyan);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: var(--st-cyan);
+      color: var(--st-navy);
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .persona-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .connection-visual {
+        flex-direction: column;
+      }
+
+      .connection-arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .proof-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-features {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .comparison-table {
+        overflow-x: auto;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <svg viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="#056DFF"/>
+          <path d="M7 10h18v2H7zM7 15h14v2H7zM7 20h16v2H7z" fill="white"/>
+        </svg>
+        Studytube
+      </a>
+      <div class="nav-menu">
+        <a href="#personas">Voor wie</a>
+        <a href="#resources">Resources</a>
+        <a href="#comparison">Vergelijking</a>
+        <a href="https://scan.studytube.nl" class="nav-cta">Start Scan</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5"/></svg>
+            Exclusief voor directie
+          </span>
+          <h1>Skills zijn de nieuwe valuta. Maar de meeste bedrijven kunnen ze niet tellen.</h1>
+          <p class="hero-subtitle">Strategische L&D voor directie en HR-directeuren. Ontdek hoe marktleiders leren omzetten in concurrentievoordeel.</p>
+          <div class="hero-ctas">
+            <a href="https://scan.studytube.nl" class="btn btn-primary">
+              Start L&D Impact Scan
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="#resources" class="btn btn-secondary">
+              Bekijk Resources
+            </a>
+          </div>
+          <div class="hero-trust">
+            <span>Vertrouwd door:</span>
+            <div class="hero-trust-logos">
+              <span class="hero-trust-logo">Emil Frey</span>
+              <span class="hero-trust-logo">Timing</span>
+              <span class="hero-trust-logo">+18</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <span class="hero-card-title">L&D Impact Scan Preview</span>
+              <span class="hero-card-badge">Voorbeeld</span>
+            </div>
+            <div class="hero-stats-grid">
+              <div class="hero-stat">
+                <div class="hero-stat-value">66%</div>
+                <div class="hero-stat-label">kan geen talent vinden</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-value">45%</div>
+                <div class="hero-stat-label">twijfelt aan overleving</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-value">30%</div>
+                <div class="hero-stat-label">kostenreductie mogelijk</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-value">€4.70</div>
+                <div class="hero-stat-label">return per €1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personas -->
+  <section class="personas" id="personas">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Kies uw pad</span>
+        <h2>Wat is uw grootste uitdaging?</h2>
+        <p>Selecteer uw rol voor relevante content en inzichten</p>
+      </div>
+      <div class="persona-cards">
+        <div class="persona-card">
+          <div class="persona-header">
+            <div class="persona-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="persona-meta">
+              <h3>CEO / Directie</h3>
+              <span>Bouw Capability, Niet Headcount</span>
+            </div>
+          </div>
+          <p class="persona-quote">"Ik kan talent niet vinden of behouden"</p>
+          <div class="persona-details">
+            <div class="persona-detail">
+              <div class="persona-detail-label">Identiteit</div>
+              <div class="persona-detail-value">Builder under siege</div>
+            </div>
+            <div class="persona-detail">
+              <div class="persona-detail-label">Angst</div>
+              <div class="persona-detail-value">Bedrijf overleeft niet</div>
+            </div>
+            <div class="persona-detail">
+              <div class="persona-detail-label">Verlangen</div>
+              <div class="persona-detail-value">Capability zonder headcount</div>
+            </div>
+            <div class="persona-detail">
+              <div class="persona-detail-label">Taal</div>
+              <div class="persona-detail-value">Growth, moat, efficiency</div>
+            </div>
+          </div>
+          <a href="#" class="persona-cta">
+            Ga naar CEO track
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="persona-card">
+          <div class="persona-header">
+            <div class="persona-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="persona-meta">
+              <h3>CHRO / HR-Directeur</h3>
+              <span>Van Bewijsnood naar Strategische Macht</span>
+            </div>
+          </div>
+          <p class="persona-quote">"Ik kan de waarde van L&D niet aantonen"</p>
+          <div class="persona-details">
+            <div class="persona-detail">
+              <div class="persona-detail-label">Identiteit</div>
+              <div class="persona-detail-value">Strategic voice trapped</div>
+            </div>
+            <div class="persona-detail">
+              <div class="persona-detail-label">Angst</div>
+              <div class="persona-detail-value">Irrelevantie</div>
+            </div>
+            <div class="persona-detail">
+              <div class="persona-detail-label">Verlangen</div>
+              <div class="persona-detail-value">Seat at table met bewijs</div>
+            </div>
+            <div class="persona-detail">
+              <div class="persona-detail-label">Taal</div>
+              <div class="persona-detail-value">Impact, alignment, outcomes</div>
+            </div>
+          </div>
+          <a href="#" class="persona-cta">
+            Ga naar CHRO track
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof Points -->
+  <section class="proof">
+    <div class="container">
+      <div class="proof-grid">
+        <div class="proof-item">
+          <div class="proof-value">66%</div>
+          <div class="proof-label">kan geen talent vinden</div>
+          <div class="proof-source">CBS 2025</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-value">92%</div>
+          <div class="proof-label">CEOs zien geen L&D impact</div>
+          <div class="proof-source">LinkedIn</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-value">4%</div>
+          <div class="proof-label">kan L&D ROI berekenen</div>
+          <div class="proof-source">ATD 2024</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-value">€4.70</div>
+          <div class="proof-label">return per €1</div>
+          <div class="proof-source">Deloitte</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Connection Problem -->
+  <section class="connection">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Het Probleem</span>
+        <h2>De vicieuze cirkel</h2>
+        <p>Waarom CEO, CHRO en CFO vast zitten</p>
+      </div>
+      <div class="connection-visual">
+        <div class="connection-node">
+          <div class="connection-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h4>CEO</h4>
+          <p>"Ik heb capabele mensen nodig"</p>
+        </div>
+        <div class="connection-arrow"></div>
+        <div class="connection-node">
+          <div class="connection-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+          </div>
+          <h4>CHRO</h4>
+          <p>"Ik kan het niet bewijzen"</p>
+        </div>
+        <div class="connection-arrow"></div>
+        <div class="connection-node">
+          <div class="connection-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h4>CFO</h4>
+          <p>"Geen bewijs = geen budget"</p>
+        </div>
+      </div>
+      <div class="connection-solution">
+        <h3>Studytube doorbreekt de cyclus</h3>
+        <p>Meetbare vaardigheidsontwikkeling die CEO, CHRO en CFO verbindt met bewijs dat iedereen begrijpt.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section class="resources" id="resources">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Exclusieve Resources</span>
+        <h2>Premium content voor directie</h2>
+        <p>Playbooks, frameworks en case studies</p>
+      </div>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-type">Playbook</span>
+          <h3>Strategic Skill Management Playbook</h3>
+          <div class="resource-meta">
+            <span>25 pagina's</span>
+            <span>90-dagen roadmap</span>
+          </div>
+          <p class="resource-desc">Complete gids voor CEO + CHRO om skills strategisch te managen. Van diagnosis tot implementatie.</p>
+          <a href="#" class="resource-link">
+            Download
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <p class="resource-social">Gedownload door CFOs bij +18 bedrijven</p>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Whitepaper</span>
+          <h3>The Skill-Based P&L</h3>
+          <div class="resource-meta">
+            <span>15 pagina's</span>
+            <span>CFO-proof framework</span>
+          </div>
+          <p class="resource-desc">Hoe skills te verbinden met financiele uitkomsten. Inclusief ROI-berekening template.</p>
+          <a href="#" class="resource-link">
+            Download
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <p class="resource-social">Gedownload door CHROs bij +12 bedrijven</p>
+        </div>
+        <div class="resource-card">
+          <span class="resource-type">Case Study</span>
+          <h3>The 30% Promise</h3>
+          <div class="resource-meta">
+            <span>Emil Frey Case</span>
+            <span>Concrete ROI</span>
+          </div>
+          <p class="resource-desc">Hoe Emil Frey 30% trainingskosten reduceerde. Met CFO-bewijs en implementatie-lessen.</p>
+          <a href="#" class="resource-link">
+            Bekijk case
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <p class="resource-social">Gedownload door +50 directieleden</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison -->
+  <section class="comparison" id="comparison">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Vergelijking</span>
+        <h2>Waarom Studytube?</h2>
+        <p>Capability without complexity</p>
+      </div>
+      <div class="comparison-table">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th class="comparison-highlight">Studytube</th>
+              <th>GoodHabitz</th>
+              <th>Enterprise LMS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ROI bewijs</td>
+              <td class="comparison-highlight comparison-check">✓</td>
+              <td class="comparison-cross">✗</td>
+              <td class="comparison-partial">~</td>
+            </tr>
+            <tr>
+              <td>Implementatie</td>
+              <td class="comparison-highlight">4 weken</td>
+              <td>2 weken</td>
+              <td>6+ maanden</td>
+            </tr>
+            <tr>
+              <td>Skill mapping</td>
+              <td class="comparison-highlight comparison-check">✓</td>
+              <td class="comparison-cross">✗</td>
+              <td class="comparison-check">✓</td>
+            </tr>
+            <tr>
+              <td>Complexiteit</td>
+              <td class="comparison-highlight">Laag</td>
+              <td>Laag</td>
+              <td>Hoog</td>
+            </tr>
+            <tr>
+              <td>CFO-proof</td>
+              <td class="comparison-highlight comparison-check">✓</td>
+              <td class="comparison-cross">✗</td>
+              <td class="comparison-partial">~</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>L&D Impact Scan</h2>
+      <p>Ontdek uw skill gaps in 15 minuten. Krijg direct inzicht in uw L&D volwassenheid.</p>
+      <div class="cta-features">
+        <div class="cta-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Gratis assessment
+        </div>
+        <div class="cta-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Gepersonaliseerd rapport
+        </div>
+        <div class="cta-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          CFO-ready insights
+        </div>
+      </div>
+      <a href="https://scan.studytube.nl" class="cta-btn">
+        Start de Scan
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <svg viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="6" fill="#056DFF"/>
+            <path d="M6 9h16v2H6zM6 13h12v2H6zM6 17h14v2H6z" fill="white"/>
+          </svg>
+          Studytube
+        </div>
+        <span class="footer-copy">&copy; 2026 Studytube</span>
+        <a href="../../index.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Terug naar showcase
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Allocation Simulator | Studytube C-Level Tools</title>
+
+  <style>
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-display: swap;
+    }
+
+    :root {
+      --st-blue: #056DFF;
+      --st-navy: #0B0B2B;
+      --st-cyan: #05D5FF;
+      --st-success: #16A34A;
+      --st-warning: #F59E0B;
+      --st-error: #EF5350;
+      --st-gradient: linear-gradient(135deg, #056DFF 0%, #05D5FF 100%);
+
+      /* Chart colors */
+      --chart-operations: #0B0B2B;
+      --chart-marketing: #056DFF;
+      --chart-rd: #6BA3FF;
+      --chart-admin: #B0B0B0;
+      --chart-other: #D0D0D0;
+      --chart-ld: #16A34A;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Euclid Circular B', system-ui, sans-serif;
+      background: #F8FAFC;
+      color: var(--st-navy);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .simulator {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--st-navy);
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #64748B;
+      font-size: 0.95rem;
+    }
+
+    .company-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--st-navy);
+    }
+
+    .company-badge svg {
+      width: 18px;
+      height: 18px;
+      opacity: 0.6;
+    }
+
+    /* Main Card */
+    .main-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.04);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    /* Slider Section */
+    .slider-section {
+      margin-bottom: 32px;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .slider-label {
+      font-weight: 500;
+      color: var(--st-navy);
+    }
+
+    .slider-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--st-cyan);
+      font-family: 'SF Mono', 'Consolas', monospace;
+    }
+
+    .slider-container {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .slider-track {
+      position: relative;
+      height: 8px;
+      background: #E2E8F0;
+      border-radius: 4px;
+      overflow: visible;
+    }
+
+    .slider-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: var(--st-gradient);
+      border-radius: 4px;
+      transition: width 0.1s ease;
+    }
+
+    .slider-input {
+      position: absolute;
+      top: -8px;
+      left: 0;
+      width: 100%;
+      height: 24px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .slider-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border: 3px solid var(--st-blue);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(5, 109, 255, 0.3);
+      cursor: grab;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .slider-input::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(5, 109, 255, 0.4);
+    }
+
+    .slider-input::-webkit-slider-thumb:active {
+      cursor: grabbing;
+      transform: scale(1.05);
+    }
+
+    .slider-input::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      background: white;
+      border: 3px solid var(--st-blue);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(5, 109, 255, 0.3);
+      cursor: grab;
+    }
+
+    .slider-range {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #94A3B8;
+    }
+
+    .slider-range .avg {
+      color: var(--st-blue);
+      font-weight: 500;
+    }
+
+    /* Spend Card */
+    .spend-card {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+
+    .spend-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .spend-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: #64748B;
+    }
+
+    .spend-label svg {
+      width: 20px;
+      height: 20px;
+      color: var(--st-blue);
+    }
+
+    .spend-trend {
+      color: var(--st-success);
+    }
+
+    .spend-trend svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .spend-value {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .spend-amount {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--st-navy);
+    }
+
+    .spend-level {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(22, 163, 74, 0.1);
+      color: var(--st-success);
+    }
+
+    .spend-level.mid {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--st-warning);
+    }
+
+    .spend-level.low {
+      background: rgba(239, 83, 80, 0.1);
+      color: var(--st-error);
+    }
+
+    /* Benchmark Section */
+    .benchmark-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--st-navy);
+      margin-bottom: 16px;
+    }
+
+    .benchmark-item {
+      margin-bottom: 16px;
+    }
+
+    .benchmark-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+    }
+
+    .benchmark-label span:first-child {
+      color: #64748B;
+    }
+
+    .benchmark-label span:last-child {
+      font-weight: 500;
+      color: var(--st-navy);
+    }
+
+    .benchmark-bar {
+      height: 10px;
+      background: #E2E8F0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .benchmark-fill {
+      height: 100%;
+      border-radius: 5px;
+      transition: width 0.3s ease;
+    }
+
+    .benchmark-fill.mid {
+      background: var(--st-warning);
+    }
+
+    .benchmark-fill.large {
+      background: var(--st-navy);
+    }
+
+    .benchmark-fill.you {
+      background: var(--st-gradient);
+    }
+
+    .benchmark-insight {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 20px;
+      padding: 12px 16px;
+      background: rgba(5, 109, 255, 0.05);
+      border-radius: 8px;
+      border-left: 3px solid var(--st-blue);
+    }
+
+    .benchmark-insight svg {
+      width: 18px;
+      height: 18px;
+      color: var(--st-blue);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .benchmark-insight p {
+      font-size: 0.85rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    .benchmark-insight strong {
+      color: var(--st-blue);
+    }
+
+    /* Distribution Chart */
+    .distribution-section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--st-navy);
+      margin-bottom: 24px;
+    }
+
+    .distribution-chart {
+      margin-bottom: 24px;
+    }
+
+    .chart-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .chart-label {
+      width: 100px;
+      font-size: 0.85rem;
+      color: #64748B;
+      text-align: right;
+    }
+
+    .chart-track {
+      flex: 1;
+      height: 28px;
+      background: #F1F5F9;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .chart-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+    }
+
+    .chart-fill span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: white;
+      opacity: 0.9;
+    }
+
+    .chart-fill.operations { background: var(--chart-operations); }
+    .chart-fill.marketing { background: var(--chart-marketing); }
+    .chart-fill.rd { background: var(--chart-rd); }
+    .chart-fill.admin { background: var(--chart-admin); }
+    .chart-fill.other { background: var(--chart-other); }
+    .chart-fill.ld { background: var(--chart-ld); }
+
+    .chart-fill.admin span,
+    .chart-fill.other span {
+      color: #475569;
+    }
+
+    .chart-axis {
+      display: flex;
+      justify-content: space-between;
+      margin-left: 116px;
+      padding-top: 8px;
+      border-top: 1px solid #E2E8F0;
+      font-size: 0.75rem;
+      color: #94A3B8;
+    }
+
+    /* Legend */
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: #64748B;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+
+    .legend-dot.operations { background: var(--chart-operations); }
+    .legend-dot.marketing { background: var(--chart-marketing); }
+    .legend-dot.rd { background: var(--chart-rd); }
+    .legend-dot.admin { background: var(--chart-admin); }
+    .legend-dot.other { background: var(--chart-other); }
+    .legend-dot.ld { background: var(--chart-ld); }
+
+    /* Insight Box */
+    .insight-box {
+      background: rgba(22, 163, 74, 0.08);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+
+    .insight-box.warning {
+      background: rgba(245, 158, 11, 0.08);
+    }
+
+    .insight-box.danger {
+      background: rgba(239, 83, 80, 0.08);
+    }
+
+    .insight-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--st-success);
+      margin-bottom: 6px;
+    }
+
+    .insight-box.warning .insight-title {
+      color: var(--st-warning);
+    }
+
+    .insight-box.danger .insight-title {
+      color: var(--st-error);
+    }
+
+    .insight-text {
+      font-size: 0.85rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    /* Footer Stats */
+    .footer-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      padding: 24px 32px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.04);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #94A3B8;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .stat-value.default { color: var(--st-navy); }
+    .stat-value.blue { color: var(--st-blue); }
+    .stat-value.success { color: var(--st-success); }
+    .stat-value.warning { color: var(--st-warning); }
+    .stat-value.error { color: var(--st-error); }
+
+    /* Inputs Section */
+    .inputs-section {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+      padding: 20px;
+      background: #F8FAFC;
+      border-radius: 12px;
+      border: 1px solid #E2E8F0;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-group label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #64748B;
+    }
+
+    .input-group input {
+      padding: 10px 14px;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--st-navy);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: var(--st-blue);
+      box-shadow: 0 0 0 3px rgba(5, 109, 255, 0.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .header {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .legend {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .inputs-section {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="simulator">
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <h1>Budget Allocation Simulator</h1>
+        <p>Explore how L&D investment impacts your overall budget distribution</p>
+      </div>
+      <div class="company-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <path d="M9 3v18M3 9h18"/>
+        </svg>
+        <span id="companySize">MID-SIZED (200-2000)</span>
+      </div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="main-card">
+      <!-- Company Inputs -->
+      <div class="inputs-section">
+        <div class="input-group">
+          <label for="totalBudget">Total Company Budget (€)</label>
+          <input type="text" id="totalBudget" value="25,000,000" oninput="handleBudgetInput(this)">
+        </div>
+        <div class="input-group">
+          <label for="employees">Number of Employees</label>
+          <input type="number" id="employees" value="500" min="1" max="100000" oninput="updateCalculations()">
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- Left Column -->
+        <div class="left-column">
+          <!-- Slider -->
+          <div class="slider-section">
+            <div class="slider-header">
+              <span class="slider-label">L&D Budget Allocation</span>
+              <span class="slider-value" id="percentValue">4.0%</span>
+            </div>
+            <div class="slider-container">
+              <div class="slider-track">
+                <div class="slider-fill" id="sliderFill" style="width: 30.4%;"></div>
+              </div>
+              <input type="range" class="slider-input" id="budgetSlider" min="0.5" max="12" step="0.1" value="4.0" oninput="updateCalculations()">
+            </div>
+            <div class="slider-range">
+              <span>0.5%</span>
+              <span class="avg">Industry avg: 2-5%</span>
+              <span>12%</span>
+            </div>
+          </div>
+
+          <!-- Spend Per Employee -->
+          <div class="spend-card">
+            <div class="spend-header">
+              <span class="spend-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                L&D Spend Per Employee
+              </span>
+              <span class="spend-trend" id="spendTrend">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                  <polyline points="17 6 23 6 23 12"/>
+                </svg>
+              </span>
+            </div>
+            <div class="spend-value">
+              <span class="spend-amount" id="spendAmount">€2,000</span>
+              <span class="spend-level" id="spendLevel">LARGE CORP LEVEL</span>
+            </div>
+          </div>
+
+          <!-- Benchmark Comparison -->
+          <div class="benchmark-section">
+            <h3>Benchmark Comparison</h3>
+
+            <div class="benchmark-item">
+              <div class="benchmark-label">
+                <span>Mid-sized company average</span>
+                <span>€250/employee</span>
+              </div>
+              <div class="benchmark-bar">
+                <div class="benchmark-fill mid" style="width: 12.5%;"></div>
+              </div>
+            </div>
+
+            <div class="benchmark-item">
+              <div class="benchmark-label">
+                <span>Large corporation benchmark</span>
+                <span>€2,000+/employee</span>
+              </div>
+              <div class="benchmark-bar">
+                <div class="benchmark-fill large" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <div class="benchmark-item">
+              <div class="benchmark-label">
+                <span>Your investment</span>
+                <span id="yourInvestmentLabel">€2,000/employee</span>
+              </div>
+              <div class="benchmark-bar">
+                <div class="benchmark-fill you" id="yourInvestmentBar" style="width: 100%;"></div>
+              </div>
+            </div>
+
+            <div class="benchmark-insight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+              <p id="benchmarkInsight">Investment gap: Large corporations invest <strong>8x more</strong> per employee than mid-sized companies</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-column">
+          <div class="distribution-section">
+            <h3>Budget Distribution Impact</h3>
+
+            <div class="distribution-chart">
+              <div class="chart-bar">
+                <span class="chart-label">Operations</span>
+                <div class="chart-track">
+                  <div class="chart-fill operations" id="barOperations" style="width: 35%;">
+                    <span>35%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-bar">
+                <span class="chart-label">Marketing</span>
+                <div class="chart-track">
+                  <div class="chart-fill marketing" id="barMarketing" style="width: 25%;">
+                    <span>25%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-bar">
+                <span class="chart-label">R&D</span>
+                <div class="chart-track">
+                  <div class="chart-fill rd" id="barRD" style="width: 18%;">
+                    <span>18%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-bar">
+                <span class="chart-label">Administration</span>
+                <div class="chart-track">
+                  <div class="chart-fill admin" id="barAdmin" style="width: 14%;">
+                    <span>14%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-bar">
+                <span class="chart-label">Other</span>
+                <div class="chart-track">
+                  <div class="chart-fill other" id="barOther" style="width: 4%;">
+                    <span>4%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="chart-bar">
+                <span class="chart-label">L&D</span>
+                <div class="chart-track">
+                  <div class="chart-fill ld" id="barLD" style="width: 4%;">
+                    <span>4%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="chart-axis">
+                <span>0%</span>
+                <span>10%</span>
+                <span>20%</span>
+                <span>30%</span>
+                <span>40%</span>
+              </div>
+            </div>
+
+            <div class="legend">
+              <div class="legend-item">
+                <div class="legend-dot operations"></div>
+                <span>Operations</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot marketing"></div>
+                <span>Marketing</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot rd"></div>
+                <span>R&D</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot admin"></div>
+                <span>Administration</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot ld"></div>
+                <span>L&D</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot other"></div>
+                <span>Other</span>
+              </div>
+            </div>
+
+            <div class="insight-box" id="insightBox">
+              <div class="insight-title" id="insightTitle">Budget Trade-off Insight</div>
+              <p class="insight-text" id="insightText">Current allocation matches the typical mid-sized company baseline of 4% for L&D investment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Stats -->
+    <div class="footer-stats">
+      <div class="stat-item">
+        <div class="stat-label">Total Budget</div>
+        <div class="stat-value default" id="statTotalBudget">€25M</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">L&D Budget</div>
+        <div class="stat-value blue" id="statLDBudget">€1.00M</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Employees</div>
+        <div class="stat-value default" id="statEmployees">500</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Gap vs Large Corp</div>
+        <div class="stat-value success" id="statGap">Closed</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Base distribution (when L&D is at 4%)
+    const baseDistribution = {
+      operations: 35,
+      marketing: 25,
+      rd: 18,
+      admin: 14,
+      other: 4,
+      ld: 4
+    };
+
+    // Benchmarks
+    const BENCHMARKS = {
+      midSized: 250,      // €250 per employee
+      largeCorp: 2000,    // €2000 per employee
+      industryAvgMin: 2,  // 2%
+      industryAvgMax: 5   // 5%
+    };
+
+    function parseNumber(str) {
+      return parseFloat(str.replace(/[^0-9.-]/g, '')) || 0;
+    }
+
+    function formatCurrency(num, decimals = 0) {
+      if (num >= 1000000) {
+        return '€' + (num / 1000000).toFixed(2) + 'M';
+      } else if (num >= 1000) {
+        return '€' + (num / 1000).toFixed(0) + 'K';
+      }
+      return '€' + num.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function formatNumber(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function handleBudgetInput(input) {
+      // Store cursor position
+      const cursorPos = input.selectionStart;
+      const oldLength = input.value.length;
+
+      // Parse and reformat
+      const num = parseNumber(input.value);
+      input.value = formatNumber(num);
+
+      // Restore cursor position
+      const newLength = input.value.length;
+      const posDiff = newLength - oldLength;
+      input.setSelectionRange(cursorPos + posDiff, cursorPos + posDiff);
+
+      updateCalculations();
+    }
+
+    function updateCalculations() {
+      const slider = document.getElementById('budgetSlider');
+      const ldPercent = parseFloat(slider.value);
+      const totalBudget = parseNumber(document.getElementById('totalBudget').value);
+      const employees = parseInt(document.getElementById('employees').value) || 1;
+
+      // Calculate L&D values
+      const ldBudget = totalBudget * (ldPercent / 100);
+      const spendPerEmployee = ldBudget / employees;
+
+      // Update slider visuals
+      const fillPercent = ((ldPercent - 0.5) / (12 - 0.5)) * 100;
+      document.getElementById('sliderFill').style.width = fillPercent + '%';
+      document.getElementById('percentValue').textContent = ldPercent.toFixed(1) + '%';
+
+      // Update spend per employee
+      document.getElementById('spendAmount').textContent = formatCurrency(spendPerEmployee);
+
+      // Update spend level indicator
+      const spendLevelEl = document.getElementById('spendLevel');
+      const spendTrendEl = document.getElementById('spendTrend');
+
+      if (spendPerEmployee >= BENCHMARKS.largeCorp) {
+        spendLevelEl.textContent = 'LARGE CORP LEVEL';
+        spendLevelEl.className = 'spend-level';
+        spendTrendEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>';
+        spendTrendEl.style.color = 'var(--st-success)';
+      } else if (spendPerEmployee >= BENCHMARKS.midSized) {
+        spendLevelEl.textContent = 'MID-SIZED LEVEL';
+        spendLevelEl.className = 'spend-level mid';
+        spendTrendEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>';
+        spendTrendEl.style.color = 'var(--st-warning)';
+      } else {
+        spendLevelEl.textContent = 'BELOW AVERAGE';
+        spendLevelEl.className = 'spend-level low';
+        spendTrendEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>';
+        spendTrendEl.style.color = 'var(--st-error)';
+      }
+
+      // Update your investment bar
+      const yourBarWidth = Math.min((spendPerEmployee / BENCHMARKS.largeCorp) * 100, 100);
+      document.getElementById('yourInvestmentBar').style.width = yourBarWidth + '%';
+      document.getElementById('yourInvestmentLabel').textContent = formatCurrency(spendPerEmployee) + '/employee';
+
+      // Update benchmark insight
+      const multiplier = (BENCHMARKS.largeCorp / spendPerEmployee).toFixed(1);
+      const benchmarkInsight = document.getElementById('benchmarkInsight');
+      if (spendPerEmployee >= BENCHMARKS.largeCorp) {
+        benchmarkInsight.innerHTML = 'Your investment is at <strong>large corporation level</strong>. You\'re investing competitively with market leaders.';
+      } else {
+        benchmarkInsight.innerHTML = `Investment gap: Large corporations invest <strong>${multiplier}x more</strong> per employee than your current allocation.`;
+      }
+
+      // Update budget distribution chart
+      updateDistributionChart(ldPercent);
+
+      // Update insight box
+      updateInsightBox(ldPercent, spendPerEmployee);
+
+      // Update footer stats
+      document.getElementById('statTotalBudget').textContent = formatCurrency(totalBudget);
+      document.getElementById('statLDBudget').textContent = formatCurrency(ldBudget);
+      document.getElementById('statEmployees').textContent = formatNumber(employees);
+
+      // Update gap status
+      const gapEl = document.getElementById('statGap');
+      const gapToClose = BENCHMARKS.largeCorp - spendPerEmployee;
+      if (gapToClose <= 0) {
+        gapEl.textContent = 'Closed';
+        gapEl.className = 'stat-value success';
+      } else if (gapToClose < 500) {
+        gapEl.textContent = formatCurrency(gapToClose * employees);
+        gapEl.className = 'stat-value warning';
+      } else {
+        gapEl.textContent = formatCurrency(gapToClose * employees);
+        gapEl.className = 'stat-value error';
+      }
+
+      // Update company size badge
+      const sizeEl = document.getElementById('companySize');
+      if (employees < 200) {
+        sizeEl.textContent = 'SMALL (<200)';
+      } else if (employees <= 2000) {
+        sizeEl.textContent = 'MID-SIZED (200-2000)';
+      } else {
+        sizeEl.textContent = 'ENTERPRISE (2000+)';
+      }
+    }
+
+    function updateDistributionChart(ldPercent) {
+      // When L&D increases, other categories proportionally decrease
+      const ldDiff = ldPercent - baseDistribution.ld;
+      const scaleFactor = (100 - ldPercent) / (100 - baseDistribution.ld);
+
+      const newDistribution = {
+        operations: baseDistribution.operations * scaleFactor,
+        marketing: baseDistribution.marketing * scaleFactor,
+        rd: baseDistribution.rd * scaleFactor,
+        admin: baseDistribution.admin * scaleFactor,
+        other: baseDistribution.other * scaleFactor,
+        ld: ldPercent
+      };
+
+      // Update bars
+      const categories = ['operations', 'marketing', 'rd', 'admin', 'other', 'ld'];
+      const barIds = ['barOperations', 'barMarketing', 'barRD', 'barAdmin', 'barOther', 'barLD'];
+
+      categories.forEach((cat, i) => {
+        const bar = document.getElementById(barIds[i]);
+        const val = cat === 'ld' ? ldPercent : newDistribution[cat];
+        bar.style.width = (val / 40 * 100) + '%'; // Scale to 40% max for visibility
+        bar.innerHTML = `<span>${Math.round(val)}%</span>`;
+      });
+    }
+
+    function updateInsightBox(ldPercent, spendPerEmployee) {
+      const box = document.getElementById('insightBox');
+      const title = document.getElementById('insightTitle');
+      const text = document.getElementById('insightText');
+
+      if (ldPercent < 2) {
+        box.className = 'insight-box danger';
+        title.textContent = 'Below Industry Standard';
+        text.textContent = `At ${ldPercent.toFixed(1)}%, your L&D investment is below the industry minimum of 2%. This may impact talent retention and skill development.`;
+      } else if (ldPercent <= 5) {
+        box.className = 'insight-box';
+        title.textContent = 'Budget Trade-off Insight';
+        text.textContent = `Current allocation of ${ldPercent.toFixed(1)}% falls within the industry average range (2-5%) for L&D investment. Consider increasing to gain competitive advantage.`;
+      } else if (ldPercent <= 8) {
+        box.className = 'insight-box';
+        title.textContent = 'Above Average Investment';
+        text.textContent = `At ${ldPercent.toFixed(1)}%, you're investing above the industry average. This positions you well for talent development and retention.`;
+      } else {
+        box.className = 'insight-box';
+        title.textContent = 'Strategic L&D Leader';
+        text.textContent = `At ${ldPercent.toFixed(1)}%, your L&D investment matches top-tier organizations. You're treating learning as a strategic competitive advantage.`;
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCalculations();
+    });
+  </script>
+</body>
+</html>

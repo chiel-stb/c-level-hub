@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bewijs L&D Impact | Studytube voor CHROs</title>
+  <meta name="description" content="92% van CEOs ziet geen L&D-impact. Word onderdeel van de 8% die het kan bewijzen. Verbind leren met business KPIs—niet met completion rates.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Studytube Font -->
+  <style>
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Bold.woff2') format('woff2');
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Regular.woff2') format('woff2');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Medium.woff2') format('woff2');
+      font-weight: 500;
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'st-blue': {
+              100: '#D7EBFF',
+              200: '#B9DCFF',
+              300: '#7ABDFF',
+              400: '#50A7FF',
+              450: '#288CFF',
+              500: '#056DFF',
+              600: '#0A5CEB',
+              700: '#00678D',
+              800: '#065374',
+              900: '#11295A',
+            },
+            'st-gray': {
+              '025': '#FCFDFD',
+              '050': '#F5F7F9',
+              '075': '#F9FAFB',
+              100: '#F2F5F8',
+              200: '#E9EDF1',
+              300: '#D1D9E0',
+              400: '#AFBBC6',
+              500: '#8694A2',
+              600: '#545E69',
+              700: '#434A51',
+              800: '#2C3135',
+              900: '#1A1C1E',
+            },
+            'st-navy': '#0B0B2B',
+            'st-link': '#FF1B51',
+            'st-success': '#16A34A',
+            'st-warning': '#FACC15',
+            'st-error': '#EF5350',
+            'st-cyan': '#05D5FF',
+          },
+          fontFamily: {
+            'sans': ['Euclid Circular B', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          borderRadius: {
+            's': '8px',
+            'i': '12px',
+            'm': '16px',
+            'l': '20px',
+            'xl': '24px',
+          },
+          boxShadow: {
+            's': '0 2px 8px rgba(0,0,0,0.04)',
+            'm': '0 4px 20px rgba(0,0,0,0.05)',
+            'l': '0 8px 30px rgba(0,0,0,0.08)',
+            'xl': '0 12px 40px rgba(5,109,255,0.15)',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .gradient-hero {
+      background: linear-gradient(135deg, #056DFF 0%, #288CFF 50%, #05D5FF 100%);
+    }
+
+    .pattern-bg {
+      background-color: #056DFF;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      background: #056DFF;
+      border-bottom-left-radius: 100%;
+      opacity: 0.1;
+    }
+
+    .quote-card {
+      position: relative;
+    }
+
+    .quote-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      font-size: 72px;
+      color: #056DFF;
+      opacity: 0.15;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    details[open] summary {
+      color: #056DFF;
+    }
+
+    details[open] summary svg {
+      transform: rotate(180deg);
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="font-sans text-st-navy antialiased">
+
+  <!-- ============================================
+       SECTION 1: HERO
+       Job: Get email or get scroll
+       ============================================ -->
+  <section class="bg-white py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- Left: Copy -->
+        <div>
+          <span class="inline-block px-4 py-2 bg-st-blue-100 text-st-blue-500 text-sm font-semibold rounded-full mb-6">
+            Voor CHROs & HR Directors
+          </span>
+
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6 text-st-navy">
+            92% van CEOs ziet geen L&D-impact.
+            <span class="text-st-blue-500">Ben jij de 8% die het kan bewijzen?</span>
+          </h1>
+
+          <p class="text-xl text-st-gray-600 mb-8 leading-relaxed">
+            We geven je de munitie die je CFO nodig heeft om ja te zeggen—geen completion rates, maar business KPIs.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#demo" class="inline-flex items-center justify-center px-8 py-4 bg-st-blue-500 text-white font-semibold rounded-i hover:bg-st-blue-600 transition-colors shadow-xl">
+              Word onderdeel van de 8%
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+            <a href="#framework" class="inline-flex items-center justify-center px-8 py-4 border-2 border-st-gray-300 text-st-navy font-semibold rounded-i hover:border-st-blue-500 hover:text-st-blue-500 transition-colors">
+              Krijg het ROI framework
+            </a>
+          </div>
+
+          <p class="mt-6 text-sm text-st-gray-500">
+            Gratis demo + ROI calculator voor jouw organisatie
+          </p>
+        </div>
+
+        <!-- Right: Visual/Stats -->
+        <div class="relative">
+          <div class="bg-st-gray-075 rounded-xl p-8 shadow-l">
+            <div class="grid grid-cols-2 gap-6">
+              <div class="bg-white rounded-l p-6 shadow-s">
+                <p class="text-4xl font-bold text-st-blue-500">92%</p>
+                <p class="text-sm text-st-gray-600 mt-2">van CEOs ziet geen L&D business impact</p>
+                <p class="text-xs text-st-gray-400 mt-1">LinkedIn Research</p>
+              </div>
+              <div class="bg-white rounded-l p-6 shadow-s">
+                <p class="text-4xl font-bold text-st-success">€4,70</p>
+                <p class="text-sm text-st-gray-600 mt-2">terug per €1 geïnvesteerd</p>
+                <p class="text-xs text-st-gray-400 mt-1">Deloitte</p>
+              </div>
+              <div class="bg-white rounded-l p-6 shadow-s">
+                <p class="text-4xl font-bold text-st-warning">4%</p>
+                <p class="text-sm text-st-gray-600 mt-2">van organisaties meet L&D ROI</p>
+                <p class="text-xs text-st-gray-400 mt-1">ATD Research</p>
+              </div>
+              <div class="bg-white rounded-l p-6 shadow-s">
+                <p class="text-4xl font-bold text-st-error">-50%</p>
+                <p class="text-sm text-st-gray-600 mt-2">L&D strategie betrokkenheid in 2 jaar</p>
+                <p class="text-xs text-st-gray-400 mt-1">RedThread Research</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 2: LOGO BAR
+       Job: Social proof of enterprise trust
+       ============================================ -->
+  <section class="bg-white py-12 border-t border-b border-st-gray-200">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-center text-st-gray-500 text-sm font-medium mb-8">
+        Vertrouwd door HR-leiders bij toonaangevende organisaties
+      </p>
+      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
+        <!-- Placeholder logos -->
+        <div class="h-8 w-24 bg-st-gray-300 rounded"></div>
+        <div class="h-8 w-28 bg-st-gray-300 rounded"></div>
+        <div class="h-8 w-20 bg-st-gray-300 rounded"></div>
+        <div class="h-8 w-32 bg-st-gray-300 rounded"></div>
+        <div class="h-8 w-24 bg-st-gray-300 rounded"></div>
+        <div class="h-8 w-28 bg-st-gray-300 rounded"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 3: PROBLEM-AGITATE
+       Job: Make status quo painful
+       ============================================ -->
+  <section class="bg-st-gray-075 py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-st-navy mb-4">
+          Je kent dit gevoel waarschijnlijk
+        </h2>
+        <p class="text-xl text-st-gray-600 max-w-3xl mx-auto">
+          Je probeert L&D-impact te bewijzen door completion rates te presenteren. Elke keer dat finance vraagt om ROI data, voel je je een amateur.
+        </p>
+      </div>
+
+      <!-- Pain Points Grid -->
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+
+        <!-- Pain 1: Meaningless Metrics -->
+        <div class="bg-white rounded-xl p-8 shadow-m">
+          <div class="w-12 h-12 bg-st-error/10 rounded-l flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-st-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-st-navy mb-3">
+            Completion rates als enige bewijs
+          </h3>
+          <p class="text-st-gray-600 mb-6">
+            Niemand gelooft dat het iets betekent. Je CEO vraagt om bewijs. Je geeft hem completion rates. Hij rolt met zijn ogen.
+          </p>
+          <div class="quote-card bg-st-gray-075 rounded-l p-4">
+            <p class="text-sm italic text-st-gray-600">
+              "Completion rates zijn de enige data die ik heb. Maar niemand gelooft dat het iets betekent."
+            </p>
+          </div>
+        </div>
+
+        <!-- Pain 2: CFO Confrontation -->
+        <div class="bg-white rounded-xl p-8 shadow-m">
+          <div class="w-12 h-12 bg-st-warning/10 rounded-l flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-st-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-st-navy mb-3">
+            De CFO vraagt om ROI
+          </h3>
+          <p class="text-st-gray-600 mb-6">
+            "Wat krijgen we terug voor die €200K aan trainingen?" Elke keer die vraag, en elke keer geen concreet antwoord.
+          </p>
+          <div class="quote-card bg-st-gray-075 rounded-l p-4">
+            <p class="text-sm italic text-st-gray-600">
+              "De CFO vroeg me vorige week: wat krijgen we terug voor die €200K aan trainingen? Ik had geen antwoord."
+            </p>
+          </div>
+        </div>
+
+        <!-- Pain 3: No Seat at Table -->
+        <div class="bg-white rounded-xl p-8 shadow-m">
+          <div class="w-12 h-12 bg-st-blue-100 rounded-l flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-st-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-st-navy mb-3">
+            Geen plek aan de strategietafel
+          </h3>
+          <p class="text-st-gray-600 mb-6">
+            Terwijl jouw collega-CHRO's hun L&D-impact wel kunnen bewijzen, verlies jij langzaam je plek aan de strategietafel.
+          </p>
+          <div class="quote-card bg-st-gray-075 rounded-l p-4">
+            <p class="text-sm italic text-st-gray-600">
+              "HR heeft geen plek aan de strategietafel. Dat is gewoon de realiteit."
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- The Deep Cut -->
+      <div class="bg-white rounded-xl p-8 md:p-12 shadow-l border-l-4 border-st-blue-500">
+        <div class="grid md:grid-cols-3 gap-8 items-center">
+          <div class="md:col-span-2">
+            <p class="text-sm font-semibold text-st-blue-500 mb-2">Het onuitgesproken</p>
+            <blockquote class="text-2xl font-medium text-st-navy leading-relaxed">
+              "Ik heb echt geen idee hoe ik moet bewijzen dat onze trainingen iets opleveren. Elke keer dat finance vraagt om ROI data, voel ik me een amateur."
+            </blockquote>
+          </div>
+          <div class="text-center md:text-right">
+            <p class="text-6xl font-bold text-st-gray-200">96%</p>
+            <p class="text-sm text-st-gray-500 mt-2">kan L&D ROI niet bewijzen</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 4: FULL-WIDTH BLUE SECTION
+       Job: Key differentiator + platform preview
+       ============================================ -->
+  <section class="pattern-bg py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- Left: The Solution -->
+        <div class="text-white">
+          <span class="inline-block px-3 py-1 bg-white/20 text-white text-sm font-semibold rounded-full mb-6">
+            De oplossing
+          </span>
+
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+            Verbind leren direct aan business KPIs—met isolatie van het trainingseffect
+          </h2>
+
+          <p class="text-xl text-white/90 mb-8 leading-relaxed">
+            Met Impact Dashboards en onze ROI Calculator krijgt je CFO precies de munitie die hij nodig heeft. Geen vage completion rates, maar €4,70 terug per €1 geïnvesteerd—zwart op wit.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div class="bg-white/10 rounded-l p-6 backdrop-blur">
+              <p class="text-4xl font-bold text-st-cyan">€4,70</p>
+              <p class="text-sm text-white/80 mt-1">ROI per €1 geïnvesteerd</p>
+            </div>
+            <div class="bg-white/10 rounded-l p-6 backdrop-blur">
+              <p class="text-4xl font-bold text-st-cyan">67%</p>
+              <p class="text-sm text-white/80 mt-1">noemt leren als retentiefactor</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Platform Preview -->
+        <div class="relative">
+          <div class="bg-white rounded-xl shadow-xl p-4">
+            <!-- Placeholder for dashboard screenshot -->
+            <div class="aspect-video bg-st-gray-100 rounded-l flex items-center justify-center">
+              <div class="text-center">
+                <svg class="w-16 h-16 text-st-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                <p class="text-st-gray-400 font-medium">Impact Dashboard Preview</p>
+              </div>
+            </div>
+          </div>
+          <!-- Floating badge -->
+          <div class="absolute -bottom-4 -right-4 bg-st-success text-white px-6 py-3 rounded-l shadow-l font-semibold">
+            Live in 4 weken
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 5: FEATURE CARDS
+       Job: Make saying no feel stupid
+       ============================================ -->
+  <section class="bg-white py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-st-navy mb-4">
+          Drie manieren om van kostenpost naar concurrentievoordeel te gaan
+        </h2>
+        <p class="text-xl text-st-gray-600 max-w-3xl mx-auto">
+          Alles wat je nodig hebt om je CFO en CEO te overtuigen—en je plek aan de strategietafel te claimen.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Feature 1: Impact Dashboards -->
+        <div class="feature-card relative bg-white rounded-xl p-8 shadow-m border border-st-gray-200 hover:shadow-l hover:border-st-blue-200 transition-all">
+          <div class="w-14 h-14 bg-st-blue-100 rounded-l flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-st-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-st-navy mb-3">Impact Dashboards</h3>
+          <p class="text-st-gray-600 mb-6">
+            Verbind leerdata direct aan business KPIs. Zie precies welke trainingen bijdragen aan productiviteit, retentie en omzet—niet alleen wie ze heeft afgerond.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-sm text-st-gray-600">Business KPI koppeling</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-sm text-st-gray-600">Real-time impact tracking</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-sm text-st-gray-600">Board-ready rapporten</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Feature 2: ROI Calculator -->
+        <div class="feature-card relative bg-white rounded-xl p-8 shadow-m border border-st-gray-200 hover:shadow-l hover:border-st-blue-200 transition-all">
+          <div class="w-14 h-14 bg-st-blue-100 rounded-l flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-st-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-st-navy mb-3">ROI Calculator</h3>
+          <p class="text-st-gray-600 mb-6">
+            Bereken de exacte ROI van je L&D-investering met ons isolation framework. Laat zien welk deel van de verbetering door training komt—niet door andere factoren.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-sm text-st-gray-600">Isolation framework</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-sm text-st-gray-600">CFO-proof methodologie</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-sm text-st-gray-600">Concrete euro-bedragen</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Feature 3: Skills Intelligence -->
+        <div class="feature-card relative bg-white rounded-xl p-8 shadow-m border border-st-gray-200 hover:shadow-l hover:border-st-blue-200 transition-all">
+          <div class="w-14 h-14 bg-st-blue-100 rounded-l flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-st-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-st-navy mb-3">Skills Intelligence</h3>
+          <p class="text-st-gray-600 mb-6">
+            Proactieve skills insights zodat je niet reageert op gaten, maar ze voorkomt. Wordt de CHRO die naar de board gaat met een strategisch talentplan.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-sm text-st-gray-600">Skill gap voorspelling</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-sm text-st-gray-600">Strategisch workforce planning</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-st-success flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-sm text-st-gray-600">Competitive intelligence</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 6: OBJECTION ACCORDION (FAQ-style)
+       Job: Address doubts before they stop action
+       ============================================ -->
+  <section class="bg-st-gray-075 py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-6">
+
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-st-navy mb-4">
+          Herken je deze gedachten?
+        </h2>
+        <p class="text-xl text-st-gray-600">
+          De meeste CHROs die we spreken hebben dezelfde zorgen. Hier is hoe we ze aanpakken.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+
+        <!-- Objection 1 -->
+        <details class="bg-white rounded-xl shadow-s group" open>
+          <summary class="flex items-center justify-between p-6 cursor-pointer hover:text-st-blue-500 transition-colors">
+            <div class="flex items-center gap-4">
+              <span class="w-10 h-10 bg-st-blue-100 rounded-l flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-st-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </span>
+              <span class="text-lg font-semibold text-st-navy">"Ik heb geen idee hoe ik ROI moet bewijzen"</span>
+            </div>
+            <svg class="w-5 h-5 text-st-gray-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 pt-2 border-t border-st-gray-100">
+            <p class="text-st-gray-600 pl-14">
+              Dat is precies wat we fixen. Niet met complexe spreadsheets—met een framework dat CFOs vertrouwen. Ons isolation framework scheidt het effect van training van andere factoren, zodat je precies kunt laten zien welk deel van de verbetering door L&D komt.
+            </p>
+          </div>
+        </details>
+
+        <!-- Objection 2 -->
+        <details class="bg-white rounded-xl shadow-s group">
+          <summary class="flex items-center justify-between p-6 cursor-pointer hover:text-st-blue-500 transition-colors">
+            <div class="flex items-center gap-4">
+              <span class="w-10 h-10 bg-st-blue-100 rounded-l flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-st-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+              </span>
+              <span class="text-lg font-semibold text-st-navy">"We hebben al drie platforms geprobeerd"</span>
+            </div>
+            <svg class="w-5 h-5 text-st-gray-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 pt-2 border-t border-st-gray-100">
+            <p class="text-st-gray-600 pl-14">
+              Je hebt geen platform-probleem. Je hebt een meetprobleem. De meeste LMS'en geven je completion data—wij geven je business impact data. We lossen eerst het meetprobleem op, zodat je eindelijk kunt laten zien wat je investering oplevert.
+            </p>
+            <div class="quote-card bg-st-gray-075 rounded-l p-4 mt-4 ml-14">
+              <p class="text-sm italic text-st-gray-600">
+                "We hebben nu het derde LMS in drie jaar en niemand logt nog in. Ik geef het bijna op."
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Objection 3 -->
+        <details class="bg-white rounded-xl shadow-s group">
+          <summary class="flex items-center justify-between p-6 cursor-pointer hover:text-st-blue-500 transition-colors">
+            <div class="flex items-center gap-4">
+              <span class="w-10 h-10 bg-st-blue-100 rounded-l flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-st-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+              </span>
+              <span class="text-lg font-semibold text-st-navy">"Wat als ik het alsnog niet kan bewijzen?"</span>
+            </div>
+            <svg class="w-5 h-5 text-st-gray-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 pt-2 border-t border-st-gray-100">
+            <p class="text-st-gray-600 pl-14">
+              Je kunt het nu niet bewijzen omdat je de tools niet hebt. We starten met een 90-dagen pilot met duidelijke KPIs. Je weet precies wat je meet, hoe je het meet, en wat succes betekent—voordat je volledige commitment geeft.
+            </p>
+          </div>
+        </details>
+
+        <!-- Objection 4 -->
+        <details class="bg-white rounded-xl shadow-s group">
+          <summary class="flex items-center justify-between p-6 cursor-pointer hover:text-st-blue-500 transition-colors">
+            <div class="flex items-center gap-4">
+              <span class="w-10 h-10 bg-st-blue-100 rounded-l flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-st-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+              </span>
+              <span class="text-lg font-semibold text-st-navy">"Dit is iets voor grote bedrijven"</span>
+            </div>
+            <svg class="w-5 h-5 text-st-gray-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 pt-2 border-t border-st-gray-100">
+            <p class="text-st-gray-600 pl-14">
+              Grote bedrijven investeren €2.000 per medewerker in L&D. Jij investeert €250. Daarom heb je slimmere tools nodig—niet grotere budgetten. Ons platform is gebouwd zodat ook mid-market organisaties CFO-proof impact kunnen laten zien.
+            </p>
+          </div>
+        </details>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 7: CTA SECTION
+       Job: Catch the scrollers with final push
+       ============================================ -->
+  <section id="demo" class="bg-st-blue-900 py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+        Van kostenpost naar concurrentievoordeel<br class="hidden md:block">
+        <span class="text-st-cyan">in één kwartaal</span>
+      </h2>
+
+      <p class="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+        De CFO vraagt ROI. Jij geeft completion rates. Dit verandert dat. Plan een demo en ontdek hoe je binnen 90 dagen CFO-proof impact kunt laten zien.
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+        <a href="#" class="inline-flex items-center justify-center px-8 py-4 bg-white text-st-blue-500 font-semibold rounded-i hover:bg-st-gray-100 transition-colors shadow-xl">
+          Word onderdeel van de 8%
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        <a href="#" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-i hover:border-white hover:bg-white/10 transition-colors">
+          Zie hoe je CFO 'ja' zegt
+        </a>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-8 text-white/60 text-sm">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-st-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>Geen commitment vereist</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-st-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>30 minuten demo</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-st-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>Gratis ROI Calculator</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       Job: Professional legitimacy
+       ============================================ -->
+  <footer class="bg-st-navy py-12">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="grid md:grid-cols-4 gap-8 mb-12">
+
+        <!-- Company -->
+        <div>
+          <div class="text-white font-bold text-xl mb-4">Studytube</div>
+          <p class="text-white/60 text-sm mb-4">
+            Het learning platform dat L&D-impact meetbaar maakt.
+          </p>
+          <p class="text-white/40 text-xs">
+            Designed with your future in mind.
+          </p>
+        </div>
+
+        <!-- Solutions -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">Oplossingen</h4>
+          <ul class="space-y-2 text-white/60 text-sm">
+            <li><a href="#" class="hover:text-white transition-colors">Compliance Training</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Onboarding</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Skills Development</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Knowledge Management</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">Resources</h4>
+          <ul class="space-y-2 text-white/60 text-sm">
+            <li><a href="#" class="hover:text-white transition-colors">L&D Impact Scan</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">ROI Framework</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Klant cases</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">Contact</h4>
+          <ul class="space-y-2 text-white/60 text-sm">
+            <li><a href="#" class="hover:text-white transition-colors">Plan een demo</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Support</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Partnerships</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-white/40 text-sm">
+          2026 Studytube. Alle rechten voorbehouden.
+        </p>
+        <div class="flex gap-6 text-white/40 text-sm">
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+          <a href="#" class="hover:text-white transition-colors">Voorwaarden</a>
+          <a href="#" class="hover:text-white transition-colors">Cookies</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

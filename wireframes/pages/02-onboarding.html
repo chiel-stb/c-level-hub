@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding | C-Level Personal Environment Wireframe</title>
+  <style>
+    :root {
+      --black: #1a1a1a;
+      --dark-gray: #4a4a4a;
+      --mid-gray: #888;
+      --light-gray: #ccc;
+      --border: #ddd;
+      --bg: #f5f5f5;
+      --white: #fff;
+      --annotation: #e74c3c;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Courier New', monospace;
+      background: var(--bg);
+      color: var(--black);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    .page-indicator {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: var(--black);
+      color: var(--white);
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: bold;
+      z-index: 1000;
+    }
+    .nav-bar {
+      background: var(--white);
+      border-bottom: 2px solid var(--black);
+      padding: 12px 24px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-bar a {
+      color: var(--dark-gray);
+      text-decoration: none;
+      padding: 4px 8px;
+      border: 1px solid transparent;
+    }
+    .nav-bar a:hover { border-color: var(--mid-gray); }
+    .nav-bar a.active { background: var(--black); color: var(--white); }
+
+    .wireframe {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    .wf-box {
+      border: 2px solid var(--black);
+      background: var(--white);
+      position: relative;
+      margin-bottom: 24px;
+    }
+    .wf-header {
+      padding: 32px;
+      border-bottom: 2px solid var(--black);
+      text-align: center;
+    }
+    .wf-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+    .wf-subtitle {
+      color: var(--dark-gray);
+      font-size: 14px;
+    }
+    .wf-content {
+      padding: 32px;
+    }
+    .wf-step-indicator {
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--mid-gray);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .wf-role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .wf-role-card {
+      border: 2px solid var(--border);
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .wf-role-card:hover {
+      border-color: var(--black);
+    }
+    .wf-role-card.selected {
+      border-color: var(--black);
+      background: var(--bg);
+    }
+    .wf-role-icon {
+      width: 48px;
+      height: 48px;
+      border: 2px dashed var(--mid-gray);
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .wf-role-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .wf-role-quote {
+      font-size: 12px;
+      color: var(--mid-gray);
+      font-style: italic;
+    }
+    .wf-role-select {
+      margin-top: 12px;
+      padding: 8px 16px;
+      border: 1px solid var(--black);
+      background: transparent;
+      font-family: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .wf-progress {
+      margin-bottom: 24px;
+    }
+    .wf-progress-label {
+      font-size: 12px;
+      color: var(--mid-gray);
+      margin-bottom: 8px;
+    }
+    .wf-progress-bar {
+      height: 8px;
+      background: var(--border);
+      border: 1px solid var(--light-gray);
+    }
+    .wf-progress-fill {
+      height: 100%;
+      background: var(--black);
+      width: 33%;
+    }
+    .wf-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+    .wf-button {
+      padding: 12px 24px;
+      border: 2px solid var(--black);
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .wf-button.secondary {
+      background: transparent;
+      color: var(--dark-gray);
+      border-color: var(--border);
+    }
+    .wf-button.primary {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* Annotations */
+    .annotation {
+      position: absolute;
+      background: var(--annotation);
+      color: white;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: bold;
+      z-index: 100;
+    }
+    .annotation::after {
+      content: '';
+      position: absolute;
+      border: 6px solid transparent;
+    }
+    .annotation.top { bottom: calc(100% + 12px); left: 50%; transform: translateX(-50%); }
+    .annotation.top::after {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: var(--annotation);
+    }
+    .annotation.left { right: calc(100% + 16px); }
+    .annotation.left::after {
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left-color: var(--annotation);
+    }
+    .annotation.right { left: calc(100% + 16px); }
+    .annotation.right::after {
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-right-color: var(--annotation);
+    }
+
+    .annotation-key {
+      position: fixed;
+      bottom: 16px;
+      left: 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      font-size: 11px;
+      max-width: 300px;
+    }
+    .annotation-key h4 {
+      margin-bottom: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .annotation-key ul { list-style: none; }
+    .annotation-key li { margin-bottom: 4px; }
+    .annotation-key .tag {
+      display: inline-block;
+      background: var(--annotation);
+      color: white;
+      padding: 1px 6px;
+      font-size: 10px;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-indicator">WIREFRAME 02/08: ONBOARDING</div>
+
+  <nav class="nav-bar">
+    <a href="01-login.html">01 Login</a>
+    <a href="02-onboarding.html" class="active">02 Onboarding</a>
+    <a href="03-dashboard.html">03 Dashboard</a>
+    <a href="04-scan-results.html">04 Scan Results</a>
+    <a href="05-benchmarks.html">05 Benchmarks</a>
+    <a href="06-monitor.html">06 L&D Monitor</a>
+    <a href="07-resources.html">07 Resources</a>
+    <a href="08-action-plan.html">08 Action Plan</a>
+  </nav>
+
+  <div class="wireframe">
+    <div class="wf-box">
+      <div class="wf-header" style="position: relative;">
+        <span class="annotation top" style="left: 30%;">A1</span>
+        <div class="wf-title">Welkom, [Voornaam]!</div>
+        <div class="wf-subtitle">
+          Uw L&D Impact Scan resultaten staan klaar.<br>
+          Laten we eerst uw profiel verrijken voor gepersonaliseerde inzichten.
+        </div>
+      </div>
+
+      <div class="wf-content">
+        <div class="wf-step-indicator" style="position: relative;">
+          <span class="annotation left" style="top: 0;">A2</span>
+          STAP 1 van 3: Uw Rol
+        </div>
+
+        <div class="wf-role-grid" style="position: relative;">
+          <span class="annotation top" style="left: 50%;">A3</span>
+
+          <div class="wf-role-card">
+            <div class="wf-role-icon">CEO</div>
+            <div class="wf-role-title">CEO / Directie</div>
+            <div class="wf-role-quote">"Ik zoek capabele mensen"</div>
+            <button class="wf-role-select">Selecteer</button>
+          </div>
+
+          <div class="wf-role-card selected">
+            <div class="wf-role-icon">CHRO</div>
+            <div class="wf-role-title">CHRO / HR Dir.</div>
+            <div class="wf-role-quote">"Ik moet L&D impact bewijzen"</div>
+            <button class="wf-role-select">Geselecteerd</button>
+          </div>
+
+          <div class="wf-role-card">
+            <div class="wf-role-icon">CFO</div>
+            <div class="wf-role-title">CFO / Finance</div>
+            <div class="wf-role-quote">"Ik wil ROI zien"</div>
+            <button class="wf-role-select">Selecteer</button>
+          </div>
+        </div>
+
+        <div class="wf-progress" style="position: relative;">
+          <span class="annotation right" style="top: 8px;">A4</span>
+          <div class="wf-progress-label">Progress: 33%</div>
+          <div class="wf-progress-bar">
+            <div class="wf-progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="wf-actions" style="position: relative;">
+          <span class="annotation left" style="top: 12px;">A5</span>
+          <button class="wf-button secondary">Overslaan</button>
+          <button class="wf-button primary">Volgende →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 Preview -->
+    <div class="wf-box" style="opacity: 0.5;">
+      <div class="wf-content">
+        <div class="wf-step-indicator">STAP 2 van 3: Uw Industrie</div>
+        <div style="padding: 40px; border: 2px dashed var(--border); text-align: center; color: var(--mid-gray);">
+          [Industrie selector dropdown]<br>
+          Tech / Finance / Healthcare / Manufacturing / Retail / ...
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 Preview -->
+    <div class="wf-box" style="opacity: 0.3;">
+      <div class="wf-content">
+        <div class="wf-step-indicator">STAP 3 van 3: Bedrijfsgrootte</div>
+        <div style="padding: 40px; border: 2px dashed var(--border); text-align: center; color: var(--mid-gray);">
+          [Grootte selector]<br>
+          &lt;50 / 50-200 / 200-500 / 500-2000 / 2000+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="annotation-key">
+    <h4>Annotation Key</h4>
+    <ul>
+      <li><span class="tag">A1</span> Personalized welcome with name</li>
+      <li><span class="tag">A2</span> Progress indicator (3 steps)</li>
+      <li><span class="tag">A3</span> Role selector cards (CEO/CHRO/CFO)</li>
+      <li><span class="tag">A4</span> Visual progress bar</li>
+      <li><span class="tag">A5</span> Skip option + primary CTA</li>
+    </ul>
+  </div>
+</body>
+</html>

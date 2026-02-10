@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan Results | C-Level Personal Environment Wireframe</title>
+  <style>
+    :root {
+      --black: #1a1a1a;
+      --dark-gray: #4a4a4a;
+      --mid-gray: #888;
+      --light-gray: #ccc;
+      --border: #ddd;
+      --bg: #f5f5f5;
+      --white: #fff;
+      --annotation: #e74c3c;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Courier New', monospace;
+      background: var(--bg);
+      color: var(--black);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    .page-indicator {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: var(--black);
+      color: var(--white);
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: bold;
+      z-index: 1000;
+    }
+    .nav-bar {
+      background: var(--white);
+      border-bottom: 2px solid var(--black);
+      padding: 12px 24px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-bar a {
+      color: var(--dark-gray);
+      text-decoration: none;
+      padding: 4px 8px;
+      border: 1px solid transparent;
+    }
+    .nav-bar a:hover { border-color: var(--mid-gray); }
+    .nav-bar a.active { background: var(--black); color: var(--white); }
+
+    .app-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      min-height: calc(100vh - 50px);
+    }
+    .sidebar {
+      background: var(--white);
+      border-right: 2px solid var(--black);
+      padding: 24px 0;
+    }
+    .sidebar-item {
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+    }
+    .sidebar-item:hover { background: var(--bg); }
+    .sidebar-item.active {
+      background: var(--bg);
+      border-left-color: var(--black);
+      font-weight: bold;
+    }
+    .sidebar-icon {
+      width: 20px;
+      height: 20px;
+      border: 1px dashed var(--mid-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+
+    .main-content {
+      padding: 32px;
+      overflow-y: auto;
+    }
+    .wf-page-header {
+      margin-bottom: 32px;
+    }
+    .wf-page-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .wf-page-subtitle {
+      font-size: 13px;
+      color: var(--mid-gray);
+    }
+
+    .wf-box {
+      border: 2px solid var(--black);
+      background: var(--white);
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .wf-box-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      font-weight: bold;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .wf-box-content {
+      padding: 24px;
+    }
+
+    .wf-chart-placeholder {
+      border: 2px dashed var(--border);
+      padding: 40px;
+      text-align: center;
+      color: var(--mid-gray);
+      margin-bottom: 16px;
+    }
+    .wf-chart-placeholder.tall {
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wf-line-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 32px;
+      height: 160px;
+      padding: 20px;
+      border-left: 2px solid var(--border);
+      border-bottom: 2px solid var(--border);
+      margin: 20px 0;
+    }
+    .wf-line-point {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .wf-line-bar {
+      width: 40px;
+      background: var(--black);
+      transition: height 0.3s;
+    }
+    .wf-line-label {
+      font-size: 11px;
+      color: var(--mid-gray);
+    }
+    .wf-line-value {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .wf-dimension-list {
+      list-style: none;
+    }
+    .wf-dimension-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .wf-dimension-item:last-child { border-bottom: none; }
+    .wf-dimension-name {
+      width: 180px;
+      font-size: 13px;
+    }
+    .wf-dimension-bar {
+      flex: 1;
+      height: 20px;
+      background: var(--border);
+      position: relative;
+    }
+    .wf-dimension-fill {
+      height: 100%;
+      background: var(--black);
+    }
+    .wf-dimension-score {
+      width: 50px;
+      text-align: right;
+      font-weight: bold;
+    }
+    .wf-dimension-flag {
+      width: 30px;
+      text-align: center;
+      color: var(--annotation);
+    }
+
+    .wf-trend-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid var(--black);
+      margin-top: 16px;
+    }
+
+    /* Interactive Year Selector */
+    .year-selector {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 20px;
+      background: var(--bg);
+      border: 2px solid var(--black);
+      margin-bottom: 16px;
+    }
+    .year-selector-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: bold;
+    }
+    .year-tabs {
+      display: flex;
+      gap: 8px;
+    }
+    .year-tab {
+      padding: 8px 16px;
+      border: 2px solid var(--black);
+      background: var(--white);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+    .year-tab:hover {
+      background: var(--bg);
+    }
+    .year-tab.active {
+      background: var(--black);
+      color: var(--white);
+    }
+    .score-display {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-left: auto;
+    }
+    .score-big {
+      font-size: 48px;
+      font-weight: bold;
+      line-height: 1;
+    }
+    .score-change {
+      font-size: 14px;
+      padding: 4px 8px;
+      border: 1px solid;
+    }
+    .score-change.positive {
+      color: #2d7d46;
+      border-color: #2d7d46;
+      background: #e8f5e9;
+    }
+    .score-change.negative {
+      color: var(--annotation);
+      border-color: var(--annotation);
+      background: #fde8e8;
+    }
+    .score-context {
+      font-size: 12px;
+      color: var(--mid-gray);
+    }
+
+    .wf-actions-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .wf-button {
+      padding: 12px 24px;
+      border: 2px solid var(--black);
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      background: var(--white);
+    }
+    .wf-button:hover {
+      background: var(--bg);
+    }
+
+    /* Annotations */
+    .annotation {
+      position: absolute;
+      background: var(--annotation);
+      color: white;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: bold;
+      z-index: 100;
+    }
+    .annotation::after {
+      content: '';
+      position: absolute;
+      border: 6px solid transparent;
+    }
+    .annotation.top { bottom: calc(100% + 12px); }
+    .annotation.top::after {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: var(--annotation);
+    }
+    .annotation.left { right: calc(100% + 16px); }
+    .annotation.left::after {
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left-color: var(--annotation);
+    }
+    .annotation.right { left: calc(100% + 16px); }
+    .annotation.right::after {
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-right-color: var(--annotation);
+    }
+
+    .annotation-key {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      font-size: 11px;
+      max-width: 280px;
+      z-index: 1000;
+    }
+    .annotation-key h4 {
+      margin-bottom: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .annotation-key ul { list-style: none; }
+    .annotation-key li { margin-bottom: 4px; }
+    .annotation-key .tag {
+      display: inline-block;
+      background: var(--annotation);
+      color: white;
+      padding: 1px 6px;
+      font-size: 10px;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-indicator">WIREFRAME 04/08: SCAN RESULTS</div>
+
+  <nav class="nav-bar">
+    <a href="01-login.html">01 Login</a>
+    <a href="02-onboarding.html">02 Onboarding</a>
+    <a href="03-dashboard.html">03 Dashboard</a>
+    <a href="04-scan-results.html" class="active">04 Scan Results</a>
+    <a href="05-benchmarks.html">05 Benchmarks</a>
+    <a href="06-monitor.html">06 L&D Monitor</a>
+    <a href="07-resources.html">07 Resources</a>
+    <a href="08-action-plan.html">08 Action Plan</a>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-item">
+        <span class="sidebar-icon">D</span>
+        Dashboard
+      </div>
+      <div class="sidebar-item active">
+        <span class="sidebar-icon">S</span>
+        Scan Results
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-icon">B</span>
+        Benchmarks
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-icon">M</span>
+        L&D Monitor
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-icon">R</span>
+        Resources
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-icon">A</span>
+        Action Plan
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="wf-page-header">
+        <div class="wf-page-title">UW L&D IMPACT SCAN RESULTATEN</div>
+        <div class="wf-page-subtitle">TechCorp B.V. | Scan datum: 15 januari 2026</div>
+      </div>
+
+      <!-- Interactive Year Score Selector -->
+      <div class="year-selector" style="position: relative;">
+        <span class="annotation top" style="left: 200px;">A0</span>
+        <span class="year-selector-label">Bekijk jaar:</span>
+        <div class="year-tabs">
+          <button class="year-tab" data-year="2024" onclick="selectYear(2024)">2024</button>
+          <button class="year-tab" data-year="2025" onclick="selectYear(2025)">2025</button>
+          <button class="year-tab active" data-year="2026" onclick="selectYear(2026)">2026</button>
+        </div>
+        <div class="score-display">
+          <span class="score-big" id="scoreValue">68</span>
+          <span class="score-context">/100</span>
+          <span class="score-change positive" id="scoreChange">▲ +7 vs vorig jaar</span>
+        </div>
+      </div>
+
+      <!-- Year Details Panel -->
+      <div class="wf-box" id="yearDetails" style="margin-bottom: 24px; display: block;">
+        <div class="wf-box-header" id="yearDetailsHeader">SCORE BREAKDOWN 2026</div>
+        <div class="wf-box-content">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: center;">
+            <div style="padding: 16px; border: 1px solid var(--border);">
+              <div style="font-size: 11px; color: var(--mid-gray); margin-bottom: 4px;">Q1</div>
+              <div style="font-size: 24px; font-weight: bold;" id="q1Score">68</div>
+              <div style="font-size: 11px; color: #2d7d46;" id="q1Change">▲ +7</div>
+            </div>
+            <div style="padding: 16px; border: 1px solid var(--border); opacity: 0.5;">
+              <div style="font-size: 11px; color: var(--mid-gray); margin-bottom: 4px;">Q2</div>
+              <div style="font-size: 24px; font-weight: bold;" id="q2Score">—</div>
+              <div style="font-size: 11px; color: var(--mid-gray);" id="q2Change">verwacht</div>
+            </div>
+            <div style="padding: 16px; border: 1px solid var(--border); opacity: 0.5;">
+              <div style="font-size: 11px; color: var(--mid-gray); margin-bottom: 4px;">Q3</div>
+              <div style="font-size: 24px; font-weight: bold;" id="q3Score">—</div>
+              <div style="font-size: 11px; color: var(--mid-gray);" id="q3Change">verwacht</div>
+            </div>
+            <div style="padding: 16px; border: 1px solid var(--border); opacity: 0.5;">
+              <div style="font-size: 11px; color: var(--mid-gray); margin-bottom: 4px;">Q4</div>
+              <div style="font-size: 24px; font-weight: bold;" id="q4Score">—</div>
+              <div style="font-size: 11px; color: var(--mid-gray);" id="q4Change">verwacht</div>
+            </div>
+          </div>
+          <div style="margin-top: 16px; padding: 12px; background: var(--bg); font-size: 12px;" id="yearInsight">
+            📈 <strong>Insight:</strong> Sterkste groei in Q4'25 (+7 punten) door verbeterde Learning Culture scores na management training programma.
+          </div>
+        </div>
+      </div>
+
+      <!-- Score Over Time -->
+      <div class="wf-box">
+        <div class="wf-box-header">TOTAALSCORE OVER TIJD</div>
+        <div class="wf-box-content" style="position: relative;">
+          <span class="annotation top" style="left: 50%;">A1</span>
+
+          <div class="wf-line-chart">
+            <div class="wf-line-point">
+              <div class="wf-line-value">47</div>
+              <div class="wf-line-bar" style="height: 47%;"></div>
+              <div class="wf-line-label">Q2'25</div>
+            </div>
+            <div class="wf-line-point">
+              <div class="wf-line-value">54</div>
+              <div class="wf-line-bar" style="height: 54%;"></div>
+              <div class="wf-line-label">Q3'25</div>
+            </div>
+            <div class="wf-line-point">
+              <div class="wf-line-value">61</div>
+              <div class="wf-line-bar" style="height: 61%;"></div>
+              <div class="wf-line-label">Q4'25</div>
+            </div>
+            <div class="wf-line-point">
+              <div class="wf-line-value">68</div>
+              <div class="wf-line-bar" style="height: 68%; background: var(--dark-gray);"></div>
+              <div class="wf-line-label">Q1'26</div>
+            </div>
+          </div>
+
+          <div class="wf-trend-badge">▲ +21 punten in 9 maanden (+45%)</div>
+        </div>
+      </div>
+
+      <!-- Score Per Dimension -->
+      <div class="wf-box">
+        <div class="wf-box-header">SCORE PER DIMENSIE</div>
+        <div class="wf-box-content" style="position: relative;">
+          <span class="annotation right" style="top: 60px;">A2</span>
+
+          <ul class="wf-dimension-list">
+            <li class="wf-dimension-item">
+              <span class="wf-dimension-name">Strategy & Alignment</span>
+              <div class="wf-dimension-bar">
+                <div class="wf-dimension-fill" style="width: 82%;"></div>
+              </div>
+              <span class="wf-dimension-score">8.2</span>
+              <span class="wf-dimension-flag"></span>
+            </li>
+            <li class="wf-dimension-item">
+              <span class="wf-dimension-name">Learning Culture</span>
+              <div class="wf-dimension-bar">
+                <div class="wf-dimension-fill" style="width: 78%;"></div>
+              </div>
+              <span class="wf-dimension-score">7.8</span>
+              <span class="wf-dimension-flag"></span>
+            </li>
+            <li class="wf-dimension-item">
+              <span class="wf-dimension-name">Content & Delivery</span>
+              <div class="wf-dimension-bar">
+                <div class="wf-dimension-fill" style="width: 71%;"></div>
+              </div>
+              <span class="wf-dimension-score">7.1</span>
+              <span class="wf-dimension-flag"></span>
+            </li>
+            <li class="wf-dimension-item">
+              <span class="wf-dimension-name">Technology & Tools</span>
+              <div class="wf-dimension-bar">
+                <div class="wf-dimension-fill" style="width: 64%;"></div>
+              </div>
+              <span class="wf-dimension-score">6.4</span>
+              <span class="wf-dimension-flag"></span>
+            </li>
+            <li class="wf-dimension-item">
+              <span class="wf-dimension-name">Skills Mapping</span>
+              <div class="wf-dimension-bar">
+                <div class="wf-dimension-fill" style="width: 51%;"></div>
+              </div>
+              <span class="wf-dimension-score">5.1</span>
+              <span class="wf-dimension-flag">⚠</span>
+            </li>
+            <li class="wf-dimension-item" style="position: relative;">
+              <span class="annotation left" style="top: 0;">A3</span>
+              <span class="wf-dimension-name">ROI Measurement</span>
+              <div class="wf-dimension-bar">
+                <div class="wf-dimension-fill" style="width: 42%;"></div>
+              </div>
+              <span class="wf-dimension-score">4.2</span>
+              <span class="wf-dimension-flag">⚠</span>
+            </li>
+          </ul>
+
+          <div style="margin-top: 16px; font-size: 12px; color: var(--mid-gray);">
+            ⚠ = Focus gebied (laagste score)
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="wf-actions-row" style="position: relative;">
+        <span class="annotation top" style="left: 120px;">A4</span>
+        <button class="wf-button">📥 Download PDF Report</button>
+        <button class="wf-button">📧 Deel met collega's</button>
+      </div>
+    </main>
+  </div>
+
+  <div class="annotation-key">
+    <h4>Annotation Key</h4>
+    <ul>
+      <li><span class="tag">A0</span> Interactive year selector</li>
+      <li><span class="tag">A1</span> Historical score chart</li>
+      <li><span class="tag">A2</span> Dimension breakdown bars</li>
+      <li><span class="tag">A3</span> Focus area flagging</li>
+      <li><span class="tag">A4</span> Export/share actions</li>
+    </ul>
+  </div>
+
+  <script>
+    const yearData = {
+      2024: {
+        score: 42,
+        change: null,
+        changeText: 'eerste meting',
+        header: 'SCORE BREAKDOWN 2024',
+        quarters: [
+          { score: 42, change: '—', opacity: 1 },
+          { score: 45, change: '▲ +3', opacity: 1 },
+          { score: 44, change: '▼ -1', opacity: 1 },
+          { score: 47, change: '▲ +3', opacity: 1 }
+        ],
+        insight: '📊 <strong>Baseline jaar:</strong> Eerste volledige L&D Impact meting. Belangrijkste verbeterpunten: ROI Measurement (3.2) en Skills Mapping (3.8).'
+      },
+      2025: {
+        score: 61,
+        change: '+19',
+        changeText: '▲ +19 vs 2024',
+        header: 'SCORE BREAKDOWN 2025',
+        quarters: [
+          { score: 47, change: '—', opacity: 1 },
+          { score: 54, change: '▲ +7', opacity: 1 },
+          { score: 54, change: '—', opacity: 1 },
+          { score: 61, change: '▲ +7', opacity: 1 }
+        ],
+        insight: '📈 <strong>Groei jaar:</strong> +45% verbetering t.o.v. 2024. Management training programma in Q3 leidde tot doorbraak in Learning Culture scores.'
+      },
+      2026: {
+        score: 68,
+        change: '+7',
+        changeText: '▲ +7 vs 2025',
+        header: 'SCORE BREAKDOWN 2026',
+        quarters: [
+          { score: 68, change: '▲ +7', opacity: 1 },
+          { score: '—', change: 'verwacht', opacity: 0.5 },
+          { score: '—', change: 'verwacht', opacity: 0.5 },
+          { score: '—', change: 'verwacht', opacity: 0.5 }
+        ],
+        insight: '📈 <strong>Insight:</strong> Sterkste groei in Q4\'25 (+7 punten) door verbeterde Learning Culture scores na management training programma.'
+      }
+    };
+
+    function selectYear(year) {
+      // Update tabs
+      document.querySelectorAll('.year-tab').forEach(tab => {
+        tab.classList.remove('active');
+        if (parseInt(tab.dataset.year) === year) {
+          tab.classList.add('active');
+        }
+      });
+
+      const data = yearData[year];
+
+      // Update score display
+      document.getElementById('scoreValue').textContent = data.score;
+      const changeEl = document.getElementById('scoreChange');
+      if (data.change) {
+        changeEl.textContent = data.changeText;
+        changeEl.className = 'score-change positive';
+        changeEl.style.display = 'inline';
+      } else {
+        changeEl.textContent = data.changeText;
+        changeEl.className = 'score-change';
+        changeEl.style.background = 'var(--bg)';
+        changeEl.style.color = 'var(--mid-gray)';
+        changeEl.style.borderColor = 'var(--mid-gray)';
+      }
+
+      // Update header
+      document.getElementById('yearDetailsHeader').textContent = data.header;
+
+      // Update quarters
+      const quarters = data.quarters;
+      ['q1', 'q2', 'q3', 'q4'].forEach((q, i) => {
+        const scoreEl = document.getElementById(q + 'Score');
+        const changeEl = document.getElementById(q + 'Change');
+        scoreEl.textContent = quarters[i].score;
+        changeEl.textContent = quarters[i].change;
+        scoreEl.parentElement.style.opacity = quarters[i].opacity;
+
+        // Color the change
+        if (quarters[i].change.includes('▲')) {
+          changeEl.style.color = '#2d7d46';
+        } else if (quarters[i].change.includes('▼')) {
+          changeEl.style.color = 'var(--annotation)';
+        } else {
+          changeEl.style.color = 'var(--mid-gray)';
+        }
+      });
+
+      // Update insight
+      document.getElementById('yearInsight').innerHTML = data.insight;
+    }
+  </script>
+</body>
+</html>

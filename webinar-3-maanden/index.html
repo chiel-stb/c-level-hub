@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Webinar: De 3-Maanden Waarschuwing | Studytube voor C-Level</title>
+    <meta name="description" content="Ontdek hoe AI de shelf-life van je workforce halveert en wat je als CEO/CHRO nu moet doen. Live webinar met concrete actie-items.">
+
+    <!-- Fonts -->
+    <style>
+        @font-face {
+            font-family: 'Euclid Circular B';
+            src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Euclid Circular B';
+            src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Euclid Circular B';
+            src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-display: swap;
+        }
+    </style>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'st-blue': '#056DFF',
+                        'st-navy': '#11295A',
+                        'st-text': '#0B0B2B',
+                        'st-gray': {
+                            75: '#F9FAFB',
+                            100: '#F2F5F8',
+                            200: '#E9EDF1',
+                            600: '#545E69'
+                        },
+                        'st-cyan': '#05D5FF',
+                        'st-success': '#16A34A',
+                        'st-link': '#FF1B51',
+                        'st-danger': '#EF5350'
+                    },
+                    fontFamily: {
+                        'euclid': ['"Euclid Circular B"', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            font-family: 'Euclid Circular B', system-ui, -apple-system, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Countdown timer styling */
+        .countdown-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 70px;
+        }
+
+        .countdown-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        /* Button hover effects */
+        .btn-primary {
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(5, 109, 255, 0.4);
+        }
+
+        .btn-secondary {
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #E8F0FE;
+        }
+
+        /* Form focus states */
+        .form-input:focus {
+            outline: none;
+            border-color: #056DFF;
+            box-shadow: 0 0 0 3px rgba(5, 109, 255, 0.1);
+        }
+
+        /* Live badge pulse */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .live-dot {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Pattern overlay */
+        .pattern-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L55 30L30 55L5 30L30 5z' fill='none' stroke='white' stroke-width='1' opacity='0.08'/%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
+    </style>
+</head>
+<body class="bg-white text-st-text">
+
+    <!-- ============================================
+         SECTION 1: HERO
+         Job: Create urgency, show date/time, capture attention
+    ============================================= -->
+    <section class="bg-gradient-to-br from-st-gray-75 to-white">
+        <div class="max-w-6xl mx-auto px-6 py-16 md:py-24">
+            <!-- Eyebrow with date badge -->
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-st-danger/10 text-st-danger text-sm font-semibold">
+                    <span class="w-2 h-2 bg-st-danger rounded-full live-dot"></span>
+                    Live Webinar
+                </span>
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-st-blue/10 text-st-blue text-sm font-semibold">
+                    Donderdag 27 februari 2026 | 10:00 - 11:00 CET
+                </span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div>
+                    <!-- Headline -->
+                    <h1 class="text-4xl md:text-5xl lg:text-[52px] font-extrabold text-st-navy leading-[1.1] mb-6">
+                        De 3-Maanden Waarschuwing:<br>
+                        <span class="text-st-blue">Hoe AI de Shelf-Life van je Workforce Halveert</span>
+                    </h1>
+
+                    <!-- Subheadline -->
+                    <p class="text-lg md:text-xl text-st-gray-600 leading-relaxed mb-6">
+                        Je beste mensen worden nu gedeskilled door AI. Niet omdat ze slecht zijn, maar omdat ze succesvol zijn. Ontdek wat je als CEO of CHRO vandaag moet doen.
+                    </p>
+
+                    <!-- Duration indicator -->
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="flex items-center gap-2 text-st-gray-600">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span class="text-sm font-medium">60 minuten</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-st-gray-600">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                            </svg>
+                            <span class="text-sm font-medium">Live + Q&A</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-st-gray-600">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                            </svg>
+                            <span class="text-sm font-medium">Nederlands</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <a href="#registratie" class="btn-primary inline-flex items-center justify-center px-8 py-4 bg-st-blue text-white font-semibold rounded-xl text-lg">
+                        Reserveer je plek
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl border border-st-gray-100">
+                    <p class="text-center text-sm text-st-gray-600 uppercase tracking-wider mb-6">Start over</p>
+
+                    <div id="countdown" class="flex justify-center gap-4 mb-8">
+                        <div class="countdown-unit">
+                            <span class="countdown-value text-st-navy" id="days">--</span>
+                            <span class="countdown-label text-st-gray-600">dagen</span>
+                        </div>
+                        <span class="text-3xl text-st-gray-200 font-light">:</span>
+                        <div class="countdown-unit">
+                            <span class="countdown-value text-st-navy" id="hours">--</span>
+                            <span class="countdown-label text-st-gray-600">uren</span>
+                        </div>
+                        <span class="text-3xl text-st-gray-200 font-light">:</span>
+                        <div class="countdown-unit">
+                            <span class="countdown-value text-st-navy" id="minutes">--</span>
+                            <span class="countdown-label text-st-gray-600">minuten</span>
+                        </div>
+                        <span class="text-3xl text-st-gray-200 font-light">:</span>
+                        <div class="countdown-unit">
+                            <span class="countdown-value text-st-blue" id="seconds">--</span>
+                            <span class="countdown-label text-st-gray-600">seconden</span>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-st-gray-100 pt-6">
+                        <div class="flex items-center justify-center gap-6 text-sm">
+                            <div class="flex items-center gap-2 text-st-success">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Gratis</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-st-success">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Geen voorbereiding nodig</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 2: EVENT DETAILS
+         Job: Show agenda and learning outcomes
+    ============================================= -->
+    <section class="bg-white py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Learning Outcomes -->
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-st-navy mb-6">
+                        Wat je leert in 60 minuten
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-st-blue/10 rounded-xl flex items-center justify-center">
+                                <span class="text-st-blue font-bold">1</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-st-navy mb-1">De deskilling-paradox begrijpen</h3>
+                                <p class="text-st-gray-600 text-sm">Waarom je beste mensen het meest kwetsbaar zijn voor AI-disruptie. Met data van Anthropic, McKinsey en World Economic Forum.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-st-blue/10 rounded-xl flex items-center justify-center">
+                                <span class="text-st-blue font-bold">2</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-st-navy mb-1">De 3-maanden waarschuwingssignalen herkennen</h3>
+                                <p class="text-st-gray-600 text-sm">Concrete indicatoren dat je workforce bezig is met verouderen. En hoe je dit in je eigen organisatie meet.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-st-blue/10 rounded-xl flex items-center justify-center">
+                                <span class="text-st-blue font-bold">3</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-st-navy mb-1">Het "Side-Skilling" framework</h3>
+                                <p class="text-st-gray-600 text-sm">Een praktische aanpak om AI-adjacent skills te ontwikkelen naast dagelijkse werkzaamheden. Geen 6-maanden trainingsprogramma's nodig.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-st-blue/10 rounded-xl flex items-center justify-center">
+                                <span class="text-st-blue font-bold">4</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-st-navy mb-1">Board-ready actieplan</h3>
+                                <p class="text-st-gray-600 text-sm">Je krijgt een concreet 90-dagen plan dat je direct kunt presenteren aan je MT. Inclusief business case template.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agenda Timeline -->
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-st-navy mb-6">
+                        Programma
+                    </h2>
+
+                    <div class="relative">
+                        <!-- Timeline line -->
+                        <div class="absolute left-[19px] top-8 bottom-8 w-0.5 bg-st-gray-200"></div>
+
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-gray-100 rounded-full flex items-center justify-center border-2 border-white shadow-sm z-10">
+                                    <span class="text-st-gray-600 text-xs font-semibold">10:00</span>
+                                </div>
+                                <div class="pt-2">
+                                    <h3 class="font-semibold text-st-navy">Opening: De cijfers die je wakker schudden</h3>
+                                    <p class="text-st-gray-600 text-sm">Recente data over AI-adoptie en impact op skills</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-gray-100 rounded-full flex items-center justify-center border-2 border-white shadow-sm z-10">
+                                    <span class="text-st-gray-600 text-xs font-semibold">10:15</span>
+                                </div>
+                                <div class="pt-2">
+                                    <h3 class="font-semibold text-st-navy">Deep-dive: De Deskilling Paradox</h3>
+                                    <p class="text-st-gray-600 text-sm">Waarom ervaring een liability wordt</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-blue rounded-full flex items-center justify-center border-2 border-white shadow-sm z-10">
+                                    <span class="text-white text-xs font-semibold">10:30</span>
+                                </div>
+                                <div class="pt-2">
+                                    <h3 class="font-semibold text-st-navy">Framework: Side-Skilling Aanpak</h3>
+                                    <p class="text-st-gray-600 text-sm">Praktische implementatie strategie</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-gray-100 rounded-full flex items-center justify-center border-2 border-white shadow-sm z-10">
+                                    <span class="text-st-gray-600 text-xs font-semibold">10:45</span>
+                                </div>
+                                <div class="pt-2">
+                                    <h3 class="font-semibold text-st-navy">Case Study: Nederlandse organisatie</h3>
+                                    <p class="text-st-gray-600 text-sm">Hoe zij 30% trainingskosten reduceerden</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-success rounded-full flex items-center justify-center border-2 border-white shadow-sm z-10">
+                                    <span class="text-white text-xs font-semibold">10:55</span>
+                                </div>
+                                <div class="pt-2">
+                                    <h3 class="font-semibold text-st-navy">Q&A + Actieplan uitreiking</h3>
+                                    <p class="text-st-gray-600 text-sm">Live vragen beantwoorden + 90-dagen template</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3: SPEAKER BIO
+         Job: Establish authority
+    ============================================= -->
+    <section class="bg-st-gray-75 py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-st-navy mb-4">
+                    Je host
+                </h2>
+            </div>
+
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-st-gray-100">
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <!-- Photo placeholder -->
+                        <div class="flex-shrink-0">
+                            <div class="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-st-blue to-st-cyan rounded-2xl flex items-center justify-center">
+                                <span class="text-white text-4xl font-bold">HK</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold text-st-navy mb-2">Homam Karimi</h3>
+                            <p class="text-st-blue font-semibold mb-4">CEO & Co-founder, Studytube</p>
+
+                            <p class="text-st-gray-600 leading-relaxed mb-6">
+                                Homam startte Studytube vanuit een simpele observatie: organisaties investeren miljarden in talent, maar missen de tools om dat talent meetbaar te laten groeien.
+                                In 10 jaar bouwde hij een platform dat nu door 400+ Nederlandse en DACH-organisaties wordt gebruikt.
+                            </p>
+
+                            <p class="text-st-gray-600 leading-relaxed mb-6">
+                                Als ondernemer en investeerder volgt Homam de AI-disruptie op de voet. Hij interviewde tientallen CEOs en CHROs over hun workforce-uitdagingen en deelt in dit webinar de patronen die hij ontdekte.
+                            </p>
+
+                            <!-- Credentials -->
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-3 py-1 bg-st-gray-100 rounded-full text-sm text-st-gray-600">10+ jaar L&D tech</span>
+                                <span class="px-3 py-1 bg-st-gray-100 rounded-full text-sm text-st-gray-600">400+ klanten</span>
+                                <span class="px-3 py-1 bg-st-gray-100 rounded-full text-sm text-st-gray-600">De Impact Podcast host</span>
+                            </div>
+
+                            <!-- Social links -->
+                            <div class="flex gap-4 mt-6">
+                                <a href="https://linkedin.com/in/homamkarimi" target="_blank" class="text-st-gray-600 hover:text-st-blue transition-colors">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 4: PROBLEM-AGITATE
+         Job: Create urgency, show why this matters
+    ============================================= -->
+    <section class="bg-white py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-st-navy mb-4">
+                    Waarom je dit nu moet zien
+                </h2>
+                <p class="text-lg text-st-gray-600 max-w-2xl mx-auto">
+                    De cijfers liegen niet. AI verandert de arbeidsmarkt sneller dan welke technologie ooit deed.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Pain 1 -->
+                <div class="bg-st-gray-75 rounded-2xl p-8">
+                    <div class="text-5xl font-bold text-st-danger mb-4">3 mnd</div>
+                    <h3 class="text-xl font-bold text-st-navy mb-3">Skill shelf-life halveert</h3>
+                    <p class="text-st-gray-600 leading-relaxed">
+                        AI-tools evolueren zo snel dat vaardigheden die 3 maanden geleden cutting-edge waren, nu basis zijn. Je mensen lopen achter zonder het te weten.
+                    </p>
+                    <p class="mt-4 text-xs text-st-gray-600">Bron: Anthropic CEO Interview, 2024</p>
+                </div>
+
+                <!-- Pain 2 -->
+                <div class="bg-st-gray-75 rounded-2xl p-8">
+                    <div class="text-5xl font-bold text-st-danger mb-4">92%</div>
+                    <h3 class="text-xl font-bold text-st-navy mb-3">CEO's zien geen L&D impact</h3>
+                    <p class="text-st-gray-600 leading-relaxed">
+                        Vrijwel niemand kan aantonen dat leren bijdraagt aan bedrijfsresultaat. Toch is het de enige manier om je workforce toekomstbestendig te maken.
+                    </p>
+                    <p class="mt-4 text-xs text-st-gray-600">Bron: RedThread Research, 2024</p>
+                </div>
+
+                <!-- Pain 3 -->
+                <div class="bg-st-gray-75 rounded-2xl p-8">
+                    <div class="text-5xl font-bold text-st-danger mb-4">66%</div>
+                    <h3 class="text-xl font-bold text-st-navy mb-3">Kan geen talent vinden</h3>
+                    <p class="text-st-gray-600 leading-relaxed">
+                        Twee derde van Nederlandse bedrijven worstelt met werving. Je kunt de skills die je nodig hebt niet kopen - je moet ze bouwen.
+                    </p>
+                    <p class="mt-4 text-xs text-st-gray-600">Bron: CBS Arbeidsmarkt, 2025</p>
+                </div>
+            </div>
+
+            <!-- Gut Punch -->
+            <div class="mt-12 text-center">
+                <div class="inline-block bg-st-navy rounded-2xl px-8 py-6 max-w-3xl">
+                    <p class="text-xl md:text-2xl text-white font-medium leading-relaxed">
+                        "Je beste mensen worden nu gedeskilled. Niet omdat ze slecht zijn, maar omdat ze goed zijn in dingen die AI overneemt."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 5: REGISTRATION FORM
+         Job: Capture registrations
+    ============================================= -->
+    <section class="bg-st-blue/5 py-16 md:py-24" id="registratie">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-st-navy mb-6">
+                        Reserveer je plek
+                    </h2>
+                    <p class="text-lg text-st-gray-600 leading-relaxed mb-8">
+                        Vul je gegevens in en ontvang direct een bevestiging met de webinar link. Na afloop krijg je de recording en het 90-dagen actieplan template.
+                    </p>
+
+                    <!-- What you get -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-st-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-st-navy">Live sessie + Q&A met Homam Karimi</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-st-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-st-navy">Recording beschikbaar na afloop</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-st-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-st-navy">90-dagen actieplan template (Excel)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-st-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-st-navy">Executive summary slide deck</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Registration Form -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl border border-st-gray-100">
+                    <form id="registration-form" class="space-y-5">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="firstName" class="block text-sm font-medium text-st-navy mb-2">Voornaam *</label>
+                                <input type="text" id="firstName" name="firstName" required
+                                    class="form-input w-full px-4 py-3 rounded-xl border border-st-gray-200 text-st-navy placeholder-st-gray-600/50 transition-all"
+                                    placeholder="Jan">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-medium text-st-navy mb-2">Achternaam *</label>
+                                <input type="text" id="lastName" name="lastName" required
+                                    class="form-input w-full px-4 py-3 rounded-xl border border-st-gray-200 text-st-navy placeholder-st-gray-600/50 transition-all"
+                                    placeholder="Jansen">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-st-navy mb-2">Zakelijk e-mail *</label>
+                            <input type="email" id="email" name="email" required
+                                class="form-input w-full px-4 py-3 rounded-xl border border-st-gray-200 text-st-navy placeholder-st-gray-600/50 transition-all"
+                                placeholder="jan@bedrijf.nl">
+                        </div>
+
+                        <div>
+                            <label for="company" class="block text-sm font-medium text-st-navy mb-2">Bedrijfsnaam *</label>
+                            <input type="text" id="company" name="company" required
+                                class="form-input w-full px-4 py-3 rounded-xl border border-st-gray-200 text-st-navy placeholder-st-gray-600/50 transition-all"
+                                placeholder="Acme B.V.">
+                        </div>
+
+                        <div>
+                            <label for="role" class="block text-sm font-medium text-st-navy mb-2">Functie *</label>
+                            <select id="role" name="role" required
+                                class="form-input w-full px-4 py-3 rounded-xl border border-st-gray-200 text-st-navy transition-all">
+                                <option value="">Selecteer je functie</option>
+                                <option value="ceo">CEO / Managing Director / DGA</option>
+                                <option value="chro">CHRO / HR Director</option>
+                                <option value="cfo">CFO / Finance Director</option>
+                                <option value="ld-manager">L&D Manager</option>
+                                <option value="hr-manager">HR Manager</option>
+                                <option value="other">Anders</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn-primary w-full px-8 py-4 bg-st-blue text-white font-semibold rounded-xl text-lg">
+                            Reserveer mijn plek
+                            <svg class="inline-block ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </button>
+
+                        <!-- Risk reducers -->
+                        <div class="flex flex-wrap justify-center gap-4 pt-4 border-t border-st-gray-100">
+                            <span class="text-sm text-st-gray-600">Gratis</span>
+                            <span class="text-st-gray-300">|</span>
+                            <span class="text-sm text-st-gray-600">Geen voorbereiding nodig</span>
+                            <span class="text-st-gray-300">|</span>
+                            <span class="text-sm text-st-gray-600">Uitschrijven mogelijk</span>
+                        </div>
+                    </form>
+
+                    <!-- Add to Calendar buttons -->
+                    <div class="mt-6 pt-6 border-t border-st-gray-100">
+                        <p class="text-sm text-st-gray-600 text-center mb-4">Zet in je agenda</p>
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-st-gray-100 hover:bg-st-gray-200 rounded-lg text-sm text-st-navy transition-colors">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12c6.627 0 12-5.373 12-12S18.627 0 12 0zm.14 19.018c-3.868 0-7-3.14-7-7.018c0-3.878 3.132-7.018 7-7.018c1.89 0 3.47.697 4.682 1.829l-1.974 1.978v-.004c-.735-.702-1.667-1.062-2.708-1.062c-2.31 0-4.187 1.956-4.187 4.273c0 2.315 1.877 4.277 4.187 4.277c2.096 0 3.522-1.202 3.816-2.852H12.14v-2.737h6.585c.088.47.135.96.135 1.474c0 4.01-2.677 6.86-6.72 6.86z"/>
+                                </svg>
+                                Google
+                            </a>
+                            <a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-st-gray-100 hover:bg-st-gray-200 rounded-lg text-sm text-st-navy transition-colors">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7.88 12.04q0 .45-.11.87-.1.41-.33.74-.22.33-.58.52-.37.2-.87.2t-.85-.2q-.35-.21-.57-.55-.22-.33-.33-.75-.1-.42-.1-.86t.1-.87q.1-.43.34-.76.22-.34.59-.54.36-.2.87-.2t.86.2q.35.21.57.55.22.34.31.77.1.43.1.88zM24 12v9.38q0 .46-.33.8-.33.32-.8.32H7.13q-.46 0-.8-.33-.32-.33-.32-.8V12h18zm-6 0l-6.03 3.44L18 12zm-1.73 8.27h.63v-.63h-.63v.63zm1.73 0h.63v-.63h-.63v.63zM5.27 5.27q0 .45-.11.86-.1.42-.33.75-.22.33-.58.53-.36.2-.86.2t-.85-.2q-.35-.21-.57-.55-.22-.33-.33-.75-.1-.42-.1-.86t.1-.87q.1-.43.34-.76.22-.34.59-.54.36-.2.87-.2t.86.2q.35.21.57.55.22.34.31.77.1.42.1.87z"/>
+                                </svg>
+                                Outlook
+                            </a>
+                            <a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-st-gray-100 hover:bg-st-gray-200 rounded-lg text-sm text-st-navy transition-colors">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                                </svg>
+                                Apple
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 6: SOCIAL PROOF
+         Job: Show others have trusted this
+    ============================================= -->
+    <section class="bg-white py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-st-navy mb-4">
+                    400+ organisaties gingen je voor
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Stat 1 -->
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-st-blue mb-2">847</div>
+                    <p class="text-st-gray-600">L&D professionals namen deel aan onze vorige webinars</p>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-st-blue mb-2">4.7/5</div>
+                    <p class="text-st-gray-600">Gemiddelde beoordeling van deelnemers</p>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-st-blue mb-2">89%</div>
+                    <p class="text-st-gray-600">Zou het aanraden aan een collega</p>
+                </div>
+            </div>
+
+            <!-- Quote -->
+            <div class="mt-12 max-w-3xl mx-auto">
+                <div class="bg-st-gray-75 rounded-2xl p-8">
+                    <svg class="w-10 h-10 text-st-blue/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                    <p class="text-xl text-st-navy leading-relaxed mb-6">
+                        "Eindelijk een webinar die niet alleen problemen schetst, maar concrete handvatten geeft. Het 90-dagen plan heb ik letterlijk de week erna aan mijn MT gepresenteerd."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-st-blue/10 rounded-full flex items-center justify-center">
+                            <span class="text-st-blue font-bold">MV</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-st-navy">Marieke van der Berg</p>
+                            <p class="text-sm text-st-gray-600">HR Director, Logistiek bedrijf (450 FTE)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logos -->
+            <div class="mt-12">
+                <p class="text-center text-sm text-st-gray-600 uppercase tracking-wider mb-8">
+                    Deelnemers van onder andere
+                </p>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60 grayscale">
+                    <div class="flex items-center justify-center h-10 px-4">
+                        <span class="text-lg font-bold text-st-navy">Emil Frey</span>
+                    </div>
+                    <div class="flex items-center justify-center h-10 px-4">
+                        <span class="text-lg font-bold text-st-navy">Engie</span>
+                    </div>
+                    <div class="flex items-center justify-center h-10 px-4">
+                        <span class="text-lg font-bold text-st-navy">Hunkemoller</span>
+                    </div>
+                    <div class="flex items-center justify-center h-10 px-4">
+                        <span class="text-lg font-bold text-st-navy">Swapfiets</span>
+                    </div>
+                    <div class="flex items-center justify-center h-10 px-4">
+                        <span class="text-lg font-bold text-st-navy">Rituals</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 7: SECONDARY CTA
+         Job: Catch those who aren't ready to register
+    ============================================= -->
+    <section class="bg-st-navy pattern-overlay py-16 md:py-24">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                Kan je niet live? Krijg de recording.
+            </h2>
+            <p class="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
+                Registreer je en we sturen je de volledige recording + alle materialen direct na afloop.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <a href="#registratie" class="btn-primary inline-flex items-center justify-center px-8 py-4 bg-white text-st-navy font-semibold rounded-xl text-lg">
+                    Stuur me de recording
+                    <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <p class="text-white/50 text-sm">
+                Je ontvangt de recording + 90-dagen actieplan + executive summary
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 8: FOOTER
+         Job: Professional legitimacy
+    ============================================= -->
+    <footer class="bg-st-navy border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Logo & Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-st-blue font-bold text-lg">S</span>
+                        </div>
+                        <span class="text-white font-bold text-xl">Studytube</span>
+                    </div>
+                    <p class="text-white/60 leading-relaxed max-w-sm">
+                        Het leerplatform dat organisaties helpt om talent intern te ontwikkelen. Vertrouwd door 400+ bedrijven in Nederland en DACH.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Platform</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Skills Development</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Compliance Training</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Onboarding</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Analytics</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Demo aanvragen</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Klantenservice</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-sm">
+                    &copy; 2026 Studytube. Alle rechten voorbehouden.
+                </p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-white/40 hover:text-white text-sm">Privacy</a>
+                    <a href="#" class="text-white/40 hover:text-white text-sm">Voorwaarden</a>
+                    <a href="#" class="text-white/40 hover:text-white text-sm">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Countdown Timer Script -->
+    <script>
+        // Set the webinar date (February 27, 2026 at 10:00 CET)
+        const webinarDate = new Date('2026-02-27T10:00:00+01:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = webinarDate - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = '<p class="text-2xl font-bold text-st-navy">Webinar is gestart!</p>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Update every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Form submission handler
+        document.getElementById('registration-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Here you would typically send to your backend/HubSpot
+            console.log('Registration data:', data);
+
+            // Show success message
+            this.innerHTML = `
+                <div class="text-center py-8">
+                    <div class="w-16 h-16 bg-st-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-st-success" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-st-navy mb-2">Je bent aangemeld!</h3>
+                    <p class="text-st-gray-600 mb-6">Check je inbox voor de bevestiging met de webinar link.</p>
+                    <p class="text-sm text-st-gray-600">Geen mail? Check je spam folder of neem contact op via support@studytube.nl</p>
+                </div>
+            `;
+        });
+    </script>
+
+</body>
+</html>

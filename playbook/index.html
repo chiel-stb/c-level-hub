@@ -1,0 +1,2284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategic Skill Management Playbook — Studytube</title>
+  <link rel="stylesheet" href="../../use-case-playbooks/playbook-template/playbook-styles.css">
+  <style>
+    /* Extended styles for comprehensive playbook */
+    .cta-box {
+      background: linear-gradient(135deg, var(--st-blue-500) 0%, var(--st-purple-500) 100%);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+      color: white;
+    }
+    .cta-box h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .cta-box p {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 12px;
+    }
+    .cta-box .cta-link {
+      display: inline-block;
+      background: white;
+      color: var(--st-blue-500);
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .stat-highlight {
+      display: flex;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .stat-box {
+      flex: 1;
+      background: var(--st-gray-050);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-box .number {
+      font-size: 32px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--st-blue-500) 0%, var(--st-purple-500) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-box .label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    .stat-box .source {
+      font-size: 10px;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+    .maturity-stage {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border: 1px solid var(--st-gray-200);
+    }
+    .maturity-stage.active {
+      border-color: var(--st-blue-500);
+      background: var(--st-blue-100);
+    }
+    .maturity-stage.target {
+      border-color: var(--st-purple-500);
+      background: var(--st-purple-100);
+    }
+    .stage-number {
+      width: 32px;
+      height: 32px;
+      background: var(--st-gray-200);
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .maturity-stage.active .stage-number {
+      background: var(--st-blue-500);
+      color: white;
+    }
+    .maturity-stage.target .stage-number {
+      background: var(--st-purple-500);
+      color: white;
+    }
+    .stage-content h5 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .stage-content p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .stage-content .indicators {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 6px;
+      font-style: italic;
+    }
+    .timeline-row {
+      display: flex;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .timeline-block {
+      flex: 1;
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--st-gray-200);
+    }
+    .timeline-block h5 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--st-blue-500);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .timeline-block h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .timeline-block ul {
+      list-style: none;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .timeline-block li {
+      margin-bottom: 4px;
+      padding-left: 12px;
+      position: relative;
+    }
+    .timeline-block li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--st-blue-500);
+      font-size: 10px;
+    }
+    .persona-box {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      border-left: 4px solid var(--st-blue-500);
+    }
+    .persona-box.chro {
+      border-left-color: var(--st-purple-500);
+    }
+    .persona-box h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .persona-box .identity {
+      font-size: 13px;
+      color: var(--st-blue-500);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .persona-box.chro .identity {
+      color: var(--st-purple-500);
+    }
+    .persona-box .narrative {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .persona-box .quote {
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-primary);
+      padding: 12px 16px;
+      background: var(--st-gray-050);
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .insight-box {
+      background: var(--st-gray-050);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    .insight-box h5 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--st-blue-500);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .insight-box p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .slim-box {
+      background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+      border-radius: 12px;
+      padding: 20px;
+      color: white;
+      margin: 20px 0;
+    }
+    .slim-box h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .slim-box p {
+      font-size: 13px;
+      opacity: 0.95;
+      line-height: 1.5;
+    }
+    .slim-box ul {
+      list-style: none;
+      margin-top: 12px;
+    }
+    .slim-box li {
+      font-size: 13px;
+      margin-bottom: 6px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .slim-box li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+    }
+    .framework-box {
+      background: white;
+      border: 2px solid var(--st-blue-500);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .framework-box h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--st-blue-500);
+      margin-bottom: 12px;
+    }
+    .framework-box .formula {
+      font-family: monospace;
+      font-size: 14px;
+      background: var(--st-gray-050);
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+    .comparison-row {
+      display: flex;
+      gap: 16px;
+      margin: 16px 0;
+    }
+    .comparison-col {
+      flex: 1;
+      padding: 16px;
+      border-radius: 12px;
+    }
+    .comparison-col.wrong {
+      background: #FEE2E2;
+      border: 1px solid #FECACA;
+    }
+    .comparison-col.right {
+      background: #DCFCE7;
+      border: 1px solid #BBF7D0;
+    }
+    .comparison-col h5 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .comparison-col.wrong h5 {
+      color: #DC2626;
+    }
+    .comparison-col.right h5 {
+      color: #16A34A;
+    }
+    .comparison-col ul {
+      list-style: none;
+      font-size: 13px;
+    }
+    .comparison-col li {
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .comparison-col.wrong li::before {
+      content: '✗';
+      position: absolute;
+      left: 0;
+      color: #DC2626;
+      font-weight: bold;
+    }
+    .comparison-col.right li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #16A34A;
+      font-weight: bold;
+    }
+    .quote-attribution {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 8px;
+      text-align: right;
+    }
+    .numbered-list {
+      counter-reset: item;
+      list-style: none;
+      margin: 16px 0;
+    }
+    .numbered-list li {
+      counter-increment: item;
+      margin-bottom: 16px;
+      padding-left: 36px;
+      position: relative;
+    }
+    .numbered-list li::before {
+      content: counter(item);
+      position: absolute;
+      left: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--st-blue-500);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    .numbered-list h5 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .numbered-list p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .executive-summary {
+      background: linear-gradient(135deg, var(--st-blue-900) 0%, #1E3A5F 100%);
+      border-radius: 12px;
+      padding: 24px;
+      color: white;
+      margin: 20px 0;
+    }
+    .executive-summary h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .executive-summary ul {
+      list-style: none;
+    }
+    .executive-summary li {
+      font-size: 14px;
+      margin-bottom: 8px;
+      padding-left: 24px;
+      position: relative;
+    }
+    .executive-summary li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--st-cyan-500);
+    }
+    .toc-list {
+      list-style: none;
+      margin: 20px 0;
+    }
+    .toc-list li {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--st-gray-200);
+      font-size: 14px;
+    }
+    .toc-list .num {
+      width: 28px;
+      height: 28px;
+      background: var(--st-blue-100);
+      color: var(--st-blue-500);
+      font-weight: 700;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      margin-right: 12px;
+    }
+    .toc-list .title {
+      flex: 1;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .toc-list .page {
+      color: var(--text-light);
+      font-size: 12px;
+    }
+    .action-checklist {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--st-gray-200);
+      margin: 16px 0;
+    }
+    .action-checklist h5 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .action-checklist ul {
+      list-style: none;
+    }
+    .action-checklist li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      padding-left: 28px;
+      position: relative;
+    }
+    .action-checklist li::before {
+      content: '☐';
+      position: absolute;
+      left: 0;
+      font-size: 16px;
+      color: var(--st-blue-500);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       COVER PAGE
+       ============================================ -->
+  <div class="page cover-page">
+    <div class="cover-pattern">
+      <img src="../../use-case-playbooks/playbook-template/assets/images/cover-pattern.svg" alt="">
+    </div>
+
+    <div class="cover-content">
+      <div class="cover-tag">C-Level Playbook 2026</div>
+      <h1 class="cover-title">Strategic Skill<br>Management<br>Playbook</h1>
+    </div>
+
+    <div class="cover-image-wrapper">
+      <img src="../../use-case-playbooks/playbook-template/assets/images/cover-placeholder.svg" alt="Cover">
+    </div>
+
+    <div class="cover-logo">
+      <span class="logo-text">STUD<span class="logo-accent">\</span>TUBE</span>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 2: Executive Summary & Contents
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro standalone">
+      <h3>What This Playbook Delivers</h3>
+      <p>A practical guide for CEOs and CHROs who know skills matter but struggle to make L&D measurable, defensible, and connected to business outcomes.</p>
+    </div>
+
+    <div class="executive-summary">
+      <h4>In This Playbook You'll Find</h4>
+      <ul>
+        <li>The Talent Paradox: Why hiring alone won't fix the 66% problem</li>
+        <li>Full CEO & CHRO Narratives: Ready-to-use positioning for each audience</li>
+        <li>The Skill Maturity Model: Where you are vs. where you need to be</li>
+        <li>A 90-day implementation roadmap (not 90 weeks)</li>
+        <li>Stakeholder playbooks for CEO, CFO, managers, and works council</li>
+        <li>ROI frameworks your CFO will actually accept</li>
+        <li>Real proof points: 30% cost reduction, 90% time savings</li>
+        <li>Impact Gids: Quick reference for stakeholder conversations</li>
+        <li>Content Calendar: 8-week strategic content roadmap</li>
+        <li>Entry Hooks: Proven conversation starters with data sources</li>
+      </ul>
+    </div>
+
+    <div class="section-intro">
+      <h3>Contents</h3>
+    </div>
+
+    <ul class="toc-list">
+      <li><span class="num">1</span><span class="title">The Strategic Case for Skills</span><span class="page">3-5</span></li>
+      <li><span class="num">•</span><span class="title">The Talent Paradox</span><span class="page">6</span></li>
+      <li><span class="num">2</span><span class="title">The CEO & CHRO Perspective</span><span class="page">7-11</span></li>
+      <li><span class="num">•</span><span class="title">CEO Narrative: Build Capability, Not Headcount</span><span class="page">7</span></li>
+      <li><span class="num">•</span><span class="title">CHRO Narrative: From Proof Paralysis to Power</span><span class="page">9</span></li>
+      <li><span class="num">3</span><span class="title">The Skill Maturity Model</span><span class="page">12-14</span></li>
+      <li><span class="num">4</span><span class="title">The 90-Day Implementation</span><span class="page">15-18</span></li>
+      <li><span class="num">5</span><span class="title">Stakeholder Alignment</span><span class="page">19-21</span></li>
+      <li><span class="num">6</span><span class="title">Measurement & ROI</span><span class="page">22-24</span></li>
+      <li><span class="num">7</span><span class="title">Proof Points & Case Evidence</span><span class="page">25-26</span></li>
+      <li><span class="num">8</span><span class="title">Your Next Step</span><span class="page">27</span></li>
+      <li><span class="num">A</span><span class="title">Impact Gids — Quick Reference</span><span class="page">28</span></li>
+      <li><span class="num">B</span><span class="title">Content Calendar — C-Level Track</span><span class="page">29</span></li>
+      <li><span class="num">C</span><span class="title">Entry Hooks Reference</span><span class="page">30</span></li>
+    </ul>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">2</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PART 1: THE STRATEGIC CASE
+       PAGE 3: Why Skills, Why Now
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2 class="section-title">The Strategic Case for Skills</h2>
+    </div>
+
+    <div class="section-intro">
+      <h3>The Moat That Can't Be Copied</h3>
+      <p>Every competitive advantage you've built is under threat. Technology gets replicated in months. Processes get copied by competitors. Your best people get poached. But there's one thing that compounds over time and can't be purchased on the market: your organization's ability to learn faster than the world changes around you.</p>
+    </div>
+
+    <div class="stat-highlight">
+      <div class="stat-box">
+        <div class="number">66%</div>
+        <div class="label">of Dutch businesses can't find the staff they need</div>
+        <div class="source">CBS, January 2025</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">45%</div>
+        <div class="label">of CEOs doubt their company survives a decade</div>
+        <div class="source">PwC CEO Survey, 2024</div>
+      </div>
+    </div>
+
+    <p class="body-text">These aren't abstract trends. They're the reality facing Dutch mid-market companies right now. Two-thirds of your peers are struggling to fill roles. Nearly half of CEOs—people who've built successful businesses—are questioning whether their organizations can survive the next ten years on their current trajectory.</p>
+
+    <p class="body-text">The conventional response has been to hire harder: more recruiters, higher salaries, better employer branding. But as one CEO put it: <em>"We're all fishing from the same shrinking pond."</em></p>
+
+    <div class="pull-quote">
+      <p>"You can't hire your way out of the talent crisis. The companies winning are building capability internally."</p>
+    </div>
+
+    <p class="body-text">This playbook is for leaders who've recognized that the talent strategy of the past decade—acquire, don't develop—has reached its limits. The question isn't whether to invest in skill development. It's whether you'll act before your competitors do.</p>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">3</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 4: The Skills Urgency
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>The Skills Clock Is Ticking</h3>
+      <p>The World Economic Forum estimates that 44% of workers' core skills will change by 2027. That's not a decade away—it's less than two years. For most organizations, this creates a gap between the skills they have and the skills they need that widens faster than they can close it.</p>
+    </div>
+
+    <div class="gradient-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Market Reality</th>
+            <th>What It Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>44% of skills changing by 2027</td>
+            <td>Your current workforce's capabilities have a shelf life</td>
+          </tr>
+          <tr>
+            <td>55% of companies expect self-learning for AI</td>
+            <td>Hope is not a strategy—only 19% are actually AI-ready</td>
+          </tr>
+          <tr>
+            <td>38% cite labor as largest business obstacle</td>
+            <td>Talent is now a board-level strategic concern</td>
+          </tr>
+          <tr>
+            <td>67% of workers considering leaving cite learning</td>
+            <td>Development isn't a perk—it's a retention lever</td>
+          </tr>
+          <tr>
+            <td>Dutch mid-sized invest 64% less than enterprise</td>
+            <td>The gap between large and mid-market is growing</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <h5>The Hidden Cost of Inaction</h5>
+      <p>While you're spending months filling one role at premium cost, your existing team is underutilized—not because they lack potential, but because no one's developing it. You're bleeding €50K per open vacancy while sitting on untapped capability worth ten times that. The math only works if you're measuring the right things.</p>
+    </div>
+
+    <p class="body-text">The organizations that will thrive in the next decade aren't the ones with the biggest hiring budgets. They're the ones that have built systematic capability to develop skills faster than the market demands them. That's the strategic case for skill management. Not as an HR initiative—as a business survival strategy.</p>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">4</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 5: The Proof Gap
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>The Proof Gap: Why L&D Stays Stuck</h3>
+      <p>If skill development delivers value—and the data says it does—why do most organizations underinvest? Because they can't prove it works.</p>
+    </div>
+
+    <div class="stat-highlight">
+      <div class="stat-box">
+        <div class="number">$4.70</div>
+        <div class="label">return per $1 invested in L&D</div>
+        <div class="source">Deloitte, 2024</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">92%</div>
+        <div class="label">of CEOs don't see L&D business impact</div>
+        <div class="source">LinkedIn Workplace Learning</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">4%</div>
+        <div class="label">of organizations can calculate L&D ROI</div>
+        <div class="source">ATD & ROI Institute, 2024</div>
+      </div>
+    </div>
+
+    <p class="body-text">Here's the paradox: L&D delivers nearly 5x return on investment, but 92% of CEOs can't see it. The problem isn't that learning doesn't work. The problem is that most organizations measure the wrong things—completion rates, hours consumed, satisfaction scores—none of which connect to business outcomes.</p>
+
+    <div class="framework-box">
+      <h4>The Proof Paralysis Cycle</h4>
+      <div style="font-size: 13px; color: var(--text-secondary); line-height: 2;">
+        CEO: "I need capable people but can't prove training works" →<br>
+        CHRO: "I can't prove it works because I can't measure it properly" →<br>
+        CFO: "No proof means no budget" →<br>
+        Result: "No budget means no capability building" →<br>
+        <em>Cycle repeats. Skills gap widens.</em>
+      </div>
+    </div>
+
+    <p class="body-text">This playbook breaks that cycle. Not by adding complexity, but by giving you the frameworks, metrics, and proof points that translate skill development into business language. The goal is simple: join the 4% who can prove ROI—so you can invest with confidence and defend that investment to any stakeholder.</p>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">5</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 6: The Talent Paradox
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>The Talent Paradox</h3>
+      <p>Dutch organizations face an impossible equation: infinite demand for talent, finite supply in the market. The conventional response—hire harder—has hit a wall. Here's why the math no longer works.</p>
+    </div>
+
+    <div class="framework-box" style="background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%); border-color: #DC2626;">
+      <h4 style="color: #DC2626;">The Broken Equation</h4>
+      <div style="font-family: monospace; font-size: 16px; text-align: center; padding: 16px; color: #DC2626;">
+        Demand for Talent > Supply in Market<br>
+        ∴ Everyone Poaches from Everyone<br>
+        ∴ Costs Rise, Quality Falls, Cycle Repeats
+      </div>
+    </div>
+
+    <div class="gradient-table">
+      <table>
+        <thead>
+          <tr>
+            <th>The Paradox</th>
+            <th>What's Really Happening</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>"We can't find qualified people"</td>
+            <td>The people don't exist. You're competing for a shrinking pool.</td>
+          </tr>
+          <tr>
+            <td>"Training is too expensive"</td>
+            <td>Hiring costs 3-5x more. And you still have to train them.</td>
+          </tr>
+          <tr>
+            <td>"They'll leave after we train them"</td>
+            <td>67% leave because you didn't train them. The paradox is backward.</td>
+          </tr>
+          <tr>
+            <td>"We don't have time to develop people"</td>
+            <td>You're spending more time trying to hire people who don't exist.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="comparison-row">
+      <div class="comparison-col wrong">
+        <h5>The Old Model (Broken)</h5>
+        <ul>
+          <li>Acquire talent externally</li>
+          <li>Compete on salary</li>
+          <li>Accept high turnover</li>
+          <li>Repeat the cycle</li>
+        </ul>
+      </div>
+      <div class="comparison-col right">
+        <h5>The New Model (Works)</h5>
+        <ul>
+          <li>Build capability internally</li>
+          <li>Compete on development</li>
+          <li>Create retention through growth</li>
+          <li>Compound your advantage</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>"The companies winning the talent war aren't fighting it. They're building from within."</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">6</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PART 2: CEO & CHRO PERSPECTIVE
+       PAGE 7: The CEO View
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2 class="section-title">The CEO & CHRO Perspective</h2>
+    </div>
+
+    <div class="section-intro">
+      <h3>Two Roles, One Goal, Different Languages</h3>
+      <p>Strategic skill management requires alignment between CEO and CHRO. But these two roles often talk past each other—not because they disagree, but because they're solving different problems with different vocabularies.</p>
+    </div>
+
+    <div class="persona-box">
+      <h4>The CEO Perspective</h4>
+      <div class="identity">Identity: Builder Under Siege</div>
+      <p class="narrative">You built something valuable. Now you're watching it erode. The talent you need doesn't exist in the market—and when you find someone, they cost more than you budgeted. Your competitors are facing the same constraints, which means everyone is poaching from everyone else. It feels like a zero-sum game where the only winners are recruiters and the talent that's being bid up.</p>
+      <div class="quote">"I don't have time or money to train people who might leave. But I'm spending more time and money trying to hire people who don't exist."</div>
+    </div>
+
+    <div class="gradient-table">
+      <table>
+        <thead>
+          <tr>
+            <th>CEO Pain Point</th>
+            <th>What It Really Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Can't find talent</td>
+            <td>Open to internal development if it's faster than hiring</td>
+          </tr>
+          <tr>
+            <td>Survival anxiety</td>
+            <td>Urgency exists—needs to see how skills connect to survival</td>
+          </tr>
+          <tr>
+            <td>No time to train</td>
+            <td>Needs efficiency, not programs. Results in weeks, not quarters.</td>
+          </tr>
+          <tr>
+            <td>They'll leave after training</td>
+            <td>67% leave because you didn't train them. Flip the narrative.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <h5>The CEO's Real Question</h5>
+      <p>"How do I build internal capability without adding headcount or complexity?" Strategic skill management answers this directly: visible skill gaps, targeted development, measurable outcomes, no enterprise overhead.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">6</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 7: CEO Full Narrative
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>The CEO Narrative: "Build Capability, Not Headcount"</h3>
+    </div>
+
+    <div class="persona-box" style="border-left-width: 6px;">
+      <h4 style="color: var(--st-blue-500); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">The Problem You Feel</h4>
+      <p class="narrative" style="font-size: 15px; line-height: 1.7;">You can't hire your way out of this. Two-thirds of Dutch businesses are trying and failing. Every competitor is fishing from the same shrinking pond. The talent you need doesn't exist in the market—and when you find someone, they cost more than you budgeted.</p>
+    </div>
+
+    <div class="persona-box" style="border-left-color: var(--st-purple-500); border-left-width: 6px;">
+      <h4 style="color: var(--st-purple-500); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">The Hidden Cost</h4>
+      <p class="narrative" style="font-size: 15px; line-height: 1.7;">While you're spending months filling one role, your existing team is burning out. The people you already have are underutilized—not because they lack potential, but because no one's developing it. You're bleeding €50K per open vacancy while sitting on untapped capability worth ten times that.</p>
+    </div>
+
+    <div class="persona-box" style="border-left-color: #059669; border-left-width: 6px;">
+      <h4 style="color: #059669; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">The Shift</h4>
+      <p class="narrative" style="font-size: 15px; line-height: 1.7;">The companies winning the talent war aren't fighting it. They're building from within. Not with expensive programs or complex systems—with structured skill development that turns your existing workforce into the senior talent you can't find.</p>
+    </div>
+
+    <div class="stat-highlight">
+      <div class="stat-box">
+        <div class="number">45%</div>
+        <div class="label">of CEOs doubt company survives a decade</div>
+        <div class="source">PwC 2024</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">66%</div>
+        <div class="label">of Dutch businesses can't find staff</div>
+        <div class="source">CBS 2025</div>
+      </div>
+    </div>
+
+    <div class="pull-quote large">
+      <p>"You measure product quality. You measure sales pipeline. Why aren't you measuring learning velocity?"</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">7</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 8: The CHRO View
+       ============================================ -->
+  <div class="page content-page">
+    <div class="persona-box chro">
+      <h4>The CHRO Perspective</h4>
+      <div class="identity">Identity: Strategic Voice Trapped in Admin Role</div>
+      <p class="narrative">You know L&D delivers value. You've seen it work. But every budget cycle, you're defending your existence instead of driving strategy. The CFO wants ROI. You have completion rates. That's not the same thing. Meanwhile, L&D's involvement in business strategy has dropped 50% in two years. You're not losing because you're wrong—you're losing because you can't prove you're right.</p>
+      <div class="quote">"I speak impact. The CFO hears cost. Somewhere in translation, my credibility disappears."</div>
+    </div>
+
+    <div class="gradient-table">
+      <table>
+        <thead>
+          <tr>
+            <th>CHRO Pain Point</th>
+            <th>What It Really Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Strategic invisibility</td>
+            <td>Needs proof that earns a permanent seat at the strategy table</td>
+          </tr>
+          <tr>
+            <td>Proof paralysis</td>
+            <td>Has data, but not the right data. Needs business metrics.</td>
+          </tr>
+          <tr>
+            <td>Stakeholder complexity</td>
+            <td>Must win CEO, CFO, managers, and works council simultaneously</td>
+          </tr>
+          <tr>
+            <td>Manager competition</td>
+            <td>Employees learn 2x more from managers than L&D—partner, don't compete</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stat-highlight">
+      <div class="stat-box">
+        <div class="number">50%</div>
+        <div class="label">drop in L&D strategy involvement in 2 years</div>
+        <div class="source">RedThread Research, 2024</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">65%</div>
+        <div class="label">of C-Suite only see HR value in crisis</div>
+        <div class="source">Unleash, 2024</div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <h5>The CHRO's Real Question</h5>
+      <p>"How do I prove L&D business value and become a strategic partner, not an order-taker?" This playbook provides the infrastructure: measurement frameworks that translate to CFO language, stakeholder pitch guides, and proof points that work.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">8</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 9: CHRO Full Narrative
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>The CHRO Narrative: "From Proof Paralysis to Strategic Power"</h3>
+    </div>
+
+    <div class="persona-box chro" style="border-left-width: 6px;">
+      <h4 style="color: var(--st-purple-500); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">The Problem You Feel</h4>
+      <p class="narrative" style="font-size: 15px; line-height: 1.7;">You're not failing. The system is. L&D's seat at the strategy table dropped 50% in two years—not because learning stopped mattering, but because no one can prove it matters. You know $1 on L&D returns $4.70. But "knowing" isn't "showing."</p>
+    </div>
+
+    <div class="persona-box" style="border-left-color: #DC2626; border-left-width: 6px;">
+      <h4 style="color: #DC2626; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">The Trap</h4>
+      <p class="narrative" style="font-size: 15px; line-height: 1.7;">Every budget cycle, you're defending existence instead of driving strategy. The CFO wants ROI. You have completion rates. That's not the same thing. 92% of CEOs don't see L&D business impact—and until you can speak their language, you'll stay invisible.</p>
+    </div>
+
+    <div class="persona-box" style="border-left-color: #059669; border-left-width: 6px;">
+      <h4 style="color: #059669; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">The Shift</h4>
+      <p class="narrative" style="font-size: 15px; line-height: 1.7;">The CHROs who've broken through didn't get better at training. They got better at proving. They learned to translate learning outcomes into business language: cost reduction, time savings, capability metrics. Not because the CEO asked—because the CFO finally stopped asking "why."</p>
+    </div>
+
+    <div class="stat-highlight">
+      <div class="stat-box">
+        <div class="number">4%</div>
+        <div class="label">of organizations can calculate L&D ROI</div>
+        <div class="source">ATD 2024</div>
+      </div>
+      <div class="stat-box">
+        <div class="number">92%</div>
+        <div class="label">of CEOs don't see L&D impact</div>
+        <div class="source">LinkedIn</div>
+      </div>
+    </div>
+
+    <div class="pull-quote large">
+      <p>"You're 2x more likely to lose mindshare to line managers than to competitors. What if you gave those managers—and the CFO—the proof they're waiting for?"</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">9</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 10: The Bridge
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>Building the Bridge</h3>
+      <p>CEO and CHRO want the same outcome—capable people driving business results. The gap is language and proof. Here's how to bridge it:</p>
+    </div>
+
+    <div class="gradient-table two-column">
+      <table>
+        <thead>
+          <tr>
+            <th>When CEO Says...</th>
+            <th>CHRO Should Respond...</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>"We don't have time to train"</td>
+            <td>"We're spending more time on hiring. Training is faster."</td>
+          </tr>
+          <tr>
+            <td>"They'll leave after we train them"</td>
+            <td>"67% leave because we didn't train them. The risk is inaction."</td>
+          </tr>
+          <tr>
+            <td>"Can we measure the ROI?"</td>
+            <td>"30% cost reduction, 4-week implementation. Here's the math."</td>
+          </tr>
+          <tr>
+            <td>"Is this another HR initiative?"</td>
+            <td>"This is capability building. It connects to your P&L."</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pull-quote">
+      <p>"Skills are the new currency. But most companies can't count them. That's the opportunity."</p>
+    </div>
+
+    <p class="body-text">The organizations where CEO and CHRO are aligned on skill strategy don't just perform better—they become talent magnets. When people see that development is real, measured, and connected to career progression, they stay. And when they stay, capability compounds.</p>
+
+    <div class="framework-box">
+      <h4>The Unified Position</h4>
+      <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">For Dutch mid-market companies that struggle to build workforce capability without enterprise complexity, strategic skill management makes L&D visible, measurable, and connected to your P&L. Unlike hiring (expensive, slow, competitive) or traditional training (unmeasured, disconnected), this approach delivers capability you can see, track, and defend to any stakeholder.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">8</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PART 3: SKILL MATURITY MODEL
+       PAGE 9: The Four Stages
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2 class="section-title">The Skill Maturity Model</h2>
+    </div>
+
+    <div class="section-intro">
+      <h3>Where Are You Today?</h3>
+      <p>Most organizations operate at Stage 1 or 2. The problem isn't effort—it's infrastructure. You can't manage what you can't see, and most companies have no visibility into the skills they have, need, or are developing.</p>
+    </div>
+
+    <div class="maturity-stage">
+      <div class="stage-number">1</div>
+      <div class="stage-content">
+        <h5>Ad-Hoc</h5>
+        <p>Training happens, but there's no systematic view of skills across the organization. Development is reactive—driven by individual requests or compliance requirements. No one can answer: "What skills do we have? What do we need?"</p>
+        <div class="indicators">Signs you're here: Spreadsheet tracking, no skill inventory, training driven by catalog availability</div>
+      </div>
+    </div>
+
+    <div class="maturity-stage active">
+      <div class="stage-number">2</div>
+      <div class="stage-content">
+        <h5>Tracked</h5>
+        <p>A learning management system exists. Completion rates are measured. But there's no connection between training consumption and actual skill development—or between skills and business outcomes. You know who took what course, but not whether it mattered.</p>
+        <div class="indicators">Signs you're here: LMS in place, completion reports, no skill gap analysis, no business impact data</div>
+      </div>
+    </div>
+
+    <div class="maturity-stage target">
+      <div class="stage-number">3</div>
+      <div class="stage-content">
+        <h5>Measured</h5>
+        <p>Skills are defined, mapped to roles, and tracked over time. Gap analysis is possible. You can identify which teams have capability shortfalls and measure whether development activities are closing gaps. Beginning to connect learning to performance.</p>
+        <div class="indicators">Signs you're here: Skill taxonomy exists, gap analysis possible, manager visibility, development paths defined</div>
+      </div>
+    </div>
+
+    <div class="maturity-stage">
+      <div class="stage-number">4</div>
+      <div class="stage-content">
+        <h5>Strategic</h5>
+        <p>Skills are connected to business outcomes. L&D has a seat at the strategy table because it can demonstrate ROI in business terms. The CFO sees skill development as an asset, not a cost. Capability planning informs workforce strategy.</p>
+        <div class="indicators">Signs you're here: ROI calculations, CFO-ready reports, strategic conversations, capability as competitive advantage</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">9</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 10: Assessment
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>Honest Assessment: Where Do You Stand?</h3>
+      <p>Answer these questions to determine your current maturity stage. Be honest—the goal is clarity, not flattery.</p>
+    </div>
+
+    <div class="gradient-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>If No, You're At...</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Can you list the top 20 skills your organization needs to succeed?</td>
+            <td>Stage 1 (Ad-Hoc)</td>
+          </tr>
+          <tr>
+            <td>Can you identify which teams have the biggest skill gaps right now?</td>
+            <td>Stage 1 or 2</td>
+          </tr>
+          <tr>
+            <td>Can managers see their team's skill levels and development progress?</td>
+            <td>Stage 2 (Tracked)</td>
+          </tr>
+          <tr>
+            <td>Can you show how learning activities have closed specific skill gaps?</td>
+            <td>Stage 2</td>
+          </tr>
+          <tr>
+            <td>Can you calculate the cost per skill acquired in your organization?</td>
+            <td>Stage 3 (Measured)</td>
+          </tr>
+          <tr>
+            <td>Can you demonstrate L&D ROI in terms your CFO accepts?</td>
+            <td>Stage 3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <h5>Most Organizations Score Stage 1-2</h5>
+      <p>If you answered "no" to most questions, you're in good company—but you're also leaving capability on the table. The gap between Stage 2 and Stage 3 is where value creation happens. That's where this playbook focuses.</p>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#05D5FF" stroke="#05D5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p><strong>The Goal:</strong> Move from Stage 1-2 to Stage 3-4 in 90 days. Not by adding enterprise complexity—by adding visibility and measurement to what you're already doing.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">10</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 11: The Operating Model
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>The Skill-Based Operating Model</h3>
+      <p>Moving from Stage 2 to Stage 3 requires four interconnected elements. None is sufficient alone; together, they create the infrastructure for strategic skill management.</p>
+    </div>
+
+    <ul class="numbered-list">
+      <li>
+        <h5>Skills Taxonomy</h5>
+        <p>A shared vocabulary for capabilities across the organization. Start with 20-30 core skills that matter most to your strategy. Don't try to boil the ocean—you can expand later. The goal is consensus on what matters, not completeness.</p>
+      </li>
+      <li>
+        <h5>Skill Mapping</h5>
+        <p>Connect skills to roles, teams, and business priorities. Which roles require which skills at what level? This creates the foundation for gap analysis and targeted development. Without mapping, you're developing skills randomly.</p>
+      </li>
+      <li>
+        <h5>Gap Analysis</h5>
+        <p>Compare required skills to current capabilities. Identify where the biggest gaps are—by team, by skill, by business priority. This tells you where to focus development resources for maximum impact.</p>
+      </li>
+      <li>
+        <h5>Development Paths</h5>
+        <p>Clear routes from current capability to target proficiency. Not just "take this course" but "here's how you grow from level 2 to level 4 in this skill." Make development visible and achievable.</p>
+      </li>
+    </ul>
+
+    <div class="framework-box">
+      <h4>The Minimum Viable Skill System</h4>
+      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">You don't need a perfect taxonomy or complete mapping to start. You need:</p>
+      <ul style="list-style: none; font-size: 13px; color: var(--text-secondary);">
+        <li style="margin-bottom: 6px;">→ 20-30 core skills defined (start with your strategy's most critical capabilities)</li>
+        <li style="margin-bottom: 6px;">→ 3-5 priority roles mapped (focus on where gaps hurt most)</li>
+        <li style="margin-bottom: 6px;">→ Current state assessed (even a rough baseline beats no baseline)</li>
+        <li style="margin-bottom: 6px;">→ Top 3 gaps identified (you can't fix everything—pick the most impactful)</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">11</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PART 4: 90-DAY IMPLEMENTATION
+       PAGE 12: Overview
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2 class="section-title">The 90-Day Implementation</h2>
+    </div>
+
+    <div class="section-intro">
+      <h3>From Zero Visibility to Strategic Conversations</h3>
+      <p>You don't need six months or a massive transformation program. You need 90 focused days to build the foundation for strategic skill management. This roadmap takes you from wherever you are today to measurable capability and a defensible business case.</p>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-block">
+        <h5>Days 1-30</h5>
+        <h4>Foundation</h4>
+        <li>Define core skill taxonomy</li>
+        <li>Run baseline assessment</li>
+        <li>Identify top 3 gaps</li>
+        <li>Map to business priorities</li>
+      </div>
+      <div class="timeline-block">
+        <h5>Days 31-60</h5>
+        <h4>Activation</h4>
+        <li>Launch targeted development</li>
+        <li>Enable manager visibility</li>
+        <li>Create progress dashboards</li>
+        <li>Document early wins</li>
+      </div>
+      <div class="timeline-block">
+        <h5>Days 61-90</h5>
+        <h4>Measurement</h4>
+        <li>Calculate first ROI metrics</li>
+        <li>Prepare CFO-ready report</li>
+        <li>Present to leadership</li>
+        <li>Plan scale-up</li>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>"If it takes more than 4 weeks to show first results, you're overcomplicating it."</p>
+    </div>
+
+    <div class="result-callout">
+      <div class="result-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#056DFF" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" fill="#056DFF"/>
+        </svg>
+      </div>
+      <p><strong>By Day 90:</strong> You have a working skill taxonomy, visible gaps, tracked development, early ROI evidence, and a business case for continued investment. That's the foundation for Stage 3-4 maturity.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">12</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 13: Days 1-30 Deep Dive
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>Days 1-30: Building the Foundation</h3>
+      <p>The first month is about creating visibility. You can't manage skills you can't see, and you can't improve what you can't measure. Focus on getting the basics right—speed beats perfection.</p>
+    </div>
+
+    <div class="action-checklist">
+      <h5>Week 1-2: Define Your Skill Taxonomy</h5>
+      <ul>
+        <li>Review your strategic plan—what capabilities does success require?</li>
+        <li>Interview 3-5 senior leaders: "What skills are you most worried about?"</li>
+        <li>Draft initial list of 20-30 core skills (resist the urge to go bigger)</li>
+        <li>Define 4-5 proficiency levels for each skill (basic descriptors are fine)</li>
+        <li>Get sign-off from one executive sponsor (you need air cover)</li>
+      </ul>
+    </div>
+
+    <div class="action-checklist">
+      <h5>Week 2-3: Run Baseline Assessment</h5>
+      <ul>
+        <li>Select 2-3 pilot teams for initial assessment (preferably with engaged managers)</li>
+        <li>Use self-assessment plus manager validation (perfect accuracy isn't the goal)</li>
+        <li>Map current skill levels against role requirements</li>
+        <li>Document what you find—gaps and surprises both matter</li>
+      </ul>
+    </div>
+
+    <div class="action-checklist">
+      <h5>Week 3-4: Identify Priority Gaps</h5>
+      <ul>
+        <li>Analyze assessment data: Where are the biggest gaps?</li>
+        <li>Cross-reference with business priorities: Which gaps hurt most?</li>
+        <li>Select top 3 gaps to address (you can't fix everything at once)</li>
+        <li>Connect each gap to a business outcome (cost, time, quality, risk)</li>
+        <li>Document the baseline for later ROI calculation</li>
+      </ul>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#05D5FF" stroke="#05D5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p><strong>Common Mistake:</strong> Trying to create a comprehensive taxonomy before taking action. Start with "good enough" and iterate. A working 20-skill taxonomy beats a perfect 200-skill taxonomy that took 6 months to build.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">13</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 14: Days 31-60 Deep Dive
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>Days 31-60: Activating Development</h3>
+      <p>Month two shifts from assessment to action. You know where the gaps are; now you need to close them—while making progress visible to the people who matter.</p>
+    </div>
+
+    <div class="action-checklist">
+      <h5>Week 5-6: Launch Targeted Development</h5>
+      <ul>
+        <li>For each priority gap, identify 2-3 development resources (courses, projects, mentoring)</li>
+        <li>Create clear development paths: "To grow from Level 2 to Level 3, do X, Y, Z"</li>
+        <li>Assign development activities to people with the identified gaps</li>
+        <li>Set expectations with managers: their role is to enable and check in, not police</li>
+        <li>Communicate the "why" to participants—connect to their career, not just compliance</li>
+      </ul>
+    </div>
+
+    <div class="action-checklist">
+      <h5>Week 6-7: Enable Manager Visibility</h5>
+      <ul>
+        <li>Give managers dashboards showing their team's skill levels and progress</li>
+        <li>Train managers on having skill development conversations (5-minute version)</li>
+        <li>Create a simple cadence: monthly skill check-ins (15 minutes per direct report)</li>
+        <li>Make managers partners, not spectators—their buy-in determines adoption</li>
+      </ul>
+    </div>
+
+    <div class="action-checklist">
+      <h5>Week 7-8: Document Early Wins</h5>
+      <ul>
+        <li>Track skill level changes (even small improvements matter)</li>
+        <li>Collect qualitative feedback: What's working? What's hard?</li>
+        <li>Identify 2-3 success stories you can share (with permission)</li>
+        <li>Note time savings, efficiency gains, or problems avoided</li>
+        <li>Start building your ROI evidence file</li>
+      </ul>
+    </div>
+
+    <div class="insight-box">
+      <h5>Why Managers Matter More Than L&D</h5>
+      <p>Research shows employees are 2x more likely to learn from their managers than from L&D teams. Don't fight this—leverage it. The L&D team's job is to enable managers with visibility and tools, not to compete with them for learning mindshare.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">14</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 15: Days 61-90 Deep Dive
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>Days 61-90: Proving the Value</h3>
+      <p>The final month is about translation—converting what you've built and learned into the business language that earns ongoing investment. This is where you join the 4% who can prove ROI.</p>
+    </div>
+
+    <div class="action-checklist">
+      <h5>Week 9-10: Calculate ROI Metrics</h5>
+      <ul>
+        <li>Measure skill level improvements (baseline vs. current)</li>
+        <li>Calculate time to competency for new hires or role transitions</li>
+        <li>Estimate cost avoidance: What would hiring this capability have cost?</li>
+        <li>Document productivity gains or quality improvements (be conservative)</li>
+        <li>Calculate total investment (time, tools, content, opportunity cost)</li>
+      </ul>
+    </div>
+
+    <div class="framework-box">
+      <h4>Simple ROI Calculation</h4>
+      <div class="formula">
+        ROI = (Value Generated - Investment) / Investment × 100%
+      </div>
+      <p style="font-size: 12px; color: var(--text-secondary);">Example: Closing a skill gap that would have required a €80K hire, with €15K in development investment = (€80K - €15K) / €15K = 433% ROI</p>
+    </div>
+
+    <div class="action-checklist">
+      <h5>Week 11-12: Present and Plan</h5>
+      <ul>
+        <li>Prepare a 5-slide executive summary: Problem → Approach → Results → ROI → Next Steps</li>
+        <li>Schedule presentation with CEO/CFO (the people who control investment)</li>
+        <li>Lead with business outcomes, not learning metrics</li>
+        <li>Propose scale-up: More teams, more skills, more depth</li>
+        <li>Request resources for sustained program (don't let momentum die)</li>
+      </ul>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#05D5FF" stroke="#05D5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p><strong>The CFO Test:</strong> Can you explain your L&D impact in one number that connects to the P&L? If not, keep refining until you can. "We invested X and avoided Y in hiring costs" beats "completion rates increased 40%."</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">15</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PART 5: STAKEHOLDER ALIGNMENT
+       PAGE 16: Overview
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <h2 class="section-title">Stakeholder Alignment</h2>
+    </div>
+
+    <div class="section-intro">
+      <h3>Four Stakeholders, Four Languages, One Strategy</h3>
+      <p>Strategic skill management requires buy-in from multiple stakeholders who care about different things. Successful implementation means translating the same initiative into four different value propositions.</p>
+    </div>
+
+    <div class="gradient-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Stakeholder</th>
+            <th>What They Care About</th>
+            <th>Your Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CEO</td>
+            <td>Competitive advantage, survival, capability</td>
+            <td>"Build the talent you can't find, without adding headcount"</td>
+          </tr>
+          <tr>
+            <td>CFO</td>
+            <td>ROI, cost control, measurable outcomes</td>
+            <td>"30% cost reduction, measurable payback, defensible investment"</td>
+          </tr>
+          <tr>
+            <td>Line Managers</td>
+            <td>Team performance, reduced burden, visibility</td>
+            <td>"See your team's capabilities and development—finally"</td>
+          </tr>
+          <tr>
+            <td>Works Council</td>
+            <td>Fairness, development opportunities, job security</td>
+            <td>"Sustainable employability through structured skill building"</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <h5>The Dutch Dimension</h5>
+      <p>In the Netherlands, works council (OR) approval can make or break initiative adoption. Position skill management as supporting "duurzame inzetbaarheid" (sustainable employability)—a concept with strong legal and cultural backing. Emphasize that structured development benefits all employees, not just high performers.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">16</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 17: CEO & CFO Playbooks
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>Winning the C-Suite</h3>
+    </div>
+
+    <div class="persona-box">
+      <h4>The CEO Conversation</h4>
+      <p class="narrative"><strong>Frame:</strong> This is about building competitive advantage through capability, not about training programs. CEOs don't buy "learning"—they buy outcomes.</p>
+      <div class="quote">"Two-thirds of Dutch businesses can't find staff. You're all fishing from the same pond. What if you could grow the talent you need instead of chasing it?"</div>
+      <ul style="list-style: none; font-size: 13px; color: var(--text-secondary); margin-top: 12px;">
+        <li style="margin-bottom: 6px;">→ Lead with the talent crisis they're experiencing daily</li>
+        <li style="margin-bottom: 6px;">→ Position internal development as faster than hiring (weeks, not months)</li>
+        <li style="margin-bottom: 6px;">→ Emphasize simplicity: "4 weeks to first results, no enterprise overhead"</li>
+        <li style="margin-bottom: 6px;">→ Connect to their survival anxiety: "45% of CEOs doubt 10-year viability"</li>
+      </ul>
+    </div>
+
+    <div class="persona-box chro">
+      <h4>The CFO Conversation</h4>
+      <p class="narrative"><strong>Frame:</strong> This is an investment with measurable return, not a cost to be minimized. CFOs respond to math, not mission statements.</p>
+      <div class="quote">"We invested €15K in skill development and avoided an €80K hire. That's 430% ROI. Here's how we calculated it."</div>
+      <ul style="list-style: none; font-size: 13px; color: var(--text-secondary); margin-top: 12px;">
+        <li style="margin-bottom: 6px;">→ Lead with cost avoidance (hiring costs, turnover costs, productivity loss)</li>
+        <li style="margin-bottom: 6px;">→ Show the calculation methodology—transparency builds trust</li>
+        <li style="margin-bottom: 6px;">→ Provide conservative estimates (under-promise, over-deliver)</li>
+        <li style="margin-bottom: 6px;">→ Reference the SLIM subsidy: "Government co-investment reduces our risk"</li>
+      </ul>
+    </div>
+
+    <div class="comparison-row">
+      <div class="comparison-col wrong">
+        <h5>Don't Say</h5>
+        <ul>
+          <li>"Completion rates are up 40%"</li>
+          <li>"Employees love the new platform"</li>
+          <li>"We offer 10,000 courses"</li>
+          <li>"Trust me, it's important"</li>
+        </ul>
+      </div>
+      <div class="comparison-col right">
+        <h5>Do Say</h5>
+        <ul>
+          <li>"We closed 3 critical skill gaps"</li>
+          <li>"We avoided €240K in hiring costs"</li>
+          <li>"Time to competency dropped 30%"</li>
+          <li>"Here's the ROI calculation"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">17</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 18: Managers & Works Council
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>Winning the Front Line</h3>
+    </div>
+
+    <div class="persona-box">
+      <h4>The Line Manager Conversation</h4>
+      <p class="narrative"><strong>Frame:</strong> This makes your job easier by giving you visibility and tools—not more admin work. Managers are drowning; don't add another task.</p>
+      <div class="quote">"For the first time, you'll be able to see exactly where your team stands on the skills that matter—and track whether development is working."</div>
+      <ul style="list-style: none; font-size: 13px; color: var(--text-secondary); margin-top: 12px;">
+        <li style="margin-bottom: 6px;">→ Emphasize visibility, not workload</li>
+        <li style="margin-bottom: 6px;">→ Show the dashboard they'll use (make it simple and useful)</li>
+        <li style="margin-bottom: 6px;">→ Position them as partners, not administrators</li>
+        <li style="margin-bottom: 6px;">→ Provide ready-made conversation guides for development discussions</li>
+      </ul>
+    </div>
+
+    <div class="slim-box">
+      <h4>The Works Council (OR) Conversation</h4>
+      <p>In Dutch organizations, works council support is often essential for broad adoption. Frame skill management as supporting sustainable employability—a legal and cultural priority.</p>
+      <ul>
+        <li>Development opportunities for all employees, not just high performers</li>
+        <li>Transparent skill criteria linked to career progression</li>
+        <li>Data used to support employees, not monitor them</li>
+        <li>Connection to "duurzame inzetbaarheid" and job security</li>
+        <li>SLIM subsidy as government endorsement of the approach</li>
+      </ul>
+    </div>
+
+    <div class="insight-box">
+      <h5>The Polder Playbook</h5>
+      <p>Dutch consensus culture means everyone needs to say yes. Don't try to push through resistance—address it early. Schedule a dedicated works council presentation before broad rollout. Their endorsement becomes a powerful signal to the rest of the organization.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">18</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PART 6: MEASUREMENT & ROI
+       PAGE 19: What to Measure
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <h2 class="section-title">Measurement & ROI</h2>
+    </div>
+
+    <div class="section-intro">
+      <h3>Metrics That Matter (And Metrics That Don't)</h3>
+      <p>The reason 92% of CEOs don't see L&D impact is that most organizations measure the wrong things. Completion rates, hours consumed, satisfaction scores—none of these connect to business outcomes. Here's what to measure instead.</p>
+    </div>
+
+    <div class="comparison-row">
+      <div class="comparison-col wrong">
+        <h5>Stop Measuring</h5>
+        <ul>
+          <li>Completion rates</li>
+          <li>Hours of training consumed</li>
+          <li>Course satisfaction scores</li>
+          <li>Number of courses available</li>
+          <li>Training attendance</li>
+        </ul>
+      </div>
+      <div class="comparison-col right">
+        <h5>Start Measuring</h5>
+        <ul>
+          <li>Cost per skill acquired</li>
+          <li>Time to competency</li>
+          <li>Skill coverage rate</li>
+          <li>Capability ROI</li>
+          <li>Business impact metrics</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gradient-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>What It Measures</th>
+            <th>Why CFOs Care</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cost per skill acquired</td>
+            <td>Total L&D investment ÷ verified skill improvements</td>
+            <td>Shows efficiency of development spend</td>
+          </tr>
+          <tr>
+            <td>Time to competency</td>
+            <td>Days from skill gap to proficiency</td>
+            <td>Compares favorably to hiring timelines</td>
+          </tr>
+          <tr>
+            <td>Skill coverage rate</td>
+            <td>% of critical roles with required skills at target</td>
+            <td>Risk reduction, capability assurance</td>
+          </tr>
+          <tr>
+            <td>Capability ROI</td>
+            <td>(Business impact - investment) / investment</td>
+            <td>The number that justifies budget</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">19</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 20: ROI Frameworks
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>Calculating ROI Your CFO Will Accept</h3>
+      <p>The goal is a defensible number that connects skill development to the P&L. Here are three calculation approaches, from simple to comprehensive.</p>
+    </div>
+
+    <div class="framework-box">
+      <h4>Approach 1: Cost Avoidance</h4>
+      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">Compare internal development cost to external hiring cost for equivalent capability.</p>
+      <div class="formula">
+        ROI = (Hiring Cost Avoided - Development Investment) / Development Investment
+      </div>
+      <p style="font-size: 12px; color: var(--text-light);">Example: Developing 5 people to senior level internally (€25K) vs. hiring 5 seniors externally (€150K incl. recruitment, ramp-up) = 500% ROI</p>
+    </div>
+
+    <div class="framework-box">
+      <h4>Approach 2: Productivity Gain</h4>
+      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">Estimate productivity improvement from skill development, converted to € value.</p>
+      <div class="formula">
+        ROI = (Productivity Gain × Avg Salary × Headcount - Investment) / Investment
+      </div>
+      <p style="font-size: 12px; color: var(--text-light);">Example: 10% productivity gain for 50 people earning €60K avg = €300K value. Investment of €40K = 650% ROI</p>
+    </div>
+
+    <div class="framework-box">
+      <h4>Approach 3: Turnover Reduction</h4>
+      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">Calculate value of reduced turnover attributed to development investment.</p>
+      <div class="formula">
+        ROI = (Turnover Reduction × Replacement Cost - Investment) / Investment
+      </div>
+      <p style="font-size: 12px; color: var(--text-light);">Example: 5% turnover reduction on 200 people (10 fewer departures × €30K replacement cost = €300K saved). Investment of €50K = 500% ROI</p>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#05D5FF" stroke="#05D5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p><strong>CFO Tip:</strong> Use conservative estimates and be transparent about assumptions. Under-promising and over-delivering builds credibility faster than optimistic projections that fall short.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">20</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 21: SLIM Subsidy
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>The Dutch Advantage: SLIM Subsidy</h3>
+      <p>Dutch SMEs have access to government co-investment that reduces the cost and risk of L&D initiatives. The SLIM-regeling (Subsidieregeling Leren en Ontwikkelen in het MKB) is specifically designed to help mid-market companies build capability.</p>
+    </div>
+
+    <div class="slim-box">
+      <h4>What SLIM Covers</h4>
+      <ul>
+        <li>Learning and development activities for employees</li>
+        <li>External training, courses, and skill assessments</li>
+        <li>Development of internal learning infrastructure</li>
+        <li>Career development and mobility support</li>
+        <li>Sustainable employability initiatives</li>
+      </ul>
+    </div>
+
+    <div class="gradient-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Company Size</th>
+            <th>Maximum Subsidy</th>
+            <th>Subsidy Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Small (< 50 employees)</td>
+            <td>Up to €25,000</td>
+            <td>80% of costs</td>
+          </tr>
+          <tr>
+            <td>Medium (50-250 employees)</td>
+            <td>Up to €25,000</td>
+            <td>60% of costs</td>
+          </tr>
+          <tr>
+            <td>Sector initiatives</td>
+            <td>Up to €500,000</td>
+            <td>60% of costs</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <h5>Using SLIM in Your CFO Conversation</h5>
+      <p>SLIM subsidy effectively reduces your investment risk by 60-80%. When presenting ROI calculations, show both gross investment and net investment after SLIM. A €40K initiative becomes €16K net investment with 60% subsidy—dramatically improving the ROI calculation.</p>
+    </div>
+
+    <div class="result-callout">
+      <div class="result-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#056DFF" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" fill="#056DFF"/>
+        </svg>
+      </div>
+      <p><strong>Application windows:</strong> SLIM has periodic application windows. Check RVO.nl for current deadlines and requirements. Applications are competitive, so prepare early.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">21</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PART 7: PROOF POINTS
+       PAGE 22: Case Evidence
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <h2 class="section-title">Proof Points & Case Evidence</h2>
+    </div>
+
+    <div class="section-intro">
+      <h3>The 30% Promise: From Chaos to Capability</h3>
+      <p>Real results from organizations that implemented strategic skill management.</p>
+    </div>
+
+    <div class="case-study">
+      <h3 class="case-title">Mid-Sized Organization — 800+ Employees</h3>
+      <p class="case-challenge"><strong>The Situation:</strong> Training happened, but there was no visibility into skills or outcomes. Costs were high, administration was manual, and no one could answer the basic question: "Are we actually developing the capabilities we need?"</p>
+
+      <div class="case-approach-box">
+        <h4>The Approach (90 Days)</h4>
+        <ul>
+          <li><span class="bullet-icon"></span> Defined core skill taxonomy aligned to business priorities</li>
+          <li><span class="bullet-icon"></span> Centralized skill tracking and development in one platform</li>
+          <li><span class="bullet-icon"></span> Automated booking, compliance, and progress tracking</li>
+          <li><span class="bullet-icon"></span> Gave managers real-time visibility into team capabilities</li>
+          <li><span class="bullet-icon"></span> Connected learning activities to measurable skill outcomes</li>
+        </ul>
+      </div>
+
+      <div class="case-results-box">
+        <h4>The Results</h4>
+        <ul class="results-list">
+          <li><span class="bullet-icon highlight"></span> <strong>30% reduction in training costs</strong> — efficiency through centralization and automation</li>
+          <li><span class="bullet-icon highlight"></span> <strong>90% time savings on administration</strong> — booking, tracking, reporting automated</li>
+          <li><span class="bullet-icon highlight"></span> <strong>0% to 100% skill visibility</strong> — from no data to complete picture</li>
+          <li><span class="bullet-icon highlight"></span> <strong>4 weeks to first measurable impact</strong> — not months of implementation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>"Our CFO finally stopped asking 'why L&D' and started asking 'what's next.'"</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">22</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 23: Common Pitfalls
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-intro">
+      <h3>Why Skill Initiatives Fail (And How to Avoid It)</h3>
+      <p>We've seen dozens of organizations attempt strategic skill management. Here are the patterns that separate success from failure.</p>
+    </div>
+
+    <div class="gradient-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Pitfall</th>
+            <th>Why It Happens</th>
+            <th>How to Avoid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Taxonomy paralysis</td>
+            <td>Trying to define 500 skills perfectly before starting</td>
+            <td>Start with 20-30. Iterate. Perfect is the enemy of done.</td>
+          </tr>
+          <tr>
+            <td>Measuring vanity metrics</td>
+            <td>Reporting what's easy (completion) vs. what matters (impact)</td>
+            <td>Define success metrics upfront. Tie to business outcomes.</td>
+          </tr>
+          <tr>
+            <td>Ignoring managers</td>
+            <td>Treating skill management as L&D's job alone</td>
+            <td>Managers have 2x influence. Make them partners.</td>
+          </tr>
+          <tr>
+            <td>No executive sponsor</td>
+            <td>Launching from HR without C-suite air cover</td>
+            <td>Get one senior champion before you start.</td>
+          </tr>
+          <tr>
+            <td>Expecting self-learning</td>
+            <td>Providing content without structure or accountability</td>
+            <td>Structure enables scale. Content alone doesn't.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pull-quote">
+      <p>"55% of companies expect employees to self-learn AI skills. Only 19% are actually AI-ready. Structure beats hope."</p>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#05D5FF" stroke="#05D5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p><strong>The Speed Test:</strong> If it takes more than 4 weeks to show first results, you're overcomplicating it. Simplify until you can demonstrate value quickly, then expand.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">23</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PART 8: YOUR NEXT STEP
+       PAGE 24
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-header">
+      <div class="section-number">8</div>
+      <h2 class="section-title">Your Next Step</h2>
+    </div>
+
+    <div class="section-intro">
+      <h3>Start With Visibility. Everything Else Follows.</h3>
+      <p>You don't need to commit to a full transformation today. You need to see where you stand—what skills you have, what gaps exist, and what closing those gaps would be worth to your organization.</p>
+    </div>
+
+    <div class="cta-box">
+      <h4>L&D Impact Scan</h4>
+      <p>In 15 minutes, understand your current skill maturity, identify your biggest capability gaps, and get a personalized roadmap for your 90-day quick start. No commitment, no sales pitch—just clarity on where you are and where you could be.</p>
+      <a href="https://www.studytube.nl/impact-scan" class="cta-link">Request Your Impact Scan →</a>
+    </div>
+
+    <div class="section-intro" style="margin-top: 32px;">
+      <h3>Related Resources</h3>
+    </div>
+
+    <div class="next-playbooks">
+      <div class="next-playbook-card">
+        <h4>The Skill-Based P&L Whitepaper</h4>
+        <p>Deep-dive into connecting skills to financial outcomes. The CFO-ready framework for translating L&D investment into business language.</p>
+      </div>
+
+      <div class="next-playbook-card">
+        <h4>SLIM Subsidy Application Guide</h4>
+        <p>Step-by-step guidance for accessing Dutch government funding for your L&D initiatives. Maximize co-investment and reduce risk.</p>
+      </div>
+
+      <div class="next-playbook-card">
+        <h4>Manager Enablement Toolkit</h4>
+        <p>Conversation guides, dashboard templates, and quick-start resources for making line managers your biggest L&D advocates.</p>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">27</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 28: Impact Gids — Quick Reference
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-header">
+      <div class="section-number">A</div>
+      <h2 class="section-title">Impact Gids — Quick Reference</h2>
+    </div>
+
+    <div class="section-intro">
+      <h3>Your Cheat Sheet for Stakeholder Conversations</h3>
+      <p>Use this quick reference when preparing for budget discussions, board presentations, or stakeholder alignment meetings.</p>
+    </div>
+
+    <div class="gradient-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Stakeholder</th>
+            <th>Lead With</th>
+            <th>Proof Point</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CEO</td>
+            <td>"Build capability without headcount"</td>
+            <td>66% can't find staff; 45% doubt survival</td>
+          </tr>
+          <tr>
+            <td>CFO</td>
+            <td>"30% cost reduction, measurable ROI"</td>
+            <td>$4.70 return per $1; 4% can measure</td>
+          </tr>
+          <tr>
+            <td>CHRO</td>
+            <td>"Proof that earns a seat at the table"</td>
+            <td>50% drop in L&D involvement; 92% invisible</td>
+          </tr>
+          <tr>
+            <td>Managers</td>
+            <td>"See your team's capabilities finally"</td>
+            <td>2x more learning from managers than L&D</td>
+          </tr>
+          <tr>
+            <td>Works Council</td>
+            <td>"Sustainable employability for all"</td>
+            <td>SLIM subsidy = government endorsement</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="framework-box">
+      <h4>The One-Liner Test</h4>
+      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">Can you explain your L&D value in one sentence? Use these templates:</p>
+      <ul style="list-style: none; font-size: 13px; color: var(--text-secondary);">
+        <li style="margin-bottom: 8px;">→ <strong>For budget asks:</strong> "We invested €X and avoided €Y in hiring costs."</li>
+        <li style="margin-bottom: 8px;">→ <strong>For strategy meetings:</strong> "We closed 3 critical skill gaps in 90 days."</li>
+        <li style="margin-bottom: 8px;">→ <strong>For board presentations:</strong> "Our capability ROI is X% — here's the math."</li>
+        <li style="margin-bottom: 8px;">→ <strong>For team updates:</strong> "Skill coverage improved from X% to Y%."</li>
+      </ul>
+    </div>
+
+    <div class="slim-box">
+      <h4>SLIM Quick Facts</h4>
+      <ul>
+        <li>Up to €25,000 subsidy for SMEs</li>
+        <li>60-80% of costs covered</li>
+        <li>Covers training, assessments, infrastructure</li>
+        <li>Check RVO.nl for application windows</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">28</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 29: Content Calendar — C-Level Track
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-header">
+      <div class="section-number">B</div>
+      <h2 class="section-title">Content Calendar — C-Level Track</h2>
+    </div>
+
+    <div class="section-intro">
+      <h3>Your 8-Week Strategic Content Roadmap</h3>
+      <p>Supporting resources and thought leadership content that reinforces this playbook's themes.</p>
+    </div>
+
+    <div class="gradient-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Content Theme</th>
+            <th>Core Asset</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Week 1</td>
+            <td>The Moat Declaration</td>
+            <td>LinkedIn launch</td>
+          </tr>
+          <tr>
+            <td>Week 2</td>
+            <td>The Wennink Wake-Up</td>
+            <td><strong>The 30% Promise</strong> Case Study</td>
+          </tr>
+          <tr>
+            <td>Week 3</td>
+            <td>The AI Paradox</td>
+            <td>AI skills gap narrative</td>
+          </tr>
+          <tr>
+            <td>Week 4</td>
+            <td>The Talent Retention Truth</td>
+            <td><strong>The Skill-Based P&L</strong> Whitepaper (draft)</td>
+          </tr>
+          <tr>
+            <td>Week 5</td>
+            <td>The SME Advantage</td>
+            <td>Skill-Based P&L (finalize)</td>
+          </tr>
+          <tr>
+            <td>Week 6</td>
+            <td>The Velocity Metric</td>
+            <td><strong>This Playbook</strong> (draft)</td>
+          </tr>
+          <tr>
+            <td>Week 7</td>
+            <td>The Proof Point</td>
+            <td>Playbook (finalize)</td>
+          </tr>
+          <tr>
+            <td>Week 8</td>
+            <td>The CEO Question</td>
+            <td>Campaign synthesis</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-box">
+      <h5>Supporting Content Suite</h5>
+      <p>Each core asset generates 10-20 "atoms" for distribution:</p>
+      <ul style="list-style: none; font-size: 12px; color: var(--text-secondary); margin-top: 8px;">
+        <li style="margin-bottom: 4px;">→ 12 LinkedIn posts across 3 core assets</li>
+        <li style="margin-bottom: 4px;">→ 7 email pieces (teasers + nurture sequences)</li>
+        <li style="margin-bottom: 4px;">→ 5 carousel visuals (frameworks, timelines)</li>
+        <li style="margin-bottom: 4px;">→ 16 quote cards with proof point stats</li>
+      </ul>
+    </div>
+
+    <div class="result-callout">
+      <div class="result-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#056DFF" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" fill="#056DFF"/>
+        </svg>
+      </div>
+      <p><strong>Hypothesis:</strong> "Your strategy exists. Your impact doesn't." — All content addresses the Strategy-Impact Gap facing C-level leaders.</p>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">29</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PAGE 30: Entry Hooks Reference
+       ============================================ -->
+  <div class="page content-page">
+    <div class="section-header">
+      <div class="section-number">C</div>
+      <h2 class="section-title">Entry Hooks — Conversation Starters</h2>
+    </div>
+
+    <div class="section-intro">
+      <h3>Proven Openers for CEO & CHRO Conversations</h3>
+      <p>Use these hooks when you need to start a conversation about strategic skill management. Each hook is backed by research data.</p>
+    </div>
+
+    <div class="persona-box">
+      <h4>CEO Entry Hooks</h4>
+      <div style="margin-top: 12px;">
+        <div style="padding: 12px 0; border-bottom: 1px solid var(--st-gray-200);">
+          <p style="font-size: 14px; font-weight: 600; color: var(--text-primary);">"Two-thirds of Dutch businesses can't find staff. How are you solving it?"</p>
+          <p style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Use: Cold open | Source: CBS 2025</p>
+        </div>
+        <div style="padding: 12px 0; border-bottom: 1px solid var(--st-gray-200);">
+          <p style="font-size: 14px; font-weight: 600; color: var(--text-primary);">"You're all poaching from the same pond."</p>
+          <p style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Use: Pattern interrupt | Source: ScienceDirect</p>
+        </div>
+        <div style="padding: 12px 0; border-bottom: 1px solid var(--st-gray-200);">
+          <p style="font-size: 14px; font-weight: 600; color: var(--text-primary);">"45% of CEOs doubt their company survives a decade."</p>
+          <p style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Use: Urgency creation | Source: PwC 2024</p>
+        </div>
+        <div style="padding: 12px 0;">
+          <p style="font-size: 14px; font-weight: 600; color: var(--text-primary);">"You don't have time to train—but you're spending more time on hiring."</p>
+          <p style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Use: Objection counter | Source: Research</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="persona-box chro">
+      <h4>CHRO Entry Hooks</h4>
+      <div style="margin-top: 12px;">
+        <div style="padding: 12px 0; border-bottom: 1px solid var(--st-gray-200);">
+          <p style="font-size: 14px; font-weight: 600; color: var(--text-primary);">"92% of CEOs don't see L&D impact. Can you prove yours?"</p>
+          <p style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Use: Cold open | Source: LinkedIn 2017</p>
+        </div>
+        <div style="padding: 12px 0; border-bottom: 1px solid var(--st-gray-200);">
+          <p style="font-size: 14px; font-weight: 600; color: var(--text-primary);">"L&D's seat at the table dropped 50%. Where's your chair?"</p>
+          <p style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Use: Pattern interrupt | Source: RedThread 2024</p>
+        </div>
+        <div style="padding: 12px 0; border-bottom: 1px solid var(--st-gray-200);">
+          <p style="font-size: 14px; font-weight: 600; color: var(--text-primary);">"Only 4% can calculate L&D ROI. The CFO is waiting."</p>
+          <p style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Use: Urgency creation | Source: ATD 2024</p>
+        </div>
+        <div style="padding: 12px 0;">
+          <p style="font-size: 14px; font-weight: 600; color: var(--text-primary);">"You speak impact. The CFO hears cost. Translation error."</p>
+          <p style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Use: Pain validation | Source: Research</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_black.png" alt="Studytube">
+      </div>
+      <div class="page-number">30</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       BACK PAGE
+       ============================================ -->
+  <div class="page back-page">
+    <div class="back-content">
+      <div class="back-logo">
+        <img src="../../use-case-playbooks/playbook-template/assets/icons/logo_white.png" alt="Studytube">
+      </div>
+      <h2 class="back-tagline"><em>Skills are the<br>new currency.<br>Start counting.</em></h2>
+    </div>
+
+    <div class="back-footer">
+      <div class="back-website">www.studytube.nl</div>
+      <div class="back-contact">
+        <p>Danzigerkade 17,<br>1013 AP Amsterdam</p>
+      </div>
+      <div class="back-email">info@studytube.nl</div>
+      <div class="back-phone">
+        <p>Service: 020 - 779 69 94<br>Office: 020 - 233 02 17</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

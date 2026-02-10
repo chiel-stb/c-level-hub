@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C-Level Content Hub | Studytube</title>
+  <meta name="description" content="Curated collection of Studytube's C-Level strategy content — tools, landing pages, thought leadership, presentations, and showcases.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Studytube Font -->
+  <style>
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Bold.woff2') format('woff2');
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Regular.woff2') format('woff2');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Medium.woff2') format('woff2');
+      font-weight: 500;
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'st-blue': {
+              100: '#D7EBFF',
+              200: '#B9DCFF',
+              300: '#7ABDFF',
+              400: '#50A7FF',
+              450: '#288CFF',
+              500: '#056DFF',
+              600: '#0A5CEB',
+              700: '#00678D',
+              800: '#065374',
+              900: '#11295A',
+            },
+            'st-gray': {
+              '025': '#FCFDFD',
+              '050': '#F5F7F9',
+              100: '#F2F5F8',
+              200: '#E9EDF1',
+              300: '#D1D9E0',
+              400: '#AFBBC6',
+              500: '#8694A2',
+              600: '#545E69',
+              700: '#434A51',
+              800: '#2C3135',
+              900: '#1A1C1E',
+            },
+          },
+          fontFamily: {
+            'euclid': ['"Euclid Circular B"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Euclid Circular B', system-ui, sans-serif; }
+
+    .tag-chip { transition: all 0.2s ease; cursor: pointer; user-select: none; }
+    .tag-chip:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .tag-chip.active { ring: 2px; box-shadow: 0 0 0 2px rgba(5,109,255,0.4); }
+
+    .content-card {
+      transition: all 0.25s ease;
+    }
+    .content-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(17,41,90,0.12);
+    }
+    .content-card.hidden-card {
+      display: none;
+    }
+
+    .type-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body class="bg-st-gray-050 text-st-gray-900 antialiased">
+
+  <!-- Header -->
+  <header class="bg-st-blue-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <div class="flex items-center gap-4 mb-4">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="#056DFF"/>
+          <path d="M12 14h16v2H12zm0 5h12v2H12zm0 5h14v2H12z" fill="white"/>
+        </svg>
+        <div>
+          <p class="text-st-blue-300 text-sm font-medium tracking-wide uppercase">Studytube</p>
+          <h1 class="text-3xl sm:text-4xl font-bold">C-Level Content Hub</h1>
+        </div>
+      </div>
+      <p class="text-st-blue-200 text-lg max-w-2xl">
+        Curated collection of strategy content for CEOs, CHROs, and L&D leaders — tools, thought leadership, presentations, and interactive showcases.
+      </p>
+      <p class="text-st-blue-300 text-sm mt-3">18 pages &middot; Last updated February 2026</p>
+    </div>
+  </header>
+
+  <!-- Filter Bar -->
+  <div class="sticky top-0 z-30 bg-white border-b border-st-gray-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex items-center gap-3 flex-wrap">
+        <span class="text-sm font-medium text-st-gray-500 mr-1">Filter:</span>
+        <button onclick="clearFilters()" class="tag-chip text-xs font-medium px-3 py-1.5 rounded-full bg-st-gray-100 text-st-gray-600 border border-st-gray-200" id="btn-all">
+          All
+        </button>
+        <button onclick="toggleTag('Tool')" class="tag-chip text-xs font-medium px-3 py-1.5 rounded-full border" data-tag="Tool" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;">
+          Tool
+        </button>
+        <button onclick="toggleTag('Landing Page')" class="tag-chip text-xs font-medium px-3 py-1.5 rounded-full border" data-tag="Landing Page" style="background:#F0FDF4;color:#15803D;border-color:#BBF7D0;">
+          Landing Page
+        </button>
+        <button onclick="toggleTag('Thought Leadership')" class="tag-chip text-xs font-medium px-3 py-1.5 rounded-full border" data-tag="Thought Leadership" style="background:#FAF5FF;color:#7E22CE;border-color:#E9D5FF;">
+          Thought Leadership
+        </button>
+        <button onclick="toggleTag('Presentation')" class="tag-chip text-xs font-medium px-3 py-1.5 rounded-full border" data-tag="Presentation" style="background:#FFF7ED;color:#C2410C;border-color:#FED7AA;">
+          Presentation
+        </button>
+        <button onclick="toggleTag('Showcase')" class="tag-chip text-xs font-medium px-3 py-1.5 rounded-full border" data-tag="Showcase" style="background:#ECFEFF;color:#0E7490;border-color:#A5F3FC;">
+          Showcase
+        </button>
+        <span class="hidden sm:inline text-st-gray-300">|</span>
+        <button onclick="toggleTag('CEO')" class="tag-chip text-xs font-medium px-3 py-1.5 rounded-full border" data-tag="CEO" style="background:#EEF2FF;color:#3730A3;border-color:#C7D2FE;">
+          CEO
+        </button>
+        <button onclick="toggleTag('CHRO')" class="tag-chip text-xs font-medium px-3 py-1.5 rounded-full border" data-tag="CHRO" style="background:#F0FDFA;color:#0F766E;border-color:#99F6E4;">
+          CHRO
+        </button>
+        <button onclick="toggleTag('Dutch')" class="tag-chip text-xs font-medium px-3 py-1.5 rounded-full border" data-tag="Dutch" style="background:#F9FAFB;color:#4B5563;border-color:#D1D5DB;">
+          Dutch
+        </button>
+        <button onclick="toggleTag('English')" class="tag-chip text-xs font-medium px-3 py-1.5 rounded-full border" data-tag="English" style="background:#F9FAFB;color:#4B5563;border-color:#D1D5DB;">
+          English
+        </button>
+        <button onclick="toggleTag('Roemmele Series')" class="tag-chip text-xs font-medium px-3 py-1.5 rounded-full border" data-tag="Roemmele Series" style="background:#FFF5F5;color:#C53030;border-color:#FED7D7;">
+          Roemmele Series
+        </button>
+        <button onclick="toggleTag('Interactive')" class="tag-chip text-xs font-medium px-3 py-1.5 rounded-full border" data-tag="Interactive" style="background:#FEFCE8;color:#A16207;border-color:#FEF08A;">
+          Interactive
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Grid -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="content-grid">
+
+      <!-- 1. Meta-Skills Diagnostic -->
+      <a href="/diagnostic/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Tool,CEO,CHRO,Roemmele Series,Interactive">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#EFF6FF;color:#1D4ED8;">&#9881;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">Meta-Skills Diagnostic</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Interactive assessment tool to evaluate organizational meta-skill readiness across key dimensions.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#EFF6FF;color:#1D4ED8;">Tool</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#EEF2FF;color:#3730A3;">CEO</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F0FDFA;color:#0F766E;">CHRO</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FFF5F5;color:#C53030;">Roemmele Series</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FEFCE8;color:#A16207;">Interactive</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2. Budget Allocation Simulator -->
+      <a href="/budget-simulator/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Tool,Interactive">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#EFF6FF;color:#1D4ED8;">&#9881;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">Budget Allocation Simulator</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Model L&D budget scenarios and see projected ROI impact across different allocation strategies.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#EFF6FF;color:#1D4ED8;">Tool</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FEFCE8;color:#A16207;">Interactive</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3. Interview Validation Framework -->
+      <a href="/validation-framework/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Tool,Interactive">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#EFF6FF;color:#1D4ED8;">&#9881;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">Interview Validation Framework</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Structured framework to validate C-level interview insights against strategic positioning criteria.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#EFF6FF;color:#1D4ED8;">Tool</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FEFCE8;color:#A16207;">Interactive</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4. CEO Talent Pipeline (NL) -->
+      <a href="/ceo-landing/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Landing Page,CEO,Dutch">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#F0FDF4;color:#15803D;">&#9889;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">CEO Talent Pipeline</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Landing page targeting CEOs — building a talent pipeline that drives competitive advantage. <em>(Dutch)</em></p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F0FDF4;color:#15803D;">Landing Page</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#EEF2FF;color:#3730A3;">CEO</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F9FAFB;color:#4B5563;">Dutch</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 5. CHRO Prove Impact (NL) -->
+      <a href="/chro-landing/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Landing Page,CHRO,Dutch">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#F0FDF4;color:#15803D;">&#9889;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">CHRO: Bewijs L&D Impact</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Landing page for CHROs — proving L&D impact with business KPIs instead of completion rates. <em>(Dutch)</em></p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F0FDF4;color:#15803D;">Landing Page</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F0FDFA;color:#0F766E;">CHRO</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F9FAFB;color:#4B5563;">Dutch</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 6. Webinar: De 3-Maanden Waarschuwing -->
+      <a href="/webinar-3-maanden/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Landing Page,Dutch">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#F0FDF4;color:#15803D;">&#9889;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">Webinar: De 3-Maanden Waarschuwing</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Webinar registration page on AI disruption and the urgency for C-level action. <em>(Dutch)</em></p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F0FDF4;color:#15803D;">Landing Page</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F9FAFB;color:#4B5563;">Dutch</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 7. Skills Half-Life Crisis -->
+      <a href="/skills-half-life-crisis/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Thought Leadership,CEO,CHRO,English,Roemmele Series">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#FAF5FF;color:#7E22CE;">&#9998;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">Skills Half-Life Crisis</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Why skills are depreciating faster than ever and what leaders must do to stay ahead of the curve.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FAF5FF;color:#7E22CE;">Thought Leadership</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#EEF2FF;color:#3730A3;">CEO</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F0FDFA;color:#0F766E;">CHRO</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FFF5F5;color:#C53030;">Roemmele Series</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F9FAFB;color:#4B5563;">English</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 8. Meta-Skills: Currency That Doesn't Depreciate -->
+      <a href="/meta-skills-currency/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Thought Leadership,CEO,CHRO,English,Roemmele Series">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#FAF5FF;color:#7E22CE;">&#9998;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">Meta-Skills: Currency That Doesn't Depreciate</h3>
+              <p class="text-sm text-st-gray-500 mt-1">The case for investing in meta-skills as the only durable competitive advantage in the AI era.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FAF5FF;color:#7E22CE;">Thought Leadership</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#EEF2FF;color:#3730A3;">CEO</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F0FDFA;color:#0F766E;">CHRO</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FFF5F5;color:#C53030;">Roemmele Series</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F9FAFB;color:#4B5563;">English</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 9. Learning Is the Only Moat -->
+      <a href="/learning-moat/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Thought Leadership,CEO,CHRO,English">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#FAF5FF;color:#7E22CE;">&#9998;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">Learning Is the Only Moat</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Studytube's core POV — why continuous learning is the last remaining competitive moat.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FAF5FF;color:#7E22CE;">Thought Leadership</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#EEF2FF;color:#3730A3;">CEO</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F0FDFA;color:#0F766E;">CHRO</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F9FAFB;color:#4B5563;">English</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 10. De Impact Gids v2.1 (NL) -->
+      <a href="/impact-gids/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Thought Leadership,CHRO,Dutch">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#FAF5FF;color:#7E22CE;">&#9998;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">De Impact Gids v2.1</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Comprehensive guide on measuring and proving L&D impact — from vanity metrics to business outcomes. <em>(Dutch)</em></p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FAF5FF;color:#7E22CE;">Thought Leadership</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F0FDFA;color:#0F766E;">CHRO</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F9FAFB;color:#4B5563;">Dutch</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 11. Strategic Skill Management Playbook -->
+      <a href="/playbook/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Thought Leadership,English">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#FAF5FF;color:#7E22CE;">&#9998;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">Strategic Skill Management Playbook</h3>
+              <p class="text-sm text-st-gray-500 mt-1">End-to-end playbook for building a strategic skill management practice tied to business outcomes.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FAF5FF;color:#7E22CE;">Thought Leadership</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F9FAFB;color:#4B5563;">English</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 12. C-Level Strategy Presentation -->
+      <a href="/strategy-presentation/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Presentation,CEO,CHRO">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#FFF7ED;color:#C2410C;">&#9654;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">C-Level Strategy Presentation</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Full interactive strategy deck covering Studytube's C-level positioning, value props, and market approach.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FFF7ED;color:#C2410C;">Presentation</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#EEF2FF;color:#3730A3;">CEO</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#F0FDFA;color:#0F766E;">CHRO</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 13. De Impact Book Pitch -->
+      <a href="/book-pitch/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Presentation,CEO">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#FFF7ED;color:#C2410C;">&#9654;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">De Impact Book Pitch</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Pitch deck for "De Impact" — the case for treating L&D as a strategic investment, not a cost center.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FFF7ED;color:#C2410C;">Presentation</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#EEF2FF;color:#3730A3;">CEO</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 14. C-Level Master Plan Scaffold -->
+      <a href="/master-plan/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Presentation">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#FFF7ED;color:#C2410C;">&#9654;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">C-Level Master Plan Scaffold</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Interactive execution scaffold — 8 sections, 40+ deliverables, status tracking, and 4-phase timeline.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FFF7ED;color:#C2410C;">Presentation</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 15. C-Level Hub Showcase -->
+      <a href="/hub-showcase/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Showcase,Interactive">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#ECFEFF;color:#0E7490;">&#10024;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">C-Level Hub Showcase</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Multi-page design showcase of the C-level hub concept — includes 3 interactive subpages.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#ECFEFF;color:#0E7490;">Showcase</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FEFCE8;color:#A16207;">Interactive</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 16. C-Level Personal Environment Lo-Fi -->
+      <a href="/wireframes/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Showcase,Interactive">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#ECFEFF;color:#0E7490;">&#10024;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">Personal Environment Wireframes</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Lo-fi wireframes for the C-level personal environment — 8 screens from login to action plan.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#ECFEFF;color:#0E7490;">Showcase</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FEFCE8;color:#A16207;">Interactive</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 17. C-Level Research Integration Synthesis -->
+      <a href="/research-synthesis/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Showcase">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#ECFEFF;color:#0E7490;">&#10024;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">Research Integration Synthesis</h3>
+              <p class="text-sm text-st-gray-500 mt-1">Interactive synthesis of C-level research findings — data points, insights, and strategic implications.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#ECFEFF;color:#0E7490;">Showcase</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 18. C-Level Personal Environment Prototype -->
+      <a href="/environment-prototype/" class="content-card bg-white rounded-xl border border-st-gray-200 overflow-hidden block" data-tags="Showcase,Interactive">
+        <div class="p-6">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="type-icon" style="background:#ECFEFF;color:#0E7490;">&#10024;</div>
+            <div>
+              <h3 class="font-bold text-lg text-st-gray-900 leading-tight">Personal Environment Prototype</h3>
+              <p class="text-sm text-st-gray-500 mt-1">High-fidelity prototype of the C-level personal environment — interactive dashboard and navigation.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#ECFEFF;color:#0E7490;">Showcase</span>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full" style="background:#FEFCE8;color:#A16207;">Interactive</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden text-center py-16">
+      <p class="text-st-gray-400 text-lg">No content matches the selected filters.</p>
+      <button onclick="clearFilters()" class="mt-4 text-st-blue-500 font-medium hover:underline">Clear filters</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-st-gray-200 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <div class="flex items-center gap-3">
+          <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="8" fill="#056DFF"/>
+            <path d="M12 14h16v2H12zm0 5h12v2H12zm0 5h14v2H12z" fill="white"/>
+          </svg>
+          <span class="text-st-gray-500 text-sm">Studytube C-Level Strategy &middot; Internal Content Hub</span>
+        </div>
+        <p class="text-st-gray-400 text-sm">February 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Filter Logic -->
+  <script>
+    const activeTags = new Set();
+
+    function toggleTag(tag) {
+      if (activeTags.has(tag)) {
+        activeTags.delete(tag);
+      } else {
+        activeTags.add(tag);
+      }
+      applyFilters();
+      updateChipStyles();
+    }
+
+    function clearFilters() {
+      activeTags.clear();
+      applyFilters();
+      updateChipStyles();
+    }
+
+    function applyFilters() {
+      const cards = document.querySelectorAll('.content-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        if (activeTags.size === 0) {
+          card.classList.remove('hidden-card');
+          visibleCount++;
+          return;
+        }
+
+        const cardTags = card.dataset.tags.split(',');
+        const matches = [...activeTags].every(tag => cardTags.includes(tag));
+
+        if (matches) {
+          card.classList.remove('hidden-card');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+
+      document.getElementById('empty-state').classList.toggle('hidden', visibleCount > 0);
+    }
+
+    function updateChipStyles() {
+      document.querySelectorAll('.tag-chip[data-tag]').forEach(chip => {
+        const tag = chip.dataset.tag;
+        if (activeTags.has(tag)) {
+          chip.style.boxShadow = '0 0 0 2px rgba(5,109,255,0.5)';
+          chip.style.transform = 'translateY(-1px)';
+        } else {
+          chip.style.boxShadow = '';
+          chip.style.transform = '';
+        }
+      });
+
+      const allBtn = document.getElementById('btn-all');
+      if (activeTags.size === 0) {
+        allBtn.style.background = '#056DFF';
+        allBtn.style.color = 'white';
+        allBtn.style.borderColor = '#056DFF';
+      } else {
+        allBtn.style.background = '';
+        allBtn.style.color = '';
+        allBtn.style.borderColor = '';
+      }
+    }
+
+    // Init
+    updateChipStyles();
+  </script>
+
+</body>
+</html>

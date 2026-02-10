@@ -1,0 +1,2450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C-Level Research Integration — Studytube</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --st-blue: #056DFF;
+      --st-navy: #11295A;
+      --st-cyan: #05D5FF;
+      --st-bg: #F9FAFB;
+      --st-white: #FFFFFF;
+      --st-text: #545E69;
+      --st-emphasis: #1A1C1E;
+      --st-link: #FF1B51;
+      --st-success: #16A34A;
+      --st-warning: #FACC15;
+      --st-error: #EF5350;
+      --st-gradient: linear-gradient(135deg, #056DFF 0%, #05D5FF 100%);
+      --sidebar-width: 280px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--st-bg);
+      color: var(--st-text);
+      line-height: 1.6;
+    }
+
+    /* Navigation Sidebar */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: var(--sidebar-width);
+      background: var(--st-navy);
+      padding: 24px 0;
+      overflow-y: auto;
+      z-index: 100;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-header {
+      padding: 0 24px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.125rem;
+    }
+
+    .sidebar-logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .sidebar-nav {
+      list-style: none;
+    }
+
+    .sidebar-nav li {
+      margin: 4px 0;
+    }
+
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar-nav a:hover {
+      color: white;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .sidebar-nav a.active {
+      color: white;
+      background: rgba(5, 109, 255, 0.2);
+      border-left-color: var(--st-blue);
+    }
+
+    .sidebar-nav .nav-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-nav .nav-number {
+      font-size: 0.75rem;
+      opacity: 0.5;
+      margin-left: auto;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      min-height: 100vh;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: var(--sidebar-width);
+      right: 0;
+      height: 4px;
+      background: rgba(5, 109, 255, 0.1);
+      z-index: 99;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--st-gradient);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Slides */
+    .slide {
+      min-height: 100vh;
+      padding: 80px 60px;
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .slide:nth-child(odd) {
+      background: var(--st-white);
+    }
+
+    .slide:nth-child(even) {
+      background: var(--st-bg);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Title Slide */
+    .slide-title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: var(--st-gradient) !important;
+      color: white;
+    }
+
+    .slide-title.active {
+      display: flex;
+    }
+
+    .slide-title h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      max-width: 800px;
+    }
+
+    .slide-title .subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+
+    .slide-title .meta {
+      display: flex;
+      gap: 32px;
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+
+    .slide-title .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Section Headers */
+    h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--st-navy);
+      margin-bottom: 32px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--st-navy);
+      margin-bottom: 16px;
+    }
+
+    .gradient-text {
+      background: var(--st-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Cards */
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(5, 109, 255, 0.15);
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .metric-card {
+      text-align: center;
+      padding: 32px 24px;
+    }
+
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: var(--st-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-size: 0.875rem;
+      color: var(--st-text);
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .data-table th {
+      font-weight: 600;
+      color: var(--st-navy);
+      background: var(--st-bg);
+      font-size: 0.875rem;
+    }
+
+    .data-table td {
+      font-size: 0.875rem;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(5, 109, 255, 0.02);
+    }
+
+    /* Status Badges */
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .status-validated {
+      background: rgba(22, 163, 74, 0.1);
+      color: var(--st-success);
+    }
+
+    .status-partial {
+      background: rgba(250, 204, 21, 0.2);
+      color: #B45309;
+    }
+
+    .status-needs {
+      background: rgba(239, 83, 80, 0.1);
+      color: var(--st-error);
+    }
+
+    .status-high {
+      background: rgba(22, 163, 74, 0.1);
+      color: var(--st-success);
+    }
+
+    .status-medium {
+      background: rgba(250, 204, 21, 0.2);
+      color: #B45309;
+    }
+
+    .status-low {
+      background: rgba(239, 83, 80, 0.1);
+      color: var(--st-error);
+    }
+
+    /* Quote Block */
+    .quote-block {
+      background: var(--st-gradient);
+      border-radius: 16px;
+      padding: 40px;
+      color: white;
+      position: relative;
+      margin: 32px 0;
+    }
+
+    .quote-block::before {
+      content: '"';
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      font-size: 4rem;
+      opacity: 0.2;
+      font-family: Georgia, serif;
+    }
+
+    .quote-text {
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .quote-author {
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+
+    /* Personas */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .persona-card {
+      padding: 32px;
+    }
+
+    .persona-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .persona-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--st-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .persona-title h3 {
+      margin-bottom: 4px;
+    }
+
+    .persona-subtitle {
+      font-size: 0.875rem;
+      color: var(--st-text);
+    }
+
+    .persona-section {
+      margin-bottom: 20px;
+    }
+
+    .persona-section h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--st-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .persona-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .persona-section li {
+      font-size: 0.875rem;
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .persona-section li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 6px;
+      height: 6px;
+      background: var(--st-blue);
+      border-radius: 50%;
+    }
+
+    /* Storyline Cards */
+    .storyline-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .storyline-card {
+      padding: 24px;
+      border-left: 4px solid var(--st-blue);
+    }
+
+    .storyline-card.validated {
+      border-left-color: var(--st-success);
+    }
+
+    .storyline-card.partial {
+      border-left-color: var(--st-warning);
+    }
+
+    .storyline-card.needs {
+      border-left-color: var(--st-error);
+    }
+
+    .storyline-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .storyline-number {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--st-text);
+      opacity: 0.6;
+    }
+
+    .storyline-hook {
+      font-size: 0.875rem;
+      color: var(--st-text);
+      font-style: italic;
+      margin-bottom: 16px;
+      padding-left: 16px;
+      border-left: 2px solid rgba(0,0,0,0.1);
+    }
+
+    .storyline-evidence {
+      background: var(--st-bg);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.8rem;
+    }
+
+    /* POV Matrix */
+    .pov-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .pov-card {
+      padding: 28px;
+    }
+
+    .pov-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .pov-number {
+      width: 32px;
+      height: 32px;
+      background: var(--st-gradient);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.875rem;
+    }
+
+    .pov-resonance {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .resonance-item {
+      font-size: 0.75rem;
+    }
+
+    .resonance-label {
+      color: var(--st-text);
+      margin-right: 4px;
+    }
+
+    /* Logic Chain */
+    .logic-chain {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .logic-step {
+      display: flex;
+      align-items: stretch;
+      gap: 20px;
+    }
+
+    .logic-connector {
+      width: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logic-dot {
+      width: 24px;
+      height: 24px;
+      background: var(--st-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .logic-line {
+      width: 2px;
+      flex: 1;
+      background: linear-gradient(to bottom, var(--st-blue), var(--st-cyan));
+      min-height: 30px;
+    }
+
+    .logic-content {
+      flex: 1;
+      padding-bottom: 20px;
+    }
+
+    .logic-claim {
+      font-weight: 600;
+      color: var(--st-navy);
+      margin-bottom: 4px;
+    }
+
+    .logic-evidence {
+      font-size: 0.875rem;
+      color: var(--st-text);
+    }
+
+    .logic-evidence .check {
+      color: var(--st-success);
+      font-weight: 600;
+    }
+
+    /* Hypothesis Cards */
+    .hypothesis-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .hypothesis-card {
+      display: grid;
+      grid-template-columns: 60px 1fr 120px;
+      gap: 20px;
+      align-items: center;
+      padding: 20px 24px;
+    }
+
+    .hypothesis-id {
+      font-size: 1.25rem;
+      font-weight: 800;
+      background: var(--st-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hypothesis-content h4 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--st-navy);
+      margin-bottom: 4px;
+    }
+
+    .hypothesis-content p {
+      font-size: 0.8rem;
+      color: var(--st-text);
+    }
+
+    /* Interview Framework */
+    .interview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .interview-section {
+      padding: 28px;
+    }
+
+    .interview-section h3 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .interview-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--st-gradient);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .question-group {
+      margin-top: 20px;
+    }
+
+    .question-group h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--st-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .question-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .question-list li {
+      font-size: 0.8rem;
+      padding: 8px 0;
+      padding-left: 16px;
+      position: relative;
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .question-list li::before {
+      content: '?';
+      position: absolute;
+      left: 0;
+      color: var(--st-blue);
+      font-weight: 600;
+    }
+
+    /* Action Items */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .action-card {
+      padding: 28px;
+    }
+
+    .action-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .action-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .action-icon.immediate {
+      background: var(--st-error);
+    }
+
+    .action-icon.short {
+      background: var(--st-warning);
+    }
+
+    .action-icon.medium {
+      background: var(--st-success);
+    }
+
+    .action-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .action-list li {
+      font-size: 0.85rem;
+      padding: 10px 0;
+      padding-left: 28px;
+      position: relative;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .action-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--st-blue);
+      border-radius: 4px;
+    }
+
+    /* Statistics Arsenal */
+    .stats-section {
+      margin-bottom: 40px;
+    }
+
+    .stats-section h3 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stats-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .stats-icon.context {
+      background: var(--st-navy);
+    }
+
+    .stats-icon.problem {
+      background: var(--st-error);
+    }
+
+    .stats-icon.solution {
+      background: var(--st-success);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .stat-card {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--st-navy);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--st-text);
+      margin-bottom: 8px;
+    }
+
+    .stat-source {
+      font-size: 0.65rem;
+      color: var(--st-text);
+      opacity: 0.6;
+    }
+
+    /* Validation Priorities */
+    .priority-table {
+      margin-bottom: 32px;
+    }
+
+    .priority-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .priority-critical {
+      background: rgba(239, 83, 80, 0.15);
+      color: var(--st-error);
+    }
+
+    .priority-high {
+      background: rgba(250, 204, 21, 0.25);
+      color: #B45309;
+    }
+
+    .priority-medium {
+      background: rgba(5, 109, 255, 0.1);
+      color: var(--st-blue);
+    }
+
+    /* Keyboard Navigation Hint */
+    .nav-hint {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 12px 16px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      font-size: 0.75rem;
+      color: var(--st-text);
+      z-index: 100;
+    }
+
+    .key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 8px;
+      background: var(--st-bg);
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.7rem;
+    }
+
+    /* Slide Counter */
+    .slide-counter {
+      position: fixed;
+      bottom: 24px;
+      left: calc(var(--sidebar-width) + 24px);
+      padding: 8px 16px;
+      background: var(--st-navy);
+      color: white;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      z-index: 100;
+    }
+
+    /* Mobile Toggle */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 101;
+      width: 40px;
+      height: 40px;
+      background: var(--st-navy);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .sidebar-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .progress-bar {
+        left: 0;
+      }
+
+      .slide-counter {
+        left: 24px;
+      }
+
+      .metrics-grid,
+      .persona-grid,
+      .pov-grid,
+      .interview-grid,
+      .action-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Mobile Toggle -->
+  <button class="sidebar-toggle" onclick="toggleSidebar()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
+
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <svg viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="white"/>
+          <path d="M8 10h16v2H8zM8 15h12v2H8zM8 20h14v2H8z" fill="#056DFF"/>
+        </svg>
+        Studytube
+      </div>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="#" class="active" data-slide="0">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Title
+        <span class="nav-number">1</span>
+      </a></li>
+      <li><a href="#" data-slide="1">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        How We Got Here
+        <span class="nav-number">2</span>
+      </a></li>
+      <li><a href="#" data-slide="2">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        Research Overview
+        <span class="nav-number">3</span>
+      </a></li>
+      <li><a href="#" data-slide="3">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Target Audiences
+        <span class="nav-number">4</span>
+      </a></li>
+      <li><a href="#" data-slide="4">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        Storyline Validation
+        <span class="nav-number">5</span>
+      </a></li>
+      <li><a href="#" data-slide="5">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        POV Mapping
+        <span class="nav-number">6</span>
+      </a></li>
+      <li><a href="#" data-slide="6">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        Meta-Theme Validation
+        <span class="nav-number">7</span>
+      </a></li>
+      <li><a href="#" data-slide="7">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Hypothesis Status
+        <span class="nav-number">8</span>
+      </a></li>
+      <li><a href="#" data-slide="8">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        2026 Calendar
+        <span class="nav-number">9</span>
+      </a></li>
+      <li><a href="#" data-slide="9">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Remaining Validation
+        <span class="nav-number">10</span>
+      </a></li>
+      <li><a href="#" data-slide="10">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Interview Framework
+        <span class="nav-number">11</span>
+      </a></li>
+      <li><a href="#" data-slide="11">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Action Items
+        <span class="nav-number">12</span>
+      </a></li>
+      <li><a href="#" data-slide="12">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Key Statistics
+        <span class="nav-number">13</span>
+      </a></li>
+    </ul>
+  </nav>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar">
+    <div class="progress-bar-fill" id="progressBarFill"></div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Slide 1: Title -->
+    <section class="slide slide-title active" id="slide-0">
+      <h1>C-Level Research Integration</h1>
+      <p class="subtitle">Strategic synthesis of 165 research sources across 4 Superagent sessions — CEO and CHRO validation framework</p>
+      <div class="meta">
+        <div class="meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          February 2, 2026
+        </div>
+        <div class="meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          165 Sources
+        </div>
+        <div class="meta-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Interview Validation Required
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: How We Got Here -->
+    <section class="slide" id="slide-1">
+      <h2>How We Got Here</h2>
+      <p style="font-size: 1.1rem; color: var(--st-text); margin-bottom: 40px;">Research → Insight → Narrative. Every storyline traces back to validated research. We extracted emotionally-dense quotes, identified hidden contradictions, and surfaced the unsaid truths that create resonance.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div style="display: flex; align-items: start; gap: 24px;">
+          <div style="width: 56px; height: 56px; background: var(--st-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">1</div>
+          <div class="card" style="flex: 1; padding: 24px;">
+            <h3 style="margin-bottom: 8px;">CEO Jobs-to-be-Done Research</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 12px;">Deep research into Dutch SME CEO pain points using Superagent across 165 sources. Extracted workforce challenges, survival anxiety, and competitive pressure patterns.</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span style="background: var(--st-bg); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">PwC CEO Survey</span>
+              <span style="background: var(--st-bg); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">CBS Labor Data</span>
+              <span style="background: var(--st-bg); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">Adecco AI Report</span>
+              <span style="background: var(--st-bg); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">WEF Skills Report</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: start; gap: 24px;">
+          <div style="width: 56px; height: 56px; background: var(--st-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">2</div>
+          <div class="card" style="flex: 1; padding: 24px;">
+            <h3 style="margin-bottom: 8px;">CHRO Strategic Pain Mapping</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 12px;">Identified the proof problem: CHROs believe in L&D but can't prove value. Mapped the coalition challenge (CEO, CFO, line managers, OR) and strategic invisibility trap.</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span style="background: var(--st-bg); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">RedThread Research</span>
+              <span style="background: var(--st-bg); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">ATD ROI Institute</span>
+              <span style="background: var(--st-bg); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">LinkedIn Learning</span>
+              <span style="background: var(--st-bg); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">Phillips Methodology</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: start; gap: 24px;">
+          <div style="width: 56px; height: 56px; background: var(--st-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">3</div>
+          <div class="card" style="flex: 1; padding: 24px;">
+            <h3 style="margin-bottom: 8px;">Emotional Fracture Identification</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 12px;">Surfaced 5 emotional fractures per persona: CEO's resource trap, brain drain fear, AI paralysis, survival doubt. CHRO's strategic invisibility, proof paralysis, CFO standoff.</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span style="background: rgba(239, 83, 80, 0.1); color: var(--st-error); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">CEO: "Can't find or train"</span>
+              <span style="background: rgba(239, 83, 80, 0.1); color: var(--st-error); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">CHRO: "Can't prove value"</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: start; gap: 24px;">
+          <div style="width: 56px; height: 56px; background: var(--st-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">4</div>
+          <div class="card" style="flex: 1; padding: 24px;">
+            <h3 style="margin-bottom: 8px;">Persona Validation (@audience-diver)</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 12px;">Ran full psychographic validation for CEO and CHRO personas. Validated bleeding neck phrases, tiered by prevalence. Created skill integration outputs for value-prop and outbound.</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span style="background: rgba(22, 163, 74, 0.1); color: var(--st-success); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">CEO Dossier: Complete</span>
+              <span style="background: rgba(22, 163, 74, 0.1); color: var(--st-success); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">CHRO Dossier: Complete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: Research Overview -->
+    <section class="slide" id="slide-2">
+      <h2>Research Overview</h2>
+
+      <div class="metrics-grid">
+        <div class="card metric-card">
+          <div class="metric-value">165</div>
+          <div class="metric-label">Research Sources</div>
+        </div>
+        <div class="card metric-card">
+          <div class="metric-value">4</div>
+          <div class="metric-label">Superagent Sessions</div>
+        </div>
+        <div class="card metric-card">
+          <div class="metric-value">7</div>
+          <div class="metric-label">Research Steps</div>
+        </div>
+        <div class="card metric-card">
+          <div class="metric-value">5</div>
+          <div class="metric-label">Questions Answered</div>
+        </div>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>Research</th>
+            <th>Method</th>
+            <th>Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>CEO Jobs-to-be-Done</td>
+            <td>Superagent Deep Research</td>
+            <td>c-level-ceo-jtbd-superagent.md</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>CHRO Strategic Pain Points</td>
+            <td>Superagent Deep Research</td>
+            <td>c-level-chro-strategic-pain-superagent.md</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Competitor C-Level Messaging</td>
+            <td>Superagent Analysis</td>
+            <td>c-level-competitor-messaging-analysis.md</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Comprehensive Synthesis</td>
+            <td>Manual Integration</td>
+            <td>c-level-comprehensive-synthesis.md</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Narrative Items Extraction</td>
+            <td>YAML Structuring</td>
+            <td>narrative-items.yaml</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>CEO Persona Validation</td>
+            <td>@studytube-audience-diver</td>
+            <td>audience-diver-ceo-validation.md</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>CHRO Persona Validation</td>
+            <td>@studytube-audience-diver</td>
+            <td>audience-diver-chro-validation.md</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="quote-block">
+        <p class="quote-text">CEOs don't care about learning — they care about workforce capability and competitive advantage. Learning is a means, not an end.</p>
+        <p class="quote-author">Key Research Finding — High Confidence</p>
+      </div>
+    </section>
+
+    <!-- Slide 4: CEO Narrative -->
+    <section class="slide" id="slide-3">
+      <h2>CEO Narrative: Build Capability, Not Headcount</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px;">
+        <div class="card" style="border-left: 4px solid var(--st-error);">
+          <h4 style="color: var(--st-error); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">The Problem You Feel</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6;">You can't find the talent you need. The senior people you want don't exist in the market — or they're too expensive. And when you do hire juniors, they leave before they're productive.</p>
+        </div>
+        <div class="card" style="border-left: 4px solid #F59E0B;">
+          <h4 style="color: #F59E0B; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">The Hidden Cost</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6;">Every failed hire costs 6-9 months of salary. Every vacancy costs productivity. And every departure takes institutional knowledge with it. You're running to stand still.</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--st-success);">
+          <h4 style="color: var(--st-success); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">The Shift</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6;">The companies that will thrive aren't the ones who win the hiring war. They're the ones who build internal capability faster than the market can poach it.</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+        <div class="card" style="background: var(--st-navy); color: white; padding: 28px;">
+          <h3 style="color: white; margin-bottom: 20px;">CEO Psychographic Profile</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; opacity: 0.7; margin-bottom: 4px;">Identity</p>
+              <p style="font-size: 0.9rem; font-weight: 500;">Builder under siege</p>
+            </div>
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; opacity: 0.7; margin-bottom: 4px;">Fear</p>
+              <p style="font-size: 0.9rem; font-weight: 500;">Company won't survive</p>
+            </div>
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; opacity: 0.7; margin-bottom: 4px;">Desire</p>
+              <p style="font-size: 0.9rem; font-weight: 500;">Sustainable capability without headcount</p>
+            </div>
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; opacity: 0.7; margin-bottom: 4px;">Language</p>
+              <p style="font-size: 0.9rem; font-weight: 500;">Growth, competitive advantage, efficiency</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 28px;">
+          <h3 style="margin-bottom: 16px;">CEO Entry Hooks</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 8px 0; padding-left: 24px; position: relative; font-size: 0.9rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
+              <span style="position: absolute; left: 0; color: var(--st-blue);">1.</span>
+              "What if you could stop competing for talent — and start creating it?"
+            </li>
+            <li style="padding: 8px 0; padding-left: 24px; position: relative; font-size: 0.9rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
+              <span style="position: absolute; left: 0; color: var(--st-blue);">2.</span>
+              "The talent crisis isn't a hiring problem. It's a capability problem."
+            </li>
+            <li style="padding: 8px 0; padding-left: 24px; position: relative; font-size: 0.9rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
+              <span style="position: absolute; left: 0; color: var(--st-blue);">3.</span>
+              "Your competitors can copy your product. They can't copy your people."
+            </li>
+            <li style="padding: 8px 0; padding-left: 24px; position: relative; font-size: 0.9rem;">
+              <span style="position: absolute; left: 0; color: var(--st-blue);">4.</span>
+              "66% of Dutch businesses can't find staff. The 34% aren't recruiting better — they're developing faster."
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="quote-block" style="margin-top: 32px;">
+        <p class="quote-text">You measure product quality. You measure sales pipeline. Why aren't you measuring learning velocity?</p>
+        <p class="quote-author">CEO Closing Hook</p>
+      </div>
+    </section>
+
+    <!-- Slide 5: CHRO Narrative -->
+    <section class="slide" id="slide-4">
+      <h2>CHRO Narrative: From Proof Paralysis to Strategic Power</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px;">
+        <div class="card" style="border-left: 4px solid var(--st-error);">
+          <h4 style="color: var(--st-error); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">The Problem You Feel</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6;">You know L&D matters. You see the impact in retention, in engagement, in capability. But when the CFO asks for ROI, you have completion rates and satisfaction scores. That's not proof — that's hope.</p>
+        </div>
+        <div class="card" style="border-left: 4px solid #F59E0B;">
+          <h4 style="color: #F59E0B; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">The Trap</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6;">You're caught in a vicious cycle: without strategic budget, you can't prove strategic impact. Without strategic impact, you can't get strategic budget. Meanwhile, your seat at the strategy table is disappearing.</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--st-success);">
+          <h4 style="color: var(--st-success); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">The Shift</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6;">The CHROs who break through don't wait for permission. They build proof systems that speak CFO language. They turn L&D from cost center to capability engine.</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+        <div class="card" style="background: var(--st-navy); color: white; padding: 28px;">
+          <h3 style="color: white; margin-bottom: 20px;">CHRO Psychographic Profile</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; opacity: 0.7; margin-bottom: 4px;">Identity</p>
+              <p style="font-size: 0.9rem; font-weight: 500;">Strategic voice trapped in admin role</p>
+            </div>
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; opacity: 0.7; margin-bottom: 4px;">Fear</p>
+              <p style="font-size: 0.9rem; font-weight: 500;">Irrelevance</p>
+            </div>
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; opacity: 0.7; margin-bottom: 4px;">Desire</p>
+              <p style="font-size: 0.9rem; font-weight: 500;">Seat at strategy table with proof</p>
+            </div>
+            <div>
+              <p style="font-size: 0.75rem; text-transform: uppercase; opacity: 0.7; margin-bottom: 4px;">Language</p>
+              <p style="font-size: 0.9rem; font-weight: 500;">Impact, alignment, business outcomes</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 28px;">
+          <h3 style="margin-bottom: 16px;">CHRO Entry Hooks</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 8px 0; padding-left: 24px; position: relative; font-size: 0.9rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
+              <span style="position: absolute; left: 0; color: var(--st-blue);">1.</span>
+              "What if you could walk into the CFO's office with numbers they actually care about?"
+            </li>
+            <li style="padding: 8px 0; padding-left: 24px; position: relative; font-size: 0.9rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
+              <span style="position: absolute; left: 0; color: var(--st-blue);">2.</span>
+              "L&D's seat at the strategy table dropped 50% in two years. Are you part of the decline — or the comeback?"
+            </li>
+            <li style="padding: 8px 0; padding-left: 24px; position: relative; font-size: 0.9rem; border-bottom: 1px solid rgba(0,0,0,0.05);">
+              <span style="position: absolute; left: 0; color: var(--st-blue);">3.</span>
+              "The CFO doesn't hate L&D. They hate uncertainty. Give them certainty."
+            </li>
+            <li style="padding: 8px 0; padding-left: 24px; position: relative; font-size: 0.9rem;">
+              <span style="position: absolute; left: 0; color: var(--st-blue);">4.</span>
+              "Stop defending your budget. Start proving your impact."
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="quote-block" style="margin-top: 32px;">
+        <p class="quote-text">Only 4% of organizations can calculate L&D ROI. That's not a limitation — it's an opportunity.</p>
+        <p class="quote-author">CHRO Closing Hook</p>
+      </div>
+    </section>
+
+    <!-- Slide 6: Target Audiences -->
+    <section class="slide" id="slide-5">
+      <h2>Target Audiences — Validated Personas</h2>
+
+      <div class="persona-grid">
+        <div class="card persona-card">
+          <div class="persona-header">
+            <div class="persona-icon">CEO</div>
+            <div class="persona-title">
+              <h3>CEO / Managing Director</h3>
+              <p class="persona-subtitle">Dutch SME (200-2000 FTE)</p>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--st-text); margin-bottom: 20px;"><strong>Avatar:</strong> Builder archetype. Under siege from talent crisis. Caught in catch-22: can't find seniors externally, can't afford to develop juniors internally.</p>
+          <div class="persona-section">
+            <h4>Core Jobs-to-be-Done</h4>
+            <ul>
+              <li>Build internal senior talent pipeline (vs. poaching from shrinking pool)</li>
+              <li>Increase productivity without headcount</li>
+              <li>Justify any investment with clear ROI</li>
+            </ul>
+          </div>
+          <div class="persona-section">
+            <h4>Trigger Events</h4>
+            <ul>
+              <li>Failed hiring round</li>
+              <li>Board meeting approaching</li>
+              <li>Key performer resigned</li>
+              <li>Q4 strategy planning</li>
+              <li>SLIM subsidy deadline</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card persona-card">
+          <div class="persona-header">
+            <div class="persona-icon">CHRO</div>
+            <div class="persona-title">
+              <h3>CHRO / VP HR / HR Director</h3>
+              <p class="persona-subtitle">Dutch Mid-Market (200-2000 FTE)</p>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--st-text); margin-bottom: 20px;"><strong>Avatar:</strong> Operates in perpetual defense mode. Sandwiched between CEO who nods at "talent strategy" but never puts L&D on board agenda, and CFO who dismisses learning as discretionary spend.</p>
+          <div class="persona-section">
+            <h4>Core Jobs-to-be-Done</h4>
+            <ul>
+              <li>Prove L&D impact in CFO language</li>
+              <li>Regain strategic seat at table</li>
+              <li>Win stakeholder coalition (CEO, CFO, line managers, OR)</li>
+            </ul>
+          </div>
+          <div class="persona-section">
+            <h4>Trigger Events</h4>
+            <ul>
+              <li>Budget cycle starting (6-8 weeks out)</li>
+              <li>CEO questions L&D value</li>
+              <li>Excluded from strategy discussion</li>
+              <li>CFO demands precise ROI</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Storyline Validation -->
+    <section class="slide" id="slide-4">
+      <h2>Storyline Validation — 5 Core Narratives</h2>
+
+      <div class="storyline-grid">
+        <div class="card storyline-card validated">
+          <div class="storyline-header">
+            <div>
+              <span class="storyline-number">STORYLINE 1</span>
+              <h3 style="margin-bottom: 0;">Skills Half-Life Collapse</h3>
+            </div>
+            <span class="status status-validated">VALIDATED</span>
+          </div>
+          <p class="storyline-hook">"44% of skills will change by 2027. 55% expect employees to self-learn. 43% have no guidelines. That's not a strategy — that's a gap."</p>
+          <div class="storyline-evidence">
+            <strong>Evidence:</strong> 44% skills change by 2027 (WEF 2024), 45% CEOs doubt 10-year survival (PwC 2024), Only 19% "future-ready" for AI (Adecco 2025)
+          </div>
+        </div>
+
+        <div class="card storyline-card partial">
+          <div class="storyline-header">
+            <div>
+              <span class="storyline-number">STORYLINE 2</span>
+              <h3 style="margin-bottom: 0;">$360B Waste Problem</h3>
+            </div>
+            <span class="status status-partial">PARTIAL</span>
+          </div>
+          <p class="storyline-hook">"Only 4% of organizations can calculate L&D ROI. The CFO is waiting. Are you in the 96% who can't prove it?"</p>
+          <div class="storyline-evidence">
+            <strong>Gap:</strong> Need fresh Dutch SME L&D spend data. Global "$360B" stat may not land with Dutch SME CEOs.
+          </div>
+        </div>
+
+        <div class="card storyline-card needs">
+          <div class="storyline-header">
+            <div>
+              <span class="storyline-number">STORYLINE 3</span>
+              <h3 style="margin-bottom: 0;">Manager Capability Cliff</h3>
+            </div>
+            <span class="status status-needs">NEEDS VALIDATION</span>
+          </div>
+          <p class="storyline-hook">"Ask any executive what keeps them up at night. Three of their top five answers trace back to manager capability."</p>
+          <div class="storyline-evidence">
+            <strong>Recommendation:</strong> Deprioritize for CEO/CHRO; keep for HR Director conversations. "Cliff" metaphor not directly supported.
+          </div>
+        </div>
+
+        <div class="card storyline-card validated">
+          <div class="storyline-header">
+            <div>
+              <span class="storyline-number">STORYLINE 4</span>
+              <h3 style="margin-bottom: 0;">Strategic Invisibility Trap</h3>
+            </div>
+            <span class="status status-validated">VALIDATED</span>
+          </div>
+          <p class="storyline-hook">"L&D's seat at the strategy table dropped 50% in two years. Were you part of the decline — or are you building your way back?"</p>
+          <div class="storyline-evidence">
+            <strong>Evidence:</strong> L&D involvement -50% in 2 years (RedThread 2024), 92% CEOs don't see impact (LinkedIn 2017), Only 4% calculate ROI (ATD 2024)
+          </div>
+        </div>
+
+        <div class="card storyline-card partial">
+          <div class="storyline-header">
+            <div>
+              <span class="storyline-number">STORYLINE 5</span>
+              <h3 style="margin-bottom: 0;">Training to Performance Engine</h3>
+            </div>
+            <span class="status status-partial">PARTIAL</span>
+          </div>
+          <p class="storyline-hook">"The CFO wants ROI. You have completion rates. That's not proof — that's hope."</p>
+          <div class="storyline-evidence">
+            <strong>Gap:</strong> "Performance system" framing not tested with CEOs. They don't think in L&D categories.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: POV Mapping -->
+    <section class="slide" id="slide-5">
+      <h2>POV Mapping — 4 Points of View</h2>
+
+      <div class="pov-grid">
+        <div class="card pov-card">
+          <div class="pov-header">
+            <div class="pov-number">1</div>
+            <div>
+              <h3 style="margin-bottom: 4px;">Impact</h3>
+              <p style="font-size: 0.875rem; color: var(--st-text);">"Learning drives impact, not boxes"</p>
+            </div>
+          </div>
+          <p style="font-size: 0.85rem; margin-bottom: 12px;"><strong>C-Level Translation:</strong> "L&D is an investment with measurable returns, not an expense to minimize."</p>
+          <p style="font-size: 0.8rem; color: var(--st-text);">$4.70 return per $1 (Deloitte 2024), 30% cost reduction (Emil Frey case), 67% cite learning as retention (PwC 2024)</p>
+          <div class="pov-resonance">
+            <div class="resonance-item"><span class="resonance-label">CEO:</span> <span class="status status-partial">MEDIUM</span></div>
+            <div class="resonance-item"><span class="resonance-label">CHRO:</span> <span class="status status-validated">HIGH</span></div>
+          </div>
+        </div>
+
+        <div class="card pov-card">
+          <div class="pov-header">
+            <div class="pov-number">2</div>
+            <div>
+              <h3 style="margin-bottom: 4px;">Ownership</h3>
+              <p style="font-size: 0.875rem; color: var(--st-text);">"Ownership + Manager Guidance = Sticks"</p>
+            </div>
+          </div>
+          <p style="font-size: 0.85rem; margin-bottom: 12px;"><strong>C-Level Translation:</strong> "Your managers are your learning infrastructure — enable them or lose the investment."</p>
+          <p style="font-size: 0.8rem; color: var(--st-text);">Managers drive 2x more learning than L&D (YouGov 2022). "Manager as learning enabler" needs interview testing.</p>
+          <div class="pov-resonance">
+            <div class="resonance-item"><span class="resonance-label">CEO:</span> <span class="status status-needs">LOW</span></div>
+            <div class="resonance-item"><span class="resonance-label">CHRO:</span> <span class="status status-partial">MEDIUM</span></div>
+          </div>
+        </div>
+
+        <div class="card pov-card">
+          <div class="pov-header">
+            <div class="pov-number">3</div>
+            <div>
+              <h3 style="margin-bottom: 4px;">Skills</h3>
+              <p style="font-size: 0.875rem; color: var(--st-text);">"Skills are currency of adaptation"</p>
+            </div>
+          </div>
+          <p style="font-size: 0.85rem; margin-bottom: 12px;"><strong>C-Level Translation:</strong> "Knowledge expires; skills compound. Your workforce's skill velocity is your competitive moat."</p>
+          <p style="font-size: 0.8rem; color: var(--st-text);">44% skills changing by 2027 (WEF 2024). CEO survival anxiety maps directly to skill obsolescence fear.</p>
+          <div class="pov-resonance">
+            <div class="resonance-item"><span class="resonance-label">CEO:</span> <span class="status status-validated">HIGH</span></div>
+            <div class="resonance-item"><span class="resonance-label">CHRO:</span> <span class="status status-partial">MEDIUM</span></div>
+          </div>
+        </div>
+
+        <div class="card pov-card">
+          <div class="pov-header">
+            <div class="pov-number">4</div>
+            <div>
+              <h3 style="margin-bottom: 4px;">Entrepreneurial</h3>
+              <p style="font-size: 0.875rem; color: var(--st-text);">"L&D must be entrepreneurial, not reactive"</p>
+            </div>
+          </div>
+          <p style="font-size: 0.85rem; margin-bottom: 12px;"><strong>C-Level Translation:</strong> "Your L&D team should operate like a product team — shipping capability, not courses."</p>
+          <p style="font-size: 0.8rem; color: var(--st-text);">L&D strategy involvement -50% (RedThread 2024). "Order-taker to change-maker" transformation narrative.</p>
+          <div class="pov-resonance">
+            <div class="resonance-item"><span class="resonance-label">CEO:</span> <span class="status status-needs">LOW</span></div>
+            <div class="resonance-item"><span class="resonance-label">CHRO:</span> <span class="status status-validated">HIGH</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Meta-Theme Validation -->
+    <section class="slide" id="slide-6">
+      <h2>"Learning is the Only Moat" — Logic Chain</h2>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px;">
+        <div>
+          <div class="logic-chain">
+            <div class="logic-step">
+              <div class="logic-connector">
+                <div class="logic-dot">1</div>
+                <div class="logic-line"></div>
+              </div>
+              <div class="logic-content">
+                <div class="logic-claim">AI is commoditizing skills faster than ever</div>
+                <div class="logic-evidence">44% skills change by 2027 <span class="check">VALIDATED</span></div>
+              </div>
+            </div>
+            <div class="logic-step">
+              <div class="logic-connector">
+                <div class="logic-dot">2</div>
+                <div class="logic-line"></div>
+              </div>
+              <div class="logic-content">
+                <div class="logic-claim">Traditional moats are eroding</div>
+                <div class="logic-evidence">45% CEOs doubt 10-year survival <span class="check">VALIDATED</span></div>
+              </div>
+            </div>
+            <div class="logic-step">
+              <div class="logic-connector">
+                <div class="logic-dot">3</div>
+                <div class="logic-line"></div>
+              </div>
+              <div class="logic-content">
+                <div class="logic-claim">The meta-skill is learning itself</div>
+                <div class="logic-evidence">Skills half-life collapse <span class="check">VALIDATED</span></div>
+              </div>
+            </div>
+            <div class="logic-step">
+              <div class="logic-connector">
+                <div class="logic-dot">4</div>
+                <div class="logic-line"></div>
+              </div>
+              <div class="logic-content">
+                <div class="logic-claim">Learning velocity = competitive moat</div>
+                <div class="logic-evidence">$4.70 ROI; talent retention 67% <span class="check">VALIDATED</span></div>
+              </div>
+            </div>
+            <div class="logic-step">
+              <div class="logic-connector">
+                <div class="logic-dot">5</div>
+                <div class="logic-line"></div>
+              </div>
+              <div class="logic-content">
+                <div class="logic-claim">Most L&D is too slow</div>
+                <div class="logic-evidence">92% CEOs don't see impact; only 4% ROI <span class="check">VALIDATED</span></div>
+              </div>
+            </div>
+            <div class="logic-step">
+              <div class="logic-connector">
+                <div class="logic-dot">6</div>
+              </div>
+              <div class="logic-content">
+                <div class="logic-claim">Strategic learning infrastructure is the unlock</div>
+                <div class="logic-evidence">Validated path <span class="check">VALIDATED</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="margin-bottom: 24px;">
+            <h3 style="margin-bottom: 16px;">Pincer Movement</h3>
+            <table class="data-table" style="margin-bottom: 0;">
+              <tr>
+                <td><strong>Top-Down</strong></td>
+                <td>CEO/DGA</td>
+              </tr>
+              <tr>
+                <td>Entry</td>
+                <td>LinkedIn, BNR, accountant</td>
+              </tr>
+              <tr>
+                <td>Message</td>
+                <td>"Learning is the Only Moat"</td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: center;"><span class="status status-validated">VALIDATED</span></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="card">
+            <table class="data-table" style="margin-bottom: 0;">
+              <tr>
+                <td><strong>Bottom-Up</strong></td>
+                <td>L&D/CHRO</td>
+              </tr>
+              <tr>
+                <td>Entry</td>
+                <td>SEO, content</td>
+              </tr>
+              <tr>
+                <td>Message</td>
+                <td>"You're building the moat"</td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: center;"><span class="status status-validated">VALIDATED</span></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="quote-block" style="margin-top: 24px; padding: 24px;">
+            <p class="quote-text" style="font-size: 1rem;">The glue works: Both audiences can use the same vocabulary.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: Hypothesis Status -->
+    <section class="slide" id="slide-7">
+      <h2>Hypothesis Status — H1 to H5</h2>
+
+      <div class="hypothesis-grid">
+        <div class="card hypothesis-card">
+          <div class="hypothesis-id">H1</div>
+          <div class="hypothesis-content">
+            <h4>CEO Interest</h4>
+            <p>CEOs care about workforce capability, not "learning." Frame as competitive advantage.</p>
+          </div>
+          <span class="status status-partial">REFRAMED</span>
+        </div>
+
+        <div class="card hypothesis-card">
+          <div class="hypothesis-id">H2</div>
+          <div class="hypothesis-content">
+            <h4>Education vs Activation</h4>
+            <p>CEOs need ACTIVATION (know talent matters, don't see L&D as solution). CHROs need AMMUNITION (believe but can't prove).</p>
+          </div>
+          <span class="status status-validated">ANSWERED</span>
+        </div>
+
+        <div class="card hypothesis-card">
+          <div class="hypothesis-id">H3</div>
+          <div class="hypothesis-content">
+            <h4>Offer Resonance</h4>
+            <p>Assessment tools, benchmark reports, peer roundtables likely to resonate. Need interview validation.</p>
+          </div>
+          <span class="status status-partial">PARTIAL</span>
+        </div>
+
+        <div class="card hypothesis-card">
+          <div class="hypothesis-id">H4</div>
+          <div class="hypothesis-content">
+            <h4>Demand Generation</h4>
+            <p>CEO is INFLUENCER, not direct buyer. Focus on influence metrics, not demo requests. CHRO is internal champion.</p>
+          </div>
+          <span class="status status-validated">ANSWERED</span>
+        </div>
+
+        <div class="card hypothesis-card">
+          <div class="hypothesis-id">H5</div>
+          <div class="hypothesis-content">
+            <h4>Channel Preference</h4>
+            <p>Where do CEOs consume content? LinkedIn, podcasts, peer networks, BNR? Critical unknown.</p>
+          </div>
+          <span class="status status-needs">NEEDS INTERVIEW</span>
+        </div>
+      </div>
+
+      <div class="quote-block" style="margin-top: 40px;">
+        <p class="quote-text">CEOs need ACTIVATION — they know talent matters, they just don't see L&D as the solution. CHROs need AMMUNITION — they believe, but can't prove it to the CFO.</p>
+        <p class="quote-author">H2 Key Finding — Medium Confidence</p>
+      </div>
+    </section>
+
+    <!-- Slide 9: 2026 Calendar -->
+    <section class="slide" id="slide-8">
+      <h2>2026 Deployment — Storyline to Theme Mapping</h2>
+      <p style="margin-bottom: 32px;">Each storyline deploys at strategic moments, aligned with monthly Power Skill themes. The calendar creates rhythm while reinforcing core POVs.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <div class="card" style="padding: 16px; border-left: 3px solid var(--st-success);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 4px;">January</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px;">Mental Agility</div>
+          <div style="font-size: 0.75rem; color: var(--st-text);">Skills Half-Life Collapse</div>
+          <span class="status status-validated" style="margin-top: 8px; display: inline-block;">VALIDATED</span>
+        </div>
+        <div class="card" style="padding: 16px; border-left: 3px solid var(--st-error);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 4px;">February</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px;">Collaboration</div>
+          <div style="font-size: 0.75rem; color: var(--st-text);">Manager Capability Cliff</div>
+          <span class="status status-needs" style="margin-top: 8px; display: inline-block;">NEEDS VALIDATION</span>
+        </div>
+        <div class="card" style="padding: 16px; border-left: 3px solid var(--st-warning);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 4px;">March</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px;">Planning</div>
+          <div style="font-size: 0.75rem; color: var(--st-text);">$360B Waste Problem</div>
+          <span class="status status-partial" style="margin-top: 8px; display: inline-block;">PARTIAL</span>
+        </div>
+        <div class="card" style="padding: 16px; border-left: 3px solid var(--st-text);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 4px;">April</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px;">Vitality</div>
+          <div style="font-size: 0.75rem; color: var(--st-text);">[Tactical month]</div>
+        </div>
+        <div class="card" style="padding: 16px; border-left: 3px solid var(--st-text);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 4px;">May</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px;">D&I</div>
+          <div style="font-size: 0.75rem; color: var(--st-text);">Skills as equalizer</div>
+        </div>
+        <div class="card" style="padding: 16px; border-left: 3px solid var(--st-warning);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 4px;">June</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px;">Digital Literacy</div>
+          <div style="font-size: 0.75rem; color: var(--st-text);">Training → Performance</div>
+          <span class="status status-partial" style="margin-top: 8px; display: inline-block;">PARTIAL</span>
+        </div>
+        <div class="card" style="padding: 16px; border-left: 3px solid var(--st-success);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 4px;">July</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px;">AI Skills</div>
+          <div style="font-size: 0.75rem; color: var(--st-text);">Skills Half-Life (AI angle)</div>
+          <span class="status status-validated" style="margin-top: 8px; display: inline-block;">VALIDATED</span>
+        </div>
+        <div class="card" style="padding: 16px; background: var(--st-navy); color: white; border: none;">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-cyan); margin-bottom: 4px;">August</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px;">Ambition</div>
+          <div style="font-size: 0.75rem; opacity: 0.9;">Strategic Invisibility Trap ⭐</div>
+          <span class="status status-validated" style="margin-top: 8px; display: inline-block;">PRIMARY ARC</span>
+        </div>
+        <div class="card" style="padding: 16px; border-left: 3px solid var(--st-text);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 4px;">September</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px;">Communication</div>
+          <div style="font-size: 0.75rem; color: var(--st-text);">Language Barrier deep-dive</div>
+        </div>
+        <div class="card" style="padding: 16px; border-left: 3px solid var(--st-warning);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 4px;">October</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px;">Digital Working</div>
+          <div style="font-size: 0.75rem; color: var(--st-text);">Training → Performance (tech)</div>
+          <span class="status status-partial" style="margin-top: 8px; display: inline-block;">PARTIAL</span>
+        </div>
+        <div class="card" style="padding: 16px; border-left: 3px solid var(--st-text);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 4px;">November</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px;">Security</div>
+          <div style="font-size: 0.75rem; color: var(--st-text);">[Compliance tactical]</div>
+        </div>
+        <div class="card" style="padding: 16px; border-left: 3px solid var(--st-success);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 4px;">December</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 6px;">Self-Knowledge</div>
+          <div style="font-size: 0.75rem; color: var(--st-text);">Strategic Invisibility (identity)</div>
+          <span class="status status-validated" style="margin-top: 8px; display: inline-block;">VALIDATED</span>
+        </div>
+      </div>
+
+      <div style="background: linear-gradient(135deg, #FFF8E6 0%, #FFFBF0 100%); border: 2px dashed #F59E0B; border-radius: 12px; padding: 20px; margin-top: 32px;">
+        <h4 style="color: #B45309; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem;">Research-Informed Deployment</h4>
+        <p style="color: #92400E; font-size: 0.85rem; margin: 0;">Storyline validation status determines content investment. <strong>Validated</strong> storylines (green) are ready for full production. <strong>Partial</strong> storylines (yellow) need Dutch SME data. <strong>Needs validation</strong> storylines (red) require interview confirmation before deployment.</p>
+      </div>
+    </section>
+
+    <!-- Slide 12: Content Calendar -->
+    <section class="slide" id="slide-11">
+      <h2>8-Week Content Sprint — Q1 2026</h2>
+      <p style="margin-bottom: 32px; color: var(--st-text);">Structured content deployment across 8 weeks, building narrative momentum from declaration to proof.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px;">
+        <div class="card" style="padding: 20px; border-top: 4px solid var(--st-blue);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 8px;">Week 1</div>
+          <div style="font-weight: 600; font-size: 1rem; color: var(--st-navy); margin-bottom: 4px;">The Moat Declaration</div>
+          <p style="font-size: 0.8rem; color: var(--st-text); margin: 0;">Opening salvo: "Learning is the Only Moat" positioning</p>
+        </div>
+        <div class="card" style="padding: 20px; border-top: 4px solid var(--st-blue);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 8px;">Week 2</div>
+          <div style="font-weight: 600; font-size: 1rem; color: var(--st-navy); margin-bottom: 4px;">The Wennink Wake-Up</div>
+          <p style="font-size: 0.8rem; color: var(--st-text); margin: 0;">+ The 30% Promise (productivity angle)</p>
+        </div>
+        <div class="card" style="padding: 20px; border-top: 4px solid var(--st-blue);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 8px;">Week 3</div>
+          <div style="font-weight: 600; font-size: 1rem; color: var(--st-navy); margin-bottom: 4px;">The AI Paradox</div>
+          <p style="font-size: 0.8rem; color: var(--st-text); margin: 0;">55% expect self-learning, 43% no guidelines</p>
+        </div>
+        <div class="card" style="padding: 20px; border-top: 4px solid var(--st-blue);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 8px;">Week 4</div>
+          <div style="font-weight: 600; font-size: 1rem; color: var(--st-navy); margin-bottom: 4px;">The Talent Retention Truth</div>
+          <p style="font-size: 0.8rem; color: var(--st-text); margin: 0;">+ Skill-Based P&L draft release</p>
+        </div>
+        <div class="card" style="padding: 20px; border-top: 4px solid var(--st-cyan);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-cyan); margin-bottom: 8px;">Week 5</div>
+          <div style="font-weight: 600; font-size: 1rem; color: var(--st-navy); margin-bottom: 4px;">The SME Advantage</div>
+          <p style="font-size: 0.8rem; color: var(--st-text); margin: 0;">+ Skill-Based P&L finalize & promote</p>
+        </div>
+        <div class="card" style="padding: 20px; border-top: 4px solid var(--st-cyan);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 8px;">Week 6</div>
+          <div style="font-weight: 600; font-size: 1rem; color: var(--st-navy); margin-bottom: 4px;">The Velocity Metric</div>
+          <p style="font-size: 0.8rem; color: var(--st-text); margin: 0;">+ Playbook draft release</p>
+        </div>
+        <div class="card" style="padding: 20px; border-top: 4px solid var(--st-cyan);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-blue); margin-bottom: 8px;">Week 7</div>
+          <div style="font-weight: 600; font-size: 1rem; color: var(--st-navy); margin-bottom: 4px;">The Proof Point</div>
+          <p style="font-size: 0.8rem; color: var(--st-text); margin: 0;">+ Playbook finalize & promote</p>
+        </div>
+        <div class="card" style="padding: 20px; border-top: 4px solid var(--st-success);">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--st-success); margin-bottom: 8px;">Week 8</div>
+          <div style="font-weight: 600; font-size: 1rem; color: var(--st-navy); margin-bottom: 4px;">The CEO Question</div>
+          <p style="font-size: 0.8rem; color: var(--st-text); margin: 0;">Culminating provocation + CTA</p>
+        </div>
+      </div>
+
+      <h3 style="margin-bottom: 16px;">Atom Distribution</h3>
+      <table class="data-table" style="margin-bottom: 0;">
+        <thead>
+          <tr>
+            <th>Channel</th>
+            <th>Frequency</th>
+            <th>Content Type</th>
+            <th>Primary Audience</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>LinkedIn (Organic)</strong></td>
+            <td>2-3x / week</td>
+            <td>Thought leadership, stats, hooks</td>
+            <td>CEO, CHRO</td>
+          </tr>
+          <tr>
+            <td><strong>Newsletter</strong></td>
+            <td>1x / week</td>
+            <td>Deep-dive synthesis</td>
+            <td>L&D Manager, CHRO</td>
+          </tr>
+          <tr>
+            <td><strong>Blog/SEO</strong></td>
+            <td>1-2x / week</td>
+            <td>Pillar + supporting content</td>
+            <td>Organic discovery</td>
+          </tr>
+          <tr>
+            <td><strong>Lead Magnet Promo</strong></td>
+            <td>Strategic</td>
+            <td>Gated content campaigns</td>
+            <td>CEO, CFO, CHRO</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Slide 13: Content Suite -->
+    <section class="slide" id="slide-12">
+      <h2>Content Suite — C-Level Lead Magnets</h2>
+      <p style="margin-bottom: 32px; color: var(--st-text);">Four flagship lead magnets designed for different C-level entry points and conversion paths.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+        <div class="card" style="padding: 28px; border-left: 4px solid var(--st-blue);">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+            <h3 style="margin-bottom: 0;">De Talent Paradox</h3>
+            <span class="status status-validated">SLIM CAMPAIGN</span>
+          </div>
+          <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+            <div>
+              <p style="font-size: 0.7rem; text-transform: uppercase; color: var(--st-text); margin-bottom: 2px;">Target</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: var(--st-navy);">CEO / DGA</p>
+            </div>
+            <div>
+              <p style="font-size: 0.7rem; text-transform: uppercase; color: var(--st-text); margin-bottom: 2px;">Length</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: var(--st-navy);">3.5-5K words</p>
+            </div>
+            <div>
+              <p style="font-size: 0.7rem; text-transform: uppercase; color: var(--st-text); margin-bottom: 2px;">Focus</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: var(--st-navy);">MKB / SME</p>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--st-text); margin: 0;">Why you can't find the talent you need — and why building capability is the only way out. Speaks to CEO survival anxiety and resource trap.</p>
+        </div>
+
+        <div class="card" style="padding: 28px; border-left: 4px solid var(--st-cyan);">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+            <h3 style="margin-bottom: 0;">De Impact Gids</h3>
+            <span class="status status-partial">L&D ENTRY</span>
+          </div>
+          <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+            <div>
+              <p style="font-size: 0.7rem; text-transform: uppercase; color: var(--st-text); margin-bottom: 2px;">Target</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: var(--st-navy);">L&D Manager</p>
+            </div>
+            <div>
+              <p style="font-size: 0.7rem; text-transform: uppercase; color: var(--st-text); margin-bottom: 2px;">Length</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: var(--st-navy);">3.5-5K words</p>
+            </div>
+            <div>
+              <p style="font-size: 0.7rem; text-transform: uppercase; color: var(--st-text); margin-bottom: 2px;">Focus</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: var(--st-navy);">Impact proof</p>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--st-text); margin: 0;">How to prove L&D impact in language the CFO understands. Practical toolkit for moving from completion rates to business outcomes.</p>
+        </div>
+
+        <div class="card" style="padding: 28px; border-left: 4px solid var(--st-success);">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+            <h3 style="margin-bottom: 0;">The Skill-Based P&L</h3>
+            <span class="status status-high">CFO ANGLE</span>
+          </div>
+          <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+            <div>
+              <p style="font-size: 0.7rem; text-transform: uppercase; color: var(--st-text); margin-bottom: 2px;">Target</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: var(--st-navy);">CFO + CHRO</p>
+            </div>
+            <div>
+              <p style="font-size: 0.7rem; text-transform: uppercase; color: var(--st-text); margin-bottom: 2px;">Length</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: var(--st-navy);">12-15 pages</p>
+            </div>
+            <div>
+              <p style="font-size: 0.7rem; text-transform: uppercase; color: var(--st-text); margin-bottom: 2px;">Format</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: var(--st-navy);">Whitepaper</p>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--st-text); margin: 0;">A framework for treating skills as a balance sheet item. Connects capability investment to financial outcomes. CFO-ready language.</p>
+        </div>
+
+        <div class="card" style="padding: 28px; border-left: 4px solid var(--st-navy);">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+            <h3 style="margin-bottom: 0;">Strategic Skill Management Playbook</h3>
+            <span class="status status-validated">FLAGSHIP</span>
+          </div>
+          <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+            <div>
+              <p style="font-size: 0.7rem; text-transform: uppercase; color: var(--st-text); margin-bottom: 2px;">Target</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: var(--st-navy);">CEO + CHRO</p>
+            </div>
+            <div>
+              <p style="font-size: 0.7rem; text-transform: uppercase; color: var(--st-text); margin-bottom: 2px;">Length</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: var(--st-navy);">20-25 pages</p>
+            </div>
+            <div>
+              <p style="font-size: 0.7rem; text-transform: uppercase; color: var(--st-text); margin-bottom: 2px;">Format</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: var(--st-navy);">Guide</p>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--st-text); margin: 0;">Complete implementation guide for building a skill-centric organization. From assessment to measurement to continuous improvement.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 14: Remaining Validation Needs -->
+    <section class="slide" id="slide-13">
+      <h2>Remaining Validation Needs — Interview Priorities</h2>
+
+      <h3 style="display: flex; align-items: center; gap: 8px;"><span class="priority-badge priority-critical">PRIORITY 1: CRITICAL</span> Interview Required</h3>
+      <table class="data-table priority-table">
+        <thead>
+          <tr>
+            <th>Validation Area</th>
+            <th>Key Questions</th>
+            <th>Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Psychographic Insights</strong></td>
+            <td>Are the 5 emotional fractures real? Do they drive behavior?</td>
+            <td>CEO + CHRO</td>
+          </tr>
+          <tr>
+            <td><strong>Buyer Journey</strong></td>
+            <td>Google vs AI search? Who influences? Timeline?</td>
+            <td>All</td>
+          </tr>
+          <tr>
+            <td><strong>Channel Preference</strong></td>
+            <td>Where do CEOs consume content?</td>
+            <td>CEO</td>
+          </tr>
+          <tr>
+            <td><strong>Offer Resonance</strong></td>
+            <td>What offer interests CEOs? Assessment, benchmark, roundtable?</td>
+            <td>CEO</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 style="display: flex; align-items: center; gap: 8px;"><span class="priority-badge priority-high">PRIORITY 2: HIGH</span> Interview Beneficial</h3>
+      <table class="data-table priority-table">
+        <thead>
+          <tr>
+            <th>Validation Area</th>
+            <th>Key Questions</th>
+            <th>Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Value Proposition</strong></td>
+            <td>Does "Learning is the Only Moat" land?</td>
+            <td>CEO</td>
+          </tr>
+          <tr>
+            <td><strong>POV 2 (Ownership)</strong></td>
+            <td>Does manager-as-enabler framing resonate?</td>
+            <td>CHRO</td>
+          </tr>
+          <tr>
+            <td><strong>Competitive Positioning</strong></td>
+            <td>How do they perceive Studytube vs competitors?</td>
+            <td>All</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 style="display: flex; align-items: center; gap: 8px;"><span class="priority-badge priority-medium">PRIORITY 3: MEDIUM</span> Opportunistic</h3>
+      <table class="data-table priority-table" style="margin-bottom: 0;">
+        <thead>
+          <tr>
+            <th>Validation Area</th>
+            <th>Key Questions</th>
+            <th>Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Manager Capability Cliff</strong></td>
+            <td>Does "cliff" metaphor resonate?</td>
+            <td>HR Director</td>
+          </tr>
+          <tr>
+            <td><strong>$360B Waste</strong></td>
+            <td>Does global stat land with Dutch SME?</td>
+            <td>CFO</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Slide 11: Interview Framework -->
+    <section class="slide" id="slide-10">
+      <h2>Interview Framework — Question Bank</h2>
+
+      <div class="interview-grid">
+        <div class="card interview-section">
+          <h3>
+            <span class="interview-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            CEO Interviews (6-8 target)
+          </h3>
+
+          <div class="question-group">
+            <h4>Section A: JTBD Validation</h4>
+            <ul class="question-list">
+              <li>"Walk me through your biggest workforce challenge right now."</li>
+              <li>"What would you do with a fully-trained workforce that you can't do today?"</li>
+              <li>"When you think about competitors, what worries you most?"</li>
+            </ul>
+          </div>
+
+          <div class="question-group">
+            <h4>Section B: Emotional Fractures</h4>
+            <ul class="question-list">
+              <li>"Tell me about a time you felt stuck between hiring and developing."</li>
+              <li>"How confident are you that your company will thrive in 10 years?"</li>
+              <li>"What's your honest reaction when AI tools come up in strategy conversations?"</li>
+            </ul>
+          </div>
+
+          <div class="question-group">
+            <h4>Section C: Meta-Theme Testing</h4>
+            <ul class="question-list">
+              <li>"'Learning is the only sustainable competitive moat.' How does that land?"</li>
+              <li>"If you could have one thing competitors couldn't copy, what would it be?"</li>
+            </ul>
+          </div>
+
+          <div class="question-group">
+            <h4>Section D: Channel & Offer</h4>
+            <ul class="question-list">
+              <li>"Where do you consume business content? LinkedIn, podcasts, events?"</li>
+              <li>"If I offered you a free workforce capability assessment, would you take it?"</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card interview-section">
+          <h3>
+            <span class="interview-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            CHRO Interviews (4-6 target)
+          </h3>
+
+          <div class="question-group">
+            <h4>Section A: Strategic Pain</h4>
+            <ul class="question-list">
+              <li>"Describe your relationship with the CFO when it comes to L&D budget."</li>
+              <li>"How often does L&D appear on the board agenda? What would change that?"</li>
+              <li>"What 'ammunition' do you wish you had for internal conversations?"</li>
+            </ul>
+          </div>
+
+          <div class="question-group">
+            <h4>Section B: Proof Problem</h4>
+            <ul class="question-list">
+              <li>"How do you currently prove L&D value? What's missing?"</li>
+              <li>"'Only 4% can calculate L&D ROI.' Where are you in that spectrum?"</li>
+              <li>"What would the CFO need to see to proactively support L&D budget?"</li>
+            </ul>
+          </div>
+
+          <div class="question-group">
+            <h4>Section C: Coalition Building</h4>
+            <ul class="question-list">
+              <li>"Who supports L&D internally? Who blocks?"</li>
+              <li>"How do you navigate the ondernemingsraad on training policies?"</li>
+              <li>"What would make line managers champion learning?"</li>
+            </ul>
+          </div>
+
+          <div class="question-group">
+            <h4>Section D: Meta-Theme Testing</h4>
+            <ul class="question-list">
+              <li>"'Learning is the only moat.' Does that framing help or hurt your internal case?"</li>
+              <li>"What language works with your CEO when discussing L&D?"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 12: Action Items -->
+    <section class="slide" id="slide-11">
+      <h2>Action Items — Execution Roadmap</h2>
+
+      <div class="action-grid">
+        <div class="card action-card">
+          <div class="action-header">
+            <span class="action-icon immediate">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+            <div>
+              <h3 style="margin-bottom: 0;">Immediate</h3>
+              <p style="font-size: 0.75rem; color: var(--st-text);">This Week</p>
+            </div>
+          </div>
+          <ul class="action-list">
+            <li>Schedule 2-3 CEO interviews using updated framework</li>
+            <li>Schedule 2 CHRO interviews using updated framework</li>
+            <li>Create LinkedIn post series testing "Learning is the Only Moat"</li>
+          </ul>
+        </div>
+
+        <div class="card action-card">
+          <div class="action-header">
+            <span class="action-icon short">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </span>
+            <div>
+              <h3 style="margin-bottom: 0;">Short-Term</h3>
+              <p style="font-size: 0.75rem; color: var(--st-text);">February</p>
+            </div>
+          </div>
+          <ul class="action-list">
+            <li>Complete 6-8 CEO interviews</li>
+            <li>Complete 4-6 CHRO interviews</li>
+            <li>Update confidence matrix with interview findings</li>
+            <li>Finalize validated storylines for content deployment</li>
+          </ul>
+        </div>
+
+        <div class="card action-card">
+          <div class="action-header">
+            <span class="action-icon medium">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </span>
+            <div>
+              <h3 style="margin-bottom: 0;">Medium-Term</h3>
+              <p style="font-size: 0.75rem; color: var(--st-text);">March</p>
+            </div>
+          </div>
+          <ul class="action-list">
+            <li>Launch validated LinkedIn thought leadership series</li>
+            <li>Create CEO persona landing page</li>
+            <li>Build "Ammunition Pack" for CHROs</li>
+            <li>Deploy validated messaging to sales enablement</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="quote-block" style="margin-top: 40px;">
+        <p class="quote-text">This synthesis represents the integration of 165 research sources with Studytube's existing narrative strategy. Interview validation will refine and confirm these findings.</p>
+        <p class="quote-author">Next Step: CEO + CHRO Interviews</p>
+      </div>
+    </section>
+
+    <!-- Slide 13: Key Statistics -->
+    <section class="slide" id="slide-12">
+      <h2>Key Statistics Arsenal — The Proof Points</h2>
+
+      <div class="stats-section">
+        <h3>
+          <span class="stats-icon context">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </span>
+          Market Context — Set the Stage
+        </h3>
+        <div class="stats-grid">
+          <div class="card stat-card">
+            <div class="stat-value" style="color: var(--st-navy);">66%</div>
+            <div class="stat-label">Dutch businesses can't find staff</div>
+            <div class="stat-source">CBS 2025 — CEO pain validation</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-value" style="color: var(--st-navy);">45%</div>
+            <div class="stat-label">CEOs doubt 10-year survival</div>
+            <div class="stat-source">PwC 2024 — Urgency creation</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-value" style="color: var(--st-navy);">44%</div>
+            <div class="stat-label">Skills changing by 2027</div>
+            <div class="stat-source">WEF 2024 — Skills urgency</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-value" style="color: var(--st-navy);">55%</div>
+            <div class="stat-label">Expect AI self-learning, 43% no guidelines</div>
+            <div class="stat-source">Adecco 2025 — AI gap</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <h3>
+          <span class="stats-icon problem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </span>
+          Problem Stats — Create Tension
+        </h3>
+        <div class="stats-grid">
+          <div class="card stat-card">
+            <div class="stat-value" style="color: var(--st-error);">92%</div>
+            <div class="stat-label">CEOs don't see L&D business impact</div>
+            <div class="stat-source">LinkedIn 2017 — CHRO proof gap</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-value" style="color: var(--st-error);">4%</div>
+            <div class="stat-label">Can calculate L&D ROI</div>
+            <div class="stat-source">ATD 2024 — Measurement gap</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-value" style="color: var(--st-error);">-50%</div>
+            <div class="stat-label">L&D strategy involvement in 2 years</div>
+            <div class="stat-source">RedThread 2024 — CHRO pain</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-value" style="color: var(--st-error);">2x</div>
+            <div class="stat-label">Managers more effective than L&D</div>
+            <div class="stat-source">YouGov 2022 — Manager angle</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-section" style="margin-bottom: 0;">
+        <h3>
+          <span class="stats-icon solution">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </span>
+          Solution Stats — Offer Hope
+        </h3>
+        <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="card stat-card">
+            <div class="stat-value" style="color: var(--st-success);">$4.70</div>
+            <div class="stat-label">Return per $1 on L&D</div>
+            <div class="stat-source">Deloitte 2024 — ROI proof</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-value" style="color: var(--st-success);">67%</div>
+            <div class="stat-label">Cite learning as retention factor</div>
+            <div class="stat-source">PwC 2024 — Retention angle</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-value" style="color: var(--st-success);">30%</div>
+            <div class="stat-label">Training cost reduction</div>
+            <div class="stat-source">Emil Frey case — Studytube proof</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide Counter -->
+  <div class="slide-counter" id="slideCounter">1 / 13</div>
+
+  <!-- Navigation Hint -->
+  <div class="nav-hint">
+    <span class="key">&#8592;</span>
+    <span class="key">&#8594;</span>
+    <span>Navigate</span>
+    <span style="margin: 0 8px; opacity: 0.3;">|</span>
+    <span class="key">1-9</span>
+    <span>Jump</span>
+  </div>
+
+  <script>
+    // Slide Navigation
+    const slides = document.querySelectorAll('.slide');
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
+    const progressBar = document.getElementById('progressBarFill');
+    const slideCounter = document.getElementById('slideCounter');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= slides.length) index = slides.length - 1;
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+
+      navLinks.forEach((link, i) => {
+        link.classList.toggle('active', i === index);
+      });
+
+      currentSlide = index;
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const progress = ((currentSlide + 1) / slides.length) * 100;
+      progressBar.style.width = progress + '%';
+      slideCounter.textContent = (currentSlide + 1) + ' / ' + slides.length;
+    }
+
+    // Keyboard Navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        showSlide(currentSlide + 1);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        showSlide(currentSlide - 1);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        showSlide(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        showSlide(slides.length - 1);
+      } else if (e.key >= '1' && e.key <= '9') {
+        const slideIndex = parseInt(e.key) - 1;
+        if (slideIndex < slides.length) {
+          showSlide(slideIndex);
+        }
+      } else if (e.key === '0') {
+        showSlide(9);
+      }
+    });
+
+    // Click Navigation
+    navLinks.forEach((link, index) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        showSlide(index);
+        // Close sidebar on mobile
+        if (window.innerWidth <= 1024) {
+          document.getElementById('sidebar').classList.remove('open');
+        }
+      });
+    });
+
+    // Mobile Sidebar Toggle
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+
+    // Initialize
+    updateProgress();
+  </script>
+</body>
+</html>

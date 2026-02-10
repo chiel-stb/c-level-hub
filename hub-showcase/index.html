@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C-Level Hub Design Showcase | Studytube</title>
+
+  <style>
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-display: swap;
+    }
+  </style>
+
+  <style>
+    :root {
+      --st-blue: #056DFF;
+      --st-navy: #0B0B2B;
+      --st-cyan: #05D5FF;
+      --st-gradient: linear-gradient(135deg, #056DFF 0%, #05D5FF 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Euclid Circular B', system-ui, sans-serif;
+      background: var(--st-navy);
+      color: white;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .logo svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    .logo span {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: var(--st-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Design Grid */
+    .designs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .design-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+    }
+
+    .design-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--st-blue);
+      box-shadow: 0 20px 40px rgba(5, 109, 255, 0.2);
+    }
+
+    .design-preview {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+      background: #1a1a3a;
+    }
+
+    .design-preview iframe {
+      width: 400%;
+      height: 400%;
+      transform: scale(0.25);
+      transform-origin: top left;
+      pointer-events: none;
+      border: none;
+    }
+
+    .design-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(11, 11, 43, 0.9) 100%);
+    }
+
+    .design-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--st-gradient);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .design-content {
+      padding: 24px;
+    }
+
+    .design-number {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--st-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .design-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .design-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .design-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .feature-tag {
+      background: rgba(255,255,255,0.1);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .design-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .design-cta span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--st-cyan);
+    }
+
+    .design-cta svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--st-cyan);
+      transition: transform 0.3s ease;
+    }
+
+    .design-card:hover .design-cta svg {
+      transform: translateX(4px);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 80px;
+      text-align: center;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+    }
+
+    .footer-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(5, 109, 255, 0.1);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--st-cyan);
+    }
+
+    .footer-note svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .designs-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 1.75rem;
+      }
+
+      .design-preview {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <svg viewBox="0 0 48 48" fill="none">
+          <rect width="48" height="48" rx="12" fill="white"/>
+          <path d="M10 15h28v3H10zM10 23h22v3H10zM10 31h25v3H10z" fill="#056DFF"/>
+        </svg>
+        <span>Studytube</span>
+      </div>
+      <h1>C-Level Hub Design Options</h1>
+      <p>Bekijk drie verschillende design richtingen voor de C-Level Resource Hub op studytube.nl/c-level</p>
+    </header>
+
+    <!-- Design Grid -->
+    <div class="designs-grid">
+      <!-- Design 1: Bold/Hero -->
+      <a href="pages/page-1/index.html" class="design-card">
+        <div class="design-preview">
+          <iframe src="pages/page-1/index.html" loading="lazy"></iframe>
+          <div class="design-overlay"></div>
+          <span class="design-badge">Aanbevolen</span>
+        </div>
+        <div class="design-content">
+          <span class="design-number">Optie 1</span>
+          <h3>Bold / Hero-focused</h3>
+          <p>Impactvolle hero met gradient, grote statistieken, sterke visuele hierarchie. Geschikt voor emotionele impact bij eerste indruk.</p>
+          <div class="design-features">
+            <span class="feature-tag">Gradient hero</span>
+            <span class="feature-tag">Persona cards</span>
+            <span class="feature-tag">Proof points strip</span>
+            <span class="feature-tag">Comparison table</span>
+          </div>
+        </div>
+        <div class="design-cta">
+          <span>Bekijk design</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <!-- Design 2: Minimal -->
+      <a href="pages/page-2/index.html" class="design-card">
+        <div class="design-preview">
+          <iframe src="pages/page-2/index.html" loading="lazy"></iframe>
+          <div class="design-overlay"></div>
+        </div>
+        <div class="design-content">
+          <span class="design-number">Optie 2</span>
+          <h3>Minimal / Clean</h3>
+          <p>Typography-gedreven met veel witruimte. Subtiele animaties, focus op leesbaarheid. Geschikt voor premium/executive uitstraling.</p>
+          <div class="design-features">
+            <span class="feature-tag">Whitespace</span>
+            <span class="feature-tag">Large typography</span>
+            <span class="feature-tag">Subtle animations</span>
+            <span class="feature-tag">List-based resources</span>
+          </div>
+        </div>
+        <div class="design-cta">
+          <span>Bekijk design</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <!-- Design 3: Feature-rich -->
+      <a href="pages/page-3/index.html" class="design-card">
+        <div class="design-preview">
+          <iframe src="pages/page-3/index.html" loading="lazy"></iframe>
+          <div class="design-overlay"></div>
+        </div>
+        <div class="design-content">
+          <span class="design-number">Optie 3</span>
+          <h3>Feature-rich / Comprehensive</h3>
+          <p>Meerdere gedetailleerde secties, comparison table, testimonials placeholder. Geschikt voor volledigheid en credibility.</p>
+          <div class="design-features">
+            <span class="feature-tag">Split hero</span>
+            <span class="feature-tag">Detailed personas</span>
+            <span class="feature-tag">Comparison table</span>
+            <span class="feature-tag">Connection visual</span>
+          </div>
+        </div>
+        <div class="design-cta">
+          <span>Bekijk design</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Geef feedback op een design en ik verfijn op basis van uw voorkeuren</p>
+      <div class="footer-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        preferences.json slaat uw feedback op voor volgende iteraties
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

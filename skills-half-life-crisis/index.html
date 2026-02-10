@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Skills Half-Life Crisis | Studytube</title>
+    <meta name="description" content="Your skills taxonomy is depreciating. Learn why execution skills lose value fastest, how to classify your skills portfolio, and what to do this quarter.">
+
+    <!-- Fonts -->
+    <style>
+        @font-face {
+            font-family: 'Euclid Circular B';
+            src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Euclid Circular B';
+            src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Euclid Circular B';
+            src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-display: swap;
+        }
+    </style>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'st-blue': '#056DFF',
+                        'st-navy': '#11295A',
+                        'st-text': '#0B0B2B',
+                        'st-gray': {
+                            75: '#F9FAFB',
+                            100: '#F2F5F8',
+                            200: '#E9EDF1',
+                            600: '#545E69'
+                        },
+                        'st-cyan': '#05D5FF',
+                        'st-success': '#16A34A',
+                        'st-link': '#FF1B51',
+                        'st-danger': '#EF5350',
+                        'st-amber': '#F59E0B',
+                        'st-emerald': '#10B981'
+                    },
+                    fontFamily: {
+                        'euclid': ['"Euclid Circular B"', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            font-family: 'Euclid Circular B', system-ui, -apple-system, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Article typography */
+        .article-body p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #545E69;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #11295A;
+            margin-top: 3rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.25;
+        }
+
+        .article-body strong {
+            color: #11295A;
+            font-weight: 600;
+        }
+
+        .article-body em {
+            font-style: italic;
+        }
+
+        /* Button hover effects */
+        .btn-primary {
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(5, 109, 255, 0.4);
+        }
+
+        /* Pattern overlay */
+        .pattern-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L55 30L30 55L5 30L30 5z' fill='none' stroke='white' stroke-width='1' opacity='0.08'/%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
+
+        /* Reading progress bar */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #056DFF;
+            z-index: 100;
+            transition: width 0.1s ease;
+        }
+
+        /* Depreciation chart bars */
+        .bar-animate {
+            transition: width 1s ease-out;
+        }
+
+        /* Footnote styling */
+        .footnote-ref {
+            color: #056DFF;
+            font-size: 0.75rem;
+            vertical-align: super;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footnote-ref:hover {
+            text-decoration: underline;
+        }
+
+        /* Quote block */
+        .pull-quote {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 4px solid #056DFF;
+        }
+
+        /* Sticky TOC highlight */
+        .toc-link {
+            transition: all 0.2s ease;
+        }
+
+        .toc-link.active {
+            color: #056DFF;
+            font-weight: 600;
+        }
+
+        /* Scroll-triggered fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-white text-st-text">
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="reading-progress" style="width: 0%"></div>
+
+    <!-- ============================================
+         SECTION 1: HERO
+         Job: Set the thesis, establish urgency, show reading time
+    ============================================= -->
+    <section class="bg-gradient-to-br from-st-gray-75 to-white">
+        <div class="max-w-4xl mx-auto px-6 py-16 md:py-24">
+            <!-- Category + Reading time -->
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-st-blue/10 text-st-blue text-sm font-semibold">
+                    Thought Leadership
+                </span>
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-st-gray-100 text-st-gray-600 text-sm font-medium">
+                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    8 min read
+                </span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-4xl md:text-5xl lg:text-[56px] font-extrabold text-st-navy leading-[1.1] mb-6">
+                The Skills Half-Life Crisis
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-xl md:text-2xl text-st-gray-600 leading-relaxed mb-8 max-w-3xl">
+                Why your skill taxonomy is depreciating &mdash; and the three questions that turn a static skills map into a living portfolio.
+            </p>
+
+            <!-- Author + Date -->
+            <div class="flex items-center gap-4 pt-6 border-t border-st-gray-200">
+                <div class="w-12 h-12 bg-gradient-to-br from-st-blue to-st-cyan rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">ST</span>
+                </div>
+                <div>
+                    <p class="font-semibold text-st-navy">Studytube Research</p>
+                    <p class="text-sm text-st-gray-600">February 2026 &middot; Roemmele Narrative Harvest Series</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 2: KEY STAT STRIP
+         Job: Anchor the argument with 3 verified data points
+    ============================================= -->
+    <section class="bg-st-navy py-8">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/20">
+                <div class="text-center px-6">
+                    <div class="text-3xl md:text-4xl font-bold text-white mb-1">39%</div>
+                    <p class="text-white/60 text-sm">of skillsets outdated within 5 years</p>
+                    <p class="text-white/30 text-xs mt-1">WEF Future of Jobs 2025</p>
+                </div>
+                <div class="text-center px-6">
+                    <div class="text-3xl md:text-4xl font-bold text-st-cyan mb-1">12x</div>
+                    <p class="text-white/60 text-sm">AI acceleration on complex cognitive tasks</p>
+                    <p class="text-white/30 text-xs mt-1">Anthropic Economic Index, Jan 2026</p>
+                </div>
+                <div class="text-center px-6">
+                    <div class="text-3xl md:text-4xl font-bold text-st-danger mb-1">-20%</div>
+                    <p class="text-white/60 text-sm">skill decline in 90 days of AI-assisted work</p>
+                    <p class="text-white/30 text-xs mt-1">The Lancet, Aug 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3: ARTICLE BODY
+         Job: Deliver the argument — structured, sourced, actionable
+    ============================================= -->
+    <section class="bg-white py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid lg:grid-cols-[1fr_280px] gap-12">
+
+                <!-- Main Article Column -->
+                <article class="article-body max-w-3xl">
+
+                    <!-- HOOK -->
+                    <p class="text-xl leading-relaxed text-st-text">
+                        Your organisation spent eighteen months building a skills taxonomy. You mapped competencies across departments, assigned proficiency levels, created development paths. The spreadsheet is thorough. The board presentation looked sharp. The taxonomy itself? It's a photograph of last year.
+                    </p>
+
+                    <p>
+                        While you were mapping, AI compressed the half-life of execution skills from years to months. The skills your taxonomy values most are the ones losing market value fastest. And nobody's tracking the exchange rate.
+                    </p>
+
+                    <p>
+                        That translates to a development budget that's overexposed to depreciating assets. Not because your team made a mistake, but because the rules changed mid-game.
+                    </p>
+
+                    <!-- THE SNAPSHOT PROBLEM -->
+                    <h2 id="snapshot-problem">The snapshot problem</h2>
+
+                    <p>
+                        Most skills frameworks share the same structural flaw. They're static documents trying to describe a moving target.
+                    </p>
+
+                    <p>
+                        Think about how your organisation builds its skills map. You convene workshops. You gather input from department heads. You align to industry frameworks. You debate whether "stakeholder management" sits under leadership or communication. The result is a taxonomy that accurately captures what your people can do <em>right now</em>.
+                    </p>
+
+                    <p>
+                        The trouble is: "right now" has a shelf life.
+                    </p>
+
+                    <p>
+                        The World Economic Forum estimates that 39% of existing skillsets will be transformed or become outdated within five years.<a href="#fn1" class="footnote-ref">1</a> That's the macro number. For roles with high AI exposure, the window is tighter. Anthropic's Economic Index shows that AI accelerates college-level cognitive tasks by 12x, compared to 9x for simpler work.<a href="#fn2" class="footnote-ref">2</a> Read that again. The more complex the intellectual work, the faster AI compresses it. The skills your most experienced, most expensive people hold are the ones depreciating most aggressively.
+                    </p>
+
+                    <!-- Inline stat callout: Lancet study -->
+                    <div class="bg-st-danger/5 border border-st-danger/10 rounded-2xl p-6 my-8 fade-in">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-14 h-14 bg-st-danger/10 rounded-xl flex items-center justify-center">
+                                <span class="text-st-danger text-2xl font-bold">-20%</span>
+                            </div>
+                            <div>
+                                <p class="text-st-navy font-semibold mb-1">Skill decline in 90 days</p>
+                                <p class="text-st-gray-600 text-sm leading-relaxed">
+                                    A study published in The Lancet found that gastroenterologists' adenoma detection rate dropped from 28% to 22% after just three months of AI-assisted work. A 20% relative skill decline. In ninety days.<a href="#fn3" class="footnote-ref">3</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        Your skills map doesn't show this. It shows proficiency levels from last quarter's assessment. The gap between the map and reality is growing every month.
+                    </p>
+
+                    <!-- NOT ALL SKILLS DEPRECIATE THE SAME WAY -->
+                    <h2 id="depreciation-curve">Not all skills depreciate the same way</h2>
+
+                    <p>
+                        The standard "skills are important" conversation treats all skills as one category. They're not. Skills behave like different asset classes, with different risk profiles and different trajectories under AI pressure.
+                    </p>
+
+                    <!-- Skills Depreciation Framework — Visual -->
+                    <div class="bg-st-gray-75 rounded-3xl p-8 my-10 fade-in">
+                        <h3 class="text-lg font-bold text-st-navy mb-6 text-center">The Skills Depreciation Curve</h3>
+
+                        <!-- Execution Skills -->
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-st-danger"></div>
+                                    <span class="font-semibold text-st-navy">Execution Skills</span>
+                                </div>
+                                <span class="text-sm font-medium text-st-danger">6–18 months</span>
+                            </div>
+                            <div class="w-full bg-st-gray-200 rounded-full h-3">
+                                <div class="bg-st-danger rounded-full h-3 bar-animate" style="width: 85%"></div>
+                            </div>
+                            <p class="text-xs text-st-gray-600 mt-1.5">Report writing, data entry, scheduling, basic analysis</p>
+                        </div>
+
+                        <!-- Application Skills -->
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-st-amber"></div>
+                                    <span class="font-semibold text-st-navy">Application Skills</span>
+                                </div>
+                                <span class="text-sm font-medium text-st-amber">2–4 years</span>
+                            </div>
+                            <div class="w-full bg-st-gray-200 rounded-full h-3">
+                                <div class="bg-st-amber rounded-full h-3 bar-animate" style="width: 50%"></div>
+                            </div>
+                            <p class="text-xs text-st-gray-600 mt-1.5">Project management, process design, technical implementation</p>
+                        </div>
+
+                        <!-- Direction Skills -->
+                        <div class="mb-2">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-st-emerald"></div>
+                                    <span class="font-semibold text-st-navy">Direction Skills</span>
+                                </div>
+                                <span class="text-sm font-medium text-st-emerald">5+ years (appreciating)</span>
+                            </div>
+                            <div class="w-full bg-st-gray-200 rounded-full h-3">
+                                <div class="bg-st-emerald rounded-full h-3 bar-animate" style="width: 15%"></div>
+                            </div>
+                            <p class="text-xs text-st-gray-600 mt-1.5">Strategic judgment, stakeholder navigation, creative synthesis</p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-st-gray-200">
+                            <p class="text-xs text-st-gray-600 text-center">
+                                <span class="font-semibold text-st-navy">Bar = depreciation speed.</span> Longer bar = faster depreciation under AI pressure.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p>
+                        <strong>Execution skills</strong> are tasks where the primary value is getting something done accurately and efficiently. Report writing. Data entry. Content formatting. Scheduling. Basic analysis. These skills had half-lives measured in years. AI is compressing that window to months. For a growing number of these tasks, AI already matches or exceeds trained human performance. Investing heavily in execution skill development is like holding cash in a high-inflation economy. It feels safe. It's losing value every quarter.
+                    </p>
+
+                    <p>
+                        <strong>Application skills</strong> sit in the middle. Project management, process design, system configuration, technical implementation. AI doesn't replace these outright, but it compresses the routine portions. The project manager who spends most of their time on status tracking and reporting will find AI absorbing that work within two years. The strategic half of the role survives. The administrative half doesn't. Call it a half-life of two to four years, and shrinking.
+                    </p>
+
+                    <p>
+                        <strong>Direction skills</strong> are where things get interesting. Strategic judgment. Stakeholder navigation. Ethical reasoning. Creative synthesis. Pattern recognition across domains. These don't depreciate under AI pressure. They appreciate. AI makes direction skills <em>more</em> valuable because it handles the execution layer underneath, freeing the human to focus entirely on the questions that matter: <em>What should we build? For whom? Why?</em>
+                    </p>
+
+                    <!-- Roemmele Quote -->
+                    <div class="pull-quote my-8 fade-in">
+                        <p class="text-xl md:text-2xl text-st-navy font-medium leading-relaxed mb-2">
+                            "The skill of the future is direction and synthesis: it is not execution, the machine executes, you direct."
+                        </p>
+                        <p class="text-sm text-st-gray-600">
+                            — Brian Roemmele, <em>You Have 5000 Days</em><a href="#fn4" class="footnote-ref">4</a>
+                        </p>
+                    </div>
+
+                    <p>
+                        The question for any CHRO: look at your development budget. What percentage goes to execution skills versus direction skills? If most of your spend trains people on tasks that AI will handle within two years, you're overexposed to the fastest-depreciating category.
+                    </p>
+
+                    <!-- THE CATEGORY ERROR -->
+                    <h2 id="category-error">The category error</h2>
+
+                    <p>
+                        This isn't a failure of effort. It's a failure of classification.
+                    </p>
+
+                    <p>
+                        Most organisations invested in skills development without differentiating between asset classes. Every skill got the same treatment: identify the gap, build the training, measure the completion. The logic made sense in a world where skill half-lives were measured in decades, where a competency in financial analysis stayed relevant for an entire career. That world is gone.
+                    </p>
+
+                    <p>The category error shows up in three places.</p>
+
+                    <!-- Three category errors as cards -->
+                    <div class="space-y-4 my-8">
+                        <div class="bg-st-danger/5 border border-st-danger/10 rounded-xl p-5 fade-in">
+                            <p class="font-semibold text-st-navy mb-2">Overinvestment in execution skills</p>
+                            <p class="text-st-gray-600 text-sm leading-relaxed">
+                                These are the easiest to train, certify, and count. "428 employees completed the data analysis module" is a clean metric. It's also a depreciating one. If AI absorbs the majority of standard data analysis by the time you've certified employee number 428, the return on that investment is a fraction of what you projected.
+                            </p>
+                        </div>
+
+                        <div class="bg-st-amber/5 border border-st-amber/10 rounded-xl p-5 fade-in">
+                            <p class="font-semibold text-st-navy mb-2">Underinvestment in direction skills</p>
+                            <p class="text-st-gray-600 text-sm leading-relaxed">
+                                Judgment, synthesis, the ability to read a room and change a strategy on the fly. These are hard to define, harder to train, and uncomfortable to measure. So they get pushed down the priority list. But they're the only skills that gain value as AI gets better.
+                            </p>
+                        </div>
+
+                        <div class="bg-st-blue/5 border border-st-blue/10 rounded-xl p-5 fade-in">
+                            <p class="font-semibold text-st-navy mb-2">Zero investment in learning velocity</p>
+                            <p class="text-st-gray-600 text-sm leading-relaxed">
+                                The speed at which people can pick up new skills, drop old ones, and adapt to changing conditions. It doesn't appear in any taxonomy because it's not a skill in the traditional sense. It's a meta-capability. And it's the only one that's truly inflation-proof.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Roemmele Quote 2 -->
+                    <div class="pull-quote my-8 fade-in">
+                        <p class="text-lg text-st-navy leading-relaxed mb-2">
+                            "De-skilling as elevation — AI compresses the execution phase of work. This allows humans to stop being operators and become directors."
+                        </p>
+                        <p class="text-sm text-st-gray-600">
+                            — Brian Roemmele, <em>You Have 5000 Days: Consider Phlebas</em><a href="#fn5" class="footnote-ref">5</a>
+                        </p>
+                    </div>
+
+                    <p>
+                        That's accurate. But it only works if your development system prepares people for the director role. Right now, most systems are still optimising for operators.
+                    </p>
+
+                    <!-- FROM SKILLS MAP TO TRAJECTORY MAP -->
+                    <h2 id="trajectory-map">From skills map to skills trajectory map</h2>
+
+                    <p>
+                        A traditional skills map answers one question: <em>What can our people do today?</em>
+                    </p>
+
+                    <p>
+                        That's necessary. It's also insufficient. A skills trajectory map adds three more questions.
+                    </p>
+
+                    <!-- Three questions as numbered cards -->
+                    <div class="space-y-6 my-8">
+                        <div class="flex gap-4 fade-in">
+                            <div class="flex-shrink-0 w-10 h-10 bg-st-blue/10 rounded-xl flex items-center justify-center">
+                                <span class="text-st-blue font-bold">1</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-st-navy mb-2">What's the half-life?</h3>
+                                <p class="text-st-gray-600 text-sm leading-relaxed">
+                                    For every skill in your taxonomy, assign a depreciation estimate. <strong>Rapid</strong> (6–18 months): AI handles this now or will soon. <strong>Moderate</strong> (2–5 years): AI is compressing the routine portions. <strong>Durable</strong> (5+ years): AI amplifies rather than replaces this skill. The labels are less important than the exercise. Once you classify your skills by durability, you'll see where the exposure is concentrated.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 fade-in">
+                            <div class="flex-shrink-0 w-10 h-10 bg-st-blue/10 rounded-xl flex items-center justify-center">
+                                <span class="text-st-blue font-bold">2</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-st-navy mb-2">What's the transformation path?</h3>
+                                <p class="text-st-gray-600 text-sm leading-relaxed">
+                                    Skills don't just disappear. They evolve. Report writing becomes narrative strategy. Training delivery becomes learning experience design. Compliance tracking becomes risk pattern recognition. Content production becomes content curation and quality judgment. Map the transformation, not just the loss. This tells your people <em>where they're heading</em>, not just what's fading behind them.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 fade-in">
+                            <div class="flex-shrink-0 w-10 h-10 bg-st-blue/10 rounded-xl flex items-center justify-center">
+                                <span class="text-st-blue font-bold">3</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-st-navy mb-2">How fast is the gap moving?</h3>
+                                <p class="text-st-gray-600 text-sm leading-relaxed">
+                                    A static gap between current skills and required skills is manageable. An <em>accelerating</em> gap is a different problem entirely. If the distance between what your people can do and what the market requires is growing faster each quarter, your standard development approach won't keep pace. You need to track gap velocity, not just gap size.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Anthropic stat inline -->
+                    <div class="bg-st-blue/5 border border-st-blue/10 rounded-2xl p-6 my-8 fade-in">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="flex gap-3">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-st-blue">19h</div>
+                                        <div class="text-xs text-st-gray-600">with human</div>
+                                    </div>
+                                    <div class="text-center text-st-gray-600 self-center">vs</div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-st-gray-600">2h</div>
+                                        <div class="text-xs text-st-gray-600">autonomous</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-st-navy font-semibold mb-1">Gap velocity in action</p>
+                                <p class="text-st-gray-600 text-sm leading-relaxed">
+                                    AI sustains complex tasks for ~19 hours with human direction, vs ~2 hours autonomously. That 19-hour number is the value of human executive function. But the 2-hour number is climbing every quarter. That's velocity.<a href="#fn2" class="footnote-ref">2</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THE BOARD CONVERSATION -->
+                    <h2 id="board-conversation">The board conversation nobody is having</h2>
+
+                    <p>
+                        Most CHROs report to the board about skills like this:
+                    </p>
+
+                    <!-- Before/After board comparison -->
+                    <div class="grid md:grid-cols-2 gap-4 my-8">
+                        <div class="bg-st-gray-75 rounded-xl p-6 border-2 border-st-gray-200 fade-in">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-6 h-6 bg-st-gray-200 rounded-full flex items-center justify-center">
+                                    <svg class="w-3.5 h-3.5 text-st-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-semibold text-st-gray-600 uppercase tracking-wider">Static view</span>
+                            </div>
+                            <p class="text-st-gray-600 text-sm leading-relaxed italic">
+                                "We've mapped 340 skills across 12 departments. 78% of our workforce is at or above proficiency level. We're investing in closing the remaining gaps."
+                            </p>
+                        </div>
+
+                        <div class="bg-st-blue/5 rounded-xl p-6 border-2 border-st-blue/20 fade-in">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-6 h-6 bg-st-blue/20 rounded-full flex items-center justify-center">
+                                    <svg class="w-3.5 h-3.5 text-st-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-semibold text-st-blue uppercase tracking-wider">Trajectory view</span>
+                            </div>
+                            <p class="text-st-navy text-sm leading-relaxed italic">
+                                "45% of our taxonomy falls in the rapid-depreciation zone. We've redirected 30% of investment from execution training toward direction skills. Gap velocity is decelerating for the first time in three quarters."
+                            </p>
+                        </div>
+                    </div>
+
+                    <p>
+                        The difference isn't cosmetic. The first version treats skills as a stockroom to fill. The second treats them as a portfolio to manage. CFOs understand portfolios. They understand depreciation. They understand rebalancing. This is how L&D earns the language of the boardroom: not by learning to talk about "strategic alignment," but by actually managing human capital the way the business manages every other asset.
+                    </p>
+
+                    <!-- WHAT TO DO THIS QUARTER -->
+                    <h2 id="action-plan">What to do this quarter</h2>
+
+                    <p>
+                        None of this requires a new platform or a twelve-month programme.
+                    </p>
+
+                    <!-- Action items -->
+                    <div class="bg-st-gray-75 rounded-3xl p-8 my-8 fade-in">
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-blue rounded-xl flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">01</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-st-navy mb-1">Audit the portfolio</h3>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        Sort every skill into three buckets: execution, application, direction. Calculate what percentage of your development budget goes to each. If execution skills dominate the spend, you're overexposed. Start the rebalance.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-blue rounded-xl flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">02</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-st-navy mb-1">Add a depreciation review to your quarterly cadence</h3>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        Every quarter, ask: which skills have lost market value since the last review? Which have gained? This is the skills equivalent of an impairment test. Every company does this for financial assets. Almost none do it for human capital.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-blue rounded-xl flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">03</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-st-navy mb-1">Invest in learning velocity</h3>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        Build learning systems that reward adaptation, not accumulation. Measure how fast people can ramp into new skill areas, not just whether they completed a module.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Roemmele Quote 3 -->
+                    <div class="pull-quote my-8 fade-in">
+                        <p class="text-lg text-st-navy leading-relaxed mb-2">
+                            "Those who start marshaling AI now will be so far ahead in five years it won't even be funny. Their skills will compound."
+                        </p>
+                        <p class="text-sm text-st-gray-600">
+                            — Brian Roemmele, <em>You Have 5000 Days: Everyone Is Doing It</em><a href="#fn6" class="footnote-ref">6</a>
+                        </p>
+                    </div>
+
+                    <p>
+                        He's right. But the compounding only works if you're compounding the right asset class. Direction skills compound. Execution skills depreciate. The difference matters.
+                    </p>
+
+                    <!-- CLOSE -->
+                    <h2 id="currency">The currency still holds</h2>
+
+                    <p>
+                        Skills are still the currency of adaptation. That hasn't changed. What's changed is the exchange rate.
+                    </p>
+
+                    <p>
+                        Some skills are inflating. Some are appreciating. The organisations that can tell the difference, and invest accordingly, build the only advantage that holds. Your skills map isn't wrong. It's incomplete. Add the trajectory layer. Track the depreciation. Rebalance the portfolio.
+                    </p>
+
+                    <p>
+                        Stop measuring what your people know today. Start measuring how fast they can learn what matters tomorrow.
+                    </p>
+
+                    <!-- Closing one-liner -->
+                    <div class="bg-st-navy rounded-2xl px-8 py-6 my-10 fade-in">
+                        <p class="text-xl md:text-2xl text-white font-medium leading-relaxed text-center">
+                            A skills map without a depreciation layer is a balance sheet without liabilities. It looks healthy until the audit.
+                        </p>
+                    </div>
+
+                    <!-- REFERENCES -->
+                    <div class="border-t border-st-gray-200 pt-8 mt-12">
+                        <h3 class="text-lg font-bold text-st-navy mb-4">References</h3>
+                        <ol class="space-y-3 text-sm text-st-gray-600 leading-relaxed">
+                            <li id="fn1">
+                                <span class="text-st-blue font-semibold">1.</span> World Economic Forum. <em>Future of Jobs Report 2025.</em> 39% of existing skillsets will be transformed or become outdated within 5 years. Via: <a href="https://techcommunity.microsoft.com/blog/microsoftvivablog/research-drop-investing-in-training-opportunities-to-close-the-ai-skills-gap/4389566" target="_blank" class="text-st-blue hover:underline">Microsoft Tech Community</a>
+                            </li>
+                            <li id="fn2">
+                                <span class="text-st-blue font-semibold">2.</span> Anthropic. <em>The Anthropic Economic Index.</em> January 15, 2026. 12x speed factor for college-level tasks, 9x for high-school-level tasks. AI sustains complex tasks for ~19 hours with human direction vs ~2 hours autonomously. <a href="https://www-cdn.anthropic.com/096d94c1a91c6480806d8f24b2344c7e2a4bc666.pdf" target="_blank" class="text-st-blue hover:underline">Source (PDF)</a>
+                            </li>
+                            <li id="fn3">
+                                <span class="text-st-blue font-semibold">3.</span> De Groof, J. et al. "Effect of computer-aided detection of adenomas on adenoma detection during colonoscopy." <em>The Lancet Gastroenterology & Hepatology</em>, August 2025. ADR dropped from 28% to 22% (20% relative decline) after 3 months. Via: <a href="https://time.com/7309274/ai-lancet-study-artificial-intelligence-colonoscopy-cancer-detection-medicine-deskilling/" target="_blank" class="text-st-blue hover:underline">TIME</a>
+                            </li>
+                            <li id="fn4">
+                                <span class="text-st-blue font-semibold">4.</span> Brian Roemmele. "You Have 5000 Days: Part 5 — Your Deskilling." <em>ReadMultiplex</em>, January 20, 2026. <a href="https://readmultiplex.com/2026/01/20/you-have-5000-days-navigating-the-end-of-work-as-we-know-it-part-5-your-deskilling/" target="_blank" class="text-st-blue hover:underline">readmultiplex.com</a>
+                            </li>
+                            <li id="fn5">
+                                <span class="text-st-blue font-semibold">5.</span> Brian Roemmele. "You Have 5000 Days: Part 7 — Consider Phlebas." <em>ReadMultiplex</em>, January 2026. <a href="https://readmultiplex.com" target="_blank" class="text-st-blue hover:underline">readmultiplex.com</a>
+                            </li>
+                            <li id="fn6">
+                                <span class="text-st-blue font-semibold">6.</span> Brian Roemmele. "You Have 5000 Days: Part 10 — Everyone Is Doing It." <em>ReadMultiplex</em>, February 7, 2026. <a href="https://readmultiplex.com" target="_blank" class="text-st-blue hover:underline">readmultiplex.com</a>
+                            </li>
+                        </ol>
+                    </div>
+
+                </article>
+
+                <!-- Sidebar: Table of Contents -->
+                <aside class="hidden lg:block">
+                    <div class="sticky top-8">
+                        <p class="text-xs text-st-gray-600 uppercase tracking-wider font-semibold mb-4">In this article</p>
+                        <nav class="space-y-2">
+                            <a href="#snapshot-problem" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">The snapshot problem</a>
+                            <a href="#depreciation-curve" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">The depreciation curve</a>
+                            <a href="#category-error" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">The category error</a>
+                            <a href="#trajectory-map" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">Skills trajectory map</a>
+                            <a href="#board-conversation" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">The board conversation</a>
+                            <a href="#action-plan" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">What to do this quarter</a>
+                        </nav>
+
+                        <!-- Mini CTA in sidebar -->
+                        <div class="mt-8 p-5 bg-st-blue/5 rounded-xl border border-st-blue/10">
+                            <p class="text-sm font-semibold text-st-navy mb-2">Which of your skills are depreciating?</p>
+                            <p class="text-xs text-st-gray-600 mb-3">The L&D Impact Scan includes a skills trajectory assessment.</p>
+                            <a href="#cta" class="inline-flex items-center text-sm text-st-blue font-semibold hover:underline">
+                                Get your scan
+                                <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- Series indicator -->
+                        <div class="mt-6 p-5 bg-st-gray-75 rounded-xl">
+                            <p class="text-xs text-st-gray-600 uppercase tracking-wider font-semibold mb-3">Roemmele Harvest Series</p>
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 bg-st-blue rounded-full flex items-center justify-center">
+                                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-xs text-st-navy font-medium">Skills Half-Life Crisis</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 bg-st-gray-200 rounded-full flex items-center justify-center">
+                                        <span class="text-[10px] text-st-gray-600 font-bold">2</span>
+                                    </div>
+                                    <span class="text-xs text-st-gray-600">The Meta-Skill Currency</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 bg-st-gray-200 rounded-full flex items-center justify-center">
+                                        <span class="text-[10px] text-st-gray-600 font-bold">3</span>
+                                    </div>
+                                    <span class="text-xs text-st-gray-600">The Operator-to-Director Shift</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 4: NEXT IN SERIES
+         Job: Bridge to the next piece in the track
+    ============================================= -->
+    <section class="bg-st-gray-75 py-12">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-st-gray-100 flex flex-col md:flex-row items-center gap-6">
+                <div class="flex-shrink-0 w-16 h-16 bg-st-blue/10 rounded-2xl flex items-center justify-center">
+                    <svg class="w-8 h-8 text-st-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-sm text-st-gray-600 uppercase tracking-wider font-semibold mb-1">Next in the series</p>
+                    <p class="text-lg text-st-navy font-bold mb-1">The Meta-Skill Currency</p>
+                    <p class="text-st-gray-600 text-sm">If execution skills depreciate and direction skills compound, there's a category above both. We call them meta-skills. The currency that doesn't depreciate. Ever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 5: CTA
+         Job: Convert awareness into scan request
+    ============================================= -->
+    <section class="bg-st-navy pattern-overlay py-16 md:py-24" id="cta">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                Which of your skills are appreciating?<br>
+                Which are depreciating?
+            </h2>
+            <p class="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
+                The L&D Impact Scan includes a skills trajectory assessment. Not just where your organisation stands, but where it's heading.
+            </p>
+
+            <a href="#" class="btn-primary inline-flex items-center justify-center px-8 py-4 bg-white text-st-navy font-semibold rounded-xl text-lg">
+                Request your free scan
+                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+
+            <div class="flex flex-wrap justify-center gap-6 mt-6">
+                <div class="flex items-center gap-2 text-white/60">
+                    <svg class="w-5 h-5 text-st-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm">15 minutes</span>
+                </div>
+                <div class="flex items-center gap-2 text-white/60">
+                    <svg class="w-5 h-5 text-st-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm">Free</span>
+                </div>
+                <div class="flex items-center gap-2 text-white/60">
+                    <svg class="w-5 h-5 text-st-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm">No commitment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 6: FOOTER
+         Job: Professional legitimacy
+    ============================================= -->
+    <footer class="bg-st-navy border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Logo & Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-st-blue font-bold text-lg">S</span>
+                        </div>
+                        <span class="text-white font-bold text-xl">Studytube</span>
+                    </div>
+                    <p class="text-white/60 leading-relaxed max-w-sm">
+                        The learning platform that helps organisations develop talent from within. Trusted by 400+ companies in the Netherlands and DACH region.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Platform</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Skills Development</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Compliance Training</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Onboarding</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Analytics</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">L&D Impact Scan</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Blog</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Webinars</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-white text-sm">Request a Demo</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-sm">
+                    &copy; 2026 Studytube. All rights reserved.
+                </p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-white/40 hover:text-white text-sm">Privacy</a>
+                    <a href="#" class="text-white/40 hover:text-white text-sm">Terms</a>
+                    <a href="#" class="text-white/40 hover:text-white text-sm">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / docHeight) * 100;
+            document.getElementById('reading-progress').style.width = progress + '%';
+        });
+
+        // Scroll-triggered fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Active TOC highlighting
+        const sections = document.querySelectorAll('h2[id]');
+        const tocLinks = document.querySelectorAll('.toc-link');
+
+        const tocObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(link => link.classList.remove('active'));
+                    const activeLink = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+                    if (activeLink) activeLink.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0,
+            rootMargin: '-20% 0px -70% 0px'
+        });
+
+        sections.forEach(section => tocObserver.observe(section));
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C-Level Validation Interview Framework | Studytube</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --blue-500: #056DFF;
+      --blue-900: #11295A;
+      --blue-100: #E8F1FF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-600: #475569;
+      --gray-900: #0F172A;
+      --green-500: #22C55E;
+      --green-100: #DCFCE7;
+      --yellow-500: #EAB308;
+      --yellow-100: #FEF9C3;
+      --red-500: #EF4444;
+      --red-100: #FEE2E2;
+      --purple-500: #8B5CF6;
+      --purple-100: #EDE9FE;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--blue-900);
+      line-height: 1.6;
+      background: var(--gray-50);
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--blue-900) 0%, #1E3A5F 100%);
+      color: white;
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .header p {
+      font-size: 18px;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    section {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--blue-500);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .intro {
+      font-size: 16px;
+      color: var(--gray-600);
+      margin-bottom: 24px;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid var(--gray-200);
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--blue-500);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--gray-600);
+      font-weight: 500;
+    }
+
+    /* Selection Process */
+    .process-flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .process-step {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--gray-200);
+      position: relative;
+    }
+
+    .process-step::after {
+      content: '→';
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: var(--blue-500);
+    }
+
+    .process-step:last-child::after {
+      content: none;
+    }
+
+    .process-step .step-num {
+      width: 32px;
+      height: 32px;
+      background: var(--blue-100);
+      color: var(--blue-500);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .process-step h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .process-step p {
+      font-size: 12px;
+      color: var(--gray-600);
+    }
+
+    /* Validation Areas */
+    .validation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .validation-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--gray-200);
+    }
+
+    .validation-card.low-confidence {
+      border-left: 4px solid var(--red-500);
+    }
+
+    .validation-card.medium-confidence {
+      border-left: 4px solid var(--yellow-500);
+    }
+
+    .validation-card.high-confidence {
+      border-left: 4px solid var(--green-500);
+    }
+
+    .validation-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--blue-500);
+      margin-bottom: 8px;
+    }
+
+    .validation-card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .validation-card p {
+      font-size: 13px;
+      color: var(--gray-600);
+      margin-bottom: 12px;
+    }
+
+    .confidence-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .confidence-badge.low {
+      background: var(--red-100);
+      color: var(--red-500);
+    }
+
+    .confidence-badge.medium {
+      background: var(--yellow-100);
+      color: var(--yellow-500);
+    }
+
+    .confidence-badge.high {
+      background: var(--green-100);
+      color: var(--green-500);
+    }
+
+    /* Questions Section */
+    .questions-section {
+      background: white;
+      border-radius: 12px;
+      padding: 28px;
+      border: 1px solid var(--gray-200);
+      margin-bottom: 24px;
+    }
+
+    .question-category {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .question-category:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .category-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--blue-100);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .category-title {
+      flex: 1;
+    }
+
+    .category-title h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .category-title span {
+      font-size: 12px;
+      color: var(--gray-600);
+    }
+
+    .questions-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .questions-list li {
+      padding: 12px 16px;
+      background: var(--gray-50);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      position: relative;
+      padding-left: 36px;
+    }
+
+    .questions-list li::before {
+      content: '?';
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      width: 18px;
+      height: 18px;
+      background: var(--purple-100);
+      color: var(--purple-500);
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .questions-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* What We Validate */
+    .validate-box {
+      background: var(--blue-100);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 16px;
+    }
+
+    .validate-box h5 {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue-900);
+      margin-bottom: 4px;
+    }
+
+    .validate-box p {
+      font-size: 12px;
+      color: var(--gray-600);
+      margin: 0;
+    }
+
+    /* Target Personas */
+    .personas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .persona-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--gray-200);
+    }
+
+    .persona-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .persona-card .role {
+      font-size: 13px;
+      color: var(--gray-600);
+      margin-bottom: 12px;
+    }
+
+    .criteria-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .criteria-list li {
+      font-size: 13px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .criteria-list li:last-child {
+      border-bottom: none;
+    }
+
+    .criteria-list li::before {
+      content: '✓';
+      color: var(--green-500);
+      font-weight: 600;
+    }
+
+    /* Confidence Matrix */
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+    }
+
+    .matrix-table th {
+      background: var(--blue-900);
+      color: white;
+      padding: 16px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .matrix-table td {
+      padding: 16px;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 14px;
+    }
+
+    .matrix-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .matrix-table tr:hover td {
+      background: var(--gray-50);
+    }
+
+    /* C-Level Extension */
+    .extension-box {
+      background: linear-gradient(135deg, var(--purple-100) 0%, #DDD6FE 100%);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .extension-box h3 {
+      color: var(--purple-500);
+      margin-bottom: 16px;
+    }
+
+    .extension-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .extension-item {
+      background: white;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .extension-item::before {
+      content: '◆';
+      color: var(--purple-500);
+      font-size: 10px;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--gray-200);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 24px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -26px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      background: var(--blue-500);
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--blue-500);
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-week {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue-500);
+      margin-bottom: 4px;
+    }
+
+    .timeline-item h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .timeline-item p {
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--blue-900);
+      color: white;
+      text-align: center;
+      padding: 32px;
+    }
+
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .footer p {
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-flow { grid-template-columns: 1fr; }
+      .process-step::after { content: none; }
+      .validation-grid { grid-template-columns: 1fr; }
+      .personas-grid { grid-template-columns: 1fr; }
+      .extension-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <span class="header-badge">CUSTOMER VALIDATION RESEARCH</span>
+    <h1>C-Level Interview Validation Framework</h1>
+    <p>Full Funnel B2B + Jobs-to-be-Done methodology to validate assumptions before H1 2026 campaign planning</p>
+  </header>
+
+  <div class="container">
+
+    <!-- FRAMEWORK STATS -->
+    <section>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">60</div>
+          <div class="stat-label">Interview Questions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">18</div>
+          <div class="stat-label">Question Sections</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">9</div>
+          <div class="stat-label">Validation Areas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">81</div>
+          <div class="stat-label">Total Checkpoints</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELECTION PROCESS -->
+    <section>
+      <div class="section-title">Selection Process</div>
+      <h2>Interview Candidate Criteria</h2>
+      <p class="intro">Selecting the right interviewees ensures we validate with people who match our ICP and can provide strategic insights.</p>
+
+      <div class="process-flow">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <h4>Define Criteria</h4>
+          <p>Match to ICP: SME 50-250 FTE, manufacturing/professional services, NL-based</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <h4>Source Candidates</h4>
+          <p>Existing customers, lost deals, network referrals, SLIM prospects</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <h4>Screen & Qualify</h4>
+          <p>Decision-making authority, recent L&D investment, willing to share</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <h4>Schedule Interview</h4>
+          <p>45-60 min slots, video preferred, consent for recording</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">5</div>
+          <h4>Conduct & Analyze</h4>
+          <p>Follow framework, capture verbatim quotes, map to validation areas</p>
+        </div>
+      </div>
+
+      <!-- Target Personas -->
+      <div class="personas-grid">
+        <div class="persona-card">
+          <h4>DGA / CEO (SME)</h4>
+          <div class="role">Top-Down Track Target</div>
+          <ul class="criteria-list">
+            <li>50-250 FTE company size</li>
+            <li>Manufacturing, construction, or professional services</li>
+            <li>Active SLIM subsidy interest</li>
+            <li>Feels AI/skills pressure</li>
+            <li>Final budget authority for L&D</li>
+          </ul>
+        </div>
+        <div class="persona-card">
+          <h4>L&D Manager / HR Director</h4>
+          <div class="role">Bottom-Up Track Target</div>
+          <ul class="criteria-list">
+            <li>Owns learning strategy internally</li>
+            <li>Reports to C-suite on L&D outcomes</li>
+            <li>Evaluated current/past LMS solutions</li>
+            <li>Struggles with proving ROI</li>
+            <li>Wants strategic seat at table</li>
+          </ul>
+        </div>
+        <div class="persona-card">
+          <h4>CFO / Finance Director</h4>
+          <div class="role">Budget Holder Target</div>
+          <ul class="criteria-list">
+            <li>Signs off on L&D investments</li>
+            <li>Skeptical of L&D ROI claims</li>
+            <li>Interested in SLIM funding angle</li>
+            <li>Needs measurable business outcomes</li>
+            <li>Risk-focused decision maker</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 VALIDATION AREAS -->
+    <section>
+      <div class="section-title">What We Validate</div>
+      <h2>9 Core Validation Areas</h2>
+      <p class="intro">Each area has assigned confidence levels based on current evidence. Lower confidence = higher interview priority.</p>
+
+      <div class="validation-grid">
+        <div class="validation-card low-confidence">
+          <div class="validation-num">AREA 1</div>
+          <h4>ICP Assumptions</h4>
+          <p>Are we targeting the right companies? Do firmographics match buying behavior?</p>
+          <span class="confidence-badge medium">Medium Confidence</span>
+        </div>
+
+        <div class="validation-card low-confidence">
+          <div class="validation-num">AREA 2</div>
+          <h4>Persona Profiles</h4>
+          <p>Do our persona models reflect real decision-makers? What drives their choices?</p>
+          <span class="confidence-badge medium">Medium Confidence</span>
+        </div>
+
+        <div class="validation-card medium-confidence">
+          <div class="validation-num">AREA 3</div>
+          <h4>Value Propositions (Fletch)</h4>
+          <p>Do our pain-to-feature mappings resonate? Is severity accurately scored?</p>
+          <span class="confidence-badge medium">Medium Confidence</span>
+        </div>
+
+        <div class="validation-card low-confidence">
+          <div class="validation-num">AREA 4</div>
+          <h4>Psychographic Insights</h4>
+          <p>Are the 5 emotional fractures real? Do they drive actual behavior?</p>
+          <span class="confidence-badge low">Very Low Confidence</span>
+        </div>
+
+        <div class="validation-card medium-confidence">
+          <div class="validation-num">AREA 5</div>
+          <h4>Content-to-Stage Matching</h4>
+          <p>Is our bowtie mapping accurate? Does content move people through stages?</p>
+          <span class="confidence-badge low">Low Confidence</span>
+        </div>
+
+        <div class="validation-card low-confidence">
+          <div class="validation-num">AREA 6</div>
+          <h4>Buyer Journey Behaviors</h4>
+          <p>How do they actually search? Google vs AI tools? Who influences decisions?</p>
+          <span class="confidence-badge low">Very Low Confidence</span>
+        </div>
+
+        <div class="validation-card medium-confidence">
+          <div class="validation-num">AREA 7</div>
+          <h4>Differentiation Positioning</h4>
+          <p>Do prospects understand how we differ? What comparisons do they make?</p>
+          <span class="confidence-badge medium">Medium Confidence</span>
+        </div>
+
+        <div class="validation-card high-confidence">
+          <div class="validation-num">AREA 8</div>
+          <h4>C-Level Thought Leadership</h4>
+          <p>Do POVs resonate with executives? What themes capture their attention?</p>
+          <span class="confidence-badge medium">Medium Confidence</span>
+        </div>
+
+        <div class="validation-card high-confidence">
+          <div class="validation-num">AREA 9</div>
+          <h4>Case Study Optimization</h4>
+          <p>What proof points matter most? Which transformation stories resonate?</p>
+          <span class="confidence-badge high">High Confidence</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERVIEW QUESTIONS -->
+    <section>
+      <div class="section-title">Interview Guide</div>
+      <h2>Core Question Categories</h2>
+      <p class="intro">Questions organized by validation area. Each category maps to specific assumptions we need to validate.</p>
+
+      <div class="questions-section">
+
+        <!-- ICP & Persona Questions -->
+        <div class="question-category">
+          <div class="category-header">
+            <div class="category-icon">1</div>
+            <div class="category-title">
+              <h4>ICP & Persona Validation</h4>
+              <span>Areas 1-2 | 8 questions</span>
+            </div>
+          </div>
+          <ul class="questions-list">
+            <li>Walk me through your role in learning decisions at your organization. Who else is involved?</li>
+            <li>How does your company currently approach employee development? What triggers investment?</li>
+            <li>When you think about L&D vendors, what's the first thing that comes to mind?</li>
+            <li>What's the biggest frustration you have with your current learning setup?</li>
+          </ul>
+          <div class="validate-box">
+            <h5>What We Validate</h5>
+            <p>Decision-making structure, buying committee composition, current pain awareness, vendor perception frame</p>
+          </div>
+        </div>
+
+        <!-- Value Proposition Questions -->
+        <div class="question-category">
+          <div class="category-header">
+            <div class="category-icon">2</div>
+            <div class="category-title">
+              <h4>Value Proposition Testing</h4>
+              <span>Area 3 | 10 questions</span>
+            </div>
+          </div>
+          <ul class="questions-list">
+            <li>If you could wave a magic wand and fix one thing about L&D in your organization, what would it be?</li>
+            <li>When L&D comes up in leadership meetings, what's the tone? Positive, skeptical, indifferent?</li>
+            <li>How do you currently measure whether learning investments are paying off?</li>
+            <li>"Learning only matters if it drives measurable business impact." Agree or disagree? Why?</li>
+            <li>What would make you confident that L&D is actually moving the needle on performance?</li>
+          </ul>
+          <div class="validate-box">
+            <h5>What We Validate</h5>
+            <p>Pain severity ranking, POV resonance (especially POV 1: Impact), measurement maturity, executive perception of L&D value</p>
+          </div>
+        </div>
+
+        <!-- Psychographic Questions -->
+        <div class="question-category">
+          <div class="category-header">
+            <div class="category-icon">3</div>
+            <div class="category-title">
+              <h4>Emotional Fractures Deep Dive</h4>
+              <span>Area 4 | 12 questions</span>
+            </div>
+          </div>
+          <ul class="questions-list">
+            <li>Tell me about a time you felt your L&D function wasn't getting the respect it deserves.</li>
+            <li>What keeps you up at night about your organization's ability to compete in 3-5 years?</li>
+            <li>How do you feel when you see competitors investing heavily in talent development?</li>
+            <li>Describe the gap between where you want L&D to be and where it is today.</li>
+            <li>When AI tools come up in conversations, what's your honest reaction?</li>
+          </ul>
+          <div class="validate-box">
+            <h5>What We Validate</h5>
+            <p>5 emotional fractures: strategic invisibility, competitive anxiety, skills gap fear, transformation fatigue, AI disruption pressure</p>
+          </div>
+        </div>
+
+        <!-- Buyer Journey Questions -->
+        <div class="question-category">
+          <div class="category-header">
+            <div class="category-icon">4</div>
+            <div class="category-title">
+              <h4>Buyer Journey Mapping</h4>
+              <span>Areas 5-6 | 10 questions</span>
+            </div>
+          </div>
+          <ul class="questions-list">
+            <li>When you first started researching L&D solutions, where did you look?</li>
+            <li>Do you ever use AI tools like ChatGPT to research business solutions? How?</li>
+            <li>What content or resources influenced your thinking before talking to vendors?</li>
+            <li>Walk me through a recent learning tech purchase from first awareness to decision.</li>
+            <li>Who in your organization would need to say yes before signing a contract?</li>
+          </ul>
+          <div class="validate-box">
+            <h5>What We Validate</h5>
+            <p>Search behavior (Google vs AI), content influence by stage, buying committee roles, decision timeline, information sources trusted</p>
+          </div>
+        </div>
+
+        <!-- Differentiation Questions -->
+        <div class="question-category">
+          <div class="category-header">
+            <div class="category-icon">5</div>
+            <div class="category-title">
+              <h4>Competitive Positioning</h4>
+              <span>Area 7 | 8 questions</span>
+            </div>
+          </div>
+          <ul class="questions-list">
+            <li>Which vendors did you consider or compare? What stood out about each?</li>
+            <li>What would make one LMS/LXP vendor clearly better than another in your eyes?</li>
+            <li>Have you heard of Studytube? What's your impression?</li>
+            <li>If I said "Studytube is the X of Y," what would X and Y be for you?</li>
+          </ul>
+          <div class="validate-box">
+            <h5>What We Validate</h5>
+            <p>Competitive frame, differentiation clarity, category association, perceived positioning vs actual positioning</p>
+          </div>
+        </div>
+
+        <!-- C-Level Thought Leadership -->
+        <div class="question-category">
+          <div class="category-header">
+            <div class="category-icon">6</div>
+            <div class="category-title">
+              <h4>C-Level Resonance Testing</h4>
+              <span>Area 8 | 8 questions</span>
+            </div>
+          </div>
+          <ul class="questions-list">
+            <li>"Learning is the only sustainable competitive moat." How does that land with you?</li>
+            <li>What thought leadership content (podcasts, articles, events) do you consume around L&D?</li>
+            <li>If you could have a CEO roundtable on one L&D topic, what would it be?</li>
+            <li>What would make you share an article about learning with your board or leadership team?</li>
+          </ul>
+          <div class="validate-box">
+            <h5>What We Validate</h5>
+            <p>POV resonance at executive level, content format preferences, topics that earn attention, sharing triggers</p>
+          </div>
+        </div>
+
+        <!-- Case Study Questions -->
+        <div class="question-category">
+          <div class="category-header">
+            <div class="category-icon">7</div>
+            <div class="category-title">
+              <h4>Proof Point Preferences</h4>
+              <span>Area 9 | 4 questions</span>
+            </div>
+          </div>
+          <ul class="questions-list">
+            <li>What kind of proof would convince you that an L&D investment was worth it?</li>
+            <li>When you read customer stories, what makes one credible and another feel like marketing?</li>
+            <li>What metrics would your CFO need to see before approving a significant L&D investment?</li>
+            <li>Who would you want to talk to (peer reference) before making a vendor decision?</li>
+          </ul>
+          <div class="validate-box">
+            <h5>What We Validate</h5>
+            <p>Proof point hierarchy, credibility markers, metric expectations, peer influence weight</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- C-LEVEL EXTENSION -->
+    <section>
+      <div class="section-title">Extension Module</div>
+      <h2>C-Level Thought Leadership Extension</h2>
+      <p class="intro">Additional elements to validate specifically for executive-targeted content strategy.</p>
+
+      <div class="extension-box">
+        <h3>14 Elements to Validate</h3>
+        <div class="extension-grid">
+          <div class="extension-item">POV 1 resonance: "Learning drives impact, not boxes"</div>
+          <div class="extension-item">POV 2 resonance: "Ownership + Manager Guidance"</div>
+          <div class="extension-item">POV 3 resonance: "Skills as currency of adaptation"</div>
+          <div class="extension-item">POV 4 resonance: "Entrepreneurial L&D"</div>
+          <div class="extension-item">Meta-theme: "Learning is the Only Moat"</div>
+          <div class="extension-item">AI disruption narrative strength</div>
+          <div class="extension-item">Executive content format preferences</div>
+          <div class="extension-item">Peer influence and reference networks</div>
+          <div class="extension-item">LinkedIn thought leadership engagement</div>
+          <div class="extension-item">Event/roundtable topic interest</div>
+          <div class="extension-item">CFO financial framing preferences</div>
+          <div class="extension-item">Board-level L&D conversation topics</div>
+          <div class="extension-item">Industry vertical specific pain points</div>
+          <div class="extension-item">SLIM subsidy awareness and interest</div>
+        </div>
+      </div>
+
+      <div class="extension-box" style="background: linear-gradient(135deg, var(--green-100) 0%, #BBF7D0 100%);">
+        <h3 style="color: var(--green-500);">Case Study Optimization Extension</h3>
+        <div class="extension-grid">
+          <div class="extension-item">Transformation story structure preferences</div>
+          <div class="extension-item">Quote authenticity markers</div>
+          <div class="extension-item">Metric specificity expectations</div>
+          <div class="extension-item">Industry similarity requirements</div>
+          <div class="extension-item">Company size matching preferences</div>
+          <div class="extension-item">Timeline/speed expectations</div>
+          <div class="extension-item">Implementation reality checks</div>
+          <div class="extension-item">ROI calculation credibility</div>
+          <div class="extension-item">Named contact preference (yes/no)</div>
+          <div class="extension-item">Video vs written preference</div>
+          <div class="extension-item">Length/depth preferences</div>
+          <div class="extension-item">Distribution channel preferences</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONFIDENCE MATRIX -->
+    <section>
+      <div class="section-title">Current State</div>
+      <h2>Confidence Level Matrix</h2>
+      <p class="intro">Current confidence in our assumptions. Lower confidence = higher validation priority.</p>
+
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Current Confidence</th>
+            <th>Evidence Base</th>
+            <th>Interview Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ICP Assumptions</td>
+            <td><span class="confidence-badge medium">Medium</span></td>
+            <td>Sales data, market research</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>Persona Profiles</td>
+            <td><span class="confidence-badge medium">Medium</span></td>
+            <td>Internal assumptions, limited validation</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td>Value Propositions</td>
+            <td><span class="confidence-badge medium">Medium</span></td>
+            <td>Fletch framework, competitive analysis</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td>Psychographic Insights</td>
+            <td><span class="confidence-badge low">Very Low</span></td>
+            <td>Theoretical model only</td>
+            <td>Critical</td>
+          </tr>
+          <tr>
+            <td>Content-Stage Matching</td>
+            <td><span class="confidence-badge low">Low</span></td>
+            <td>Bowtie model assumption</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td>Buyer Journey</td>
+            <td><span class="confidence-badge low">Very Low</span></td>
+            <td>Limited search behavior data</td>
+            <td>Critical</td>
+          </tr>
+          <tr>
+            <td>Differentiation</td>
+            <td><span class="confidence-badge medium">Medium</span></td>
+            <td>Competitive battlecards</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td>C-Level Thought Leadership</td>
+            <td><span class="confidence-badge medium">Medium</span></td>
+            <td>POV framework, limited testing</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td>Case Study Optimization</td>
+            <td><span class="confidence-badge high">High</span></td>
+            <td>Existing customer feedback</td>
+            <td>Low</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- CRITICAL UNKNOWN -->
+    <section>
+      <div style="background: linear-gradient(135deg, var(--red-100) 0%, #FECACA 100%); border-radius: 16px; padding: 32px; text-align: center;">
+        <h3 style="color: var(--red-500); margin-bottom: 12px;">Critical Unknown to Resolve</h3>
+        <p style="font-size: 20px; font-weight: 600; color: var(--gray-900); margin-bottom: 8px;">
+          "Do L&D leaders actually use Google search versus AI search tools?"
+        </p>
+        <p style="font-size: 14px; color: var(--gray-600); max-width: 600px; margin: 0 auto;">
+          This could significantly impact SEO investment strategy. If target audience is shifting to AI tools for research, our content distribution strategy needs fundamental rethinking.
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILLS INTEGRATION -->
+    <section>
+      <div class="section-title">Skills Updates</div>
+      <h2>Post-Interview Skill Updates</h2>
+      <p class="intro">Interview findings will update these 8 Studytube skills:</p>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+        <div style="background: white; border-radius: 8px; padding: 16px; border: 1px solid var(--gray-200); text-align: center;">
+          <div style="font-size: 13px; font-weight: 600;">@studytube-icp-research</div>
+        </div>
+        <div style="background: white; border-radius: 8px; padding: 16px; border: 1px solid var(--gray-200); text-align: center;">
+          <div style="font-size: 13px; font-weight: 600;">@studytube-audience-diver</div>
+        </div>
+        <div style="background: white; border-radius: 8px; padding: 16px; border: 1px solid var(--gray-200); text-align: center;">
+          <div style="font-size: 13px; font-weight: 600;">@studytube-value-prop</div>
+        </div>
+        <div style="background: white; border-radius: 8px; padding: 16px; border: 1px solid var(--gray-200); text-align: center;">
+          <div style="font-size: 13px; font-weight: 600;">@studytube-case-study</div>
+        </div>
+        <div style="background: white; border-radius: 8px; padding: 16px; border: 1px solid var(--gray-200); text-align: center;">
+          <div style="font-size: 13px; font-weight: 600;">@studytube-content-strategy-lead</div>
+        </div>
+        <div style="background: white; border-radius: 8px; padding: 16px; border: 1px solid var(--gray-200); text-align: center;">
+          <div style="font-size: 13px; font-weight: 600;">@studytube-seo-generator</div>
+        </div>
+        <div style="background: white; border-radius: 8px; padding: 16px; border: 1px solid var(--gray-200); text-align: center;">
+          <div style="font-size: 13px; font-weight: 600;">@studytube-page-stack-v2</div>
+        </div>
+        <div style="background: white; border-radius: 8px; padding: 16px; border: 1px solid var(--gray-200); text-align: center;">
+          <div style="font-size: 13px; font-weight: 600;">@studytube-outbound</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">STUDYTUBE</div>
+    <p>C-Level Validation Interview Framework | Full Funnel B2B + JTBD | January 2026</p>
+  </footer>
+
+</body>
+</html>

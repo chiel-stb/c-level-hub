@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benchmarks | C-Level Personal Environment Wireframe</title>
+  <style>
+    :root {
+      --black: #1a1a1a;
+      --dark-gray: #4a4a4a;
+      --mid-gray: #888;
+      --light-gray: #ccc;
+      --border: #ddd;
+      --bg: #f5f5f5;
+      --white: #fff;
+      --annotation: #e74c3c;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Courier New', monospace;
+      background: var(--bg);
+      color: var(--black);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    .page-indicator {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: var(--black);
+      color: var(--white);
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: bold;
+      z-index: 1000;
+    }
+    .nav-bar {
+      background: var(--white);
+      border-bottom: 2px solid var(--black);
+      padding: 12px 24px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-bar a {
+      color: var(--dark-gray);
+      text-decoration: none;
+      padding: 4px 8px;
+      border: 1px solid transparent;
+    }
+    .nav-bar a:hover { border-color: var(--mid-gray); }
+    .nav-bar a.active { background: var(--black); color: var(--white); }
+
+    .app-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      min-height: calc(100vh - 50px);
+    }
+    .sidebar {
+      background: var(--white);
+      border-right: 2px solid var(--black);
+      padding: 24px 0;
+    }
+    .sidebar-item {
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+    }
+    .sidebar-item:hover { background: var(--bg); }
+    .sidebar-item.active {
+      background: var(--bg);
+      border-left-color: var(--black);
+      font-weight: bold;
+    }
+    .sidebar-icon {
+      width: 20px;
+      height: 20px;
+      border: 1px dashed var(--mid-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+
+    .main-content {
+      padding: 32px;
+      overflow-y: auto;
+    }
+    .wf-page-header {
+      margin-bottom: 24px;
+    }
+    .wf-page-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .wf-filters {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .wf-filter {
+      padding: 8px 16px;
+      border: 2px solid var(--border);
+      background: var(--white);
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .wf-box {
+      border: 2px solid var(--black);
+      background: var(--white);
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .wf-box-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      font-weight: bold;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .wf-box-content {
+      padding: 24px;
+    }
+
+    .wf-radar-placeholder {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      border: 2px dashed var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .wf-radar-center {
+      text-align: center;
+      color: var(--mid-gray);
+      font-size: 12px;
+    }
+    .wf-radar-label {
+      position: absolute;
+      font-size: 11px;
+      color: var(--dark-gray);
+    }
+    .wf-radar-label.top { top: -24px; left: 50%; transform: translateX(-50%); }
+    .wf-radar-label.right { right: -60px; top: 50%; transform: translateY(-50%); }
+    .wf-radar-label.bottom { bottom: -24px; left: 50%; transform: translateX(-50%); }
+    .wf-radar-label.left { left: -40px; top: 50%; transform: translateY(-50%); }
+
+    .wf-legend {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 24px;
+      font-size: 12px;
+    }
+    .wf-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .wf-legend-line {
+      width: 24px;
+      height: 2px;
+    }
+    .wf-legend-line.solid { background: var(--black); }
+    .wf-legend-line.dashed { border-top: 2px dashed var(--mid-gray); }
+    .wf-legend-line.dotted { border-top: 2px dotted var(--light-gray); }
+
+    .wf-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .wf-table th,
+    .wf-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .wf-table th {
+      font-weight: bold;
+      background: var(--bg);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .wf-table td.positive { color: var(--black); }
+    .wf-table td.negative { color: var(--annotation); }
+    .wf-table td.flag { text-align: center; }
+
+    .wf-insight-box {
+      background: var(--bg);
+      border-left: 4px solid var(--black);
+      padding: 16px 20px;
+      margin-top: 24px;
+    }
+    .wf-insight-icon {
+      font-size: 16px;
+      margin-right: 8px;
+    }
+    .wf-insight-text {
+      font-size: 13px;
+      color: var(--dark-gray);
+    }
+    .wf-insight-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--black);
+    }
+
+    /* Annotations */
+    .annotation {
+      position: absolute;
+      background: var(--annotation);
+      color: white;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: bold;
+      z-index: 100;
+    }
+    .annotation::after {
+      content: '';
+      position: absolute;
+      border: 6px solid transparent;
+    }
+    .annotation.top { bottom: calc(100% + 12px); }
+    .annotation.top::after {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: var(--annotation);
+    }
+    .annotation.left { right: calc(100% + 16px); }
+    .annotation.left::after {
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left-color: var(--annotation);
+    }
+    .annotation.right { left: calc(100% + 16px); }
+    .annotation.right::after {
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-right-color: var(--annotation);
+    }
+
+    .annotation-key {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      font-size: 11px;
+      max-width: 280px;
+      z-index: 1000;
+    }
+    .annotation-key h4 {
+      margin-bottom: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .annotation-key ul { list-style: none; }
+    .annotation-key li { margin-bottom: 4px; }
+    .annotation-key .tag {
+      display: inline-block;
+      background: var(--annotation);
+      color: white;
+      padding: 1px 6px;
+      font-size: 10px;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-indicator">WIREFRAME 05/08: BENCHMARKS</div>
+
+  <nav class="nav-bar">
+    <a href="01-login.html">01 Login</a>
+    <a href="02-onboarding.html">02 Onboarding</a>
+    <a href="03-dashboard.html">03 Dashboard</a>
+    <a href="04-scan-results.html">04 Scan Results</a>
+    <a href="05-benchmarks.html" class="active">05 Benchmarks</a>
+    <a href="06-monitor.html">06 L&D Monitor</a>
+    <a href="07-resources.html">07 Resources</a>
+    <a href="08-action-plan.html">08 Action Plan</a>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-item">
+        <span class="sidebar-icon">D</span>
+        Dashboard
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-icon">S</span>
+        Scan Results
+      </div>
+      <div class="sidebar-item active">
+        <span class="sidebar-icon">B</span>
+        Benchmarks
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-icon">M</span>
+        L&D Monitor
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-icon">R</span>
+        Resources
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-icon">A</span>
+        Action Plan
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="wf-page-header">
+        <div class="wf-page-title">BENCHMARK VERGELIJKING</div>
+      </div>
+
+      <div class="wf-filters">
+        <span class="annotation top" style="left: 100px;">A1</span>
+        <select class="wf-filter">
+          <option>Sector: Tech ▼</option>
+        </select>
+        <select class="wf-filter">
+          <option>Grootte: 100-500 FTE ▼</option>
+        </select>
+        <select class="wf-filter">
+          <option>Land: NL ▼</option>
+        </select>
+      </div>
+
+      <!-- Radar Chart -->
+      <div class="wf-box">
+        <div class="wf-box-header">RADAR VERGELIJKING</div>
+        <div class="wf-box-content" style="position: relative;">
+          <span class="annotation right" style="top: 100px;">A2</span>
+
+          <div class="wf-radar-placeholder">
+            <span class="wf-radar-label top">Strategy</span>
+            <span class="wf-radar-label right">Culture</span>
+            <span class="wf-radar-label bottom">Content</span>
+            <span class="wf-radar-label left">ROI</span>
+            <div class="wf-radar-center">
+              [RADAR CHART]<br>
+              Multi-axis comparison
+            </div>
+          </div>
+
+          <div class="wf-legend">
+            <div class="wf-legend-item">
+              <div class="wf-legend-line solid"></div>
+              <span>Uw score</span>
+            </div>
+            <div class="wf-legend-item">
+              <div class="wf-legend-line dashed"></div>
+              <span>Sector gemiddelde</span>
+            </div>
+            <div class="wf-legend-item">
+              <div class="wf-legend-line dotted"></div>
+              <span>Top 10%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Table -->
+      <div class="wf-box">
+        <div class="wf-box-header">DETAIL TABEL</div>
+        <div class="wf-box-content" style="position: relative;">
+          <span class="annotation right" style="top: 40px;">A3</span>
+
+          <table class="wf-table">
+            <thead>
+              <tr>
+                <th>Dimensie</th>
+                <th>Uw Score</th>
+                <th>Sector</th>
+                <th>Top 10%</th>
+                <th>Gap</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Strategy</td>
+                <td>8.2</td>
+                <td>6.8</td>
+                <td>9.1</td>
+                <td class="positive">+1.4</td>
+                <td class="flag"></td>
+              </tr>
+              <tr>
+                <td>Culture</td>
+                <td>7.8</td>
+                <td>7.2</td>
+                <td>8.9</td>
+                <td class="positive">+0.6</td>
+                <td class="flag"></td>
+              </tr>
+              <tr>
+                <td>Content</td>
+                <td>7.1</td>
+                <td>6.9</td>
+                <td>8.5</td>
+                <td class="positive">+0.2</td>
+                <td class="flag"></td>
+              </tr>
+              <tr>
+                <td>Technology</td>
+                <td>6.4</td>
+                <td>6.1</td>
+                <td>8.2</td>
+                <td class="positive">+0.3</td>
+                <td class="flag"></td>
+              </tr>
+              <tr>
+                <td>Skills Mapping</td>
+                <td>5.1</td>
+                <td>5.8</td>
+                <td>8.0</td>
+                <td class="negative">-0.7</td>
+                <td class="flag">⚠</td>
+              </tr>
+              <tr>
+                <td>ROI Measurement</td>
+                <td>4.2</td>
+                <td>4.5</td>
+                <td>7.8</td>
+                <td class="negative">-0.3</td>
+                <td class="flag">⚠</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 12px; font-size: 11px; color: var(--mid-gray);">
+            ⚠ = Onder sector gemiddelde
+          </div>
+        </div>
+      </div>
+
+      <!-- Insight Box -->
+      <div class="wf-insight-box" style="position: relative;">
+        <span class="annotation right" style="top: 20px;">A4</span>
+        <span class="wf-insight-icon">💡</span>
+        <span class="wf-insight-text">
+          <strong>INZICHT:</strong> Uw organisatie scoort boven gemiddeld op Strategy (8.2 vs 6.8), maar onder gemiddeld op Skills Mapping. Dit is typisch voor snelgroeiende tech bedrijven.
+        </span>
+        <a href="#" class="wf-insight-link">Bekijk aanbevelingen voor Skills Mapping →</a>
+      </div>
+    </main>
+  </div>
+
+  <div class="annotation-key">
+    <h4>Annotation Key</h4>
+    <ul>
+      <li><span class="tag">A1</span> Filter dropdowns (sector/size/country)</li>
+      <li><span class="tag">A2</span> Radar chart comparison</li>
+      <li><span class="tag">A3</span> Detail table with gap analysis</li>
+      <li><span class="tag">A4</span> Contextual insight box</li>
+    </ul>
+  </div>
+</body>
+</html>

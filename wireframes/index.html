@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C-Level Personal Environment — Lo-Fi Wireframes</title>
+  <style>
+    :root {
+      --black: #1a1a1a;
+      --dark-gray: #4a4a4a;
+      --mid-gray: #888;
+      --light-gray: #ccc;
+      --border: #ddd;
+      --bg: #f5f5f5;
+      --white: #fff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Courier New', monospace;
+      background: var(--bg);
+      color: var(--black);
+      line-height: 1.5;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+    .page-indicator {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: var(--black);
+      color: var(--white);
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: bold;
+      z-index: 1000;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding-bottom: 40px;
+      border-bottom: 2px solid var(--black);
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+    .header p {
+      color: var(--dark-gray);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .meta {
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--mid-gray);
+    }
+    .wireframes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    .wireframe-card {
+      border: 2px solid var(--black);
+      background: var(--white);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+    .wireframe-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 8px 8px 0 var(--black);
+    }
+    .card-preview {
+      height: 160px;
+      border-bottom: 2px solid var(--black);
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-preview-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 20px;
+      width: 100%;
+    }
+    .preview-block {
+      height: 12px;
+      background: var(--border);
+    }
+    .preview-block.short { width: 40%; }
+    .preview-block.medium { width: 60%; }
+    .preview-block.long { width: 80%; }
+    .preview-block.dark { background: var(--black); }
+    .preview-sidebar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      background: var(--white);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px 8px;
+    }
+    .preview-sidebar-item {
+      height: 8px;
+      background: var(--border);
+    }
+    .preview-sidebar-item.active {
+      background: var(--black);
+    }
+    .card-number {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--black);
+      color: var(--white);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+    .card-content {
+      padding: 20px;
+    }
+    .card-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .card-desc {
+      font-size: 12px;
+      color: var(--dark-gray);
+      margin-bottom: 16px;
+    }
+    .card-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .card-feature {
+      font-size: 10px;
+      padding: 4px 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .card-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .card-cta span {
+      color: var(--dark-gray);
+    }
+    .card-cta .arrow {
+      transition: transform 0.2s;
+    }
+    .wireframe-card:hover .card-cta .arrow {
+      transform: translateX(4px);
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--mid-gray);
+      margin-bottom: 24px;
+    }
+
+    .info-box {
+      border: 2px solid var(--black);
+      background: var(--white);
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+    .info-box h3 {
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    .info-box ul {
+      list-style: none;
+      font-size: 13px;
+    }
+    .info-box li {
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .info-box li:last-child {
+      border-bottom: none;
+    }
+
+    .footer {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 2px solid var(--black);
+      font-size: 12px;
+      color: var(--mid-gray);
+    }
+
+    @media (max-width: 700px) {
+      .wireframes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-indicator">LO-FI WIREFRAMES INDEX</div>
+
+  <div class="container">
+    <header class="header">
+      <h1>C-Level Personal Environment</h1>
+      <p>
+        Lo-fidelity wireframes voor de gepersonaliseerde C-Level portal.
+        Login-gated environment met scan resultaten, benchmarks, AI tools, en premium content.
+      </p>
+      <div class="meta">
+        Version 1.0 | February 2026 | 8 Screens
+      </div>
+    </header>
+
+    <div class="section-title">All Wireframes (8)</div>
+
+    <div class="wireframes-grid">
+      <!-- 01 Login -->
+      <a href="pages/01-login.html" class="wireframe-card">
+        <div class="card-preview">
+          <span class="card-number">01</span>
+          <div class="card-preview-content" style="max-width: 200px; margin: 0 auto;">
+            <div class="preview-block short" style="margin: 0 auto;"></div>
+            <div style="height: 40px;"></div>
+            <div class="preview-block long"></div>
+            <div class="preview-block dark medium"></div>
+            <div style="height: 12px;"></div>
+            <div class="preview-block medium" style="margin: 0 auto;"></div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-title">Login</div>
+          <div class="card-desc">Magic link login, SSO options, new user path to L&D Impact Scan</div>
+          <div class="card-features">
+            <span class="card-feature">Magic Link</span>
+            <span class="card-feature">SSO</span>
+            <span class="card-feature">Centered Form</span>
+          </div>
+        </div>
+        <div class="card-cta">
+          <span>View wireframe</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 02 Onboarding -->
+      <a href="pages/02-onboarding.html" class="wireframe-card">
+        <div class="card-preview">
+          <span class="card-number">02</span>
+          <div class="card-preview-content">
+            <div class="preview-block medium dark"></div>
+            <div style="height: 8px;"></div>
+            <div style="display: flex; gap: 12px;">
+              <div style="flex: 1; height: 60px; border: 2px solid var(--border);"></div>
+              <div style="flex: 1; height: 60px; border: 2px solid var(--black);"></div>
+              <div style="flex: 1; height: 60px; border: 2px solid var(--border);"></div>
+            </div>
+            <div style="height: 8px;"></div>
+            <div class="preview-block long" style="height: 6px;"></div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-title">Onboarding</div>
+          <div class="card-desc">3-step profile enrichment: Role selection, Industry, Company size</div>
+          <div class="card-features">
+            <span class="card-feature">Role Cards</span>
+            <span class="card-feature">Progress Bar</span>
+            <span class="card-feature">Skip Option</span>
+          </div>
+        </div>
+        <div class="card-cta">
+          <span>View wireframe</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 03 Dashboard -->
+      <a href="pages/03-dashboard.html" class="wireframe-card">
+        <div class="card-preview">
+          <span class="card-number">03</span>
+          <div class="preview-sidebar">
+            <div class="preview-sidebar-item active"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+          </div>
+          <div class="card-preview-content" style="margin-left: 60px;">
+            <div class="preview-block medium dark"></div>
+            <div style="display: flex; gap: 8px;">
+              <div style="flex: 1; height: 40px; border: 2px solid var(--border);"></div>
+              <div style="flex: 1; height: 40px; border: 2px solid var(--border);"></div>
+            </div>
+            <div class="preview-block long"></div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-title">Dashboard</div>
+          <div class="card-desc">Main home: Score overview, benchmark position, top 3 priorities, recommendations</div>
+          <div class="card-features">
+            <span class="card-feature">Score Circle</span>
+            <span class="card-feature">Benchmark</span>
+            <span class="card-feature">Priorities</span>
+            <span class="card-feature">Resources</span>
+          </div>
+        </div>
+        <div class="card-cta">
+          <span>View wireframe</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 04 Scan Results -->
+      <a href="pages/04-scan-results.html" class="wireframe-card">
+        <div class="card-preview">
+          <span class="card-number">04</span>
+          <div class="preview-sidebar">
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item active"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+          </div>
+          <div class="card-preview-content" style="margin-left: 60px;">
+            <div style="display: flex; gap: 12px; align-items: flex-end; height: 60px;">
+              <div style="width: 20px; height: 40%; background: var(--border);"></div>
+              <div style="width: 20px; height: 55%; background: var(--border);"></div>
+              <div style="width: 20px; height: 70%; background: var(--border);"></div>
+              <div style="width: 20px; height: 85%; background: var(--black);"></div>
+            </div>
+            <div style="height: 16px;"></div>
+            <div class="preview-block long"></div>
+            <div class="preview-block medium"></div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-title">Scan Results</div>
+          <div class="card-desc">Historical score trend, dimension breakdown, focus areas flagged</div>
+          <div class="card-features">
+            <span class="card-feature">Score History</span>
+            <span class="card-feature">Dimensions</span>
+            <span class="card-feature">Export PDF</span>
+          </div>
+        </div>
+        <div class="card-cta">
+          <span>View wireframe</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 05 Benchmarks -->
+      <a href="pages/05-benchmarks.html" class="wireframe-card">
+        <div class="card-preview">
+          <span class="card-number">05</span>
+          <div class="preview-sidebar">
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item active"></div>
+            <div class="preview-sidebar-item"></div>
+          </div>
+          <div class="card-preview-content" style="margin-left: 60px;">
+            <div style="width: 80px; height: 80px; border: 2px dashed var(--border); border-radius: 50%; margin: 0 auto;"></div>
+            <div style="height: 8px;"></div>
+            <div class="preview-block long"></div>
+            <div class="preview-block medium"></div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-title">Benchmarks</div>
+          <div class="card-desc">Radar comparison, filter by sector/size/country, gap analysis table</div>
+          <div class="card-features">
+            <span class="card-feature">Radar Chart</span>
+            <span class="card-feature">Filters</span>
+            <span class="card-feature">Gap Table</span>
+            <span class="card-feature">Insights</span>
+          </div>
+        </div>
+        <div class="card-cta">
+          <span>View wireframe</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 06 L&D Monitor -->
+      <a href="pages/06-monitor.html" class="wireframe-card">
+        <div class="card-preview">
+          <span class="card-number">06</span>
+          <div class="preview-sidebar">
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item active"></div>
+          </div>
+          <div class="card-preview-content" style="margin-left: 60px;">
+            <div style="display: flex; gap: 8px;">
+              <div style="flex: 1; height: 50px; border: 2px solid var(--black); text-align: center; padding-top: 12px; font-weight: bold;">847</div>
+              <div style="flex: 1; height: 50px; border: 2px solid var(--black); text-align: center; padding-top: 12px; font-weight: bold;">73%</div>
+              <div style="flex: 1; height: 50px; border: 2px solid var(--black); text-align: center; padding-top: 12px; font-weight: bold;">4.2</div>
+            </div>
+            <div class="preview-block long"></div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-title">L&D Monitor</div>
+          <div class="card-desc">Live platform data: active learners, completion rate, skill gaps detected</div>
+          <div class="card-features">
+            <span class="card-feature">KPI Cards</span>
+            <span class="card-feature">Trend Chart</span>
+            <span class="card-feature">Top Content</span>
+            <span class="card-feature">Skill Gaps</span>
+          </div>
+        </div>
+        <div class="card-cta">
+          <span>View wireframe</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 07 Resources -->
+      <a href="pages/07-resources.html" class="wireframe-card">
+        <div class="card-preview">
+          <span class="card-number">07</span>
+          <div class="preview-sidebar">
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item active"></div>
+          </div>
+          <div class="card-preview-content" style="margin-left: 60px;">
+            <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+              <div class="preview-block short dark"></div>
+              <div class="preview-block short"></div>
+              <div class="preview-block short"></div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <div style="flex: 1; height: 60px; border: 2px solid var(--border);"></div>
+              <div style="flex: 1; height: 60px; border: 2px solid var(--border);"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-title">Resources</div>
+          <div class="card-desc">Personalized content library with type filters and social proof</div>
+          <div class="card-features">
+            <span class="card-feature">Filters</span>
+            <span class="card-feature">Recommendations</span>
+            <span class="card-feature">Social Proof</span>
+            <span class="card-feature">New Badge</span>
+          </div>
+        </div>
+        <div class="card-cta">
+          <span>View wireframe</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 08 Action Plan -->
+      <a href="pages/08-action-plan.html" class="wireframe-card">
+        <div class="card-preview">
+          <span class="card-number">08</span>
+          <div class="preview-sidebar">
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item"></div>
+            <div class="preview-sidebar-item active"></div>
+          </div>
+          <div class="card-preview-content" style="margin-left: 60px;">
+            <div class="preview-block long dark"></div>
+            <div style="height: 4px;"></div>
+            <div style="border: 1px solid var(--mid-gray); padding: 8px;">
+              <div class="preview-block short"></div>
+            </div>
+            <div style="border: 2px solid var(--black); padding: 8px;">
+              <div class="preview-block medium"></div>
+            </div>
+            <div style="border: 1px solid var(--border); padding: 8px; opacity: 0.5;">
+              <div class="preview-block short"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-title">Action Plan</div>
+          <div class="card-desc">90-day personalized roadmap with phases, tasks, and progress tracking</div>
+          <div class="card-features">
+            <span class="card-feature">3 Phases</span>
+            <span class="card-feature">Task List</span>
+            <span class="card-feature">Progress Bar</span>
+            <span class="card-feature">Help CTA</span>
+          </div>
+        </div>
+        <div class="card-cta">
+          <span>View wireframe</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="info-box">
+      <h3>Information Architecture</h3>
+      <ul>
+        <li><strong>studytube.nl/executive/login</strong> — Magic link or SSO</li>
+        <li><strong>studytube.nl/executive/dashboard</strong> — Personal home</li>
+        <li><strong>studytube.nl/executive/scan-results</strong> — L&D Impact Scan deep-dive</li>
+        <li><strong>studytube.nl/executive/benchmarks</strong> — Industry comparisons</li>
+        <li><strong>studytube.nl/executive/monitor</strong> — L&D Monitor data (if enrolled)</li>
+        <li><strong>studytube.nl/executive/resources</strong> — Personalized content library</li>
+        <li><strong>studytube.nl/executive/action-plan</strong> — 90-day improvement roadmap</li>
+      </ul>
+    </div>
+
+    <footer class="footer">
+      <p>C-Level Personal Environment — Lo-Fi Wireframes v1.0</p>
+      <p style="margin-top: 8px;">Created: February 2026 | Part of C-Level Strategy Project</p>
+    </footer>
+  </div>
+</body>
+</html>

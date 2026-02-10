@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C-Level Personal Environment | Wireframe Prototype</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --wire-bg: #f5f5f5;
+      --wire-card: #ffffff;
+      --wire-border: #e0e0e0;
+      --wire-text: #333333;
+      --wire-text-light: #888888;
+      --wire-accent: #056DFF;
+      --wire-accent-light: #e8f2ff;
+      --wire-success: #22c55e;
+      --wire-warning: #f59e0b;
+      --wire-error: #ef4444;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--wire-bg);
+      color: var(--wire-text);
+      line-height: 1.5;
+    }
+
+    /* Wireframe indicator */
+    .wireframe-badge {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      background: #ff6b6b;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      z-index: 1000;
+    }
+
+    /* Login Screen */
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #11295A 0%, #056DFF 100%);
+    }
+
+    .login-card {
+      background: white;
+      border-radius: 12px;
+      padding: 48px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .login-logo {
+      width: 48px;
+      height: 48px;
+      background: var(--wire-accent);
+      border-radius: 10px;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .login-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .login-subtitle {
+      color: var(--wire-text-light);
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+
+    .login-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--wire-border);
+      border-radius: 8px;
+      font-size: 15px;
+      margin-bottom: 16px;
+      outline: none;
+    }
+
+    .login-input:focus {
+      border-color: var(--wire-accent);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--wire-accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 24px;
+    }
+
+    .login-btn:hover {
+      background: #0055cc;
+    }
+
+    .login-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      color: var(--wire-text-light);
+      font-size: 13px;
+    }
+
+    .login-divider::before,
+    .login-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--wire-border);
+    }
+
+    .login-sso {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sso-btn {
+      padding: 12px;
+      border: 2px solid var(--wire-border);
+      border-radius: 8px;
+      background: white;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .sso-btn:hover {
+      background: var(--wire-bg);
+    }
+
+    .login-footer {
+      margin-top: 32px;
+      font-size: 13px;
+      color: var(--wire-text-light);
+    }
+
+    .login-footer a {
+      color: var(--wire-accent);
+      text-decoration: none;
+    }
+
+    /* Dashboard Layout */
+    .dashboard {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .dashboard.active {
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background: #11295A;
+      color: white;
+      padding: 24px 0;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+    }
+
+    .sidebar-logo {
+      padding: 0 24px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 24px;
+    }
+
+    .sidebar-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--wire-accent);
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .sidebar-logo-text {
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav-item:hover {
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    .nav-item.active {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border-left: 3px solid white;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      background: var(--wire-accent);
+      color: white;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+
+    .sidebar-footer {
+      padding: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .user-name {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .user-role {
+      font-size: 11px;
+      opacity: 0.6;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: 240px;
+      padding: 32px;
+    }
+
+    .page-header {
+      margin-bottom: 32px;
+    }
+
+    .welcome-text {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .welcome-meta {
+      color: var(--wire-text-light);
+      font-size: 14px;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .cards-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .cards-row.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      background: var(--wire-card);
+      border: 2px solid var(--wire-border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--wire-text-light);
+    }
+
+    .card-link {
+      font-size: 13px;
+      color: var(--wire-accent);
+      text-decoration: none;
+    }
+
+    /* Score Card */
+    .score-card {
+      background: linear-gradient(135deg, #11295A 0%, #056DFF 100%);
+      color: white;
+      border: none;
+    }
+
+    .score-card .card-title {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .score-display {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .score-circle::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      border: 8px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-right-color: white;
+      transform: rotate(45deg);
+    }
+
+    .score-number {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .score-max {
+      font-size: 14px;
+      opacity: 0.6;
+    }
+
+    .score-details {
+      flex: 1;
+    }
+
+    .score-level {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .score-trend {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 16px;
+    }
+
+    .trend-up {
+      color: #4ade80;
+    }
+
+    .score-bar {
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      background: white;
+      border-radius: 4px;
+      width: 68%;
+    }
+
+    /* Benchmark Card */
+    .benchmark-visual {
+      margin-bottom: 20px;
+    }
+
+    .benchmark-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .benchmark-label {
+      width: 80px;
+      font-size: 12px;
+      color: var(--wire-text-light);
+    }
+
+    .benchmark-track {
+      flex: 1;
+      height: 24px;
+      background: var(--wire-bg);
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .benchmark-fill {
+      height: 100%;
+      border-radius: 4px;
+    }
+
+    .benchmark-fill.you {
+      background: var(--wire-accent);
+      width: 67%;
+    }
+
+    .benchmark-fill.avg {
+      background: var(--wire-border);
+      width: 50%;
+    }
+
+    .benchmark-fill.top {
+      background: #22c55e;
+      width: 90%;
+    }
+
+    .benchmark-marker {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 10px;
+      font-weight: 600;
+      color: white;
+      right: 8px;
+    }
+
+    .benchmark-stat {
+      text-align: center;
+      padding: 16px;
+      background: var(--wire-accent-light);
+      border-radius: 8px;
+    }
+
+    .benchmark-stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--wire-accent);
+    }
+
+    .benchmark-stat-label {
+      font-size: 12px;
+      color: var(--wire-text-light);
+    }
+
+    /* Priorities Card */
+    .priority-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .priority-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--wire-bg);
+      border-radius: 8px;
+    }
+
+    .priority-rank {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .priority-rank.warning {
+      background: #fef3c7;
+      color: #d97706;
+    }
+
+    .priority-rank.success {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    .priority-content {
+      flex: 1;
+    }
+
+    .priority-name {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .priority-score {
+      font-size: 12px;
+      color: var(--wire-text-light);
+    }
+
+    .priority-bar {
+      width: 60px;
+      height: 6px;
+      background: var(--wire-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .priority-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    .priority-bar-fill.low {
+      background: var(--wire-warning);
+    }
+
+    .priority-bar-fill.high {
+      background: var(--wire-success);
+    }
+
+    /* Resources Card */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .resource-item {
+      border: 2px solid var(--wire-border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .resource-item:hover {
+      border-color: var(--wire-accent);
+      background: var(--wire-accent-light);
+    }
+
+    .resource-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--wire-bg);
+      border-radius: 8px;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .resource-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .resource-type {
+      font-size: 11px;
+      color: var(--wire-text-light);
+    }
+
+    /* Dimensions Chart */
+    .dimensions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .dimension-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .dimension-name {
+      width: 140px;
+      font-size: 13px;
+    }
+
+    .dimension-bar {
+      flex: 1;
+      height: 20px;
+      background: var(--wire-bg);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dimension-fill {
+      height: 100%;
+      background: var(--wire-accent);
+      border-radius: 4px;
+    }
+
+    .dimension-score {
+      width: 40px;
+      text-align: right;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .dimension-benchmark {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #333;
+    }
+
+    /* Monitor Stats */
+    .monitor-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .monitor-stat {
+      text-align: center;
+      padding: 20px;
+      background: var(--wire-bg);
+      border-radius: 8px;
+    }
+
+    .monitor-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--wire-accent);
+    }
+
+    .monitor-label {
+      font-size: 12px;
+      color: var(--wire-text-light);
+      margin-bottom: 8px;
+    }
+
+    .monitor-trend {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .monitor-trend.up {
+      color: var(--wire-success);
+    }
+
+    .monitor-trend.down {
+      color: var(--wire-error);
+    }
+
+    /* Chart Placeholder */
+    .chart-placeholder {
+      height: 200px;
+      background: var(--wire-bg);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--wire-text-light);
+      font-size: 14px;
+      border: 2px dashed var(--wire-border);
+    }
+
+    /* Action Plan */
+    .action-phases {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .phase-item {
+      border: 2px solid var(--wire-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      background: var(--wire-bg);
+      cursor: pointer;
+    }
+
+    .phase-title {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .phase-status {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .phase-status.complete {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    .phase-status.active {
+      background: #dbeafe;
+      color: #2563eb;
+    }
+
+    .phase-status.pending {
+      background: var(--wire-bg);
+      color: var(--wire-text-light);
+    }
+
+    .phase-content {
+      padding: 16px;
+      display: none;
+    }
+
+    .phase-item.expanded .phase-content {
+      display: block;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+    }
+
+    .task-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--wire-border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .task-checkbox.checked {
+      background: var(--wire-success);
+      border-color: var(--wire-success);
+      color: white;
+    }
+
+    .task-text {
+      font-size: 13px;
+    }
+
+    .task-text.done {
+      text-decoration: line-through;
+      color: var(--wire-text-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .cards-row {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-row.three {
+        grid-template-columns: 1fr;
+      }
+
+      .resources-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Screen states */
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* CTA Button */
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: var(--wire-accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .cta-btn:hover {
+      background: #0055cc;
+    }
+
+    .cta-btn.secondary {
+      background: white;
+      color: var(--wire-accent);
+      border: 2px solid var(--wire-accent);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid var(--wire-border);
+      padding-bottom: 16px;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      color: var(--wire-text-light);
+    }
+
+    .tab-btn.active {
+      background: var(--wire-accent-light);
+      color: var(--wire-accent);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wireframe-badge">LOW-FIDELITY WIREFRAME</div>
+
+  <!-- LOGIN SCREEN -->
+  <div class="login-screen screen active" id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">ST</div>
+      <h1 class="login-title">Executive Portal</h1>
+      <p class="login-subtitle">Persoonlijke inzichten voor directie</p>
+
+      <input type="email" class="login-input" placeholder="jan@bedrijf.nl" value="jan@techcorp.nl">
+      <button class="login-btn" onclick="showDashboard()">Stuur login link</button>
+
+      <div class="login-divider">of</div>
+
+      <div class="login-sso">
+        <button class="sso-btn" onclick="showDashboard()">
+          <span>M</span> Login via Microsoft
+        </button>
+        <button class="sso-btn" onclick="showDashboard()">
+          <span>G</span> Login via Google
+        </button>
+      </div>
+
+      <p class="login-footer">
+        Nog geen account? <a href="#">Start de L&D Impact Scan</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard" id="dashboard">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">ST</div>
+        <div class="sidebar-logo-text">Executive Portal</div>
+      </div>
+
+      <div class="sidebar-nav">
+        <a class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')">
+          <span class="nav-icon">D</span>
+          Dashboard
+        </a>
+        <a class="nav-item" data-page="scan" onclick="showPage('scan')">
+          <span class="nav-icon">S</span>
+          Scan Resultaten
+        </a>
+        <a class="nav-item" data-page="benchmarks" onclick="showPage('benchmarks')">
+          <span class="nav-icon">B</span>
+          Benchmarks
+        </a>
+        <a class="nav-item" data-page="monitor" onclick="showPage('monitor')">
+          <span class="nav-icon">M</span>
+          L&D Monitor
+          <span class="nav-badge">Live</span>
+        </a>
+        <a class="nav-item" data-page="resources" onclick="showPage('resources')">
+          <span class="nav-icon">R</span>
+          Resources
+        </a>
+        <a class="nav-item" data-page="action" onclick="showPage('action')">
+          <span class="nav-icon">A</span>
+          Actieplan
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">JV</div>
+          <div>
+            <div class="user-name">Jan de Vries</div>
+            <div class="user-role">CEO | TechCorp B.V.</div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- DASHBOARD PAGE -->
+      <div class="page active" id="page-dashboard">
+        <header class="page-header">
+          <h1 class="welcome-text">Welkom terug, Jan</h1>
+          <p class="welcome-meta">TechCorp B.V. | Laatste login: 2 dagen geleden</p>
+        </header>
+
+        <div class="cards-grid">
+          <!-- Score Card -->
+          <div class="card score-card">
+            <div class="card-header">
+              <span class="card-title">Uw L&D Volwassenheidsscore</span>
+              <a href="#" class="card-link" style="color: rgba(255,255,255,0.7);" onclick="showPage('scan')">Bekijk details &rarr;</a>
+            </div>
+            <div class="score-display">
+              <div class="score-circle">
+                <span class="score-number">68</span>
+                <span class="score-max">/ 100</span>
+              </div>
+              <div class="score-details">
+                <div class="score-level">"Developing" niveau</div>
+                <div class="score-trend trend-up">
+                  <span>&#9650;</span> +7 punten sinds januari 2026
+                </div>
+                <div class="score-bar">
+                  <div class="score-bar-fill"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cards-row">
+            <!-- Benchmark Card -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Benchmark Positie</span>
+                <a href="#" class="card-link" onclick="showPage('benchmarks')">Alle benchmarks &rarr;</a>
+              </div>
+              <div class="benchmark-visual">
+                <div class="benchmark-bar">
+                  <span class="benchmark-label">Top 25%</span>
+                  <div class="benchmark-track">
+                    <div class="benchmark-fill top"></div>
+                  </div>
+                </div>
+                <div class="benchmark-bar">
+                  <span class="benchmark-label">U</span>
+                  <div class="benchmark-track">
+                    <div class="benchmark-fill you"></div>
+                    <span class="benchmark-marker">67%</span>
+                  </div>
+                </div>
+                <div class="benchmark-bar">
+                  <span class="benchmark-label">Mediaan</span>
+                  <div class="benchmark-track">
+                    <div class="benchmark-fill avg"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="benchmark-stat">
+                <div class="benchmark-stat-value">67%</div>
+                <div class="benchmark-stat-label">U scoort hoger dan 67% van vergelijkbare bedrijven</div>
+              </div>
+            </div>
+
+            <!-- Priorities Card -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Top 3 Prioriteiten</span>
+                <a href="#" class="card-link" onclick="showPage('action')">Start actieplan &rarr;</a>
+              </div>
+              <div class="priority-list">
+                <div class="priority-item">
+                  <div class="priority-rank warning">1</div>
+                  <div class="priority-content">
+                    <div class="priority-name">ROI Measurement</div>
+                    <div class="priority-score">Score: 4.2 / 10</div>
+                  </div>
+                  <div class="priority-bar">
+                    <div class="priority-bar-fill low" style="width: 42%"></div>
+                  </div>
+                </div>
+                <div class="priority-item">
+                  <div class="priority-rank warning">2</div>
+                  <div class="priority-content">
+                    <div class="priority-name">Skills Mapping</div>
+                    <div class="priority-score">Score: 5.1 / 10</div>
+                  </div>
+                  <div class="priority-bar">
+                    <div class="priority-bar-fill low" style="width: 51%"></div>
+                  </div>
+                </div>
+                <div class="priority-item">
+                  <div class="priority-rank success">3</div>
+                  <div class="priority-content">
+                    <div class="priority-name">Learning Culture</div>
+                    <div class="priority-score">Score: 7.8 / 10</div>
+                  </div>
+                  <div class="priority-bar">
+                    <div class="priority-bar-fill high" style="width: 78%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resources Card -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Aanbevolen voor u</span>
+              <a href="#" class="card-link" onclick="showPage('resources')">Alle resources &rarr;</a>
+            </div>
+            <p style="font-size: 13px; color: var(--wire-text-light); margin-bottom: 16px;">
+              Gebaseerd op uw profiel (CEO, Tech sector) en zwakste scores
+            </p>
+            <div class="resources-grid">
+              <div class="resource-item">
+                <div class="resource-icon">&#128214;</div>
+                <div class="resource-title">ROI Framework Whitepaper</div>
+                <div class="resource-type">PDF | 15 pagina's</div>
+              </div>
+              <div class="resource-item">
+                <div class="resource-icon">&#128200;</div>
+                <div class="resource-title">Benchmark Report Q4</div>
+                <div class="resource-type">PDF | Interactief</div>
+              </div>
+              <div class="resource-item">
+                <div class="resource-icon">&#127909;</div>
+                <div class="resource-title">Webinar: CFO Overtuigen</div>
+                <div class="resource-type">Video | 45 min</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCAN RESULTS PAGE -->
+      <div class="page" id="page-scan">
+        <header class="page-header">
+          <h1 class="welcome-text">Uw L&D Impact Scan Resultaten</h1>
+          <p class="welcome-meta">TechCorp B.V. | Scan datum: 15 januari 2026</p>
+        </header>
+
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Totaalscore over tijd</span>
+            </div>
+            <div class="chart-placeholder">
+              [Lijn grafiek: Q2'25: 47 &rarr; Q3'25: 54 &rarr; Q4'25: 61 &rarr; Q1'26: 68]<br>
+              <strong style="color: var(--wire-success);">&#9650; +21 punten in 9 maanden (+45%)</strong>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Score per dimensie</span>
+            </div>
+            <div class="dimensions-list">
+              <div class="dimension-item">
+                <div class="dimension-name">Strategy & Alignment</div>
+                <div class="dimension-bar">
+                  <div class="dimension-fill" style="width: 82%"></div>
+                  <div class="dimension-benchmark" style="left: 68%"></div>
+                </div>
+                <div class="dimension-score">8.2</div>
+              </div>
+              <div class="dimension-item">
+                <div class="dimension-name">Learning Culture</div>
+                <div class="dimension-bar">
+                  <div class="dimension-fill" style="width: 78%"></div>
+                  <div class="dimension-benchmark" style="left: 72%"></div>
+                </div>
+                <div class="dimension-score">7.8</div>
+              </div>
+              <div class="dimension-item">
+                <div class="dimension-name">Content & Delivery</div>
+                <div class="dimension-bar">
+                  <div class="dimension-fill" style="width: 71%"></div>
+                  <div class="dimension-benchmark" style="left: 69%"></div>
+                </div>
+                <div class="dimension-score">7.1</div>
+              </div>
+              <div class="dimension-item">
+                <div class="dimension-name">Technology & Tools</div>
+                <div class="dimension-bar">
+                  <div class="dimension-fill" style="width: 64%"></div>
+                  <div class="dimension-benchmark" style="left: 61%"></div>
+                </div>
+                <div class="dimension-score">6.4</div>
+              </div>
+              <div class="dimension-item">
+                <div class="dimension-name">Skills Mapping</div>
+                <div class="dimension-bar">
+                  <div class="dimension-fill" style="width: 51%; background: var(--wire-warning)"></div>
+                  <div class="dimension-benchmark" style="left: 58%"></div>
+                </div>
+                <div class="dimension-score" style="color: var(--wire-warning)">5.1</div>
+              </div>
+              <div class="dimension-item">
+                <div class="dimension-name">ROI Measurement</div>
+                <div class="dimension-bar">
+                  <div class="dimension-fill" style="width: 42%; background: var(--wire-error)"></div>
+                  <div class="dimension-benchmark" style="left: 45%"></div>
+                </div>
+                <div class="dimension-score" style="color: var(--wire-error)">4.2</div>
+              </div>
+            </div>
+            <p style="font-size: 12px; color: var(--wire-text-light); margin-top: 16px;">
+              &#9632; Uw score &nbsp;&nbsp; | &nbsp;&nbsp; Sector benchmark
+            </p>
+          </div>
+
+          <div class="cards-row">
+            <button class="cta-btn">&#128229; Download PDF Report</button>
+            <button class="cta-btn secondary">&#128231; Deel met collega's</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BENCHMARKS PAGE -->
+      <div class="page" id="page-benchmarks">
+        <header class="page-header">
+          <h1 class="welcome-text">Benchmark Vergelijking</h1>
+          <p class="welcome-meta">Vergelijk uw scores met sector en bedrijfsgrootte</p>
+        </header>
+
+        <div class="tabs">
+          <button class="tab-btn active">Sector: Tech</button>
+          <button class="tab-btn">Grootte: 100-500 FTE</button>
+          <button class="tab-btn">Land: Nederland</button>
+        </div>
+
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Radar vergelijking</span>
+            </div>
+            <div class="chart-placeholder" style="height: 300px;">
+              [Radar Chart Placeholder]<br><br>
+              &#9473;&#9473;&#9473; Uw score<br>
+              - - - Sector gemiddelde<br>
+              &middot;&middot;&middot; Top 10%
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Detail tabel</span>
+            </div>
+            <table style="width: 100%; font-size: 13px; border-collapse: collapse;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--wire-border);">
+                  <th style="text-align: left; padding: 12px 8px;">Dimensie</th>
+                  <th style="text-align: center; padding: 12px 8px;">Uw Score</th>
+                  <th style="text-align: center; padding: 12px 8px;">Sector</th>
+                  <th style="text-align: center; padding: 12px 8px;">Top 10%</th>
+                  <th style="text-align: center; padding: 12px 8px;">Gap</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--wire-border);">
+                  <td style="padding: 12px 8px;">Strategy</td>
+                  <td style="text-align: center; font-weight: 600;">8.2</td>
+                  <td style="text-align: center; color: var(--wire-text-light);">6.8</td>
+                  <td style="text-align: center; color: var(--wire-text-light);">9.1</td>
+                  <td style="text-align: center; color: var(--wire-success);">+1.4</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--wire-border);">
+                  <td style="padding: 12px 8px;">Culture</td>
+                  <td style="text-align: center; font-weight: 600;">7.8</td>
+                  <td style="text-align: center; color: var(--wire-text-light);">7.2</td>
+                  <td style="text-align: center; color: var(--wire-text-light);">8.9</td>
+                  <td style="text-align: center; color: var(--wire-success);">+0.6</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--wire-border);">
+                  <td style="padding: 12px 8px;">Content</td>
+                  <td style="text-align: center; font-weight: 600;">7.1</td>
+                  <td style="text-align: center; color: var(--wire-text-light);">6.9</td>
+                  <td style="text-align: center; color: var(--wire-text-light);">8.5</td>
+                  <td style="text-align: center; color: var(--wire-success);">+0.2</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--wire-border);">
+                  <td style="padding: 12px 8px;">Technology</td>
+                  <td style="text-align: center; font-weight: 600;">6.4</td>
+                  <td style="text-align: center; color: var(--wire-text-light);">6.1</td>
+                  <td style="text-align: center; color: var(--wire-text-light);">8.2</td>
+                  <td style="text-align: center; color: var(--wire-success);">+0.3</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--wire-border);">
+                  <td style="padding: 12px 8px;">Skills Mapping</td>
+                  <td style="text-align: center; font-weight: 600;">5.1</td>
+                  <td style="text-align: center; color: var(--wire-text-light);">5.8</td>
+                  <td style="text-align: center; color: var(--wire-text-light);">8.0</td>
+                  <td style="text-align: center; color: var(--wire-error);">-0.7</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 8px;">ROI Measurement</td>
+                  <td style="text-align: center; font-weight: 600;">4.2</td>
+                  <td style="text-align: center; color: var(--wire-text-light);">4.5</td>
+                  <td style="text-align: center; color: var(--wire-text-light);">7.8</td>
+                  <td style="text-align: center; color: var(--wire-error);">-0.3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card" style="background: var(--wire-accent-light); border-color: var(--wire-accent);">
+            <p style="font-size: 14px;">
+              <strong>&#128161; Inzicht:</strong> Uw organisatie scoort boven gemiddeld op Strategy (8.2 vs 6.8),
+              maar onder gemiddeld op Skills Mapping. Dit is typisch voor snelgroeiende tech bedrijven.
+            </p>
+            <br>
+            <a href="#" class="card-link" onclick="showPage('resources')">Bekijk aanbevelingen voor Skills Mapping &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- L&D MONITOR PAGE -->
+      <div class="page" id="page-monitor">
+        <header class="page-header">
+          <h1 class="welcome-text">L&D Monitor - Live Data</h1>
+          <p class="welcome-meta">TechCorp B.V. | Data t/m: 1 februari 2026</p>
+        </header>
+
+        <div class="cards-grid">
+          <div class="monitor-stats">
+            <div class="monitor-stat">
+              <div class="monitor-value">847</div>
+              <div class="monitor-label">Actieve leerders</div>
+              <div class="monitor-trend up">&#9650; +12% MoM</div>
+            </div>
+            <div class="monitor-stat">
+              <div class="monitor-value">73%</div>
+              <div class="monitor-label">Completion rate</div>
+              <div class="monitor-trend up">&#9650; +5% MoM</div>
+            </div>
+            <div class="monitor-stat">
+              <div class="monitor-value">4.2</div>
+              <div class="monitor-label">uur/FTE per maand</div>
+              <div class="monitor-trend down">&#9660; -0.3 MoM</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Engagement trend (12 maanden)</span>
+            </div>
+            <div class="chart-placeholder">
+              [Lijn grafiek: Engagement over 12 maanden]<br><br>
+              &#9473;&#9473;&#9473; Actieve leerders<br>
+              - - - Completions<br>
+              &middot;&middot;&middot; Benchmark
+            </div>
+          </div>
+
+          <div class="cards-row">
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Top 5 Content</span>
+              </div>
+              <div style="font-size: 13px;">
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--wire-border);">
+                  <span>1. Timemanagement</span>
+                  <span style="color: var(--wire-text-light);">156 completions</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--wire-border);">
+                  <span>2. Excel Advanced</span>
+                  <span style="color: var(--wire-text-light);">134 completions</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--wire-border);">
+                  <span>3. Feedback geven</span>
+                  <span style="color: var(--wire-text-light);">98 completions</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--wire-border);">
+                  <span>4. Presenteren</span>
+                  <span style="color: var(--wire-text-light);">87 completions</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                  <span>5. AI Basics</span>
+                  <span style="color: var(--wire-text-light);">76 completions</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Skill Gaps Detected</span>
+              </div>
+              <div style="font-size: 13px;">
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--wire-border);">
+                  <span>1. Data Analysis</span>
+                  <span style="color: var(--wire-error);">-34%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--wire-border);">
+                  <span>2. AI Literacy</span>
+                  <span style="color: var(--wire-error);">-28%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--wire-border);">
+                  <span>3. Project Mgmt</span>
+                  <span style="color: var(--wire-warning);">-22%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--wire-border);">
+                  <span>4. Leadership</span>
+                  <span style="color: var(--wire-warning);">-18%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                  <span>5. Communication</span>
+                  <span style="color: var(--wire-text-light);">-12%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="background: var(--wire-accent-light); border-color: var(--wire-accent);">
+            <div class="card-header">
+              <span class="card-title">&#128279; Koppeling met L&D Impact Scan</span>
+            </div>
+            <p style="font-size: 13px; margin-bottom: 16px;">
+              Uw L&D Monitor data verbetert uw Scan score:
+            </p>
+            <ul style="font-size: 13px; margin-left: 20px; margin-bottom: 16px;">
+              <li>"Technology & Tools" dimensie: <strong>+1.2</strong> door platform gebruik</li>
+              <li>"Content & Delivery": <strong>+0.8</strong> door completion rates</li>
+            </ul>
+            <button class="cta-btn">Herbereken mijn Scan score &rarr;</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESOURCES PAGE -->
+      <div class="page" id="page-resources">
+        <header class="page-header">
+          <h1 class="welcome-text">Uw Resources</h1>
+          <p class="welcome-meta">Gefilterd op: CEO | Tech sector | Focus: ROI Measurement</p>
+        </header>
+
+        <div class="tabs">
+          <button class="tab-btn active">Alle</button>
+          <button class="tab-btn">Whitepaper</button>
+          <button class="tab-btn">Playbook</button>
+          <button class="tab-btn">Case Study</button>
+          <button class="tab-btn">Video</button>
+        </div>
+
+        <div class="cards-grid">
+          <div class="card" style="background: var(--wire-accent-light); border-color: var(--wire-accent);">
+            <span class="card-title">&#11088; Aanbevolen voor u</span>
+            <p style="font-size: 13px; margin-top: 8px;">
+              Gebaseerd op uw laagste score: ROI Measurement (4.2)
+            </p>
+          </div>
+
+          <div class="cards-row">
+            <div class="card">
+              <div style="font-size: 11px; color: var(--wire-accent); font-weight: 600; margin-bottom: 8px;">WHITEPAPER</div>
+              <h3 style="font-size: 16px; margin-bottom: 8px;">The Skill-Based P&L</h3>
+              <p style="font-size: 13px; color: var(--wire-text-light); margin-bottom: 16px;">
+                Maak L&D meetbaar voor uw CFO. Framework voor ROI berekening.
+              </p>
+              <p style="font-size: 12px; color: var(--wire-text-light); margin-bottom: 16px;">15 pagina's | PDF</p>
+              <button class="cta-btn">&#128229; Download</button>
+              <p style="font-size: 11px; color: var(--wire-text-light); margin-top: 12px;">
+                "Gedownload door 23 CEOs in uw sector"
+              </p>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 11px; color: var(--wire-accent); font-weight: 600; margin-bottom: 8px;">PLAYBOOK</div>
+              <h3 style="font-size: 16px; margin-bottom: 8px;">Strategic Skill Management</h3>
+              <p style="font-size: 13px; color: var(--wire-text-light); margin-bottom: 16px;">
+                90-dagen roadmap voor capability building in uw organisatie.
+              </p>
+              <p style="font-size: 12px; color: var(--wire-text-light); margin-bottom: 16px;">25 pagina's | PDF</p>
+              <button class="cta-btn">&#128229; Download</button>
+              <p style="font-size: 11px; color: var(--wire-text-light); margin-top: 12px;">
+                "Gedownload door 45 executives in uw sector"
+              </p>
+            </div>
+          </div>
+
+          <div class="cards-row">
+            <div class="card">
+              <div style="font-size: 11px; color: var(--wire-accent); font-weight: 600; margin-bottom: 8px;">VIDEO</div>
+              <h3 style="font-size: 16px; margin-bottom: 8px;">Webinar: De CFO Overtuigen</h3>
+              <p style="font-size: 13px; color: var(--wire-text-light); margin-bottom: 16px;">
+                Praktische tips voor budget gesprekken met finance.
+              </p>
+              <p style="font-size: 12px; color: var(--wire-text-light); margin-bottom: 16px;">45 min | On-demand</p>
+              <button class="cta-btn">&#9658; Bekijk</button>
+            </div>
+
+            <div class="card">
+              <div style="font-size: 11px; color: var(--wire-accent); font-weight: 600; margin-bottom: 8px;">CASE STUDY</div>
+              <h3 style="font-size: 16px; margin-bottom: 8px;">The 30% Promise</h3>
+              <p style="font-size: 13px; color: var(--wire-text-light); margin-bottom: 16px;">
+                Hoe Emil Frey 30% trainingskosten bespaarde met Studytube.
+              </p>
+              <p style="font-size: 12px; color: var(--wire-text-light); margin-bottom: 16px;">Case Study | 8 pagina's</p>
+              <button class="cta-btn secondary">Lees case &rarr;</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">&#128240; Nieuwe resources</span>
+            </div>
+            <div style="font-size: 13px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--wire-border);">
+                <span>L&D Monitor Benchmark Report Q4 2025</span>
+                <span style="display: flex; gap: 8px; align-items: center;">
+                  <span style="background: var(--wire-success); color: white; font-size: 10px; padding: 2px 8px; border-radius: 10px;">Nieuw</span>
+                  <a href="#" class="card-link">Bekijk</a>
+                </span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--wire-border);">
+                <span>Template: Board Presentation L&D ROI</span>
+                <span style="display: flex; gap: 8px; align-items: center;">
+                  <span style="background: var(--wire-success); color: white; font-size: 10px; padding: 2px 8px; border-radius: 10px;">Nieuw</span>
+                  <a href="#" class="card-link">Download</a>
+                </span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;">
+                <span>Podcast: CEO gesprek over Learning Velocity</span>
+                <a href="#" class="card-link">Luister</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTION PLAN PAGE -->
+      <div class="page" id="page-action">
+        <header class="page-header">
+          <h1 class="welcome-text">Uw 90-Dagen Actieplan</h1>
+          <p class="welcome-meta">Gepersonaliseerd op basis van uw Scan resultaten</p>
+        </header>
+
+        <div class="cards-grid">
+          <div class="card" style="background: var(--wire-accent-light); border-color: var(--wire-accent);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong>Focus: ROI Measurement verbeteren (4.2 &rarr; 6.5)</strong>
+                <p style="font-size: 13px; margin-top: 4px;">Dag 32 van 90</p>
+              </div>
+              <div style="font-size: 24px; font-weight: 700; color: var(--wire-accent);">35%</div>
+            </div>
+            <div style="height: 8px; background: white; border-radius: 4px; margin-top: 16px; overflow: hidden;">
+              <div style="height: 100%; width: 35%; background: var(--wire-accent); border-radius: 4px;"></div>
+            </div>
+          </div>
+
+          <div class="action-phases">
+            <div class="phase-item expanded">
+              <div class="phase-header" onclick="this.parentElement.classList.toggle('expanded')">
+                <span class="phase-title">Fase 1: Foundation (Dag 1-30)</span>
+                <span class="phase-status complete">&#10003; Compleet</span>
+              </div>
+              <div class="phase-content">
+                <div class="task-item">
+                  <div class="task-checkbox checked">&#10003;</div>
+                  <span class="task-text done">Download ROI Framework whitepaper</span>
+                </div>
+                <div class="task-item">
+                  <div class="task-checkbox checked">&#10003;</div>
+                  <span class="task-text done">Identificeer 3 key metrics voor uw organisatie</span>
+                </div>
+                <div class="task-item">
+                  <div class="task-checkbox checked">&#10003;</div>
+                  <span class="task-text done">Stel baseline vast voor huidige L&D spend</span>
+                </div>
+                <div class="task-item">
+                  <div class="task-checkbox checked">&#10003;</div>
+                  <span class="task-text done">Selecteer pilot programma voor ROI meting</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phase-item expanded">
+              <div class="phase-header" onclick="this.parentElement.classList.toggle('expanded')">
+                <span class="phase-title">Fase 2: Implementation (Dag 31-60)</span>
+                <span class="phase-status active">&#9679; Actief</span>
+              </div>
+              <div class="phase-content">
+                <div class="task-item">
+                  <div class="task-checkbox checked">&#10003;</div>
+                  <span class="task-text done">Implementeer tracking voor pilot programma</span>
+                </div>
+                <div class="task-item">
+                  <div class="task-checkbox" style="border-color: var(--wire-accent); background: var(--wire-accent-light);">&#9679;</div>
+                  <span class="task-text"><strong>Eerste ROI rapportage genereren</strong> &larr; Nu bezig</span>
+                </div>
+                <div class="task-item">
+                  <div class="task-checkbox"></div>
+                  <span class="task-text">Review sessie met finance team</span>
+                </div>
+                <div class="task-item">
+                  <div class="task-checkbox"></div>
+                  <span class="task-text">Aanpassen metrics op basis van feedback</span>
+                </div>
+                <div style="margin-top: 16px; padding: 12px; background: var(--wire-bg); border-radius: 8px;">
+                  <span style="font-size: 12px; color: var(--wire-text-light);">&#128218; Aanbevolen resource:</span><br>
+                  <a href="#" class="card-link" onclick="showPage('resources')">CFO Presentation Template &rarr;</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="phase-item">
+              <div class="phase-header" onclick="this.parentElement.classList.toggle('expanded')">
+                <span class="phase-title">Fase 3: Scale (Dag 61-90)</span>
+                <span class="phase-status pending">&#9711; Gepland</span>
+              </div>
+              <div class="phase-content">
+                <div class="task-item">
+                  <div class="task-checkbox"></div>
+                  <span class="task-text">Roll-out ROI framework naar alle L&D programma's</span>
+                </div>
+                <div class="task-item">
+                  <div class="task-checkbox"></div>
+                  <span class="task-text">Board presentatie met eerste resultaten</span>
+                </div>
+                <div class="task-item">
+                  <div class="task-checkbox"></div>
+                  <span class="task-text">Automatiseer maandelijkse ROI reporting</span>
+                </div>
+                <div class="task-item">
+                  <div class="task-checkbox"></div>
+                  <span class="task-text">Plan herhaling L&D Impact Scan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cards-row">
+            <button class="cta-btn secondary">&#128229; Download plan als PDF</button>
+            <button class="cta-btn secondary">&#128231; Deel met team</button>
+          </div>
+
+          <div class="card" style="background: #fef3c7; border-color: #f59e0b;">
+            <div class="card-header">
+              <span class="card-title">&#128172; Hulp nodig?</span>
+            </div>
+            <p style="font-size: 13px; margin-bottom: 16px;">
+              Boek een 30-min sessie met een Studytube consultant om uw actieplan te bespreken.
+            </p>
+            <button class="cta-btn">Boek sessie &rarr;</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    function showDashboard() {
+      document.getElementById('loginScreen').classList.remove('active');
+      document.getElementById('dashboard').classList.add('active');
+    }
+
+    function showPage(pageName) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+
+      // Show selected page
+      document.getElementById('page-' + pageName).classList.add('active');
+
+      // Update nav
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+        if (item.dataset.page === pageName) {
+          item.classList.add('active');
+        }
+      });
+    }
+
+    // Allow clicking login with enter key
+    document.querySelector('.login-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        showDashboard();
+      }
+    });
+  </script>
+
+</body>
+</html>

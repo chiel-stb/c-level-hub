@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Action Plan | C-Level Personal Environment Wireframe</title>
+  <style>
+    :root {
+      --black: #1a1a1a;
+      --dark-gray: #4a4a4a;
+      --mid-gray: #888;
+      --light-gray: #ccc;
+      --border: #ddd;
+      --bg: #f5f5f5;
+      --white: #fff;
+      --annotation: #e74c3c;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Courier New', monospace;
+      background: var(--bg);
+      color: var(--black);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    .page-indicator {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: var(--black);
+      color: var(--white);
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: bold;
+      z-index: 1000;
+    }
+    .nav-bar {
+      background: var(--white);
+      border-bottom: 2px solid var(--black);
+      padding: 12px 24px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-bar a {
+      color: var(--dark-gray);
+      text-decoration: none;
+      padding: 4px 8px;
+      border: 1px solid transparent;
+    }
+    .nav-bar a:hover { border-color: var(--mid-gray); }
+    .nav-bar a.active { background: var(--black); color: var(--white); }
+
+    .app-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      min-height: calc(100vh - 50px);
+    }
+    .sidebar {
+      background: var(--white);
+      border-right: 2px solid var(--black);
+      padding: 24px 0;
+    }
+    .sidebar-item {
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+    }
+    .sidebar-item:hover { background: var(--bg); }
+    .sidebar-item.active {
+      background: var(--bg);
+      border-left-color: var(--black);
+      font-weight: bold;
+    }
+    .sidebar-icon {
+      width: 20px;
+      height: 20px;
+      border: 1px dashed var(--mid-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+
+    .main-content {
+      padding: 32px;
+      overflow-y: auto;
+    }
+    .wf-page-header {
+      margin-bottom: 16px;
+    }
+    .wf-page-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .wf-page-subtitle {
+      font-size: 12px;
+      color: var(--mid-gray);
+    }
+
+    .wf-box {
+      border: 2px solid var(--black);
+      background: var(--white);
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .wf-box-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      font-weight: bold;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .wf-box-content {
+      padding: 24px;
+    }
+
+    .wf-focus-box {
+      background: var(--bg);
+      border: 2px solid var(--black);
+      padding: 20px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .wf-focus-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .wf-focus-target {
+      font-size: 13px;
+      color: var(--dark-gray);
+      margin-bottom: 16px;
+    }
+    .wf-progress-bar {
+      height: 12px;
+      background: var(--border);
+      margin-bottom: 8px;
+    }
+    .wf-progress-fill {
+      height: 100%;
+      background: var(--black);
+    }
+    .wf-progress-label {
+      font-size: 12px;
+      color: var(--mid-gray);
+    }
+
+    .wf-phase {
+      border: 2px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .wf-phase.completed { border-color: var(--mid-gray); }
+    .wf-phase.active { border-color: var(--black); }
+    .wf-phase.upcoming { border-color: var(--border); opacity: 0.7; }
+
+    .wf-phase-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .wf-phase-title {
+      font-weight: bold;
+      font-size: 13px;
+    }
+    .wf-phase-status {
+      font-size: 11px;
+      padding: 4px 10px;
+      border: 1px solid;
+    }
+    .wf-phase-status.completed {
+      background: var(--bg);
+      border-color: var(--mid-gray);
+    }
+    .wf-phase-status.active {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+    .wf-phase-status.upcoming {
+      border-color: var(--border);
+      color: var(--mid-gray);
+    }
+
+    .wf-phase-content {
+      padding: 16px 20px;
+    }
+    .wf-task-list {
+      list-style: none;
+    }
+    .wf-task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 8px 0;
+      font-size: 13px;
+    }
+    .wf-task-check {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .wf-task-check.done {
+      background: var(--black);
+      border-color: var(--black);
+      color: var(--white);
+    }
+    .wf-task-check.active {
+      border-color: var(--black);
+    }
+    .wf-task-text.done {
+      text-decoration: line-through;
+      color: var(--mid-gray);
+    }
+    .wf-task-current {
+      font-size: 10px;
+      margin-left: 8px;
+      color: var(--dark-gray);
+    }
+
+    .wf-resource-link {
+      margin-top: 12px;
+      padding: 10px 16px;
+      background: var(--bg);
+      font-size: 12px;
+    }
+
+    .wf-actions-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .wf-button {
+      padding: 12px 20px;
+      border: 2px solid var(--black);
+      background: var(--white);
+      font-family: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .wf-help-box {
+      background: var(--bg);
+      border-left: 4px solid var(--black);
+      padding: 20px;
+    }
+    .wf-help-title {
+      font-weight: bold;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .wf-help-text {
+      font-size: 12px;
+      color: var(--dark-gray);
+      margin-bottom: 12px;
+    }
+
+    /* Annotations */
+    .annotation {
+      position: absolute;
+      background: var(--annotation);
+      color: white;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: bold;
+      z-index: 100;
+    }
+    .annotation::after {
+      content: '';
+      position: absolute;
+      border: 6px solid transparent;
+    }
+    .annotation.top { bottom: calc(100% + 12px); }
+    .annotation.top::after {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: var(--annotation);
+    }
+    .annotation.left { right: calc(100% + 16px); }
+    .annotation.left::after {
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left-color: var(--annotation);
+    }
+    .annotation.right { left: calc(100% + 16px); }
+    .annotation.right::after {
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-right-color: var(--annotation);
+    }
+
+    .annotation-key {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      font-size: 11px;
+      max-width: 280px;
+      z-index: 1000;
+    }
+    .annotation-key h4 {
+      margin-bottom: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .annotation-key ul { list-style: none; }
+    .annotation-key li { margin-bottom: 4px; }
+    .annotation-key .tag {
+      display: inline-block;
+      background: var(--annotation);
+      color: white;
+      padding: 1px 6px;
+      font-size: 10px;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-indicator">WIREFRAME 08/08: ACTION PLAN</div>
+
+  <nav class="nav-bar">
+    <a href="01-login.html">01 Login</a>
+    <a href="02-onboarding.html">02 Onboarding</a>
+    <a href="03-dashboard.html">03 Dashboard</a>
+    <a href="04-scan-results.html">04 Scan Results</a>
+    <a href="05-benchmarks.html">05 Benchmarks</a>
+    <a href="06-monitor.html">06 L&D Monitor</a>
+    <a href="07-resources.html">07 Resources</a>
+    <a href="08-action-plan.html" class="active">08 Action Plan</a>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-item">
+        <span class="sidebar-icon">D</span>
+        Dashboard
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-icon">S</span>
+        Scan Results
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-icon">B</span>
+        Benchmarks
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-icon">M</span>
+        L&D Monitor
+      </div>
+      <div class="sidebar-item">
+        <span class="sidebar-icon">R</span>
+        Resources
+      </div>
+      <div class="sidebar-item active">
+        <span class="sidebar-icon">A</span>
+        Action Plan
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="wf-page-header">
+        <div class="wf-page-title">UW 90-DAGEN ACTIEPLAN</div>
+        <div class="wf-page-subtitle">Gepersonaliseerd op basis van uw Scan resultaten</div>
+      </div>
+
+      <!-- Focus Box -->
+      <div class="wf-focus-box">
+        <span class="annotation right" style="top: 20px;">A1</span>
+        <div class="wf-focus-title">FOCUS: ROI Measurement verbeteren (4.2 → 6.5)</div>
+        <div class="wf-focus-target">Doelscore: 6.5 | Huidige: 4.2 | Gap: +2.3</div>
+        <div class="wf-progress-bar">
+          <div class="wf-progress-fill" style="width: 35%;"></div>
+        </div>
+        <div class="wf-progress-label">Progress: 35% | Dag 32 van 90</div>
+      </div>
+
+      <!-- Phase 1: Completed -->
+      <div class="wf-phase completed" style="position: relative;">
+        <span class="annotation left" style="top: 40px;">A2</span>
+        <div class="wf-phase-header">
+          <span class="wf-phase-title">FASE 1: FOUNDATION (Dag 1-30)</span>
+          <span class="wf-phase-status completed">✓ Compleet</span>
+        </div>
+        <div class="wf-phase-content">
+          <ul class="wf-task-list">
+            <li class="wf-task-item">
+              <span class="wf-task-check done">✓</span>
+              <span class="wf-task-text done">Download ROI Framework whitepaper</span>
+            </li>
+            <li class="wf-task-item">
+              <span class="wf-task-check done">✓</span>
+              <span class="wf-task-text done">Identificeer 3 key metrics voor uw organisatie</span>
+            </li>
+            <li class="wf-task-item">
+              <span class="wf-task-check done">✓</span>
+              <span class="wf-task-text done">Stel baseline vast voor huidige L&D spend</span>
+            </li>
+            <li class="wf-task-item">
+              <span class="wf-task-check done">✓</span>
+              <span class="wf-task-text done">Selecteer pilot programma voor ROI meting</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Phase 2: Active -->
+      <div class="wf-phase active" style="position: relative;">
+        <span class="annotation right" style="top: 60px;">A3</span>
+        <div class="wf-phase-header">
+          <span class="wf-phase-title">FASE 2: IMPLEMENTATION (Dag 31-60)</span>
+          <span class="wf-phase-status active">🔄 Actief</span>
+        </div>
+        <div class="wf-phase-content">
+          <ul class="wf-task-list">
+            <li class="wf-task-item">
+              <span class="wf-task-check done">✓</span>
+              <span class="wf-task-text done">Implementeer tracking voor pilot programma</span>
+            </li>
+            <li class="wf-task-item">
+              <span class="wf-task-check active">○</span>
+              <span class="wf-task-text">Eerste ROI rapportage genereren</span>
+              <span class="wf-task-current">← Nu bezig</span>
+            </li>
+            <li class="wf-task-item">
+              <span class="wf-task-check">○</span>
+              <span class="wf-task-text">Review sessie met finance team</span>
+            </li>
+            <li class="wf-task-item">
+              <span class="wf-task-check">○</span>
+              <span class="wf-task-text">Aanpassen metrics op basis van feedback</span>
+            </li>
+          </ul>
+          <div class="wf-resource-link">
+            📚 Aanbevolen resource: <strong>CFO Presentation Template →</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3: Upcoming -->
+      <div class="wf-phase upcoming" style="position: relative;">
+        <span class="annotation left" style="top: 40px;">A4</span>
+        <div class="wf-phase-header">
+          <span class="wf-phase-title">FASE 3: SCALE (Dag 61-90)</span>
+          <span class="wf-phase-status upcoming">○ Gepland</span>
+        </div>
+        <div class="wf-phase-content">
+          <ul class="wf-task-list">
+            <li class="wf-task-item">
+              <span class="wf-task-check">○</span>
+              <span class="wf-task-text">Roll-out ROI framework naar alle L&D programma's</span>
+            </li>
+            <li class="wf-task-item">
+              <span class="wf-task-check">○</span>
+              <span class="wf-task-text">Board presentatie met eerste resultaten</span>
+            </li>
+            <li class="wf-task-item">
+              <span class="wf-task-check">○</span>
+              <span class="wf-task-text">Automatiseer maandelijkse ROI reporting</span>
+            </li>
+            <li class="wf-task-item">
+              <span class="wf-task-check">○</span>
+              <span class="wf-task-text">Plan herhaling L&D Impact Scan</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="wf-actions-row" style="position: relative;">
+        <span class="annotation top" style="left: 100px;">A5</span>
+        <button class="wf-button">📥 Download plan als PDF</button>
+        <button class="wf-button">📧 Deel met team</button>
+      </div>
+
+      <!-- Help Box -->
+      <div class="wf-help-box" style="position: relative;">
+        <span class="annotation right" style="top: 20px;">A6</span>
+        <div class="wf-help-title">💬 HULP NODIG?</div>
+        <div class="wf-help-text">
+          Boek een 30-min sessie met een Studytube consultant om uw actieplan te bespreken.
+        </div>
+        <button class="wf-button">Boek sessie →</button>
+      </div>
+    </main>
+  </div>
+
+  <div class="annotation-key">
+    <h4>Annotation Key</h4>
+    <ul>
+      <li><span class="tag">A1</span> Focus goal with progress</li>
+      <li><span class="tag">A2</span> Completed phase (collapsed)</li>
+      <li><span class="tag">A3</span> Active phase with current task</li>
+      <li><span class="tag">A4</span> Upcoming phase (preview)</li>
+      <li><span class="tag">A5</span> Export/share actions</li>
+      <li><span class="tag">A6</span> Help CTA (consultation)</li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C-Level Master Plan - Execution Scaffold | Studytube</title>
+  <meta name="description" content="Interactive execution scaffold for C-level demand generation strategy. Visual roadmap showing all deliverables, status, and execution priorities.">
+
+  <!-- Fonts -->
+  <style>
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://f.hubspotusercontent30.net/hubfs/515235/DiamondTube/fonts/EuclidCircularB-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-display: swap;
+    }
+  </style>
+
+  <style>
+    :root {
+      --st-blue-500: #056DFF;
+      --st-navy: #0B0B2B;
+      --st-cyan-500: #05D5FF;
+      --st-blue-100: #D7EBFF;
+      --st-blue-600: #0A5CEB;
+      --st-blue-900: #11295A;
+      --st-gray-050: #F5F7F9;
+      --st-gray-100: #F2F5F8;
+      --st-gray-200: #E9EDF1;
+      --st-gray-300: #D1D9E0;
+      --st-gray-500: #8694A2;
+      --st-gray-600: #545E69;
+      --st-gray-800: #2C3135;
+      --st-text-primary: #11295A;
+      --st-text-secondary: #545E69;
+      --st-success: #16A34A;
+      --st-warning: #FACC15;
+      --st-error: #EF5350;
+      --font-display: 'Euclid Circular B', system-ui, -apple-system, sans-serif;
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+      --space-4xl: 80px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --shadow-m: 0 4px 20px rgba(0,0,0,0.05);
+      --shadow-l: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-display);
+      color: var(--st-text-primary);
+      background: #FFFFFF;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--st-gray-200);
+      padding: var(--space-md) var(--space-xl);
+    }
+    .header-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { font-weight: 700; font-size: 18px; color: var(--st-blue-500); }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-xs) var(--space-md);
+      background: var(--st-success);
+      color: white;
+      border-radius: 16px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--st-blue-900) 0%, var(--st-blue-600) 100%);
+      padding: var(--space-4xl) var(--space-xl);
+      color: white;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+      line-height: 1.1;
+    }
+    .hero-lead {
+      font-size: 20px;
+      opacity: 0.9;
+      max-width: 720px;
+      margin: 0 auto var(--space-xl);
+    }
+    .hero-stats {
+      display: flex;
+      gap: var(--space-2xl);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--space-2xl);
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat-number {
+      font-size: 48px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+    .hero-stat-label {
+      font-size: 14px;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Main Content */
+    .main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: var(--space-3xl) var(--space-xl);
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: var(--space-3xl);
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-md);
+      border-bottom: 2px solid var(--st-gray-200);
+    }
+    .section-number {
+      width: 48px;
+      height: 48px;
+      background: var(--st-blue-500);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .section-title {
+      flex: 1;
+    }
+    .section-title h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+    .section-title p {
+      color: var(--st-text-secondary);
+      font-size: 15px;
+    }
+    .section-status {
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .status-ready { background: var(--st-gray-100); color: var(--st-text-secondary); }
+    .status-progress { background: #FEF3C7; color: #92400E; }
+    .status-complete { background: #D1FAE5; color: #065F46; }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+    .card {
+      background: white;
+      border: 2px solid var(--st-gray-200);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .card:hover {
+      border-color: var(--st-blue-500);
+      box-shadow: var(--shadow-l);
+      transform: translateY(-2px);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: var(--space-md);
+    }
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--st-blue-100);
+      color: var(--st-blue-500);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .card-priority {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .priority-high { background: #FEE2E2; color: #991B1B; }
+    .priority-medium { background: #FEF3C7; color: #92400E; }
+    .priority-low { background: var(--st-gray-100); color: var(--st-gray-600); }
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+      color: var(--st-text-primary);
+    }
+    .card-description {
+      font-size: 14px;
+      color: var(--st-text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+    }
+    .card-meta {
+      display: flex;
+      gap: var(--space-md);
+      font-size: 13px;
+      color: var(--st-text-secondary);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--st-gray-200);
+    }
+    .card-meta span {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .timeline-item {
+      display: flex;
+      gap: var(--space-lg);
+    }
+    .timeline-marker {
+      width: 40px;
+      height: 40px;
+      background: var(--st-blue-500);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .timeline-marker::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 40px;
+      background: var(--st-gray-200);
+    }
+    .timeline-item:last-child .timeline-marker::after {
+      display: none;
+    }
+    .timeline-content {
+      flex: 1;
+      background: var(--st-gray-050);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+    }
+    .timeline-content h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+    }
+    .timeline-content p {
+      font-size: 14px;
+      color: var(--st-text-secondary);
+      margin-bottom: var(--space-md);
+    }
+    .timeline-tasks {
+      list-style: none;
+      font-size: 14px;
+    }
+    .timeline-tasks li {
+      padding: var(--space-xs) 0;
+      padding-left: var(--space-lg);
+      position: relative;
+    }
+    .timeline-tasks li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--st-blue-500);
+      font-weight: 700;
+    }
+
+    /* Footer CTA */
+    .footer-cta {
+      background: var(--st-gray-050);
+      padding: var(--space-4xl) var(--space-xl);
+      text-align: center;
+      margin-top: var(--space-4xl);
+    }
+    .footer-cta h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+    }
+    .footer-cta p {
+      font-size: 18px;
+      color: var(--st-text-secondary);
+      margin-bottom: var(--space-xl);
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--st-blue-500);
+      color: white;
+      padding: 16px 32px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .cta-button:hover {
+      background: var(--st-blue-600);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-stats {
+        flex-direction: column;
+        gap: var(--space-lg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">STUDYTUBE | C-Level Strategy</div>
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        Directory Structure Complete
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>C-Level Master Plan</h1>
+    <p class="hero-lead">Execution scaffold for C-level demand generation. 8 major sections. 40+ deliverables. One systematic approach to building CEO/CHRO as viable channels.</p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-number">8</span>
+        <span class="hero-stat-label">Major Sections</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">40+</span>
+        <span class="hero-stat-label">Subdirectories</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">165</span>
+        <span class="hero-stat-label">Research Sources</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">10x</span>
+        <span class="hero-stat-label">Speed Multiplier</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <!-- Section 1: Project Context -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">01</div>
+        <div class="section-title">
+          <h2>Project Context</h2>
+          <p>Strategic foundation, research synthesis, personas, competitive landscape</p>
+        </div>
+        <span class="section-status status-ready">📋 Ready for Context</span>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📄</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">context.md</h3>
+          <p class="card-description">Executive summary, objectives, stakeholders, success criteria. The control center for the entire project.</p>
+          <div class="card-meta">
+            <span>📂 01-project-context/</span>
+            <span>⚡ 30 min</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🔬</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">research-synthesis.md</h3>
+          <p class="card-description">165 sources distilled to key insights. CEO JTBD, CHRO pain points, competitive positioning.</p>
+          <div class="card-meta">
+            <span>📂 01-project-context/</span>
+            <span>⚡ 1 hour</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">👥</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">personas.md</h3>
+          <p class="card-description">CEO & CHRO profiles with JTBDs, pain points, trigger events, language patterns.</p>
+          <div class="card-meta">
+            <span>📂 01-project-context/</span>
+            <span>⚡ 45 min</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📊</div>
+            <span class="card-priority priority-medium">MEDIUM</span>
+          </div>
+          <h3 class="card-title">proof-points.md</h3>
+          <p class="card-description">4-tier statistics arsenal ready for any content. Market context → Problem → Solution → Studytube proof.</p>
+          <div class="card-meta">
+            <span>📂 01-project-context/</span>
+            <span>⚡ 30 min</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Hub Architecture -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">02</div>
+        <div class="section-title">
+          <h2>Hub Architecture</h2>
+          <p>studytube.nl/c-level landing page, CEO subpage, CHRO subpage</p>
+        </div>
+        <span class="section-status status-ready">📋 Ready to Build</span>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🏠</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">Hub Landing Page</h3>
+          <p class="card-description">Dual-persona entry point. Persona selector, "Learning Moat" thesis, gated resources, L&D Impact Scan CTA.</p>
+          <div class="card-meta">
+            <span>🎯 @studytube-page-stack</span>
+            <span>⏱️ Week 1-2</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">👔</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">CEO Sub-Page</h3>
+          <p class="card-description">"Build capability without headcount." Talent crisis narrative, ROI proof, Strategic Skill Playbook download.</p>
+          <div class="card-meta">
+            <span>🎯 @studytube-page-stack</span>
+            <span>⏱️ Week 1-2</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🎯</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">CHRO Sub-Page</h3>
+          <p class="card-description">"Prove L&D value to CFO." Strategic invisibility narrative, ROI Framework, ammunition for internal case.</p>
+          <div class="card-meta">
+            <span>🎯 @studytube-page-stack</span>
+            <span>⏱️ Week 1-2</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Content Assets -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">03</div>
+        <div class="section-title">
+          <h2>Content Assets</h2>
+          <p>Lead magnets, case studies, whitepapers — gated content for demand gen</p>
+        </div>
+        <span class="section-status status-ready">📋 Ready to Create</span>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📈</div>
+            <span class="card-priority priority-high">HIGH PRIORITY</span>
+          </div>
+          <h3 class="card-title">The 30% Promise</h3>
+          <p class="card-description">Emil Frey case study. 30% cost reduction, 90% time savings, 4-week implementation. CEO proof point.</p>
+          <div class="card-meta">
+            <span>🎯 @studytube-case-study</span>
+            <span>📅 Feb 10 target</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📚</div>
+            <span class="card-priority priority-high">HIGH PRIORITY</span>
+          </div>
+          <h3 class="card-title">De Impact — Het Boek</h3>
+          <p class="card-description">Physical book anthology: 12 podcast guests, 500 copies. Guest amplification engine (600 C-level touches). Sales enablement gift, not brochure. 33x+ ROI.</p>
+          <div class="card-meta">
+            <span>🎯 External editor + designer</span>
+            <span>📅 Q2 2026 production → Q3 launch</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">💰</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">The Skill-Based P&L</h3>
+          <p class="card-description">Whitepaper for CFO bridge. Connect skills to P&L, ROI framework, budget justification ammunition.</p>
+          <div class="card-meta">
+            <span>🎯 @studytube-bridge-asset</span>
+            <span>⏱️ Week 4-5</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📖</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">Strategic Skill Playbook</h3>
+          <p class="card-description">25-page guide. 90-day roadmap. CEO + CHRO tracks. The definitive resource for C-level L&D strategy.</p>
+          <div class="card-meta">
+            <span>🎯 @studytube-bridge-asset</span>
+            <span>⏱️ Week 6-7</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🎨</div>
+            <span class="card-priority priority-medium">MEDIUM</span>
+          </div>
+          <h3 class="card-title">Cover Images</h3>
+          <p class="card-description">Visual assets for all PDFs. Studytube brand system with curved cutout design pattern.</p>
+          <div class="card-meta">
+            <span>🎯 @studytube-cover-image-generator</span>
+            <span>⏱️ As needed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Thought Leadership -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">04</div>
+        <div class="section-title">
+          <h2>Thought Leadership</h2>
+          <p>LinkedIn content series — 8-week "Learning Moat" narrative from Homam</p>
+        </div>
+        <span class="section-status status-ready">📋 Ready to Generate</span>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📱</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">Week 1: The Moat Declaration</h3>
+          <p class="card-description">"Every competitive advantage you used to have is eroding." Sets up the core thesis.</p>
+          <div class="card-meta">
+            <span>🎯 @studytube-copywriter</span>
+            <span>📅 Q1 2026</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📱</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">Week 2: The Wennink Wake-Up</h3>
+          <p class="card-description">"Wennink is right. But the solution isn't at policy level—it's in your boardroom." Dutch context.</p>
+          <div class="card-meta">
+            <span>🎯 @studytube-copywriter</span>
+            <span>📅 Q1 2026</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📱</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">Week 3-8: Series Arc</h3>
+          <p class="card-description">AI Paradox → Retention Truth → SME Advantage → Velocity Metric → Proof Point → CEO Question</p>
+          <div class="card-meta">
+            <span>🎯 @studytube-copywriter</span>
+            <span>📅 Q1 2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Sales Enablement -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">05</div>
+        <div class="section-title">
+          <h2>Sales Enablement</h2>
+          <p>SDR/AE collateral — sequences, value props, one-pagers, battle cards</p>
+        </div>
+        <span class="section-status status-complete">✅ Skills Updated</span>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">✉️</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">Outbound Sequences</h3>
+          <p class="card-description">CEO 6-touch + CHRO 6-touch email sequences. Trigger events, timing, objection handling. Ready in @studytube-outbound.</p>
+          <div class="card-meta">
+            <span>✅ Available now</span>
+            <span>👤 For Twan</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🎯</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">Value Prop Canvases</h3>
+          <p class="card-description">CEO & CHRO Fletch canvases. JTBDs, pain points, capabilities, proof points. Ready in @studytube-value-prop.</p>
+          <div class="card-meta">
+            <span>✅ Available now</span>
+            <span>👤 For Farzad</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📄</div>
+            <span class="card-priority priority-medium">MEDIUM</span>
+          </div>
+          <h3 class="card-title">One-Pagers</h3>
+          <p class="card-description">CEO & CHRO leave-behinds. Concise value props, proof points, CTAs. For AE meetings.</p>
+          <div class="card-meta">
+            <span>🎯 @studytube-copywriter</span>
+            <span>⏱️ Week 2-3</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">⚔️</div>
+            <span class="card-priority priority-medium">MEDIUM</span>
+          </div>
+          <h3 class="card-title">Battle Cards</h3>
+          <p class="card-description">vs. GoodHabitz, 360Learning, Cornerstone, enterprise LMS. Competitive positioning, objection handling.</p>
+          <div class="card-meta">
+            <span>🎯 @studytube-copywriter</span>
+            <span>⏱️ Week 3-4</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Automation Layer -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">06</div>
+        <div class="section-title">
+          <h2>Automation Layer</h2>
+          <p>10x speed multipliers — batch builders, auto-registry, schedulers</p>
+        </div>
+        <span class="section-status status-ready">🔧 Ready to Build</span>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🤖</div>
+            <span class="card-priority priority-high">HIGH IMPACT</span>
+          </div>
+          <h3 class="card-title">Content Production Pipeline</h3>
+          <p class="card-description">Agent orchestration. Strategy → Copy → Edit → Visual → Register in Airtable. One command = finished asset.</p>
+          <div class="card-meta">
+            <span>⚡ 5 steps → 1 step</span>
+            <span>⏱️ Week 4-5</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📦</div>
+            <span class="card-priority priority-high">HIGH IMPACT</span>
+          </div>
+          <h3 class="card-title">Batch Page Builder</h3>
+          <p class="card-description">Build hub + 2 subpages in single command. 3 pages in 10 min vs. 3 × 1 hour manual.</p>
+          <div class="card-meta">
+            <span>⚡ 3 hours → 10 min</span>
+            <span>⏱️ Week 4</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📊</div>
+            <span class="card-priority priority-medium">MEDIUM IMPACT</span>
+          </div>
+          <h3 class="card-title">Airtable Auto-Registry</h3>
+          <p class="card-description">Every deliverable auto-registers on creation. File watcher → metadata extraction → Airtable push.</p>
+          <div class="card-meta">
+            <span>⚡ Zero manual registration</span>
+            <span>⏱️ Week 4</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📅</div>
+            <span class="card-priority priority-medium">MEDIUM IMPACT</span>
+          </div>
+          <h3 class="card-title">LinkedIn Scheduler</h3>
+          <p class="card-description">Auto-schedule 8-week series. Markdown → LinkedIn format → Buffer API. 8 weeks scheduled in 5 min.</p>
+          <div class="card-meta">
+            <span>⚡ 2 hours → 5 min</span>
+            <span>⏱️ Week 5</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Validation Layer -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">07</div>
+        <div class="section-title">
+          <h2>Validation Layer</h2>
+          <p>Interview frameworks for CEO & CHRO — validate critical unknowns</p>
+        </div>
+        <span class="section-status status-ready">📋 Ready for Interviews</span>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🎤</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">CEO Interview Guide</h3>
+          <p class="card-description">4 sections: JTBD validation, emotional fractures, "Learning Moat" testing, channel/offer preferences.</p>
+          <div class="card-meta">
+            <span>🎯 6-8 interviews</span>
+            <span>⏱️ Feb-Mar</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🎤</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">CHRO Interview Guide</h3>
+          <p class="card-description">4 sections: Strategic pain, proof problem, coalition building, meta-theme testing.</p>
+          <div class="card-meta">
+            <span>🎯 4-6 interviews</span>
+            <span>⏱️ Feb-Mar</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🔍</div>
+            <span class="card-priority priority-medium">CRITICAL UNKNOWNS</span>
+          </div>
+          <h3 class="card-title">What We Need to Validate</h3>
+          <p class="card-description">Buyer journey, channel preference, "Learning Moat" resonance, offer types that drive action.</p>
+          <div class="card-meta">
+            <span>❓ Low confidence</span>
+            <span>⚠️ Blocks execution</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Measurement -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">08</div>
+        <div class="section-title">
+          <h2>Measurement</h2>
+          <p>Analytics, attribution, success metrics — how we know it's working</p>
+        </div>
+        <span class="section-status status-ready">📊 Ready for Setup</span>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📈</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">Hub Analytics</h3>
+          <p class="card-description">GA4 setup, goals, conversion funnels. Track persona path clicks, resource downloads, scan starts.</p>
+          <div class="card-meta">
+            <span>🎯 500+ views/month</span>
+            <span>⏱️ Week 6</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">💬</div>
+            <span class="card-priority priority-high">HIGH</span>
+          </div>
+          <h3 class="card-title">Content Performance</h3>
+          <p class="card-description">LinkedIn metrics, TLA criteria (>3% engagement), profile views, inbound CEO/CHRO inquiries.</p>
+          <div class="card-meta">
+            <span>🎯 Homam LinkedIn</span>
+            <span>⏱️ Week 6</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🎯</div>
+            <span class="card-priority priority-medium">MEDIUM</span>
+          </div>
+          <h3 class="card-title">Pipeline Attribution</h3>
+          <p class="card-description">HubSpot lead source tracking. Connect hub visits → downloads → demos. Prove C-level channel ROI.</p>
+          <div class="card-meta">
+            <span>🎯 5+ demos/month</span>
+            <span>⏱️ Week 7</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">🗓️</div>
+        <div class="section-title">
+          <h2>Execution Timeline</h2>
+          <p>Phased rollout from foundation to measurement</p>
+        </div>
+        <span class="section-status status-progress">⏱️ In Progress</span>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker">W1</div>
+          <div class="timeline-content">
+            <h3>Phase 1: Foundation</h3>
+            <p><strong>Week 1-2</strong> — Critical context files, hub pages, first content asset</p>
+            <ul class="timeline-tasks">
+              <li>Populate 5 critical context files</li>
+              <li>Build hub landing + CEO/CHRO subpages</li>
+              <li>Create "The 30% Promise" case study</li>
+              <li>Generate Week 1 LinkedIn post</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">W3</div>
+          <div class="timeline-content">
+            <h3>Phase 2: Content Layer</h3>
+            <p><strong>Week 2-4</strong> — LinkedIn series, whitepapers, sales collateral</p>
+            <ul class="timeline-tasks">
+              <li>Generate 8-week LinkedIn series</li>
+              <li>Create cover images (3 assets)</li>
+              <li>Build Skill-Based P&L whitepaper</li>
+              <li>Prepare sales one-pagers + battle cards</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">W5</div>
+          <div class="timeline-content">
+            <h3>Phase 3: Automation Layer</h3>
+            <p><strong>Week 4-6</strong> — Build 10x speed multipliers</p>
+            <ul class="timeline-tasks">
+              <li>Build Airtable auto-registry</li>
+              <li>Build LinkedIn scheduler</li>
+              <li>Build content production pipeline</li>
+              <li>Build batch page builder</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">W7</div>
+          <div class="timeline-content">
+            <h3>Phase 4: Measurement & Iteration</h3>
+            <p><strong>Week 6+</strong> — Analytics, interviews, iteration</p>
+            <ul class="timeline-tasks">
+              <li>Set up hub analytics (GA4)</li>
+              <li>Configure HubSpot tracking</li>
+              <li>Conduct 6-8 CEO interviews</li>
+              <li>Conduct 4-6 CHRO interviews</li>
+              <li>Iterate based on data</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer CTA -->
+  <section class="footer-cta">
+    <h2>Ready to Execute?</h2>
+    <p>This scaffold gives you a systematic 10x faster approach to building C-level as a demand generation channel.</p>
+    <a href="#" class="cta-button">Start with Phase 1: Foundation →</a>
+  </section>
+
+  <script>
+    // Add click handlers to cards for future interactivity
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', function() {
+        console.log('Card clicked:', this.querySelector('.card-title').textContent);
+        // Future: Open modal with full context, expand details, etc.
+      });
+    });
+  </script>
+
+</body>
+</html>

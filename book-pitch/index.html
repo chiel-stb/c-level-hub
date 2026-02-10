@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>De Impact — Het Boek | Strategic Pitch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --st-blue: #056DFF;
+      --st-navy: #11295A;
+      --st-cyan: #05D5FF;
+      --st-bg: #F9FAFB;
+      --st-white: #FFFFFF;
+      --st-text: #545E69;
+      --st-emphasis: #1A1C1E;
+      --st-link: #FF1B51;
+      --st-success: #16A34A;
+      --st-warning: #FACC15;
+      --st-gradient: linear-gradient(135deg, #056DFF 0%, #05D5FF 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--st-text);
+      background: var(--st-bg);
+      overflow: hidden;
+    }
+
+    /* Navigation Bar */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: var(--st-white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 1000;
+    }
+
+    #navbar .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--st-navy);
+    }
+
+    #navbar .nav-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.875rem;
+      color: var(--st-text);
+    }
+
+    #navbar .slide-counter {
+      font-weight: 600;
+      color: var(--st-navy);
+    }
+
+    /* Progress Bar */
+    #progress-bar {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      height: 4px;
+      background: var(--st-gradient);
+      width: 0%;
+      transition: width 0.3s ease;
+      z-index: 999;
+    }
+
+    /* Slide Container */
+    .slide-container {
+      position: relative;
+      width: 100vw;
+      height: calc(100vh - 60px);
+      margin-top: 60px;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .slide-content {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* Slide Types */
+    .title-slide {
+      background: var(--st-gradient);
+      color: var(--st-white);
+      text-align: center;
+    }
+
+    .title-slide h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .title-slide .subtitle {
+      font-size: 1.5rem;
+      font-weight: 400;
+      opacity: 0.95;
+      margin-bottom: 2rem;
+    }
+
+    .title-slide .meta {
+      font-size: 1rem;
+      opacity: 0.8;
+      font-weight: 500;
+    }
+
+    /* Content Slides */
+    .content-slide {
+      background: var(--st-white);
+    }
+
+    .content-slide h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--st-navy);
+      margin-bottom: 2rem;
+    }
+
+    .content-slide .eyebrow {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--st-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .gradient-text {
+      background: var(--st-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Problem/Insight Slides */
+    .big-idea {
+      font-size: 2rem;
+      line-height: 1.5;
+      color: var(--st-emphasis);
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .supporting-text {
+      font-size: 1.25rem;
+      line-height: 1.7;
+      color: var(--st-text);
+      max-width: 900px;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 3rem;
+    }
+
+    .stat-card {
+      background: var(--st-bg);
+      border-radius: 16px;
+      padding: 40px 30px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      border-color: var(--st-blue);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(5, 109, 255, 0.15);
+    }
+
+    .stat-card .value {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: var(--st-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card .label {
+      font-size: 1rem;
+      color: var(--st-text);
+      font-weight: 500;
+    }
+
+    /* Two Column Layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .col h3 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--st-navy);
+      margin-bottom: 1.5rem;
+    }
+
+    .col ul {
+      list-style: none;
+      font-size: 1.125rem;
+      line-height: 1.8;
+    }
+
+    .col ul li {
+      margin-bottom: 1rem;
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .col ul li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--st-blue);
+      font-weight: 700;
+    }
+
+    /* Distribution Cards */
+    .distribution-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 3rem;
+    }
+
+    .dist-card {
+      background: var(--st-bg);
+      border-radius: 16px;
+      padding: 30px;
+      border-left: 4px solid var(--st-blue);
+    }
+
+    .dist-card h4 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--st-navy);
+      margin-bottom: 1rem;
+    }
+
+    .dist-card .copies {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: var(--st-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .dist-card .desc {
+      font-size: 1rem;
+      color: var(--st-text);
+      line-height: 1.6;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin-top: 3rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 30px;
+      align-items: start;
+    }
+
+    .timeline-item .phase {
+      min-width: 120px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--st-blue);
+      text-transform: uppercase;
+    }
+
+    .timeline-item .content {
+      flex: 1;
+    }
+
+    .timeline-item .content h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--st-navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item .content p {
+      font-size: 1rem;
+      color: var(--st-text);
+      line-height: 1.6;
+    }
+
+    /* ROI Visualization */
+    .roi-flow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 3rem;
+      gap: 20px;
+    }
+
+    .roi-box {
+      flex: 1;
+      background: var(--st-bg);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .roi-box .label {
+      font-size: 0.875rem;
+      color: var(--st-text);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .roi-box .value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--st-navy);
+    }
+
+    .roi-arrow {
+      font-size: 2rem;
+      color: var(--st-blue);
+      font-weight: 700;
+    }
+
+    .roi-highlight {
+      background: var(--st-gradient);
+      color: var(--st-white);
+    }
+
+    .roi-highlight .value {
+      color: var(--st-white);
+    }
+
+    /* Decision Points */
+    .decision-list {
+      margin-top: 2rem;
+    }
+
+    .decision-item {
+      background: var(--st-white);
+      border: 2px solid var(--st-bg);
+      border-radius: 12px;
+      padding: 25px 30px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: start;
+      gap: 20px;
+    }
+
+    .decision-item .number {
+      min-width: 40px;
+      height: 40px;
+      background: var(--st-gradient);
+      color: var(--st-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.25rem;
+    }
+
+    .decision-item .content h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--st-navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .decision-item .content p {
+      font-size: 1rem;
+      color: var(--st-text);
+      line-height: 1.6;
+    }
+
+    /* Quote Block */
+    .quote-block {
+      background: var(--st-gradient);
+      border-radius: 24px;
+      padding: 60px;
+      text-align: center;
+      color: var(--st-white);
+      margin-top: 3rem;
+    }
+
+    .quote-block .quote-text {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+    }
+
+    .quote-block .quote-author {
+      font-size: 1.125rem;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    /* Navigation Arrows */
+    .nav-arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background: var(--st-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      z-index: 100;
+      font-size: 1.5rem;
+      color: var(--st-navy);
+      user-select: none;
+    }
+
+    .nav-arrow:hover {
+      background: var(--st-blue);
+      color: var(--st-white);
+      box-shadow: 0 8px 30px rgba(5, 109, 255, 0.3);
+    }
+
+    .nav-arrow.prev {
+      left: 30px;
+    }
+
+    .nav-arrow.next {
+      right: 30px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .slide {
+        padding: 60px 40px;
+      }
+
+      .title-slide h1 {
+        font-size: 3rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .distribution-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div id="navbar">
+    <div class="logo">Studytube</div>
+    <div class="nav-info">
+      <span class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">10</span></span>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Navigation Arrows -->
+  <div class="nav-arrow prev" onclick="prevSlide()">‹</div>
+  <div class="nav-arrow next" onclick="nextSlide()">›</div>
+
+  <!-- Slides -->
+  <div class="slide-container">
+
+    <!-- Slide 1: Title -->
+    <div class="slide active title-slide">
+      <div class="slide-content">
+        <h1>De Impact<br/>Het Boek</h1>
+        <p class="subtitle">Waarom een fysiek boek het ultieme C-level wapen is</p>
+        <p class="meta">Strategic Pitch — C-Level Demand Generation</p>
+      </div>
+    </div>
+
+    <!-- Slide 2: The Problem -->
+    <div class="slide content-slide">
+      <div class="slide-content">
+        <div class="eyebrow">Het Probleem</div>
+        <h2>Digitale Ruis</h2>
+        <p class="big-idea">"In een wereld vol PDF's, emails en webinars — hoe doorbreek je de ruis?"</p>
+        <p class="supporting-text">
+          C-level executives worden overspoeld met digitale content. Elk bedrijf stuurt whitepapers, case studies, en LinkedIn posts.
+          <strong>Alles is ephemeer. Niets blijft hangen.</strong>
+        </p>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="value">247</span>
+            <span class="label">Emails per dag (gemiddelde CEO)</span>
+          </div>
+          <div class="stat-card">
+            <span class="value">0%</span>
+            <span class="label">PDF's die daadwerkelijk gelezen worden</span>
+          </div>
+          <div class="stat-card">
+            <span class="value">3 sec</span>
+            <span class="label">Gemiddelde aandacht voor LinkedIn post</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: The Insight -->
+    <div class="slide content-slide" style="background: var(--st-bg);">
+      <div class="slide-content">
+        <div class="eyebrow">Het Inzicht</div>
+        <h2>Fysiek = <span class="gradient-text">Vertrouwensanker</span></h2>
+        <div class="two-col">
+          <div class="col">
+            <h3>Waarom Fysiek Wint</h3>
+            <ul>
+              <li><strong>Prestige</strong> — ISBN, hardcover, limited edition = legitimiteit</li>
+              <li><strong>Permanentie</strong> — Blijft jaren op de boekenplank staan</li>
+              <li><strong>Reciprociteit</strong> — Cadeaus creëren sociale verplichting</li>
+              <li><strong>Gespreksstarter</strong> — "Heb je dit gezien?" gesprekken</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>Waarom Digitaal Verliest</h3>
+            <ul>
+              <li>Makkelijk te negeren (1-click delete)</li>
+              <li>Geen fysieke aanwezigheid (out of sight, out of mind)</li>
+              <li>Te veel concurrentie (inbox overload)</li>
+              <li>Geen signaalwaarde (iedereen kan een PDF maken)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: The Concept -->
+    <div class="slide content-slide">
+      <div class="slide-content">
+        <div class="eyebrow">Het Concept</div>
+        <h2>De Impact — Leren als Strategische Pilaar</h2>
+        <p class="supporting-text" style="margin-bottom: 2rem;">
+          <strong>12 Nederlandse L&D Leaders</strong> delen hun visie op de toekomst van talent development.
+          Coffee table kwaliteit ontmoet business insights.
+        </p>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="value">210×240mm</span>
+            <span class="label">Premium formaat (portrait)</span>
+          </div>
+          <div class="stat-card">
+            <span class="value">180-220</span>
+            <span class="label">Pagina's (hardcover)</span>
+          </div>
+          <div class="stat-card">
+            <span class="value">500</span>
+            <span class="label">Eerste editie (limited)</span>
+          </div>
+        </div>
+        <div class="quote-block">
+          <p class="quote-text">"12 gasten × 50 exemplaren = 600 C-level touches zonder 1 cold call"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: Strategic Value -->
+    <div class="slide content-slide" style="background: var(--st-bg);">
+      <div class="slide-content">
+        <div class="eyebrow">Strategische Waarde</div>
+        <h2>Guest Amplification Engine</h2>
+        <p class="supporting-text" style="margin-bottom: 2rem;">
+          Dit is geen marketingcampagne. <strong>Dit is een netwerkeffect machine.</strong>
+        </p>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="value">12</span>
+            <span class="label">Gasten worden brand ambassadors</span>
+          </div>
+          <div class="stat-card">
+            <span class="value">50</span>
+            <span class="label">Exemplaren per gast (voor hun netwerk)</span>
+          </div>
+          <div class="stat-card">
+            <span class="value">600</span>
+            <span class="label">C-level executives bereikt</span>
+          </div>
+        </div>
+        <p class="big-idea" style="margin-top: 3rem; text-align: center;">
+          Elke gast doet <span class="gradient-text">12 micro-launches</span> in hun eigen netwerk
+        </p>
+      </div>
+    </div>
+
+    <!-- Slide 6: Distribution Model -->
+    <div class="slide content-slide">
+      <div class="slide-content">
+        <div class="eyebrow">Distributie Model</div>
+        <h2>4-Part Strategy</h2>
+        <div class="distribution-grid">
+          <div class="dist-card">
+            <h4>1. Guest Amplification</h4>
+            <p class="copies">600 copies</p>
+            <p class="desc">Elke gast krijgt 50 exemplaren voor hun netwerk. LinkedIn posts, gifting events, board meetings.</p>
+          </div>
+          <div class="dist-card">
+            <h4>2. Sales Enablement</h4>
+            <p class="copies">200 copies</p>
+            <p class="desc">AE leave-behinds bij C-level meetings. Geen brochure — een cadeau dat reciprociteit creëert.</p>
+          </div>
+          <div class="dist-card">
+            <h4>3. Event Gifting</h4>
+            <p class="copies">100 copies</p>
+            <p class="desc">L&D congressen, Studytube events, keynote speaking engagements, customer advisory boards.</p>
+          </div>
+          <div class="dist-card">
+            <h4>4. Public Sale</h4>
+            <p class="copies">100 copies</p>
+            <p class="desc">Webshop (€39,95), Bol.com, Amazon NL. Marketing via LinkedIn, newsletter, podcast episode.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 7: ROI Model -->
+    <div class="slide content-slide" style="background: var(--st-bg);">
+      <div class="slide-content">
+        <div class="eyebrow">ROI Model</div>
+        <h2>€15k → <span class="gradient-text">33x+ Return</span></h2>
+        <div class="roi-flow">
+          <div class="roi-box">
+            <p class="label">Investering</p>
+            <p class="value">€15k</p>
+          </div>
+          <div class="roi-arrow">→</div>
+          <div class="roi-box">
+            <p class="label">Sales Copies</p>
+            <p class="value">200</p>
+          </div>
+          <div class="roi-arrow">→</div>
+          <div class="roi-box">
+            <p class="label">Deals Influenced</p>
+            <p class="value">10</p>
+          </div>
+          <div class="roi-arrow">→</div>
+          <div class="roi-box roi-highlight">
+            <p class="label">Pipeline Value</p>
+            <p class="value">€500k+</p>
+          </div>
+        </div>
+        <p class="supporting-text" style="margin-top: 3rem; text-align: center;">
+          <strong>Conservatieve aanname:</strong> Als 200 sales copies bijdragen aan 10 closed deals (€50k gemiddeld),
+          dan is de cost per deal €1.500 — terwijl een gemiddeld deal €50k+ waard is.
+        </p>
+      </div>
+    </div>
+
+    <!-- Slide 8: Timeline -->
+    <div class="slide content-slide">
+      <div class="slide-content">
+        <div class="eyebrow">Productie Timeline</div>
+        <h2>12 Weken → Launch</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="phase">Week 1-2</div>
+            <div class="content">
+              <h4>Content Curation</h4>
+              <p>Selecteer 12 episodes, extract transcripts, draft guest bios, identify frameworks per episode.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="phase">Week 3-4</div>
+            <div class="content">
+              <h4>Editorial Refinement</h4>
+              <p>Professional editor transforms transcripts → readable essays. Fact-check, add footnotes, copyedit.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="phase">Week 5-7</div>
+            <div class="content">
+              <h4>Design & Layout</h4>
+              <p>Book designer creates interior + 3 cover concepts, visualize frameworks, format for print.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="phase">Week 8</div>
+            <div class="content">
+              <h4>Guest Approval</h4>
+              <p>Send draft chapters to each guest, 1 round feedback, signed release forms.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="phase">Week 9-12</div>
+            <div class="content">
+              <h4>Print & Launch</h4>
+              <p>Register ISBN, print 500 copies, deliver to HQ, distribute to guests, launch Q3 2026.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 9: Success Metrics -->
+    <div class="slide content-slide" style="background: var(--st-bg);">
+      <div class="slide-content">
+        <div class="eyebrow">Success Metrics</div>
+        <h2>What We Track (Not Vanity)</h2>
+        <div class="two-col">
+          <div class="col">
+            <h3>Business Metrics ✅</h3>
+            <ul>
+              <li><strong>Pipeline influence</strong> — Deals waar boek werd gegift (HubSpot property)</li>
+              <li><strong>Meeting conversion</strong> — AEs rapporteren "book opened doors"</li>
+              <li><strong>Guest referrals</strong> — Hoeveel gasten introduceerden Studytube</li>
+              <li><strong>Sales cycle impact</strong> — Sloten gifted prospects sneller? (cohort analysis)</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>Vanity Metrics ⚠️</h3>
+            <ul>
+              <li>LinkedIn impressions van guest posts</li>
+              <li>Webshop sales count</li>
+              <li>Event attendee feedback scores</li>
+              <li>Social media mentions</li>
+            </ul>
+          </div>
+        </div>
+        <p class="big-idea" style="margin-top: 3rem; text-align: center;">
+          We tracken <span class="gradient-text">"Book Gifted"</span> als property in HubSpot deals
+        </p>
+      </div>
+    </div>
+
+    <!-- Slide 10: Decision Points -->
+    <div class="slide content-slide">
+      <div class="slide-content">
+        <div class="eyebrow">Wat We Nodig Hebben</div>
+        <h2>Decision Points</h2>
+        <div class="decision-list">
+          <div class="decision-item">
+            <div class="number">1</div>
+            <div class="content">
+              <h4>Budget Approval</h4>
+              <p>€15k investering voor 500 exemplaren. Verdeeld over editorial (€3k), design (€2.5k), print (€6k), distributie (€600).</p>
+            </div>
+          </div>
+          <div class="decision-item">
+            <div class="number">2</div>
+            <div class="content">
+              <h4>Timeline Fit</h4>
+              <p>Q2 2026 productie → Q3 2026 launch. Past dit in de C-level strategy roadmap?</p>
+            </div>
+          </div>
+          <div class="decision-item">
+            <div class="number">3</div>
+            <div class="content">
+              <h4>Guest Selection</h4>
+              <p>Welke 12 episodes? Mix van experts, customers, cross-disciplinary. Moet alle 5 pillars dekken.</p>
+            </div>
+          </div>
+          <div class="decision-item">
+            <div class="number">4</div>
+            <div class="content">
+              <h4>Team Commitment</h4>
+              <p>Laura (content lead), Chiel (production), Lenny (strategic oversight). Wie doet guest approval?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    document.getElementById('total-slides').textContent = totalSlides;
+
+    function showSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (n + totalSlides) % totalSlides;
+      slides[currentSlide].classList.add('active');
+
+      // Update counter
+      document.getElementById('current-slide').textContent = currentSlide + 1;
+
+      // Update progress bar
+      const progress = ((currentSlide + 1) / totalSlides) * 100;
+      document.getElementById('progress-bar').style.width = progress + '%';
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key >= '1' && e.key <= '9') {
+        const slideNum = parseInt(e.key) - 1;
+        if (slideNum < totalSlides) {
+          showSlide(slideNum);
+        }
+      }
+    });
+
+    // Initialize
+    showSlide(0);
+  </script>
+
+</body>
+</html>
