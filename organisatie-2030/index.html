@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Organisatie van 2030 — Wat Overblijft als AI het Werk Overneemt | Studytube</title>
+    <meta name="description" content="Hoe ziet de organisatie van 2030 eruit? Skill-based teams, leren in het werk, en menselijk oordeelsvermogen als kernproduct. Bereid je organisatie voor.">
+    <meta name="keywords" content="organisatie van de toekomst, toekomstbestendige organisatie, AI en organisatie, organisatie 2030, toekomst van werk, skill-based organisatie">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="De Organisatie van 2030 — Wat Overblijft als AI het Werk Overneemt">
+    <meta property="og:description" content="Skill-based teams, leren in het werk, en menselijk oordeelsvermogen als kernproduct. Zo ziet de organisatie van 2030 eruit.">
+    <meta property="og:type" content="article">
+
+    <!-- Fonts: Aeonik (Studytube brand) -->
+    <style>
+        @font-face {
+            font-family: 'Aeonik';
+            src: url('https://cdn.prod.website-files.com/67aa1b159a3b0fbd37ae8d24/67b706e492d360789b7d136d_Aeonik-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Aeonik';
+            src: url('https://cdn.prod.website-files.com/67aa1b159a3b0fbd37ae8d24/67b706e49917a96ca28032e0_Aeonik-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Aeonik';
+            src: url('https://cdn.prod.website-files.com/67aa1b159a3b0fbd37ae8d24/67b706e4758f748f7c5fbb89_Aeonik-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-display: swap;
+        }
+    </style>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'st-blue': '#056DFF',
+                        'st-navy': '#11295A',
+                        'st-text': '#0e0e33',
+                        'st-gray': {
+                            75: '#F9FAFB',
+                            100: '#F2F5F8',
+                            200: '#E9EDF1',
+                            600: '#545E69'
+                        },
+                        'st-cyan': '#05D5FF',
+                        'st-success': '#16A34A',
+                        'st-danger': '#EF5350',
+                        'st-amber': '#F59E0B',
+                        'st-emerald': '#10B981',
+                        'st-purple': '#6f5dd7',
+                        'st-light-blue': '#d8e8ff'
+                    },
+                    fontFamily: {
+                        'aeonik': ['Aeonik', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            font-family: 'Aeonik', system-ui, -apple-system, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Article typography */
+        .article-body p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #545E69;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #11295A;
+            margin-top: 3rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.25;
+        }
+
+        .article-body h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #11295A;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .article-body strong {
+            color: #11295A;
+            font-weight: 600;
+        }
+
+        .article-body em {
+            font-style: italic;
+        }
+
+        .article-body a:not(.footnote-ref) {
+            color: #FF1B51;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .article-body a:not(.footnote-ref):hover {
+            border-bottom-color: #FF1B51;
+        }
+
+        /* Button hover effects */
+        .btn-primary {
+            transition: all 0.2s cubic-bezier(.86,0,.07,1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(5, 109, 255, 0.4);
+        }
+
+        /* Pattern overlay */
+        .pattern-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L55 30L30 55L5 30L30 5z' fill='none' stroke='white' stroke-width='1' opacity='0.08'/%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
+
+        /* Reading progress bar */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #056DFF;
+            z-index: 100;
+            transition: width 0.1s ease;
+        }
+
+        /* Footnote styling */
+        .footnote-ref {
+            color: #056DFF;
+            font-size: 0.75rem;
+            vertical-align: super;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footnote-ref:hover {
+            text-decoration: underline;
+        }
+
+        /* Quote block */
+        .pull-quote {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 4px solid #056DFF;
+        }
+
+        /* Sticky TOC highlight */
+        .toc-link {
+            transition: all 0.2s ease;
+        }
+
+        .toc-link.active {
+            color: #056DFF;
+            font-weight: 600;
+        }
+
+        /* Scroll-triggered fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Asymmetric card radius (Studytube brand) */
+        .st-card {
+            border-radius: 0 1.4rem 1.4rem 1.4rem;
+        }
+    </style>
+</head>
+<body class="bg-white text-st-text">
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="reading-progress" style="width: 0%"></div>
+
+    <!-- ============================================
+         SECTION 1: HERO
+         Job: Set the thesis, establish urgency
+    ============================================= -->
+    <section class="bg-gradient-to-br from-st-gray-75 to-white">
+        <div class="max-w-4xl mx-auto px-6 py-16 md:py-24">
+            <!-- Category + Reading time -->
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-st-blue/10 text-st-blue text-sm font-semibold">
+                    Organisatie van de Toekomst
+                </span>
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-st-purple/10 text-st-purple text-sm font-medium">
+                    C-Level Series
+                </span>
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-st-gray-100 text-st-gray-600 text-sm font-medium">
+                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    10 min leestijd
+                </span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-4xl md:text-5xl lg:text-[56px] font-bold text-st-navy leading-[1.1] mb-6">
+                De Organisatie van 2030
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-xl md:text-2xl text-st-gray-600 leading-relaxed mb-8 max-w-3xl">
+                Wat overblijft als AI het werk overneemt &mdash; en waarom de antwoorden je organisatiemodel op z'n kop zetten.
+            </p>
+
+            <!-- Author + Date -->
+            <div class="flex items-center gap-4 pt-6 border-t border-st-gray-200">
+                <div class="w-12 h-12 bg-gradient-to-br from-st-blue to-st-cyan rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">ST</span>
+                </div>
+                <div>
+                    <p class="font-semibold text-st-navy">Studytube Research</p>
+                    <p class="text-sm text-st-gray-600">Februari 2026 &middot; Organisatie van de Toekomst &mdash; Deel 1 van 5</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 2: KEY STAT STRIP
+         Job: Anchor with 3 verified data points
+    ============================================= -->
+    <section class="bg-st-navy py-8">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/20">
+                <div class="text-center px-6">
+                    <div class="text-3xl md:text-4xl font-bold text-white mb-1">39%</div>
+                    <p class="text-white/60 text-sm">van skillsets verouderd binnen 5 jaar</p>
+                    <p class="text-white/30 text-xs mt-1">WEF Future of Jobs 2025</p>
+                </div>
+                <div class="text-center px-6">
+                    <div class="text-3xl md:text-4xl font-bold text-st-cyan mb-1">12x</div>
+                    <p class="text-white/60 text-sm">AI-versnelling op complexe cognitieve taken</p>
+                    <p class="text-white/30 text-xs mt-1">Anthropic Economic Index, jan 2026</p>
+                </div>
+                <div class="text-center px-6">
+                    <div class="text-3xl md:text-4xl font-bold text-st-amber mb-1">63%</div>
+                    <p class="text-white/60 text-sm">van werkgevers noemt skill gaps de grootste barrière</p>
+                    <p class="text-white/30 text-xs mt-1">WEF Future of Jobs 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3: ARTICLE BODY
+         Job: Deliver the argument — structured, sourced
+    ============================================= -->
+    <section class="bg-white py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid lg:grid-cols-[1fr_280px] gap-12">
+
+                <!-- Main Article Column -->
+                <article class="article-body max-w-3xl">
+
+                    <!-- HOOK: Evidence + Challenge -->
+                    <p class="text-xl leading-relaxed text-st-text">
+                        In 2030 zal 39% van alle huidige skillsets verouderd of getransformeerd zijn.<a href="#fn1" class="footnote-ref">1</a> Dat is geen dystopisch scenario &mdash; het is de consensus van het World Economic Forum. En die 39% groeit elk kwartaal. AI comprimeert complexe cognitieve taken 12x sneller dan mensen ze handmatig uitvoeren.<a href="#fn2" class="footnote-ref">2</a>
+                    </p>
+
+                    <p>
+                        Toch zijn de meeste organisaties nog ingericht alsof het 2015 is. Hiërarchische lagen. Functionele silo's. Een jaarlijks leerplan dat niemand enthousiast maakt. Die structuur werkte toen de wereld voorspelbaar was. Dat is ze niet meer.
+                    </p>
+
+                    <p>
+                        De vraag is niet <em>of</em> je organisatie verandert. De vraag is of jij die verandering stuurt &mdash; of dat het je overkomt.
+                    </p>
+
+                    <p>
+                        Dit artikel schetst hoe de organisatie van 2030 eruitziet. Niet als techutopie. Als pragmatisch model. Gebouwd rond drie principes die de organisaties die vooroplopen nu al toepassen.
+                    </p>
+
+                    <!-- ========================================= -->
+                    <!-- HET UITHOLLEN VAN HET MIDDEN -->
+                    <!-- ========================================= -->
+                    <h2 id="uithollen">Het uithollen van het midden</h2>
+
+                    <p>
+                        Middenmanagement is de meest kwetsbare laag in elke organisatie. Niet omdat die mensen slecht zijn &mdash; maar omdat hun kernwerk precies in het vizier van AI ligt.
+                    </p>
+
+                    <p>
+                        Wat doet een gemiddelde middenmanager? Coördineren. Rapporteren. Informatie vertalen tussen de werkvloer en de directie. Statussen bijhouden. Vergaderingen voorzitten om iedereen op lijn te krijgen. Dat klinkt als essentieel werk. Het is ook precies het soort werk dat AI al kan &mdash; en over twee jaar beter dan mensen doet.
+                    </p>
+
+                    <!-- Stat callout: Anthropic -->
+                    <div class="bg-st-blue/5 border border-st-blue/10 rounded-2xl p-6 my-8 fade-in">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-14 h-14 bg-st-blue/10 rounded-xl flex items-center justify-center">
+                                <span class="text-st-blue text-2xl font-bold">12x</span>
+                            </div>
+                            <div>
+                                <p class="text-st-navy font-semibold mb-1">Complexer werk = snellere AI-compressie</p>
+                                <p class="text-st-gray-600 text-sm leading-relaxed">
+                                    De Anthropic Economic Index toont dat AI complexe cognitieve taken 12x sneller uitvoert, versus 9x voor eenvoudiger werk. Hoe complexer het coördinatiewerk, hoe sneller AI het overneemt.<a href="#fn2" class="footnote-ref">2</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        Dat betekent niet dat middenmanagers verdwijnen. Het betekent dat hun rol fundamenteel verschuift. Van coördinator naar coach. Van rapporteur naar vertaler van strategie. Van gatekeeper naar iemand die blokkades wegneemt.
+                    </p>
+
+                    <p>
+                        Organisaties die niet bewegen, krijgen een gat in het midden. Te veel overhead, te weinig richting. Een tussenlaag die informatie doorgeeft die AI sneller kan verwerken. Dat is het uithollen van het midden: niet ontslag, maar irrelevantie.
+                    </p>
+
+                    <p>
+                        En die irrelevantie is duur. Je betaalt seniorlonen voor werk dat een algoritme in seconden doet. Terwijl het werk waar je organisatie wél mensen voor nodig heeft &mdash; strategisch denken, coachen, koers bepalen &mdash; niet wordt gedaan. Omdat niemand er tijd voor heeft. Iedereen zit in vergaderingen.
+                    </p>
+
+                    <!-- ========================================= -->
+                    <!-- DRIE PIJLERS -->
+                    <!-- ========================================= -->
+                    <h2 id="drie-pijlers">Drie pijlers van de organisatie van 2030</h2>
+
+                    <p>
+                        Hoe ziet een organisatie eruit die wél klaar is? Niet als een Silicon Valley-experiment. Maar als een pragmatische Nederlandse organisatie die begrijpt dat de spelregels veranderd zijn.
+                    </p>
+
+                    <p>
+                        Drie dingen vallen op bij organisaties die vooroplopen.
+                    </p>
+
+                    <!-- PIJLER 1: Skill-based teams -->
+                    <h3 id="skill-based-teams">1. Skill-based teams in plaats van vaste afdelingen</h3>
+
+                    <p>
+                        Het functiehuis is een relict. Je beschrijft een functie, plaatst er een mens in, en hoopt dat de match een paar jaar standhoudt. Dat werkte toen werk voorspelbaar was en functies decennia hetzelfde bleven.
+                    </p>
+
+                    <p>
+                        In de organisatie van 2030 worden teams samengesteld op basis van de skills die een project nodig heeft. Niet op basis van wie toevallig in welke afdeling zit. Een marketeer met data-skills werkt samen met een engineer die klantpsychologie begrijpt. Zodra het project klaar is, hervormt het team zich rond de volgende uitdaging.
+                    </p>
+
+                    <p>
+                        Dit vereist dat je weet welke skills je in huis hebt. Niet een Excel-overzicht van functietitels &mdash; een levende kaart van capabilities. <a href="https://www.studytube.com/nl/product/skill-navigator" target="_blank">AI-gestuurde skill maps</a> maken dat voor het eerst echt schaalbaar. Niet als eenmalige inventarisatie, maar als continu actueel beeld.
+                    </p>
+
+                    <p>
+                        En die dynamiek is geen luxe. <a href="/skills-half-life-crisis/">Skills die sneller verouderen dan ooit</a> maken een statisch functiehuis riskant. Als de halfwaardetijd van executieskills krimpt tot maanden, kun je je niet veroorloven om mensen vast te zetten in rollen die over een jaar niet meer bestaan.
+                    </p>
+
+                    <!-- Before/After comparison -->
+                    <div class="grid md:grid-cols-2 gap-4 my-8">
+                        <div class="bg-st-gray-75 rounded-xl p-6 border-2 border-st-gray-200 fade-in">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-6 h-6 bg-st-gray-200 rounded-full flex items-center justify-center">
+                                    <svg class="w-3.5 h-3.5 text-st-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-semibold text-st-gray-600 uppercase tracking-wider">Klassiek model</span>
+                            </div>
+                            <p class="text-st-gray-600 text-sm leading-relaxed">
+                                Vaste afdelingen, functiebeschrijvingen, jaarlijkse assessments. Teams veranderen alleen bij reorganisaties. Skills worden gemeten bij aanname, daarna zelden.
+                            </p>
+                        </div>
+
+                        <div class="bg-st-blue/5 rounded-xl p-6 border-2 border-st-blue/20 fade-in">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-6 h-6 bg-st-blue/20 rounded-full flex items-center justify-center">
+                                    <svg class="w-3.5 h-3.5 text-st-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-semibold text-st-blue uppercase tracking-wider">2030 model</span>
+                            </div>
+                            <p class="text-st-navy text-sm leading-relaxed">
+                                Skill-based teams die zich vormen rond projecten. Continue skill-mapping. Interne mobiliteit op basis van capabilities, niet hiërarchie. Teams hervormen zich als het werk verandert.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- PIJLER 2: Leren als dagelijks werk -->
+                    <h3 id="leren-dagelijks">2. Leren als dagelijks werk, niet als jaarlijks event</h3>
+
+                    <p>
+                        Het jaarlijkse trainingsplan is een theater. Iedereen weet het. Niemand zegt het hardop.
+                    </p>
+
+                    <p>
+                        Je plant in januari welke cursussen er komen. In maart schrijf je de budgetaanvraag. In september zijn de cursussen live. In december meet je completion rates. Ondertussen is de wereld drie keer veranderd en leer je mensen dingen die ze al kunnen &mdash; of die AI inmiddels beter doet.
+                    </p>
+
+                    <p>
+                        De organisatie van 2030 behandelt leren niet als een apart programma. Leren zit in het werk zelf. Je leert door te doen, ondersteund door technologie die precies de juiste content op het juiste moment aanreikt. Niet een catalogus van 3.000 cursussen, maar een gepersonaliseerd pad dat zich aanpast aan wat je nu nodig hebt.
+                    </p>
+
+                    <p>
+                        Dat is het verschil tussen <a href="/learning-moat/">leren als duurzaam concurrentievoordeel</a> en leren als een afvinklijst. De eerste variant bouwt een organisatie die steeds sterker wordt. De tweede produceert certificaten die niemand leest.
+                    </p>
+
+                    <!-- Pull quote -->
+                    <div class="pull-quote my-8 fade-in">
+                        <p class="text-xl md:text-2xl text-st-navy font-medium leading-relaxed mb-2">
+                            "De vaardigheid van de toekomst is richting en synthese: niet executie. De machine voert uit, jij geeft richting."
+                        </p>
+                        <p class="text-sm text-st-gray-600">
+                            &mdash; Brian Roemmele, <em>You Have 5000 Days</em><a href="#fn3" class="footnote-ref">3</a>
+                        </p>
+                    </div>
+
+                    <p>
+                        Maar "leren in het werk" klinkt vaag als je het niet concretiseert. In de praktijk betekent het drie dingen: microlearning op het moment dat iemand een skill nodig heeft, coaching door managers die weten waar hun team naartoe groeit, en AI die patronen herkent in wat iemand leert en wat het oplevert. <a href="https://www.studytube.com/nl/solution/upskillen-reskillen" target="_blank">Medewerkers voorbereiden op morgen</a> is geen project met een einddatum. Het is een bedrijfsproces, net als sales of finance.
+                    </p>
+
+                    <!-- PIJLER 3: Menselijk oordeelsvermogen -->
+                    <h3 id="oordeelsvermogen">3. Menselijk oordeelsvermogen als kernproduct</h3>
+
+                    <p>
+                        Stel je voor: AI schrijft de rapporten. Doet de analyses. Plant de vergaderingen. Vat de besluiten samen. Wat blijft er over?
+                    </p>
+
+                    <p>
+                        Oordeelsvermogen. De vaardigheid om te bepalen <em>wat</em> er moet gebeuren, niet <em>hoe</em> het moet worden uitgevoerd. Strategische keuzes maken met onvolledige informatie. Stakeholders meenemen in een richting die nog niet bewezen is. Het gesprek voeren dat niemand wil voeren.
+                    </p>
+
+                    <p>
+                        <a href="/meta-skills-currency/">Meta-skills die niet depreciëren</a> &mdash; oordeelsvermogen, creatieve synthese, stakeholdernavigatie &mdash; worden het kernproduct van elke organisatie. Niet het werk dat mensen doen, maar de beslissingen die mensen nemen. Dat is de verschuiving van operator naar dirigent.
+                    </p>
+
+                    <p>
+                        En die verschuiving is niet abstract. In een organisatie waar AI de standaardanalyses doet, heeft een financieel directeur die alleen Excel kan lezen geen toegevoegde waarde meer. Maar een CFO die de implicaties van drie scenario's kan doorvertalen naar strategische keuzes &mdash; en het managementteam kan meenemen in die keuze &mdash; is onvervangbaar.
+                    </p>
+
+                    <p>
+                        Dat geldt voor elke laag. De HR-manager die compliance-lijstjes afvinkt wordt vervangen. De HR-manager die cultuur kan lezen en interventies kan ontwerpen die gedrag veranderen, niet. De L&D-professional die cursussen inkoopt is kwetsbaar. De L&D-professional die kan uitleggen welke skill gaps de strategie bedreigen &mdash; in de taal van de CFO &mdash; is onmisbaar.
+                    </p>
+
+                    <!-- ========================================= -->
+                    <!-- DE STUDYTUBE-TEST -->
+                    <!-- ========================================= -->
+                    <h2 id="studytube-test">De test die elke CEO zichzelf zou moeten stellen</h2>
+
+                    <p>
+                        Er is één vraag die de organisatie van 2030 scheidt van de organisatie die 2030 niet haalt:
+                    </p>
+
+                    <!-- Test question as callout -->
+                    <div class="bg-st-navy rounded-2xl px-8 py-6 my-8 fade-in">
+                        <p class="text-xl md:text-2xl text-white font-medium leading-relaxed text-center">
+                            Kunnen jouw mensen morgen doen wat AI vandaag niet kan?
+                        </p>
+                    </div>
+
+                    <p>
+                        Niet: "Zijn ze goed in hun werk?" Dat is de verkeerde vraag. De juiste vraag: voegen ze iets toe dat AI niet repliceert? Oordeelsvermogen. Empathie. Het vermogen om drie scenario's te doordenken en dan het vierde te kiezen dat niemand zag aankomen.
+                    </p>
+
+                    <p>
+                        Als het antwoord "nee" is &mdash; of erger, "ik weet het niet" &mdash; dan is dat geen HR-probleem. Dat is een strategisch risico dat op de bestuurstafel thuishoort.
+                    </p>
+
+                    <p>
+                        Het goede nieuws: het is meetbaar. Je kunt per rol in kaart brengen welke taken AI-kwetsbaar zijn en welke taken specifiek menselijke vaardigheden vereisen. Je kunt je leer- en ontwikkelingsbudget heralloceren van executieskills (die depreciëren) naar richtingskills (die appreciëren). Dat is geen vaag verandertraject. Dat is portfoliomanagement &mdash; dezelfde discipline die je CFO toepast op financiële assets.
+                    </p>
+
+                    <!-- Three actionable steps -->
+                    <div class="bg-st-gray-75 rounded-3xl p-8 my-8 fade-in">
+                        <h4 class="text-lg font-bold text-st-navy mb-6">Drie stappen om dit concreet te maken</h4>
+                        <div class="space-y-5">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-blue rounded-xl flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">01</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-st-navy mb-1">Scan je huidige skill-landschap</h5>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        Breng per rol in kaart: welke taken zijn AI-kwetsbaar (executie), welke vereisen menselijk oordeel (richting)? De verhouding vertelt je waar je organisatie staat.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-blue rounded-xl flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">02</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-st-navy mb-1">Heralloceer het ontwikkelbudget</h5>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        Verschuif investering van executieskills naar richtingskills. Als 70% van je budget naar vaardigheden gaat die AI over twee jaar beter doet, is dat geen leerplan &mdash; dat is een slechte investering.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-st-blue rounded-xl flex items-center justify-center">
+                                    <span class="text-white font-bold text-sm">03</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-st-navy mb-1">Meet leersnelheid, niet completion</h5>
+                                    <p class="text-st-gray-600 text-sm leading-relaxed">
+                                        De organisatie van 2030 meet niet hoeveel cursussen iemand afrondt, maar hoe snel mensen nieuwe skills oppakken als de context verandert. Leersnelheid is de enige metric die niet veroudert.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================= -->
+                    <!-- DE ONGEMAKKELIJKE WAARHEID -->
+                    <!-- ========================================= -->
+                    <h2 id="ongemakkelijke-waarheid">De ongemakkelijke waarheid</h2>
+
+                    <p>
+                        De meeste Nederlandse organisaties ontwerpen nog steeds voor 2020. Functionele silo's. Jaarlijkse budgetcycli. L&D als kostenpost. Completion rates als succesindicator.
+                    </p>
+
+                    <p>
+                        Dat is niet omdat ze het niet begrijpen. Het is omdat verandering pijn doet. Het functiehuis afbreken betekent vragen beantwoorden die niemand graag stelt. Wat als we ontdekken dat 40% van onze rollen over drie jaar niet meer bestaan? Wat als onze beste mensen vaardigheden missen die we nooit hebben gemeten?
+                    </p>
+
+                    <p>
+                        Niet kijken is ook een keuze. Maar de kosten van niet-veranderen lopen op. De talentmarkt trekt de beste mensen naar organisaties die groei bieden. AI comprimeert de tijd die je hebt om te reageren. En concurrenten die wél investeren in skill-based organiseren, bouwen een voorsprong die niet lineair groeit &mdash; maar exponentieel.
+                    </p>
+
+                    <!-- Final pull quote -->
+                    <div class="pull-quote my-8 fade-in">
+                        <p class="text-lg text-st-navy leading-relaxed mb-2">
+                            De organisatie van 2030 wordt niet gebouwd in 2029. Ze wordt nu gebouwd. Door elke keuze die je maakt over hoe je talent ontwikkelt, hoe je teams samenstelt, en hoe je leren positioneert.
+                        </p>
+                    </div>
+
+                    <p>
+                        Drie pijlers. Skill-based teams. Leren in het werk. Menselijk oordeelsvermogen als kernproduct. De organisaties die deze principes nu al toepassen, veranderen niet <em>als reactie</em> op AI. Ze bouwen een organisatie waar AI het uitvoerende werk versnelt &mdash; en waar mensen doen waar ze goed in zijn: richting geven.
+                    </p>
+
+                    <!-- Closing one-liner -->
+                    <div class="bg-st-navy rounded-2xl px-8 py-6 my-10 fade-in">
+                        <p class="text-xl md:text-2xl text-white font-medium leading-relaxed text-center">
+                            De vraag is niet of je organisatie verandert.<br>De vraag is of jij die verandering stuurt.
+                        </p>
+                    </div>
+
+                    <!-- REFERENCES -->
+                    <div class="border-t border-st-gray-200 pt-8 mt-12">
+                        <h3 class="text-lg font-bold text-st-navy mb-4">Bronnen</h3>
+                        <ol class="space-y-3 text-sm text-st-gray-600 leading-relaxed">
+                            <li id="fn1">
+                                <span class="text-st-blue font-semibold">1.</span> World Economic Forum. <em>Future of Jobs Report 2025.</em> 39% van bestaande skillsets zal getransformeerd of verouderd zijn binnen 5 jaar. 63% van werkgevers noemt skill gaps als belangrijkste barrière voor bedrijfstransformatie. Via: <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" class="text-st-blue hover:underline">weforum.org</a>
+                            </li>
+                            <li id="fn2">
+                                <span class="text-st-blue font-semibold">2.</span> Anthropic. <em>The Anthropic Economic Index.</em> Januari 2026. AI versnelt college-niveau taken 12x, middelbareschooltaken 9x. <a href="https://www-cdn.anthropic.com/096d94c1a91c6480806d8f24b2344c7e2a4bc666.pdf" target="_blank" class="text-st-blue hover:underline">Bron (PDF)</a>
+                            </li>
+                            <li id="fn3">
+                                <span class="text-st-blue font-semibold">3.</span> Brian Roemmele. "You Have 5000 Days: Part 5 &mdash; Your Deskilling." <em>ReadMultiplex</em>, januari 2026. <a href="https://readmultiplex.com/2026/01/20/you-have-5000-days-navigating-the-end-of-work-as-we-know-it-part-5-your-deskilling/" target="_blank" class="text-st-blue hover:underline">readmultiplex.com</a>
+                            </li>
+                        </ol>
+                    </div>
+
+                </article>
+
+                <!-- Sidebar: Table of Contents -->
+                <aside class="hidden lg:block">
+                    <div class="sticky top-8">
+                        <p class="text-xs text-st-gray-600 uppercase tracking-wider font-semibold mb-4">In dit artikel</p>
+                        <nav class="space-y-2">
+                            <a href="#uithollen" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">Het uithollen van het midden</a>
+                            <a href="#drie-pijlers" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">Drie pijlers van 2030</a>
+                            <a href="#skill-based-teams" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1 pl-4 text-xs">Skill-based teams</a>
+                            <a href="#leren-dagelijks" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1 pl-4 text-xs">Leren als dagelijks werk</a>
+                            <a href="#oordeelsvermogen" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1 pl-4 text-xs">Menselijk oordeelsvermogen</a>
+                            <a href="#studytube-test" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">De test voor elke CEO</a>
+                            <a href="#ongemakkelijke-waarheid" class="toc-link block text-sm text-st-gray-600 hover:text-st-blue py-1">De ongemakkelijke waarheid</a>
+                        </nav>
+
+                        <!-- Mini CTA in sidebar -->
+                        <div class="mt-8 p-5 bg-st-blue/5 rounded-xl border border-st-blue/10">
+                            <p class="text-sm font-semibold text-st-navy mb-2">Waar staat jouw organisatie?</p>
+                            <p class="text-xs text-st-gray-600 mb-3">De L&D Impact Scan brengt je skill-landschap in kaart en laat zien waar de risico's zitten.</p>
+                            <a href="https://scan.studytube.nl" target="_blank" class="inline-flex items-center text-sm text-st-blue font-semibold hover:underline">
+                                Doe de gratis scan
+                                <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- Series indicator -->
+                        <div class="mt-6 p-5 bg-st-gray-75 rounded-xl">
+                            <p class="text-xs text-st-gray-600 uppercase tracking-wider font-semibold mb-3">Organisatie van de Toekomst</p>
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 bg-st-blue rounded-full flex items-center justify-center">
+                                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                                        </svg>
+                                    </div>
+                                    <span class="text-xs text-st-navy font-medium">De Organisatie van 2030</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 bg-st-gray-200 rounded-full flex items-center justify-center">
+                                        <span class="text-[10px] text-st-gray-600 font-bold">2</span>
+                                    </div>
+                                    <span class="text-xs text-st-gray-600">7 Tekenen Dat Je Niet Klaar Bent</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 bg-st-gray-200 rounded-full flex items-center justify-center">
+                                        <span class="text-[10px] text-st-gray-600 font-bold">3</span>
+                                    </div>
+                                    <span class="text-xs text-st-gray-600">Van Functiehuis naar Skillhuis</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 bg-st-gray-200 rounded-full flex items-center justify-center">
+                                        <span class="text-[10px] text-st-gray-600 font-bold">4</span>
+                                    </div>
+                                    <span class="text-xs text-st-gray-600">3 Organisaties Die de Sprong Maakten</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-5 h-5 bg-st-gray-200 rounded-full flex items-center justify-center">
+                                        <span class="text-[10px] text-st-gray-600 font-bold">5</span>
+                                    </div>
+                                    <span class="text-xs text-st-gray-600">De Eerste 90 Dagen</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 4: NEXT IN SERIES
+         Job: Bridge to W21
+    ============================================= -->
+    <section class="bg-st-gray-75 py-12">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-st-gray-100 flex flex-col md:flex-row items-center gap-6">
+                <div class="flex-shrink-0 w-16 h-16 bg-st-blue/10 rounded-2xl flex items-center justify-center">
+                    <svg class="w-8 h-8 text-st-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-sm text-st-gray-600 uppercase tracking-wider font-semibold mb-1">Volgende in de serie</p>
+                    <p class="text-lg text-st-navy font-bold mb-1">7 Tekenen Dat Je Bedrijf Niet Klaar Is voor de Toekomst</p>
+                    <p class="text-st-gray-600 text-sm">Wil je weten waar jouw organisatie staat? Bekijk de 7 waarschuwingstekens die aangeven of je organisatie nog vastzit in het verleden &mdash; en wat toekomstbestendige organisaties anders doen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 5: CTA
+         Job: Convert awareness into scan request
+    ============================================= -->
+    <section class="bg-st-navy pattern-overlay py-16 md:py-24" id="cta">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                Is jouw organisatie klaar voor 2030?
+            </h2>
+            <p class="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
+                De L&D Impact Scan brengt in kaart waar je staat en waar de risico's zitten. Niet wat je hoopt, maar wat de data laat zien.
+            </p>
+
+            <a href="https://scan.studytube.nl" target="_blank" class="btn-primary inline-flex items-center justify-center px-8 py-4 bg-white text-st-navy font-semibold rounded-xl text-lg">
+                Doe de gratis L&D Impact Scan
+                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+
+            <div class="flex flex-wrap justify-center gap-6 mt-6">
+                <div class="flex items-center gap-2 text-white/60">
+                    <svg class="w-5 h-5 text-st-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm">5 minuten</span>
+                </div>
+                <div class="flex items-center gap-2 text-white/60">
+                    <svg class="w-5 h-5 text-st-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm">Gratis</span>
+                </div>
+                <div class="flex items-center gap-2 text-white/60">
+                    <svg class="w-5 h-5 text-st-success" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm">Geen verplichtingen</span>
+                </div>
+            </div>
+
+            <p class="text-white/40 text-sm mt-8">
+                <a href="https://www.studytube.com/nl/inspiration/blog" target="_blank" class="text-white/40 hover:text-white/60 underline">Meer over de organisatie van de toekomst &rarr;</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION 6: FOOTER
+    ============================================= -->
+    <footer class="bg-st-navy border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-6 py-12">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Logo & Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="https://cdn.prod.website-files.com/67aa1b159a3b0fbd37ae8d24/67ab56c5ed5ff6cf4c42a88b_studytube_logo.svg" alt="Studytube" class="h-8 brightness-0 invert">
+                    </div>
+                    <p class="text-white/60 leading-relaxed max-w-sm">
+                        Het leerplatform dat organisaties helpt talent van binnenuit te ontwikkelen. Vertrouwd door 400+ bedrijven in Nederland en de DACH-regio.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Platform</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://www.studytube.com/nl/product/skill-navigator" target="_blank" class="text-white/60 hover:text-white text-sm">Skill Navigator</a></li>
+                        <li><a href="https://www.studytube.com/nl/product/learning-management-system" target="_blank" class="text-white/60 hover:text-white text-sm">Learning Management</a></li>
+                        <li><a href="https://www.studytube.com/nl/product/learning-experience-platform" target="_blank" class="text-white/60 hover:text-white text-sm">Learning Experience</a></li>
+                        <li><a href="https://www.studytube.com/nl/product/ai-authoring" target="_blank" class="text-white/60 hover:text-white text-sm">AI Authoring</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Inspiratie</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://scan.studytube.nl" target="_blank" class="text-white/60 hover:text-white text-sm">L&D Impact Scan</a></li>
+                        <li><a href="https://www.studytube.com/nl/inspiration/blog" target="_blank" class="text-white/60 hover:text-white text-sm">Blog</a></li>
+                        <li><a href="https://www.studytube.com/nl/inspiration/cases" target="_blank" class="text-white/60 hover:text-white text-sm">Cases</a></li>
+                        <li><a href="https://www.studytube.com/nl/demo" target="_blank" class="text-white/60 hover:text-white text-sm">Demo aanvragen</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-sm">
+                    &copy; 2026 Studytube. Alle rechten voorbehouden.
+                </p>
+                <div class="flex gap-6">
+                    <a href="https://www.studytube.com/nl/privacy" target="_blank" class="text-white/40 hover:text-white text-sm">Privacy</a>
+                    <a href="https://www.studytube.com/nl/voorwaarden" target="_blank" class="text-white/40 hover:text-white text-sm">Voorwaarden</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / docHeight) * 100;
+            document.getElementById('reading-progress').style.width = progress + '%';
+        });
+
+        // Scroll-triggered fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Active TOC highlighting
+        const sections = document.querySelectorAll('h2[id], h3[id]');
+        const tocLinks = document.querySelectorAll('.toc-link');
+
+        const tocObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(link => link.classList.remove('active'));
+                    const activeLink = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+                    if (activeLink) activeLink.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0,
+            rootMargin: '-20% 0px -70% 0px'
+        });
+
+        sections.forEach(section => tocObserver.observe(section));
+    </script>
+
+</body>
+</html>

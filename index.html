@@ -241,7 +241,7 @@
         <span class="text-sm font-medium text-st-blue-800">C-Level Hub</span>
       </div>
       <div class="flex items-center gap-4">
-        <span class="hidden sm:inline text-xs text-st-gray-400">18 pages</span>
+        <span class="hidden sm:inline text-xs text-st-gray-400">19 pages</span>
         <a href="https://studytube.nl" target="_blank" class="text-xs font-medium text-st-blue-500 hover:text-st-blue-600 transition-colors">
           studytube.nl &rarr;
         </a>
@@ -708,6 +708,27 @@
         </div>
       </a>
 
+      <!-- 19. De Organisatie van 2030 -->
+      <a href="/organisatie-2030/" class="st-card bg-white block" style="--card-accent:#6f5dd7" data-tags="Thought Leadership,CEO,CHRO,Dutch">
+        <div class="p-6">
+          <div class="flex items-start gap-4 mb-4">
+            <div class="type-badge bg-purple-50 text-purple-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            </div>
+            <div class="min-w-0">
+              <h3 class="font-semibold text-base text-st-blue-900 leading-snug">De Organisatie van 2030</h3>
+              <p class="text-sm text-st-gray-500 mt-1.5 leading-relaxed">Wat overblijft als AI het werk overneemt — skill-based teams, leren in het werk, en menselijk oordeelsvermogen.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="st-tag bg-purple-50 text-purple-700">Thought Leadership</span>
+            <span class="st-tag bg-indigo-50 text-indigo-700">CEO</span>
+            <span class="st-tag bg-teal-50 text-teal-700">CHRO</span>
+            <span class="st-tag bg-st-gray-100 text-st-gray-600">NL</span>
+          </div>
+        </div>
+      </a>
+
     </div>
 
     <!-- Empty state -->
@@ -812,7 +833,7 @@
       const statusText = document.getElementById('filter-status-text');
       if (activeTags.size > 0) {
         const visible = document.querySelectorAll('.st-card:not(.hidden-card)').length;
-        statusText.textContent = `Showing ${visible} of 18 pages`;
+        statusText.textContent = `Showing ${visible} of 19 pages`;
         statusEl.classList.remove('hidden');
       } else {
         statusEl.classList.add('hidden');
